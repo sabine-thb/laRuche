@@ -5,6 +5,7 @@ require_once "vue_menu.php" ;
 require_once "MenuModule/vue_menu_connexion.php" ;
 require_once "MenuModule/vue_menu_joueur.php" ;
 require_once "MenuModule/vue_menu_equipe.php" ;
+require_once "MenuModule/vue_menu_admin.php" ;
 
 class ContMenu {
 
@@ -29,6 +30,9 @@ class ContMenu {
                 break;
             case "mod_equipe":
                 $a = new VueMenuEquipe();
+                break;
+            case "mod_admin":
+                $a = new VueMenuAdmin();
                 break;
             default:
                 die("erreur module");

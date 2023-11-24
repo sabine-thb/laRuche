@@ -26,7 +26,7 @@ CREATE TABLE users(
 
 CREATE TABLE admin(
 	admin_id SERIAL NOT NULL ,
-	name VARCHAR NOT NULL,
+	login VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
 	CONSTRAINT pk_admin PRIMARY KEY(admin_id)
 );
@@ -37,3 +37,6 @@ CREATE TABLE admin(
 -- INSERTION DEFAUT
 -------------------------------------
 
+SET search_path TO LaRuche;
+
+INSERT INTO admin(login,password) values ('admin','$2y$10$NgQgoczV30jYL290isx3pOSP3eUfJaVsWpjQW8xz1ruhazMEVN7WO');

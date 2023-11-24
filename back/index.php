@@ -19,16 +19,21 @@ switch($module) {
         Connexion::initConnexion();
         $a = new ModConnexion();
         break;
-    case "mod_joueur":
-        include_once ('modules/mod_joueur/mod_joueurs.php');
-        Connexion::initConnexion();
-        $a = new ModJoueurs();
+    case "mod_admin":
+        if (isset($_SESSION["adminActif"])) {
+            include_once ('modules/mod_admin/mod_admin.php');
+            Connexion::initConnexion();
+            $a = new ModAdmin();
+        }else{
+            echo" vous n'etes pas connecter en tant que admin !";
+            echo '<meta http-equiv="refresh" content="2;url=index.php?module=mod_connexion" />';
+        }
         break;
-    case "mod_equipe":
-        include_once ('modules/mod_equipe/mod_equipes.php');
-        Connexion::initConnexion();
-        $a = new ModEquipes();
-        break;
+    // case "mod_equipe":
+    //     include_once ('modules/mod_equipe/mod_equipes.php');
+    //     Connexion::initConnexion();
+    //     $a = new ModEquipes();
+    //     break;
     default:
         die("Module inconnu");
 }

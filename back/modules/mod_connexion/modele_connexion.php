@@ -31,7 +31,7 @@ class ModeleConnexion extends Connexion {
 
     public function ajoutUser($login,$mail,$mdp) {
 
-        
+        //todo verifier que le nouveau utilisateur n'aille pas les meme identifiant que un admin
         if ($this->nouveau("login",$login)){
             if ($this->nouveau("mail",$mail)) {
                 return $this->ajoutFinal($login, $mail, $mdp);
@@ -90,33 +90,47 @@ class ModeleConnexion extends Connexion {
 
         try {
 
-            $stmt = Connexion::$bdd->prepare("SELECT password FROM LaRuche.users WHERE login='" .$login. "' or mail='" . $login . "' ");
+            $stmt = Connexion::$bdd->prepare("SELECT password FROM LaRuche.admin WHERE login='" .$login. "' ");
             $resultat = $this->executeQuery($stmt);
 
-            if(isset($resultat[0]["password"])){
-                $mdpCripte = $resultat[0]["password"];
+            if(isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp)){
+                return 2;//admin good
+            }else{
 
-                if (password_verify($mdp, $mdpCripte)) {
-                    // Le hachage correspond, on vérifie au cas où un nouvel algorithme de hachage
-                    // serait disponible ou si le coût a été changé
-                    if (password_needs_rehash($mdpCripte, PASSWORD_BCRYPT, $this->option)) {
-                        // On crée un nouveau hachage afin de mettre à jour l'ancien
-                        $newHash = password_hash($mdp, PASSWORD_BCRYPT, $this->option);
+                $stmt = Connexion::$bdd->prepare("SELECT password FROM LaRuche.users WHERE login='" .$login. "' or mail='" . $login . "' ");
+                $resultat = $this->executeQuery($stmt);
 
-                        //todo mettre a jour le mdp dans phpmyadmin
-                    }
-                
-                    return true;
+                if( isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp) ){
+                    return 1;//user good
                 }
             }
 
-            return false;
+            return -1;//n'existe pas dans la bdd
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur:" . $e ."');</script>";
-            return false;
+            return -1;
         }
     
+    }
+
+    private function checkMdp($resultat, $mdp){
+        $mdpCripte = $resultat[0]["password"];
+
+        if (password_verify($mdp, $mdpCripte)) {
+            // Le hachage correspond, on vérifie au cas où un nouvel algorithme de hachage
+            // serait disponible ou si le coût a été changé
+            if (password_needs_rehash($mdpCripte, PASSWORD_BCRYPT, $this->option)) {
+                // On crée un nouveau hachage afin de mettre à jour l'ancien
+                $newHash = password_hash($mdp, PASSWORD_BCRYPT, $this->option);
+                echo"il faut mettre a jour!";
+
+                //todo mettre a jour le mdp dans phpmyadmin
+            }
+        
+            return true;
+        }
+        return false;
     }
 
 }

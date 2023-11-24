@@ -69,9 +69,15 @@ class ContConnexion {
             $resultat = $this->modele->verifUser($_POST['login'],$_POST['mdp']);
             
 
-            if ($resultat) {
+            if ($resultat == 1) {
                 $_SESSION["loginActif"] = $_POST['login'];
+                $_SESSION["adminActif"] = false;
                 echo "Conexion etablie !";
+            }else if($resultat == 2){
+                $_SESSION["loginActif"] = $_POST['login'];
+                $_SESSION["adminActif"] = true;
+                echo "connecter en tant que admin !";
+                echo '<meta http-equiv="refresh" content="2;url=index.php?module=mod_admin" />';
             } else {
                 echo "Erreur lors de la connexion.";
             }
