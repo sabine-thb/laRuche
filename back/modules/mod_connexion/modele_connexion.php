@@ -29,37 +29,46 @@ class ModeleConnexion extends Connexion {
         return $resultats;
     }
 
-    public function ajoutUser($nom,$mdp) {
+    public function ajoutUser($login,$mail,$mdp) {
 
-        $mdp = password_hash($mdp,PASSWORD_BCRYPT,$this->option);
-
-        if ($this->nouveauUser($nom)){
-            try {
-
-                $stmt = Connexion::$bdd->prepare('INSERT INTO Users (login,mot_de_passe) VALUES ("'.$nom.'", "'.$mdp.'")');
-                $resultat = $stmt->execute();
-
-                return $resultat;
-
-            } catch (PDOException $e) {
-                echo "<script>console.log('erreur:" . $e ."');</script>";
-                return $e;
+        
+        if ($this->nouveau("login",$login)){
+            if ($this->nouveau("mail",$mail)) {
+                return $this->ajoutFinal($login, $mail, $mdp);
+            } else {
+                echo "<p> mail deja utilisée! </p>";
             }
         }
         else {
-            echo "<p> utilisateur deja inscrit! </p>";
+            echo "<p> login deja utilisé ! </p>";
         }
+
+        return false;
     
     }
 
-    public function nouveauUser($nom) {
+    private function ajoutFinal($login,$mail,$mdp) {
+        try {
+            $mdp = password_hash($mdp,PASSWORD_BCRYPT,$this->option);
+            $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.users (login,mail,password) VALUES ('".$login."', '".$mail."', '".$mdp."')");
+            $resultat = $stmt->execute();
+
+            return $resultat;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return $e;
+        }
+    }
+
+    private function nouveau($champSql, $var) {
 
         try {
 
-            $stmt = Connexion::$bdd->prepare('SELECT login FROM Users WHERE login="' .$nom. '" ');
+            $stmt = Connexion::$bdd->prepare("SELECT " .$champSql. " FROM LaRuche.users WHERE " .$champSql. "='" .$var. "' ");
             $resultat = $this->executeQuery($stmt);
 
-            if(isset($resultat[0]["login"])){
+            if(isset($resultat[0][$champSql])){
                 return false;
             }
             else{
@@ -69,20 +78,23 @@ class ModeleConnexion extends Connexion {
             
 
         } catch (PDOException $e) {
+            echo "erreur fonction nouveau !";
             return false;
         }
 
     }
 
-    public function verifUser($nom,$mdp) {
+    public function verifUser($login,$mdp) {
+
+        //ici le login peut etre sois le mail sois le reel login
 
         try {
-            
-            $stmt = Connexion::$bdd->prepare('SELECT mot_de_passe FROM Users WHERE login="' .$nom. '" ');
+
+            $stmt = Connexion::$bdd->prepare("SELECT password FROM LaRuche.users WHERE login='" .$login. "' or mail='" . $login . "' ");
             $resultat = $this->executeQuery($stmt);
 
-            if(isset($resultat[0]["mot_de_passe"])){
-                $mdpCripte = $resultat[0]["mot_de_passe"];
+            if(isset($resultat[0]["password"])){
+                $mdpCripte = $resultat[0]["password"];
 
                 if (password_verify($mdp, $mdpCripte)) {
                     // Le hachage correspond, on vérifie au cas où un nouvel algorithme de hachage

@@ -24,9 +24,10 @@ class VueConnexion extends VueGenerique {
 
         echo '<div class = "container d-flex justify-content-center" >';
         echo '<form class="form-inline align-items-center justify-content-center justify-content-md-between" action="index.php?module=mod_connexion&action=ajout" method="post">';
-        echo "login: <input class='form-control mr-sm-2' type='text' name='login' placeholder='nom utilisateur'><br>";
+        echo "login: <input class='form-control mr-sm-2' type='text' name='login' placeholder='nom utilisateur unique'><br>";
+        echo "mail: <input class='form-control mr-sm-2' type='text' name='mail' placeholder='mail'><br>";
         echo 'mot de passe: <input class="form-control mr-sm-2" type="password" name="mdp" placeholder="mot de passe"><br>';
-        echo '<input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Ajouter Joueur">';
+        echo '<input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Créer compte">';
         echo '</form>';
         echo '</div>';
 
@@ -36,7 +37,7 @@ class VueConnexion extends VueGenerique {
 
         echo '<div class = "container d-flex justify-content-center" >';
         echo '<form action="index.php?module=mod_connexion&action=verificationConnexion" method="post" class="align-items-center justify-content-center justify-content-md-between">';
-        echo "login: <input class='form-control mr-sm-2' type='text' name='login'><br>";
+        echo "login/mail: <input class='form-control mr-sm-2' type='text' name='login'><br>";
         echo 'mot de passe: <input class="form-control mr-sm-2" type="password" name="mdp"><br>';
         echo '<input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Connexion">';
         echo '</form>';

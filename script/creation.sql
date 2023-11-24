@@ -18,7 +18,7 @@ SET search_path TO LaRuche;
 
 CREATE TABLE users(
 	user_id SERIAL NOT NULL ,
-	name VARCHAR NOT NULL,
+	login VARCHAR NOT NULL,
     mail VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
 	CONSTRAINT pk_user PRIMARY KEY(user_id)

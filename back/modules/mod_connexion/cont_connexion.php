@@ -36,11 +36,12 @@ class ContConnexion {
 
     public function ajout() {
 
-        if (isset($_POST['login'],$_POST['mdp'])){
+        if (isset($_POST['login'],$_POST['mdp'],$_POST['mail'])){
 
-            $resultat = $this->modele->ajoutUser($_POST['login'],$_POST['mdp']);
+            $resultat = $this->modele->ajoutUser($_POST['login'],$_POST['mail'],$_POST['mdp']);
 
             if ($resultat) {
+                $_SESSION["loginActif"] = $_POST['login'];
                 echo "user ajouté avec succès.";
             } else {
                 echo "Erreur lors de la creation de compte.";
