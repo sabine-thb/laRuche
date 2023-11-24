@@ -28,6 +28,11 @@ class ContAdmin {
         $this->vue->afficheBienvenue();
     }
 
+    public function afficheDemande() {
+        $resultat=$this->modele->recupereDemande();
+        $this->vue->afficheDemande($resultat);
+    }
+
 
     public function deconnexion() {
 

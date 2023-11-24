@@ -32,16 +32,17 @@ class ModeleConnexion extends Connexion {
     public function ajoutDemandeUser($login,$mail,$mdp) {
 
         //todo verifier que le nouveau utilisateur n'aille pas les meme identifiant que un admin
-        echo'coucou!!!';
         if ($this->nouveau("login",$login)){
             if ($this->nouveau("mail",$mail)) {
                 return $this->ajoutFinal($login, $mail, $mdp);
             } else {
-                echo "<p> mail deja utilisée! </p>";
+                $_SESSION['error'] =  "<p> mail deja utilisée! </p><br>";
+                header('Location: index.php?module=mod_connexion&action=inscription'); 
             }
         }
         else {
-            echo "<p> login deja utilisé ! </p>";
+            $_SESSION['error'] =  "<p> login deja utilisé ! </p><br>";
+            header('Location: index.php?module=mod_connexion&action=inscription'); 
         }
 
         return false;

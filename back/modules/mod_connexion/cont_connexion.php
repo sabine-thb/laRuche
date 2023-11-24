@@ -24,14 +24,12 @@ class ContConnexion {
     }
 
     public function bienvenue(){
-
+        $_SESSION['error'] = null;
         $this->vue->afficheBienvenue();
     }
 
     public function afficheFormInsciption(){
-
         $this->vue->afficheFormulaireInsciption();
-
     }
 
     public function ajout() {
@@ -45,8 +43,10 @@ class ContConnexion {
                 if ($resultat) {
                     // $_SESSION["loginActif"] = $_POST['login'];
                     echo "une demande a été envoyer a la ruche vous recevrez un mail lorsque la demande sera acceptée.";
+                    $_SESSION['error'] = null;
                 } else {
                     echo "Erreur lors de la creation de compte.";
+                    $_SESSION['error'] = null;
                 }
             }else{
                 $_SESSION['error'] = 'veullez saisir un mot de passe plus long<br>';
@@ -68,12 +68,14 @@ class ContConnexion {
     }
 
     public function afficheFormConnexion() {
-
+        $_SESSION['error'] = null;
         $this->vue->afficheFormulaireConnexion();
 
     }
 
     public function connexion() {
+
+        $_SESSION['error'] = null;
 
         if (isset($_POST['login'],$_POST['mdp'])){
             
