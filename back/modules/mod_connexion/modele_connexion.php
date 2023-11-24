@@ -29,9 +29,10 @@ class ModeleConnexion extends Connexion {
         return $resultats;
     }
 
-    public function ajoutUser($login,$mail,$mdp) {
+    public function ajoutDemandeUser($login,$mail,$mdp) {
 
         //todo verifier que le nouveau utilisateur n'aille pas les meme identifiant que un admin
+        echo'coucou!!!';
         if ($this->nouveau("login",$login)){
             if ($this->nouveau("mail",$mail)) {
                 return $this->ajoutFinal($login, $mail, $mdp);

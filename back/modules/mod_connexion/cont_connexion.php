@@ -35,22 +35,36 @@ class ContConnexion {
     }
 
     public function ajout() {
+        
 
-        if (isset($_POST['login'],$_POST['mdp'],$_POST['mail'])){
+        if ($this->checkAllInput() ) {
+            if ($this->checkForceMdp($_POST['mdp'])) {
+                
+                $resultat = $this->modele->ajoutDemandeUser($_POST['login'],$_POST['mail'],$_POST['mdp']);
 
-            $resultat = $this->modele->ajoutUser($_POST['login'],$_POST['mail'],$_POST['mdp']);
-
-            if ($resultat) {
-                $_SESSION["loginActif"] = $_POST['login'];
-                echo "user ajouté avec succès.";
-            } else {
-                echo "Erreur lors de la creation de compte.";
+                if ($resultat) {
+                    // $_SESSION["loginActif"] = $_POST['login'];
+                    echo "une demande a été envoyer a la ruche vous recevrez un mail lorsque la demande sera acceptée.";
+                } else {
+                    echo "Erreur lors de la creation de compte.";
+                }
+            }else{
+                $_SESSION['error'] = 'veullez saisir un mot de passe plus long<br>';
+                header('Location: index.php?module=mod_connexion&action=inscription');  
             }
-
         } else {
-            die("veullez remplir tout les champ");
+            $_SESSION['error'] = 'veullez remplir tout les champ<br>';
+            header('Location: index.php?module=mod_connexion&action=inscription');
         }
 
+    }
+
+    private function checkForceMdp($mdp){
+        return strlen($mdp) > 5;
+    }
+
+    private function checkAllInput(){
+        return isset($_POST['login'],$_POST['mdp'],$_POST['mail']) && $_POST['login'] != "" && $_POST['mdp'] != "" && $_POST['mail'] != "" ;
     }
 
     public function afficheFormConnexion() {
@@ -60,8 +74,6 @@ class ContConnexion {
     }
 
     public function connexion() {
-
-        
 
         if (isset($_POST['login'],$_POST['mdp'])){
             

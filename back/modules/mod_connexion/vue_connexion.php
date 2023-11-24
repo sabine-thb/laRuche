@@ -27,6 +27,9 @@ class VueConnexion extends VueGenerique {
         echo "login: <input class='form-control mr-sm-2' type='text' name='login' placeholder='nom utilisateur unique'><br>";
         echo "mail: <input class='form-control mr-sm-2' type='text' name='mail' placeholder='mail'><br>";
         echo 'mot de passe: <input class="form-control mr-sm-2" type="password" name="mdp" placeholder="mot de passe"><br>';
+        if (isset($_SESSION['error'])){
+            echo $_SESSION['error'];
+        }
         echo '<input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Créer compte">';
         echo '</form>';
         echo '</div>';

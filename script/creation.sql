@@ -21,6 +21,7 @@ CREATE TABLE users(
 	login VARCHAR NOT NULL,
     mail VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
+    est_verifier BOOLEAN NOT NULL DEFAULT false,
 	CONSTRAINT pk_user PRIMARY KEY(user_id)
 );
 
