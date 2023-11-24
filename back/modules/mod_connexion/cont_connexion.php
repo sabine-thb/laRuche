@@ -28,10 +28,6 @@ class ContConnexion {
         $this->vue->afficheBienvenue();
     }
 
-    public function afficheMenu() {
-        $this->vue->menu();
-    }
-
     public function afficheFormInsciption(){
 
         $this->vue->afficheFormulaireInsciption();

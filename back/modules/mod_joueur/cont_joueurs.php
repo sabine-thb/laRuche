@@ -34,10 +34,6 @@ class ContJoueurs {
 
     }
 
-    public function afficheMenu() {
-        $this->vue->menu();
-    }
-
     public function affichage() {
         return $this->vue->getAffichage();
     }
