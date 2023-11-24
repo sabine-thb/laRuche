@@ -79,7 +79,7 @@ class ContEquipes  {
                 $resultat = $this->modele->ajoutEquipe($_POST['nom'],$_POST['annee'],$_POST['description'],$_POST['pays'],$logo);
 
                 if ($resultat) {
-                    echo "equipe ajouté avec succès";
+                    echo "equipe ajouté avec succès.";
                 } else {
                     echo "Erreur lors de l'ajout de l'equipe.<br>";
                 }
