@@ -88,6 +88,10 @@ class ContConnexion {
                 $_SESSION["adminActif"] = false;
                 echo "Conexion etablie !";
             }else if($resultat == 2){
+                echo "votre demande n'a pas encore été traiter par la ruche !<br>";
+                echo "un peu de patience ;)";
+                echo '<meta http-equiv="refresh" content="4;url=index.php?module=mod_connexion" />';
+            }else if($resultat == 3){
                 $_SESSION["loginActif"] = $_POST['login'];
                 $_SESSION["adminActif"] = true;
                 echo "connecter en tant que admin !";

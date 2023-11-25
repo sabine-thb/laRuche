@@ -38,6 +38,21 @@ class ModeleAdmin extends Connexion {
         }
     }
 
+    public function accepteDemande($id) {
+
+        try {
+            $stmt = Connexion::$bdd->prepare("UPDATE laruche.users SET est_verifier=true WHERE user_id=" . $id ."");
+            $resultat = $this->executeQuery($stmt);
+
+            return $resultat;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return $e;
+        }
+
+    }
+
 
 }
 

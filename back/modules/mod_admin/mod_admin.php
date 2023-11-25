@@ -32,6 +32,10 @@ class ModAdmin {
                 $this->controlleur->afficheDemande();
                 break;
 
+            case 'valider':
+                $this->controlleur->validerDemande();
+                break;    
+
             case 'deconnexion':
                 $this->controlleur->deconnexion();
                 break;

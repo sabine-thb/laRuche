@@ -33,6 +33,17 @@ class ContAdmin {
         $this->vue->afficheDemande($resultat);
     }
 
+    public function validerDemande() {
+    
+        if (isset($_GET["id"])) {
+            $resultat=$this->modele->accepteDemande($_GET["id"]);
+
+            if ($resultat) {
+                header('Location: index.php?module=mod_admin&action=afficherDemande');
+            }
+        }
+    }
+
 
     public function deconnexion() {
 
