@@ -4,16 +4,16 @@ if (!defined("BASE_URL")) {
     die("il faut passer par l'index");
 }
 
-require_once "cont_joueurs.php" ;
+require_once "cont_connexion.php" ;
 
-class ModJoueurs {
+class ModConnexion {
 
     private $action;
     private $controlleur;
 
     public function __construct(){
 
-        $this->controlleur = new ContJoueurs();
+        $this->controlleur = new ContConnexion();
         $this->action = isset($_GET['action']) ? $_GET['action'] : 'bienvenue';
 
         $this->start();
@@ -28,22 +28,25 @@ class ModJoueurs {
                 $this->controlleur->bienvenue();
                 break;
             
-            case 'liste':
-                $this->controlleur->liste();
-                break;
-
-            case 'details':
-                $this->controlleur->details();
-                break;
-
-            case 'affiche_form':
-                $this->controlleur->afficheForm();
+            case 'inscription':
+                $this->controlleur->afficheFormInsciption();
                 break;
 
             case 'ajout':
                 $this->controlleur->ajout();
                 break;
 
+            case 'connexion':
+                $this->controlleur->afficheFormConnexion();
+                break;
+
+            case 'verificationConnexion':
+                $this->controlleur->connexion();
+                break;    
+
+            case 'deconnexion':
+                $this->controlleur->deconnexion();
+                break;
         }
     }
 

@@ -4,17 +4,18 @@ if (!defined("BASE_URL")) {
     die("il faut passer par l'index");
 }
 
-require_once "cont_equipes.php" ;
+require_once "cont_connexion.php" ;
 
-class ModEquipes  {
+class ModConnexion {
 
     private $action;
     private $controlleur;
 
     public function __construct(){
 
-        $this->controlleur = new ContEquipes();
+        $this->controlleur = new ContConnexion();
         $this->action = isset($_GET['action']) ? $_GET['action'] : 'bienvenue';
+
         $this->start();
 
     }
@@ -27,29 +28,25 @@ class ModEquipes  {
                 $this->controlleur->bienvenue();
                 break;
             
-            case 'liste':
-                $this->controlleur->liste();
+            case 'inscription':
+                $this->controlleur->afficheFormInsciption();
                 break;
 
-            case 'details':
-                $this->controlleur->details();
-                break;
-
-            case 'affiche_form':
-                $this->controlleur->afficheForm();
-                break;
-                
             case 'ajout':
                 $this->controlleur->ajout();
                 break;
-            case 'afficheModif':
-                $this->controlleur->afficheModifEquipe();
-                break;
-            case 'modif':
-                $this->controlleur->modif();
-                break;
-            
 
+            case 'connexion':
+                $this->controlleur->afficheFormConnexion();
+                break;
+
+            case 'verificationConnexion':
+                $this->controlleur->connexion();
+                break;    
+
+            case 'deconnexion':
+                $this->controlleur->deconnexion();
+                break;
         }
     }
 
@@ -58,6 +55,5 @@ class ModEquipes  {
     }
 
 }
-
 
 ?>

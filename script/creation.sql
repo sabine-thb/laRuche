@@ -29,7 +29,7 @@ CREATE TABLE admin(
 	admin_id SERIAL NOT NULL ,
 	login VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
-	CONSTRAINT pk_admin PRIMARY KEY(admin_id)
+	CONSTRAINT pk_admin PRIMARY KEY(admin_id),
 );
 
 -- SET search_path TO Scorcast;
