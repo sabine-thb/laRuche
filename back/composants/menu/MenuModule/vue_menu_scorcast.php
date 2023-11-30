@@ -2,7 +2,7 @@
 
 require_once './composants/menu/vue_menu.php';
 
-class VueMenuJoueur extends VueMenu {
+class VueMenuScorcast extends VueMenu {
 
     protected function menuModule() {
 

@@ -4,16 +4,16 @@ if (!defined("BASE_URL")) {
     die("il faut passer par l'index");
 }
 
-require_once "cont_connexion.php" ;
+require_once "cont_scorcast.php" ;
 
-class ModConnexion {
+class ModScorcast {
 
     private $action;
     private $controlleur;
 
     public function __construct(){
 
-        $this->controlleur = new ContConnexion();
+        $this->controlleur = new ContScorcast();
         $this->action = isset($_GET['action']) ? $_GET['action'] : 'bienvenue';
 
         $this->start();

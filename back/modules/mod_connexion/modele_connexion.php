@@ -96,17 +96,17 @@ class ModeleConnexion extends Connexion {
             $resultat = $this->executeQuery($stmt);
 
             if(isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp)){
-                return 3;//admin good
+                return [3,$login];//admin good
             }else{
 
-                $stmt = Connexion::$bdd->prepare("SELECT password,est_verifier FROM LaRuche.users WHERE login='" .$login. "' or mail='" . $login . "' ");
+                $stmt = Connexion::$bdd->prepare("SELECT login,password,est_verifier FROM LaRuche.users WHERE login='" .$login. "' or mail='" . $login . "' ");
                 $resultat = $this->executeQuery($stmt);
 
                 if( isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp) ){
                     if($resultat[0]["est_verifier"]){
-                        return 1;//user good
+                        return [1,$resultat[0]["login"]];//user good
                     }else{
-                        return 2;//user pas encore verifier
+                        return [2,$resultat[0]["login"]];//user pas encore verifier
                     }
                 }
             }

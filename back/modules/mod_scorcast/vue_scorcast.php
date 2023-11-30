@@ -6,7 +6,7 @@ if (!defined("BASE_URL")) {
 
 require_once './vue_generique.php';
 
-class VueConnexion extends VueGenerique {
+class VueScorcast extends VueGenerique {
 
     public function __construct() {
         parent::__construct();

@@ -81,18 +81,19 @@ class ContConnexion {
             
 
             $resultat = $this->modele->verifUser($_POST['login'],$_POST['mdp']);
-            
 
-            if ($resultat == 1) {
-                $_SESSION["loginActif"] = $_POST['login'];
+            if ($resultat[0] == 1) {
+                $_SESSION["loginActif"] = $resultat[1];
                 $_SESSION["adminActif"] = false;
-                echo "Conexion etablie !";
-            }else if($resultat == 2){
+                echo "Conexion etablie !<br>";
+                echo "redirection en cours";
+                echo '<meta http-equiv="refresh" content="3;url=index.php?module=mod_ruche" />';
+            }else if($resultat[0] == 2){
                 echo "votre demande n'a pas encore été traiter par la ruche !<br>";
                 echo "un peu de patience ;)";
                 echo '<meta http-equiv="refresh" content="4;url=index.php?module=mod_connexion" />';
-            }else if($resultat == 3){
-                $_SESSION["loginActif"] = $_POST['login'];
+            }else if($resultat[0] == 3){
+                $_SESSION["loginActif"] = $resultat[1];
                 $_SESSION["adminActif"] = true;
                 echo "connecter en tant que admin !";
                 echo '<meta http-equiv="refresh" content="2;url=index.php?module=mod_admin" />';

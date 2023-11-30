@@ -3,8 +3,8 @@
 require_once "modele_menu.php" ;
 require_once "vue_menu.php" ;
 require_once "MenuModule/vue_menu_connexion.php" ;
-require_once "MenuModule/vue_menu_joueur.php" ;
-require_once "MenuModule/vue_menu_equipe.php" ;
+require_once "MenuModule/vue_menu_ruche.php" ;
+require_once "MenuModule/vue_menu_scorcast.php" ;
 require_once "MenuModule/vue_menu_admin.php" ;
 
 class ContMenu {
@@ -25,11 +25,11 @@ class ContMenu {
             case "mod_connexion":
                 $a = new VueMenuConnexion();
                 break;
-            case "mod_joueur":
-                $a = new VueMenuJoueur();
+            case "mod_ruche":
+                $a = new VueMenuRuche();
                 break;
-            case "mod_equipe":
-                $a = new VueMenuEquipe();
+            case "mod_scorcast":
+                $a = new VueMenuScorcast();
                 break;
             case "mod_admin":
                 $a = new VueMenuAdmin();

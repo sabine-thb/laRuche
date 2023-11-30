@@ -29,11 +29,11 @@ switch($module) {
             echo '<meta http-equiv="refresh" content="2;url=index.php?module=mod_connexion" />';
         }
         break;
-    // case "mod_equipe":
-    //     include_once ('modules/mod_equipe/mod_equipes.php');
-    //     Connexion::initConnexion();
-    //     $a = new ModEquipes();
-    //     break;
+    case "mod_ruche":
+        include_once ('modules/mod_ruche/mod_ruche.php');
+        Connexion::initConnexion();
+        $a = new ModRuche();
+        break;
     default:
         die("Module inconnu");
 }

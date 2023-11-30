@@ -6,7 +6,7 @@ if (!defined("BASE_URL")) {
 
 require_once './modules/Connexion.php';
 
-class ModeleConnexion extends Connexion {
+class ModeleScorcast extends Connexion {
 
     private $option;
 

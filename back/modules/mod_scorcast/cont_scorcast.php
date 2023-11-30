@@ -4,18 +4,18 @@ if (!defined("BASE_URL")) {
     die("il faut passer par l'index");
 }
 
-require_once "modele_connexion.php" ;
-require_once "vue_connexion.php" ;
+require_once "modele_scorcast.php" ;
+require_once "vue_scorcast.php" ;
 
-class ContConnexion {
+class ContScorcast {
 
     private $vue;
     private $modele;
     
     public function __construct(){
 
-        $this->vue = new VueConnexion();
-        $this->modele = new ModeleConnexion();
+        $this->vue = new VueScorcast();
+        $this->modele = new ModeleScorcast();
 
     }
 
