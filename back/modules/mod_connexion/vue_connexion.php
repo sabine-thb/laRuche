@@ -16,7 +16,8 @@ class VueConnexion extends VueGenerique {
         if (isset($_SESSION["loginActif"])){
             echo "Bon retour parmi nous ". $_SESSION["loginActif"] ." !";
         }else{
-            echo "salut vous etes sur le module connexion !";
+            echo "bienvenue sur le site de la ruche !<br>";
+            echo "veuillez vous connectez ou créez un compte pour continuer";
         }
     }
 

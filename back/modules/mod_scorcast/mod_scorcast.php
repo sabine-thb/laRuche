@@ -27,26 +27,6 @@ class ModScorcast {
             case 'bienvenue':
                 $this->controlleur->bienvenue();
                 break;
-            
-            case 'inscription':
-                $this->controlleur->afficheFormInsciption();
-                break;
-
-            case 'ajout':
-                $this->controlleur->ajout();
-                break;
-
-            case 'connexion':
-                $this->controlleur->afficheFormConnexion();
-                break;
-
-            case 'verificationConnexion':
-                $this->controlleur->connexion();
-                break;    
-
-            case 'deconnexion':
-                $this->controlleur->deconnexion();
-                break;
         }
     }
 

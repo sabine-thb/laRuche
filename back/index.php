@@ -4,9 +4,9 @@ session_start();
 if (isset($_SESSION["loginActif"])) {
     if (isset($_GET['module'])){
         $module = $_GET['module'] ;
-    }// else{
-    //     $module = "mod_acceuil";
-    // }
+    }else{
+        $module = "mod_ruche";
+    }
 }else{
     $module = 'mod_connexion';
 }
@@ -26,13 +26,18 @@ switch($module) {
             $a = new ModAdmin();
         }else{
             echo" vous n'etes pas connecter en tant que admin !";
-            echo '<meta http-equiv="refresh" content="2;url=index.php?module=mod_connexion" />';
+            echo '<meta http-equiv="refresh" content="1;url=index.php?module=mod_connexion" />';
         }
         break;
     case "mod_ruche":
         include_once ('modules/mod_ruche/mod_ruche.php');
         Connexion::initConnexion();
         $a = new ModRuche();
+        break;
+    case "mod_scorcast":
+        include_once ('modules/mod_scorcast/mod_scorcast.php');
+        Connexion::initConnexion();
+        $a = new ModScorcast();
         break;
     default:
         die("Module inconnu");

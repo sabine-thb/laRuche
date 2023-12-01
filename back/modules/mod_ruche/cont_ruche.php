@@ -27,12 +27,5 @@ class ContRuche {
         $this->vue->afficheBienvenue();
     }
 
-    // public function deconnexion() {
-
-    //     session_destroy();
-    //     header('Location: index.php?module=mod_connexion&action=bienvenue');
-
-    // }
-
 }
 ?>

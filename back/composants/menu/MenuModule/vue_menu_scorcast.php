@@ -6,11 +6,14 @@ class VueMenuScorcast extends VueMenu {
 
     protected function menuModule() {
 
-        return '
-        <ul>
-         <li><a href="index.php?module=mod_joueur&action=liste">Liste</a></li>
-         <li><a href="index.php?module=mod_joueur&action=affiche_form">Ajout</a></li>
-        </ul>';
+        $temp = '<div class="col-md-3 text-end">';
+        $temp .= '<button  type="button" class="btn btn-outline-primary me-2"><a href="index.php?module=mod_ruche" class="nav-link px-2">retour a la ruche</a></button>';
+        $temp .= '</div>';
+        $temp .= '<div class="col-md-3 text-end">';
+        $temp .= '<button  type="button" class="btn btn-outline-primary me-2"><a href="index.php?module=mod_connexion&action=deconnexion" class="nav-link px-2">deconnexion</a></button>';
+        $temp .= '</div>';
+
+        return $temp;
 
     }
 

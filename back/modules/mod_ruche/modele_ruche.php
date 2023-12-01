@@ -8,7 +8,6 @@ require_once './modules/Connexion.php';
 
 class ModeleRuche extends Connexion {
 
-    private $option;
 
     public function __construct() {
     }
