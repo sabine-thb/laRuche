@@ -44,11 +44,43 @@ class ContAdmin {
         }
     }
 
+    public function spprimerCompetition() {
+    
+        if (isset($_GET["idCompet"])) {
+            $resultat=$this->modele->deleteCompetition($_GET["idCompet"]);
+
+            if ($resultat) {
+                header('Location: index.php?module=mod_admin&action=gererCompetition');
+            }
+        }
+    }
+
     public function gererComp() {
         
         $competitions = $this->modele->recupereComp();
         $this->vue->afficheListCompet($competitions);
 
+    }
+
+    public function afficheFormCompet(){
+
+        $this->vue->afficheFormulaireCompet('');
+
+    }
+
+    public function ajoutCompet(){
+
+        if (isset($_POST['name']) && isset($_POST['description']) && $_POST['name'] != "" && $_POST['description'] != ""){
+
+            $result = $this->modele->ajoutCompet($_POST['name'],$_POST['description']);
+
+            echo 'la competition ' . $_POST['name'] . ' a bien été ajouté !<br>';
+            echo "allez dans l'onglet 'gerer comp' pour ajouter des nouveau matchs";
+            echo '<meta http-equiv="refresh" content="4;url=index.php?module=mod_admin" />';
+
+        }else{
+            $this->vue->afficheFormulaireCompet("erreur !");
+        }
     }
 
 }

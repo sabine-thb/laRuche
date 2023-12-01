@@ -49,6 +49,21 @@ class ModeleAdmin extends Connexion {
         }
     }
 
+    public function deleteCompetition($id) {
+        try {
+            $stmt = Connexion::$bdd->prepare("DELETE FROM Scorcast.competition WHERE competition_id=" . $id ."");
+            $resultat = $this->executeQuery($stmt);
+
+            return $resultat;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return $e;
+        }
+    }
+
+    
+
     public function accepteDemande($id) {
 
         try {
@@ -62,6 +77,19 @@ class ModeleAdmin extends Connexion {
             return $e;
         }
 
+    }
+
+    public function ajoutCompet($nom,$detail) {
+        try {
+            $stmt = Connexion::$bdd->prepare("INSERT INTO Scorcast.competition (nom,description) VALUES ('".$nom."', '".$detail."')");
+            $resultat = $stmt->execute();
+
+            return $resultat;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return $e;
+        }
     }
 
 

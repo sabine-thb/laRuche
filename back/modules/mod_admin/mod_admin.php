@@ -37,8 +37,12 @@ class ModAdmin {
                 break;
 
             case 'afficheFormCompetition':
-                echo "TODO a coder";
+                $this->controlleur->afficheFormCompet();
                 break;
+
+            case 'ajoutCompetition':
+                $this->controlleur->ajoutCompet();
+                break;    
 
             case 'gererCompetition':
                 $this->controlleur->gererComp();
@@ -59,7 +63,14 @@ class ModAdmin {
             case 'voirMatch':
                 echo "TODO a coder";
                 break;
-                
+            
+            case 'supprimerCompetition':
+                $this->controlleur->spprimerCompetition();
+                break;    
+             
+            case 'detailCompetition':
+                echo "TODO a coder";
+                break;        
         }
     }
 
