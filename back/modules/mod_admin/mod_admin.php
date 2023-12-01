@@ -34,11 +34,32 @@ class ModAdmin {
 
             case 'valider':
                 $this->controlleur->validerDemande();
-                break;    
-
-            case 'deconnexion':
-                $this->controlleur->deconnexion();
                 break;
+
+            case 'afficheFormCompetition':
+                echo "TODO a coder";
+                break;
+
+            case 'gererCompetition':
+                $this->controlleur->gererComp();
+                break;
+
+            case 'afficheFormEquipe':
+                echo "TODO a coder";
+                break;
+
+            case 'gererEquipe':
+                echo "TODO a coder";
+                break;
+
+            case 'afficheFormMatch':
+                echo "TODO a coder";
+                break;
+
+            case 'voirMatch':
+                echo "TODO a coder";
+                break;
+                
         }
     }
 

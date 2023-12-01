@@ -44,11 +44,10 @@ class ContAdmin {
         }
     }
 
-
-    public function deconnexion() {
-
-        session_destroy();
-        header('Location: index.php?module=mod_connexion&action=bienvenue');
+    public function gererComp() {
+        
+        $competitions = $this->modele->recupereComp();
+        $this->vue->afficheListCompet($competitions);
 
     }
 

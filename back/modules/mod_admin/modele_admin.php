@@ -8,8 +8,6 @@ require_once './modules/Connexion.php';
 
 class ModeleAdmin extends Connexion {
 
-    private $option;
-
     public function __construct() {
 
     }
@@ -28,6 +26,19 @@ class ModeleAdmin extends Connexion {
     public function recupereDemande() {
         try {
             $stmt = Connexion::$bdd->prepare("SELECT user_id,login,mail FROM laruche.users WHERE est_verifier=false");
+            $resultat = $this->executeQuery($stmt);
+
+            return $resultat;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return $e;
+        }
+    }
+
+    public function recupereComp() {
+        try {
+            $stmt = Connexion::$bdd->prepare("SELECT * FROM Scorcast.competition");
             $resultat = $this->executeQuery($stmt);
 
             return $resultat;
