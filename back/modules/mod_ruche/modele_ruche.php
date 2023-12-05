@@ -4,7 +4,7 @@ if (!defined("BASE_URL")) {
     die("il faut passer par l'index");
 }
 
-require_once './modules/Connexion.php';
+require_once './back/modules/Connexion.php';
 
 class ModeleRuche extends Connexion {
 

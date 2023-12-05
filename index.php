@@ -15,13 +15,13 @@ const BASE_URL = "hello_word";
 
 switch($module) {
     case "mod_connexion":
-        include_once ('modules/mod_connexion/mod_connexion.php');
+        include_once 'back/modules/mod_connexion/mod_connexion.php';
         Connexion::initConnexion();
         $a = new ModConnexion();
         break;
     case "mod_admin":
         if (isset($_SESSION["adminActif"])) {
-            include_once ('modules/mod_admin/mod_admin.php');
+            include_once 'back/modules/mod_admin/mod_admin.php';
             Connexion::initConnexion();
             $a = new ModAdmin();
         }else{
@@ -30,12 +30,12 @@ switch($module) {
         }
         break;
     case "mod_ruche":
-        include_once ('modules/mod_ruche/mod_ruche.php');
+        include_once 'back/modules/mod_ruche/mod_ruche.php';
         Connexion::initConnexion();
         $a = new ModRuche();
         break;
     case "mod_scorcast":
-        include_once ('modules/mod_scorcast/mod_scorcast.php');
+        include_once 'back/modules/mod_scorcast/mod_scorcast.php';
         Connexion::initConnexion();
         $a = new ModScorcast();
         break;
@@ -46,7 +46,7 @@ switch($module) {
 $affichageModule = $a->afficheModule();
 
 //creation des composants
-include_once ('composants/menu/comp_menu.php');
+include_once 'back/composants/menu/comp_menu.php';
 $menu = new CompMenu($module);
 
 require_once "template.php";

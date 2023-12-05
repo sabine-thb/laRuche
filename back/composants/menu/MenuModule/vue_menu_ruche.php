@@ -1,6 +1,6 @@
 <?php
 
-require_once './composants/menu/vue_menu.php';
+require_once './back/composants/menu/vue_menu.php';
 
 class VueMenuRuche extends VueMenu {
 

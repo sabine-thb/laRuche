@@ -4,7 +4,7 @@ if (!defined("BASE_URL")) {
     die("il faut passer par l'index");
 }
 
-require_once './vue_generique.php';
+require_once './back/vue_generique.php';
 
 class VueAdmin extends VueGenerique {
 
@@ -38,19 +38,8 @@ class VueAdmin extends VueGenerique {
 
     public function afficheListCompet($tableau){
 
-        echo "voici les competitions existante :<br>";
-        echo '<div class="container mt-5">';
-        foreach ($tableau as $tuple) {
-            echo '<div class="card mb-3">';
-            echo    '<div class="card-body">';
-            echo        '<h5 class="card-title"> ' . $tuple["nom"] . ' - '. $tuple["date_creation"] . '</h5>';
-            echo        '<p class="card-text">'. $tuple["description"] . '</p>';
-            echo        '<a href="index.php?module=mod_admin&action=supprimerCompetition&idCompet=' . $tuple['competition_id'] . '"><i class="fa-solid fa-trash"></i></a>';
-            echo        '<a href="index.php?module=mod_admin&action=detailCompetition&idCompet=' . $tuple['competition_id'] . '"><i class="fa-solid fa-calendar-day"></i></a>';
-            echo    '</div>';
-            echo '</div>';
-        }
-        echo '</div>';
+        require_once './front/module/mod_admin/listCompetition.php';
+
     }
 
     public function afficheFormulaireCompet($erreur){
