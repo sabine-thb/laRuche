@@ -9,11 +9,14 @@ class Connexion {
     }
 
     public static function initConnexion() {
-        $host = 'test1.cah82lrh4zyj.eu-west-3.rds.amazonaws.com';
-        $dbname = 'postgres';
+        $host = 'laruche.cah82lrh4zyj.eu-west-3.rds.amazonaws.com';
+        $dbname = 'admin';
+
+        //mysql -h laruche.cah82lrh4zyj.eu-west-3.rds.amazonaws.com -P 3306 -u admin -p
 
         try {
-            Connexion::$bdd = new PDO("pgsql:dbname=$dbname;host=$host;port=5432;user=postgres;password=CouCou&85");
+            Connexion::$bdd = new PDO("mysql:host=$host;port=3306;user=admin;password=CouCou&85");
+            //$pdo = new PDO("mysql:host=localhost;dbname=world", 'my_user', 'my_password');
 
             // Configurer PDO pour générer des exceptions en cas d'erreurs SQL
             Connexion::$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
