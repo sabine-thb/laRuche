@@ -48,9 +48,11 @@ class ContAdmin {
     
         if (isset($_GET["idCompet"])) {
             $resultat=$this->modele->deleteCompetition($_GET["idCompet"]);
-
+            
             if ($resultat) {
                 header('Location: index.php?module=mod_admin&action=gererCompetition');
+            }else{
+                echo "erreur lors de la suppression";
             }
         }
     }
