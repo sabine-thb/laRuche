@@ -5,10 +5,11 @@ const BASE_URL = "hello_word";
 
 //on inclue les fichiers de modules correspondant a la page connexion 
 include_once 'back/modules/mod_connexion/mod_connexion.php';
-$module = new ModConnexion();
 
 //connexion bdd
 Connexion::initConnexion();
+
+$module = new ModConnexion();
 
 //fin du tampon
 $affichageModule = $module->afficheModule();
@@ -35,25 +36,16 @@ $affichageModule = $module->afficheModule();
 
     <!-- En-tête -->
     <div class = "container">
-
-    <div >
-        <? if (isset($_SESSION["loginActif"])){ ?>
-            
-            <!-- <button type="button" class="btn btn-outline-primary me-2">
-                <a href="connexion.php?module=mod_connexion&action=deconnexion" class="nav-link px-2">
-                    Déconnexion
-                </a>
-            </button> -->
-        
-        <? } else { ?>
-
             <div class="blockContainer">
                 <img src="./style/img/championsLeague.svg" class="logoLeague">
                 <div class="line"></div>
                 <div class="form">
                     <img src="./style/img/abeille.png" class="abeille"alt="">
-                    <?php
-                    echo $affichageModule; // le code html pour cette endroit est dans le dossier front/connexion ?>
+                    
+                    <main>
+                        <?php echo $affichageModule; // le code html pour cette endroit est dans le dossier front/connexion ?>
+                    </main>
+                    
                     <button type="button" class="bouton">
                         <a href="connexion.php?module=mod_connexion&action=connexion" class="nav-link px-2"> 
                             Se connecter
@@ -66,15 +58,9 @@ $affichageModule = $module->afficheModule();
                         </a>
                     </button>
                 </div>
-                
-
             </div>
-
-            
-
-        <? } ?>
-
     </div>
+
 
     </div>
     

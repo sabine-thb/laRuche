@@ -74,12 +74,12 @@ class ContConnexion {
     }
 
     public function connexion() {
-
+        
         $_SESSION['error'] = null;
 
         if (isset($_POST['login'],$_POST['mdp'])){
             
-
+            
             $resultat = $this->modele->verifUser($_POST['login'],$_POST['mdp']);
 
             if ($resultat[0] == 1) {
