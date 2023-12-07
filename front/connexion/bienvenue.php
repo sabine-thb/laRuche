@@ -4,9 +4,8 @@
     </p>
     
 <?php }else{ ?>
-    <p>
-        bienvenue sur le site de la ruche !<br>
-        veuillez vous connectez ou créez un compte pour continuer
+    <p class="bienvenue">
+        Bienvenue !
     </p>
-        
-<? } ?>
+
+<?php } ?>

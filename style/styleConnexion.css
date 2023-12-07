@@ -1,0 +1,112 @@
+body{
+    margin:0;
+    width:100vw;
+    height:100vh;
+    font-family: "montserratExtraBold", sans-serif;
+    background-image: url(./img/fond.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoLeague{
+    width:500px;
+    height:350px;
+}
+
+.line{
+    width:5px;
+    height:400px;
+    background-color: white;
+    margin-right:100px;
+    margin-left:100px;
+}
+
+.blockContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bouton{
+    border:0; 
+    padding:10px 20px 10px 20px;
+    background-color: #020849;
+    border-radius:25px;
+    transition:background-color 0.3s ease-in-out;
+}
+
+.bouton:hover{
+    background-color: #FFC000
+}
+
+a{
+    font-family: "montserratExtraBold", sans-serif;
+    color:white;
+    text-decoration: none;
+}
+
+.bienvenue{
+    position: relative;
+    font-family:"montserratBlack", sans-serif;
+    font-size:4rem;
+    margin:0px 0px 50px 0px;
+    z-index:200;
+    text-shadow: 1px 3px 0 #000000;
+}
+
+.form{
+    position: relative;
+}
+
+.abeille{
+    width:200px;
+    height:auto;
+    position: absolute;
+    left:-30px;
+    top:-165px;
+
+}
+
+@media(max-width:1200px){
+    .bienvenue{
+        font-size:3rem;
+    }
+
+    .logoLeague{
+        width:300px;
+    }
+
+    .abeille{
+        width:150px;
+        top:-104px;
+    }
+}
+
+@media(max-width:880px){
+    .blockContainer{
+        flex-direction: column;
+        gap:70px;
+    }
+
+    .line{
+        display: none;
+    }
+
+    .bouton{
+        background-color:#0B54CD;
+    }
+}
+
+@media(max-width:440px){
+    .bienvenue{
+        font-size:2.5rem;
+    }
+
+    .logoLeague{
+        width:230px;
+    }
+}
