@@ -12,7 +12,7 @@ if (isset($_SESSION["loginActif"])) {
     $module = 'mod_connexion';
 }
 
-const BASE_URL = "hello_word";
+const BASE_URL = "securité";
 
 switch($module) {
     case "mod_connexion":
@@ -35,14 +35,14 @@ switch($module) {
         }
         break;
     case "mod_ruche":
-        header('Location: connexion.php?module=mod_ruche');
+        header('Location: ruche.php?module=mod_ruche');
         break;
         // include_once 'back/modules/mod_ruche/mod_ruche.php';
         // Connexion::initConnexion();
         // $a = new ModRuche();
         // break;
-    case "mod_scorcast":
-        header('Location: connexion.php?module=mod_scorcast');
+    case "mod_scoruche":
+        header('Location: scoruche.php');
         break;
         // include_once 'back/modules/mod_scorcast/mod_scorcast.php';
         // Connexion::initConnexion();

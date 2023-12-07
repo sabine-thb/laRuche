@@ -70,11 +70,11 @@ class ModeleAdmin extends Connexion {
             $stmt = Connexion::$bdd->prepare("UPDATE LaRuche.users SET est_verifier=true WHERE user_id=" . $id ."");
             $resultat = $this->executeQuery($stmt);
 
-            return $resultat;
+            return true;
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur:" . $e ."');</script>";
-            return $e;
+            return false;
         }
 
     }
@@ -84,11 +84,11 @@ class ModeleAdmin extends Connexion {
             $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.competition (nom,description,date_creation) VALUES ('".$nom."', '".$detail."',CURDATE())");
             $resultat = $stmt->execute();
 
-            return $resultat;
+            return true;
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur:" . $e ."');</script>";
-            return $e;
+            return false;
         }
     }
 

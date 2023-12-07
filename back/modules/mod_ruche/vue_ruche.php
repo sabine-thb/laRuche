@@ -13,9 +13,7 @@ class VueRuche extends VueGenerique {
     }
 
     public function afficheBienvenue() {
-        
-        echo "Bon retour parmi nous ". $_SESSION["loginActif"] ." !";
-        
+        require_once("./front/ruche/bienvenue.php");
     }
 
 }

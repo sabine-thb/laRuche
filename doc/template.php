@@ -1,3 +1,10 @@
+
+<!-- 
+    ceci est juste un exemple pour rajouter des pages facilement et rapidement
+    il ne doit pas etre utilisé directement 
+-->
+
+
 <?php
 session_start();
 
@@ -9,12 +16,12 @@ if (!isset($_SESSION["loginActif"]) ) {
 const BASE_URL = "securité";
 
 //on inclue les fichiers de modules correspondant a la page connexion 
-include_once('back/modules/mod_scorcast/mod_scorcast.php');
+// include_once('back/modules/mod_ruche/mod_ruche.php');
 
 //connexion bdd
 Connexion::initConnexion();
 
-$module = new ModScorcast();
+// $module = new ModRuche();
 
 //fin du tampon
 $affichageModule = $module->afficheModule();
@@ -25,7 +32,7 @@ $affichageModule = $module->afficheModule();
 <html lang="fr">
 <head>
     
-    <title>LaRuche - scoruche</title>
+    <title>LaRuche</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -44,7 +51,7 @@ $affichageModule = $module->afficheModule();
     
     <main>
         <?php 
-            // le code html dynamique, il faut regarder les fichier situé dans front/scoruche pour voir les possibilité d'affichage
+            // le code html dynamique, il faut regarder les fichier situé dans front/'le module' pour voir les possibilité d'affichage
             echo $affichageModule;
         ?>
     </main>

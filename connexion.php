@@ -1,10 +1,11 @@
 <?php
+session_start();
 
 //pour la securité, a revoir
-const BASE_URL = "hello_word";
+const BASE_URL = "securité";
 
 //on inclue les fichiers de modules correspondant a la page connexion 
-include_once 'back/modules/mod_connexion/mod_connexion.php';
+include_once('back/modules/mod_connexion/mod_connexion.php');
 
 //connexion bdd
 Connexion::initConnexion();
@@ -20,7 +21,7 @@ $affichageModule = $module->afficheModule();
 <html lang="fr">
 <head>
     
-    <title>LaRuche</title>
+    <title>LaRuche - connexion</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
@@ -29,7 +30,6 @@ $affichageModule = $module->afficheModule();
     <link href="style/style.css" rel="stylesheet">
     <link rel="stylesheet" href="./style/fonts.css">
     <link rel="stylesheet" href="./style/styleConnexion.css">
-</head>
 </head>
 
 <body>
@@ -60,10 +60,6 @@ $affichageModule = $module->afficheModule();
                 </div>
             </div>
     </div>
-
-
-    </div>
-    
 
     <!-- Pied de page -->
     <!-- <footer class="bg-dark text-white text-center py-3 fixed-bottom">

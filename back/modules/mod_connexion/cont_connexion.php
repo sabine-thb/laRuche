@@ -96,7 +96,7 @@ class ContConnexion {
                 $_SESSION["loginActif"] = $resultat[1];
                 $_SESSION["adminActif"] = true;
                 echo "connecter en tant que admin !";
-                echo '<meta http-equiv="refresh" content="2;url=index.php?module=mod_admin" />';
+                echo '<meta http-equiv="refresh" content="2;url=admin.php?module=mod_admin" />';
             } else {
                 echo "Erreur lors de la connexion.";
             }
@@ -110,7 +110,7 @@ class ContConnexion {
     public function deconnexion() {
 
         session_destroy();
-        header('Location: index.php?module=mod_connexion&action=bienvenue');
+        header('Location: connexion.php?module=mod_connexion&action=bienvenue');
 
     }
 
