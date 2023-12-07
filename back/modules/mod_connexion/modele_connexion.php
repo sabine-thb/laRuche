@@ -103,6 +103,7 @@ class ModeleConnexion extends Connexion {
                 $resultat = $this->executeQuery($stmt);
 
                 if( isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp) ){
+                    var_dump($resultat[0]["est_verifier"]);
                     if($resultat[0]["est_verifier"]){
                         return [1,$resultat[0]["login"]];//user good
                     }else{

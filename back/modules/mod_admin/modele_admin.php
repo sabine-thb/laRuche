@@ -25,7 +25,7 @@ class ModeleAdmin extends Connexion {
 
     public function recupereDemande() {
         try {
-            $stmt = Connexion::$bdd->prepare("SELECT user_id,login,mail FROM laruche.users WHERE est_verifier=false");
+            $stmt = Connexion::$bdd->prepare("SELECT user_id,login,mail FROM LaRuche.users WHERE est_verifier=false");
             $resultat = $this->executeQuery($stmt);
 
             return $resultat;
@@ -38,7 +38,7 @@ class ModeleAdmin extends Connexion {
 
     public function recupereComp() {
         try {
-            $stmt = Connexion::$bdd->prepare("SELECT * FROM Scorcast.competition");
+            $stmt = Connexion::$bdd->prepare("SELECT * FROM LaRuche.competition");
             $resultat = $this->executeQuery($stmt);
 
             return $resultat;
@@ -51,14 +51,14 @@ class ModeleAdmin extends Connexion {
 
     public function deleteCompetition($id) {
         try {
-            $stmt = Connexion::$bdd->prepare("DELETE FROM Scorcast.competition WHERE competition_id=" . $id ."");
+            $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.competition WHERE competition_id=" . $id ."");
             $resultat = $this->executeQuery($stmt);
 
-            return $resultat;
+            return true;
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur:" . $e ."');</script>";
-            return $e;
+            return false;
         }
     }
 
@@ -67,7 +67,7 @@ class ModeleAdmin extends Connexion {
     public function accepteDemande($id) {
 
         try {
-            $stmt = Connexion::$bdd->prepare("UPDATE laruche.users SET est_verifier=true WHERE user_id=" . $id ."");
+            $stmt = Connexion::$bdd->prepare("UPDATE LaRuche.users SET est_verifier=true WHERE user_id=" . $id ."");
             $resultat = $this->executeQuery($stmt);
 
             return $resultat;
@@ -81,7 +81,7 @@ class ModeleAdmin extends Connexion {
 
     public function ajoutCompet($nom,$detail) {
         try {
-            $stmt = Connexion::$bdd->prepare("INSERT INTO Scorcast.competition (nom,description) VALUES ('".$nom."', '".$detail."')");
+            $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.competition (nom,description,date_creation) VALUES ('".$nom."', '".$detail."',CURDATE())");
             $resultat = $stmt->execute();
 
             return $resultat;
