@@ -22,7 +22,7 @@ class ModeleConnexion extends Connexion {
     private function executeQuery($stmt) {
 
         $stmt->execute();
-
+        
         // Récupérez les résultats sous forme d'un tableau associatif
         $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -66,7 +66,7 @@ class ModeleConnexion extends Connexion {
     private function nouveau($champSql, $var) {
 
         try {
-
+            
             $stmt = Connexion::$bdd->prepare("SELECT " .$champSql. " FROM LaRuche.users WHERE " .$champSql. "='" .$var. "' ");
             $resultat = $this->executeQuery($stmt);
 
@@ -80,6 +80,7 @@ class ModeleConnexion extends Connexion {
             
 
         } catch (PDOException $e) {
+            
             echo "erreur fonction nouveau !";
             return false;
         }
@@ -94,6 +95,7 @@ class ModeleConnexion extends Connexion {
 
             $stmt = Connexion::$bdd->prepare("SELECT password FROM LaRuche.admin WHERE login='" .$login. "' ");
             $resultat = $this->executeQuery($stmt);
+
 
             if(isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp)){
                 return [3,$login];//admin good

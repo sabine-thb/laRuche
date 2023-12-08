@@ -50,11 +50,11 @@ class ContConnexion {
                 }
             }else{
                 $_SESSION['error'] = 'veullez saisir un mot de passe plus long<br>';
-                header('Location: index.php?module=mod_connexion&action=inscription');  
+                header('Location: connexion.php?action=inscription');  
             }
         } else {
             $_SESSION['error'] = 'veullez remplir tout les champ<br>';
-            header('Location: index.php?module=mod_connexion&action=inscription');
+            header('Location: connexion.php?action=inscription');
         }
 
     }
@@ -74,12 +74,12 @@ class ContConnexion {
     }
 
     public function connexion() {
-
+        
         $_SESSION['error'] = null;
 
         if (isset($_POST['login'],$_POST['mdp'])){
             
-
+            
             $resultat = $this->modele->verifUser($_POST['login'],$_POST['mdp']);
 
             if ($resultat[0] == 1) {
@@ -87,16 +87,16 @@ class ContConnexion {
                 $_SESSION["adminActif"] = false;
                 echo "Conexion etablie !<br>";
                 echo "redirection en cours";
-                echo '<meta http-equiv="refresh" content="3;url=index.php?module=mod_ruche" />';
+                echo '<meta http-equiv="refresh" content="3;url=ruche.php"/>';
             }else if($resultat[0] == 2){
                 echo "votre demande n'a pas encore été traiter par la ruche !<br>";
                 echo "un peu de patience ;)";
-                echo '<meta http-equiv="refresh" content="4;url=index.php?module=mod_connexion" />';
+                echo '<meta http-equiv="refresh" content="4;url=connexion.php"/>';
             }else if($resultat[0] == 3){
                 $_SESSION["loginActif"] = $resultat[1];
                 $_SESSION["adminActif"] = true;
                 echo "connecter en tant que admin !";
-                echo '<meta http-equiv="refresh" content="2;url=index.php?module=mod_admin" />';
+                echo '<meta http-equiv="refresh" content="2;url=admin.php"/>';
             } else {
                 echo "Erreur lors de la connexion.";
             }
@@ -110,7 +110,7 @@ class ContConnexion {
     public function deconnexion() {
 
         session_destroy();
-        header('Location: index.php?module=mod_connexion&action=bienvenue');
+        header('Location: connexion.php?action=bienvenue');
 
     }
 

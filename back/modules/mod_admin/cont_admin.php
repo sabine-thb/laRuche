@@ -39,7 +39,18 @@ class ContAdmin {
             $resultat=$this->modele->accepteDemande($_GET["id"]);
 
             if ($resultat) {
-                header('Location: index.php?module=mod_admin&action=afficherDemande');
+                header('Location: admin.php?action=afficherDemande');
+            }
+        }
+    }
+
+    public function refuserDemande() {
+    
+        if (isset($_GET["id"])) {
+            $resultat=$this->modele->refuseDemande($_GET["id"]);
+
+            if ($resultat) {
+                header('Location: admin.php?action=afficherDemande');
             }
         }
     }
@@ -50,7 +61,9 @@ class ContAdmin {
             $resultat=$this->modele->deleteCompetition($_GET["idCompet"]);
             
             if ($resultat) {
-                header('Location: index.php?module=mod_admin&action=gererCompetition');
+                header('Location: admin.php?action=gererCompetition');
+            }else{
+                echo "erreur lors de la suppression";
             }else{
                 echo "erreur lors de la suppression";
             }
@@ -76,12 +89,16 @@ class ContAdmin {
 
             $result = $this->modele->ajoutCompet($_POST['name'],$_POST['description']);
 
-            echo 'la competition ' . $_POST['name'] . ' a bien été ajouté !<br>';
-            echo "allez dans l'onglet 'gerer comp' pour ajouter des nouveau matchs";
-            echo '<meta http-equiv="refresh" content="4;url=index.php?module=mod_admin" />';
+            if ($result){
+                echo 'la competition ' . $_POST['name'] . ' a bien été ajouté !<br>';
+                echo "allez dans l'onglet 'gerer comp' pour ajouter des nouveau matchs";
+                echo '<meta http-equiv="refresh" content="4;url=admin.php"/>';
+            }else{
+                $this->vue->afficheFormulaireCompet("erreur serveur veuillez contacter le support ");
+            }
 
         }else{
-            $this->vue->afficheFormulaireCompet("erreur !");
+            $this->vue->afficheFormulaireCompet("veullez remplir tout les champ !");
         }
     }
 

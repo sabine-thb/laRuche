@@ -13,8 +13,7 @@ class VueScorcast extends VueGenerique {
     }
 
     public function afficheBienvenue() {
-        echo "bienvenu sur l'application Prono BZzzzz<br>";
-        echo "connectez vous a votre compte pronostiqueur ou créez en un en deux click ";
+        require_once('./front/scoruche/bienvenue.html');
     }
 
 }

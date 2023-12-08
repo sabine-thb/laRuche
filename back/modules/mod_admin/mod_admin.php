@@ -35,6 +35,10 @@ class ModAdmin {
             case 'valider':
                 $this->controlleur->validerDemande();
                 break;
+                
+            case 'refuser':
+                $this->controlleur->refuserDemande();
+                break;
 
             case 'afficheFormCompetition':
                 $this->controlleur->afficheFormCompet();
