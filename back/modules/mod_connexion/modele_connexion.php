@@ -98,7 +98,7 @@ class ModeleConnexion extends Connexion {
 
 
             if(isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp)){
-                return [3,$login];//admin good
+                return [3,$login];  //admin good
             }else{
 
                 $stmt = Connexion::$bdd->prepare("SELECT login,password,est_verifier FROM LaRuche.users WHERE login='" .$login. "' or mail='" . $login . "' ");
