@@ -40,7 +40,7 @@ body{
 }
 
 .bouton:hover{
-    background-color: #FFC000
+    background-color: #FFC000;
 }
 
 a{
@@ -60,8 +60,38 @@ a{
 
 .form{
     position: relative;
+    
 }
 
+.formInscription, .formConnexion{
+    display:flex;
+    flex-direction: column;
+    z-index:1000;
+    position:relative;
+    margin-top:25px;
+}
+
+label{
+    margin-bottom:5px;
+}
+
+input{
+   border:none;
+}
+
+.submit{
+    font-family: "montserratExtraBold", sans-serif;
+    background-color:#020849;
+    color:white;
+    padding:10px 20px 10px 20px;
+    border-radius:20px;
+    width:150px;
+    margin:auto;
+}
+
+.submit:hover{
+    background-color: #FFC000;
+}
 .abeille{
     width:200px;
     height:auto;
@@ -83,6 +113,11 @@ a{
     .abeille{
         width:150px;
         top:-104px;
+    }
+
+    
+    .formInscription, .formConnexion{
+        margin-top:36px;
     }
 }
 
