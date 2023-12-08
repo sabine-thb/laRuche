@@ -10,6 +10,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    position:relative;
 }
 
 .logoLeague{
@@ -109,6 +110,14 @@ input{
     text-decoration: underline;
 }
 
+.credits{
+    font-family: "montserratRegular";
+    font-size:0.8rem;
+    position: absolute;
+    right:15px;
+    bottom:0;
+}
+
 @media(max-width:1200px){
     .bienvenue{
         font-size:3rem;
@@ -139,7 +148,7 @@ input{
         display: none;
     }
 
-    .bouton{
+    .bouton,.submit{
         background-color:#0B54CD;
     }
 }

@@ -48,10 +48,7 @@ $affichageModule = $module->afficheModule();
             </div>
     </div>
 
-    <!-- Pied de page -->
-    <!-- <footer class="bg-dark text-white text-center py-3 fixed-bottom">
-        <p>Coordonnées de contact / Informations légales</p>
-    </footer> -->
+    <p class="credits">Ruche corp. written by Sab / Arsène / BenJ</p>
 
     
 </body>
