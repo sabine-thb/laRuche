@@ -45,6 +45,18 @@ $affichageModule = $module->afficheModule();
                 retour a la ruche
             </a>
         </button>
+
+        <button  type="button" class="btn btn-outline-primary me-2">
+            <a href="ruche.php" class="nav-link px-2">
+                classement
+            </a>
+        </button>
+
+        <button  type="button" class="btn btn-outline-primary me-2">
+            <a href="ruche.php" class="nav-link px-2">
+                Pronostique
+            </a>
+        </button>
     </div>
 
     <div class="col-md-3 text-end">
