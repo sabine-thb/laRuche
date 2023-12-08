@@ -14,7 +14,7 @@ USE LaRuche;
 
 
 CREATE TABLE users(
-    user_id SERIAL PRIMARY KEY,
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
     login VARCHAR(50) NOT NULL,
     mail VARCHAR(50) NOT NULL,
     password VARCHAR(255) NOT NULL,
@@ -22,16 +22,25 @@ CREATE TABLE users(
 );
 
 CREATE TABLE admin(
-	admin_id SERIAL NOT NULL PRIMARY KEY,
+	admin_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	login VARCHAR(50) NOT NULL,
     password VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE competition(
-    competition_id SERIAL NOT NULL PRIMARY KEY,
+    competition_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     nom VARCHAR(50) NOT NULL,
     description VARCHAR(1024),
     date_creation DATE DEFAULT '0000-00-00'
+);
+
+CREATE TABLE pronostiqueur(
+    pronostiqueur_id SERIAL NOT NULL PRIMARY KEY,
+    user_id INT NOT NULL,
+    competition_id INT NOT NULL,
+    points INT DEFAULT 0,
+    CONSTRAINT fk_pronostiqueur_users FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT fk_pronostiqueur_competition FOREIGN KEY(competition_id) REFERENCES competition(competition_id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- INSERTION DEFAUT

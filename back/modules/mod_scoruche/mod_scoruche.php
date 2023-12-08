@@ -27,6 +27,15 @@ class ModScorcast {
             case 'bienvenue':
                 $this->controlleur->bienvenue();
                 break;
+            case 'competitionDisponible':
+                $this->controlleur->recupereCompetitionDisponible();
+                break;
+            case 'rejoindreCompetition':
+                $this->controlleur->rejoindreCompetition();
+                break;
+            case 'afficheMesCompet':
+                $this->controlleur->afficheCompetActive();
+                break;
         }
     }
 

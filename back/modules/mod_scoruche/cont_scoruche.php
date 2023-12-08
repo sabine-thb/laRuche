@@ -27,6 +27,33 @@ class ContScorcast {
         $this->vue->afficheBienvenue();
     }
 
+    public function recupereCompetitionDisponible(){
+
+        $compets = $this->modele->recupereComp();
+        $this->vue->afficheCompetitionDispo($compets);
+
+    }
+
+    public function rejoindreCompetition(){
+
+        if(isset($_GET['idCompet'])){
+            $result = $this->modele->rejoindreCompet($_GET['idCompet']);
+
+            if($result){
+                echo "vous avez rejoint la competiton avec succès";
+            }else{
+                echo "erreur, impossible de rejoindre la competition";
+            }
+
+        }
+
+    }
+
+    public function afficheCompetActive(){
+        $compets = $this->modele->recupereCompActive();
+        // $this->vue->afficheCompetitionDispo($compets);
+    }
+
 
 }
 ?>

@@ -47,14 +47,20 @@ $affichageModule = $module->afficheModule();
         </button>
 
         <button  type="button" class="btn btn-outline-primary me-2">
-            <a href="scoruche.php?action=afficheMesCompet" class="nav-link px-2">
-                mes competitions
+            <a href="scoruche.php" class="nav-link px-2">
+                classement
             </a>
         </button>
 
         <button  type="button" class="btn btn-outline-primary me-2">
-            <a href="scoruche.php?action=competitionDisponible" class="nav-link px-2">
-                rejoindre une competition
+            <a href="scoruche.php" class="nav-link px-2">
+                Pronostics
+            </a>
+        </button>
+
+        <button  type="button" class="btn btn-outline-primary me-2">
+            <a href="scoruche.php" class="nav-link px-2">
+                Resultats
             </a>
         </button>
 

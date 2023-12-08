@@ -23,6 +23,61 @@ class ModeleScorcast extends Connexion {
         return $resultats;
     }
 
+    public function recupereComp() {
+        try {
+            $query = "
+            SELECT * FROM LaRuche.competition 
+            EXCEPT 
+            SELECT competition_id,nom,description,date_creation 
+            FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.competition NATURAL JOIN LaRuche.users 
+            WHERE login ='" . $_SESSION['loginActif'] . "'
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $resultat = $this->executeQuery($stmt);
+
+            return $resultat;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return $e;
+        }
+    }
+
+    public function recupereCompActive() {
+        try {
+            $query = "
+            SELECT competition_id,nom,description,date_creation 
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $resultat = $this->executeQuery($stmt);
+
+            return $resultat;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return $e;
+        }
+    }
+
+    public function rejoindreCompet($idCompet) {
+
+        try {
+            $query = "
+            INSERT INTO LaRuche.pronostiqueur(user_id,competition_id) VALUES
+            (". $_SESSION['id'] .",". $idCompet .")
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return false;
+        }
+
+    }
+
 }
 
 

@@ -44,6 +44,12 @@ $affichageModule = $module->afficheModule();
                     Scoruche
                 </a>
             </button>
+
+            <button  type="button" class="btn btn-outline-primary me-2">
+                <a href="ruche.php?" class="nav-link px-2">
+                    Actualités
+                </a>
+            </button>
         </div>
 
         <div class="col-md-3 text-end">

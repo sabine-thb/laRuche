@@ -101,12 +101,13 @@ class ModeleConnexion extends Connexion {
                 return [3,$login];//admin good
             }else{
 
-                $stmt = Connexion::$bdd->prepare("SELECT login,password,est_verifier FROM LaRuche.users WHERE login='" .$login. "' or mail='" . $login . "' ");
+                $stmt = Connexion::$bdd->prepare("SELECT * FROM LaRuche.users WHERE login='" .$login. "' or mail='" . $login . "' ");
                 $resultat = $this->executeQuery($stmt);
 
                 if( isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp) ){
                     var_dump($resultat[0]["est_verifier"]);
                     if($resultat[0]["est_verifier"]){
+                        $_SESSION['id'] = $resultat[0]["user_id"];
                         return [1,$resultat[0]["login"]];//user good
                     }else{
                         return [2,$resultat[0]["login"]];//user pas encore verifier
