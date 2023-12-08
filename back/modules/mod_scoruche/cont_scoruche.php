@@ -4,8 +4,8 @@ if (!defined("BASE_URL")) {
     die("il faut passer par l'index");
 }
 
-require_once "modele_scorcast.php" ;
-require_once "vue_scorcast.php" ;
+require_once "modele_scoruche.php" ;
+require_once "vue_scoruche.php" ;
 
 class ContScorcast {
 

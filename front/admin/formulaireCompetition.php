@@ -1,5 +1,5 @@
 <div class = "container d-flex justify-content-center" >
-    <form action="admin.php?module=mod_admin&action=ajoutCompetition" method="post" class="align-items-center justify-content-center justify-content-md-between">
+    <form action="admin.php?action=ajoutCompetition" method="post" class="align-items-center justify-content-center justify-content-md-between">
         
         <label>
             nom de la competition:

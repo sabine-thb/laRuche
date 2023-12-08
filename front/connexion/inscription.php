@@ -1,5 +1,5 @@
 <div class = "container d-flex justify-content-center" >
-    <form class="form-inline align-items-center justify-content-center justify-content-md-between" action="connexion.php?module=mod_connexion&action=ajout" method="post">
+    <form class="form-inline align-items-center justify-content-center justify-content-md-between" action="connexion.php?action=ajout" method="post">
         login: 
             <input class='form-control mr-sm-2' type='text' name='login' placeholder='nom utilisateur unique'><br>
         mail: 

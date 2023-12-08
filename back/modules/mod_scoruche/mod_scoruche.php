@@ -4,7 +4,7 @@ if (!defined("BASE_URL")) {
     die("il faut passer par l'index");
 }
 
-require_once "cont_scorcast.php" ;
+require_once "cont_scoruche.php" ;
 
 class ModScorcast {
 

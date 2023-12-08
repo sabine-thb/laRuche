@@ -40,7 +40,7 @@ $affichageModule = $module->afficheModule();
     <header>
         <div class="col-md-3 text-end">
             <button  type="button" class="btn btn-outline-primary me-2">
-                <a href="scoruche.php?module=mod_scoruche" class="nav-link px-2">
+                <a href="scoruche.php?" class="nav-link px-2">
                     Scoruche
                 </a>
             </button>
@@ -48,7 +48,7 @@ $affichageModule = $module->afficheModule();
 
         <div class="col-md-3 text-end">
             <button  type="button" class="btn btn-outline-primary me-2">
-                <a href="conexion.php?module=mod_connexion&action=deconnexion" class="nav-link px-2">
+                <a href="connexion.php?action=deconnexion" class="nav-link px-2">
                     deconnexion
                 </a>
             </button>

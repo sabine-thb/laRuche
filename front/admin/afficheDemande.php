@@ -9,7 +9,7 @@
                 <p class="card-text">
                     Mail: <? echo $tuple["mail"]; ?> 
                 </p>
-                <a href="admin.php?module=mod_admin&action=valider&id='<? echo $tuple['user_id']; ?>'" class="btn btn-primary">
+                <a href="admin.php?action=valider&id='<? echo $tuple['user_id']; ?>'" class="btn btn-primary">
                     Valider
                 </a>
             </div>

@@ -2,14 +2,14 @@
 session_start();
 
 if (!isset($_SESSION["loginActif"]) ) {
-    header('Location: connexion.php?module=mod_connexion&action=deconnexion');
+    header('Location: connexion.php?action=deconnexion');
 }
 
 //pour la securité, a revoir
 const BASE_URL = "securité";
 
 //on inclue les fichiers de modules correspondant a la page connexion 
-include_once('back/modules/mod_scorcast/mod_scorcast.php');
+include_once('back/modules/mod_scoruche/mod_scoruche.php');
 
 //connexion bdd
 Connexion::initConnexion();
@@ -38,6 +38,22 @@ $affichageModule = $module->afficheModule();
 
     <!-- En-tête -->
     <header>
+
+    <div class="col-md-3 text-end">
+        <button  type="button" class="btn btn-outline-primary me-2">
+            <a href="ruche.php" class="nav-link px-2">
+                retour a la ruche
+            </a>
+        </button>
+    </div>
+
+    <div class="col-md-3 text-end">
+        <button  type="button" class="btn btn-outline-primary me-2">
+            <a href="connexion.php?action=deconnexion" class="nav-link px-2">
+                deconnexion
+            </a>
+        </button>
+    </div>
         
     </header>
 

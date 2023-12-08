@@ -3,7 +3,7 @@ session_start();
 
 //juste pour etre sur on check si la personne est bien admin sinon on la redirige
 if (!isset($_SESSION["loginActif"]) || !isset($_SESSION["adminActif"]) ) {
-    header('Location: connexion.php?module=mod_connexion&action=deconnexion');
+    header('Location: connexion.php?action=deconnexion');
 }
 
 //pour la securité, a revoir
@@ -42,7 +42,7 @@ $affichageModule = $module->afficheModule();
 
         <div class="col-md-3 text-end">
             <button  type="button" class="btn btn-outline-primary me-2">
-                <a href="admin.php?module=mod_admin&action=afficherDemande" class="nav-link px-2">
+                <a href="admin.php?action=afficherDemande" class="nav-link px-2">
                     voir demande compte
                 </a>
             </button>
@@ -51,13 +51,13 @@ $affichageModule = $module->afficheModule();
          
         <div class="col-md-3 text-end">
             <button  type="button" class="btn btn-outline-primary me-2">
-                <a href="admin.php?module=mod_admin&action=afficheFormCompetition" class="nav-link px-2">
+                <a href="admin.php?action=afficheFormCompetition" class="nav-link px-2">
                     créer competition
                 </a>
             </button>
 
             <button  type="button" class="btn btn-outline-primary me-2">
-                <a href="admin.php?module=mod_admin&action=gererCompetition" class="nav-link px-2">
+                <a href="admin.php?action=gererCompetition" class="nav-link px-2">
                     gerer competition
                 </a>
             </button>
@@ -65,13 +65,13 @@ $affichageModule = $module->afficheModule();
 
         <div class="col-md-3 text-end">
             <button  type="button" class="btn btn-outline-primary me-2">
-                <a href="admin.php?module=mod_admin&action=afficheFormEquipe" class="nav-link px-2">
+                <a href="admin.php?action=afficheFormEquipe" class="nav-link px-2">
                     créer equipe
                 </a>
             </button>
             
             <button  type="button" class="btn btn-outline-primary me-2">
-                <a href="admin.php?module=mod_admin&action=gererEquipe" class="nav-link px-2">
+                <a href="admin.php?action=gererEquipe" class="nav-link px-2">
                     gerer equipe
                 </a>
             </button> 
@@ -79,13 +79,13 @@ $affichageModule = $module->afficheModule();
         
         <div class="col-md-3 text-end">
             <button  type="button" class="btn btn-outline-primary me-2">
-                <a href="admin.php?module=mod_admin&action=afficheFormMatch" class="nav-link px-2">
+                <a href="admin.php?action=afficheFormMatch" class="nav-link px-2">
                     créer match
                 </a>
             </button>     
             
             <button  type="button" class="btn btn-outline-primary me-2">
-                <a href="admin.php?module=mod_admin&action=voirMatch" class="nav-link px-2">
+                <a href="admin.php?action=voirMatch" class="nav-link px-2">
                     voir match
                 </a>
             </button>
@@ -93,7 +93,7 @@ $affichageModule = $module->afficheModule();
         
         <div class="col-md-3 text-end">
             <button  type="button" class="btn btn-outline-primary me-2">
-                <a href="connexion.php?module=mod_connexion&action=deconnexion" class="nav-link px-2">
+                <a href="connexion.php?action=deconnexion" class="nav-link px-2">
                     deconnexion
                 </a>
             </button>
