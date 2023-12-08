@@ -100,6 +100,14 @@ input{
     top:-165px;
 
 }
+.option{
+    margin-top:20px;
+    font-size:0.8rem;
+}
+
+.linkOption{
+    text-decoration: underline;
+}
 
 @media(max-width:1200px){
     .bienvenue{

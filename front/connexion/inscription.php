@@ -15,6 +15,6 @@
     </form>
 </div>
 
-<div>
-    vous avez deja un compte? <a href="connexion.php?action=connexion"> se connecter</a>
+<div class="option">
+    Vous avez déjà un compte? <a href="connexion.php?action=connexion" class="linkOption"> Se connecter</a>
 </div>
