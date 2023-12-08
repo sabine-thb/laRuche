@@ -10,6 +10,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    position:relative;
 }
 
 .logoLeague{
@@ -100,6 +101,35 @@ input{
     top:-165px;
 
 }
+.option{
+    margin-top:20px;
+    font-size:0.8rem;
+}
+
+.linkOption{
+    text-decoration: underline;
+}
+
+.credits{
+    font-family: "montserratRegular";
+    font-size:0.8rem;
+    position: absolute;
+    right:15px;
+    bottom:0;
+}
+
+
+/*ici le style des éléments qui s'afficehtn lors de la connexion ou inscription*/
+
+/*Par exmeple pour le "connecté en temps qu'admin !"*/
+
+.ttChamps{
+    margin-top:20px;
+    margin-bottom: 0;
+}
+.coAdmin{
+    margin-top:100px;
+}
 
 @media(max-width:1200px){
     .bienvenue{
@@ -131,7 +161,7 @@ input{
         display: none;
     }
 
-    .bouton{
+    .bouton,.submit{
         background-color:#0B54CD;
     }
 }
