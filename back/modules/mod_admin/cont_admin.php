@@ -64,8 +64,6 @@ class ContAdmin {
                 header('Location: admin.php?action=gererCompetition');
             }else{
                 echo "erreur lors de la suppression";
-            }else{
-                echo "erreur lors de la suppression";
             }
         }
     }
