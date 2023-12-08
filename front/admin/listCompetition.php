@@ -1,5 +1,5 @@
 <p>
-    voici les competitions existante :
+    voici les competitions existantes :
 </p><br>
 <div class="container mt-5">
     <?php foreach ($tableau as $tuple) { ?>

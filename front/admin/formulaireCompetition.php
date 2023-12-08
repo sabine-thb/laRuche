@@ -7,7 +7,7 @@
         <input class='form-control mr-sm-2' type='text' name='name'><br>
 
         <label>
-            petite description :
+            courte description :
         </label>
         <textarea class="form-control mr-sm-2" name="description" rows="4" cols="50"></textarea><br>
 

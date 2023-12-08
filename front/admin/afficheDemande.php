@@ -1,6 +1,6 @@
 <!-- readme : il faut juste conserver la boucle for sinon on peut tout modifier -->
 <div class="container mt-5">
-    <? foreach ($tableau as $tuple) { ?>
+    <? foreach ($tableau as $tuple) { ?> <!-- ici-->
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">
@@ -14,5 +14,5 @@
                 </a>
             </div>
         </div>
-    <? } ?>
+    <? } ?> <!--et là -->
 </div>
