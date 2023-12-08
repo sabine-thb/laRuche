@@ -40,7 +40,7 @@ body{
 }
 
 .bouton:hover{
-    background-color: #FFC000
+    background-color: #FFC000;
 }
 
 a{
@@ -81,12 +81,16 @@ input{
 
 .submit{
     font-family: "montserratExtraBold", sans-serif;
-    background-color:black;
+    background-color:#020849;
     color:white;
     padding:10px 20px 10px 20px;
     border-radius:20px;
     width:150px;
     margin:auto;
+}
+
+.submit:hover{
+    background-color: #FFC000;
 }
 .abeille{
     width:200px;
