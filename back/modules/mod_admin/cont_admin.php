@@ -44,6 +44,17 @@ class ContAdmin {
         }
     }
 
+    public function refuserDemande() {
+    
+        if (isset($_GET["id"])) {
+            $resultat=$this->modele->refuseDemande($_GET["id"]);
+
+            if ($resultat) {
+                header('Location: admin.php?action=afficherDemande');
+            }
+        }
+    }
+
     public function spprimerCompetition() {
     
         if (isset($_GET["idCompet"])) {

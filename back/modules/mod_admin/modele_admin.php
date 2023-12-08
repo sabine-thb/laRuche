@@ -27,6 +27,7 @@ class ModeleAdmin extends Connexion {
         try {
             $stmt = Connexion::$bdd->prepare("SELECT user_id,login,mail FROM LaRuche.users WHERE est_verifier=false");
             $resultat = $this->executeQuery($stmt);
+          //  echo var_dump($resultat);
 
             return $resultat;
 
@@ -68,6 +69,20 @@ class ModeleAdmin extends Connexion {
 
         try {
             $stmt = Connexion::$bdd->prepare("UPDATE LaRuche.users SET est_verifier=true WHERE user_id=" . $id ."");
+            $resultat = $this->executeQuery($stmt);
+
+            return true;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return false;
+        }
+
+    }
+    public function refuseDemande($id) {
+
+        try {
+            $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.users WHERE user_id=" . $id ."");
             $resultat = $this->executeQuery($stmt);
 
             return true;
