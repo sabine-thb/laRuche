@@ -50,11 +50,11 @@ class ContConnexion {
                 }
             }else{
                 $_SESSION['error'] = 'veullez saisir un mot de passe plus long<br>';
-                header('Location: index.php?action=inscription');  
+                header('Location: connexion.php?action=inscription');  
             }
         } else {
             $_SESSION['error'] = 'veullez remplir tout les champ<br>';
-            header('Location: index.php?action=inscription');
+            header('Location: connexion.php?action=inscription');
         }
 
     }
@@ -87,11 +87,11 @@ class ContConnexion {
                 $_SESSION["adminActif"] = false;
                 echo "Conexion etablie !<br>";
                 echo "redirection en cours";
-                echo '<meta http-equiv="refresh" content="3;url=index.php"/>';
+                echo '<meta http-equiv="refresh" content="3;url=ruche.php"/>';
             }else if($resultat[0] == 2){
                 echo "votre demande n'a pas encore été traiter par la ruche !<br>";
                 echo "un peu de patience ;)";
-                echo '<meta http-equiv="refresh" content="4;url=index.php"/>';
+                echo '<meta http-equiv="refresh" content="4;url=connexion.php"/>';
             }else if($resultat[0] == 3){
                 $_SESSION["loginActif"] = $resultat[1];
                 $_SESSION["adminActif"] = true;
