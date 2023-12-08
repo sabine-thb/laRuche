@@ -14,3 +14,7 @@
     
     </form>
 </div>
+
+<div>
+    vous avez deja un compte? <a href="connexion.php?action=connexion"> se connecter</a>
+</div>
