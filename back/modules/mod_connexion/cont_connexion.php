@@ -53,7 +53,7 @@ class ContConnexion {
                 header('Location: connexion.php?action=inscription');  
             }
         } else {
-            $_SESSION['error'] = 'veuillez remplir tout les champs.<br>';
+            $_SESSION['error'] = '<h3 class="ttChamps">veuillez remplir tout les champs.</h3><br>';
             header('Location: connexion.php?action=inscription');
         }
 
@@ -85,7 +85,7 @@ class ContConnexion {
             if ($resultat[0] == 1) {
                 $_SESSION["loginActif"] = $resultat[1];
                 $_SESSION["adminActif"] = false;
-                echo "Conexion etablie !<br>";
+                echo "Connexion établie !<br>";
                 echo "Redirection en cours";
                 echo '<meta http-equiv="refresh" content="3;url=ruche.php"/>';
             }else if($resultat[0] == 2){
@@ -95,7 +95,7 @@ class ContConnexion {
             }else if($resultat[0] == 3){
                 $_SESSION["loginActif"] = $resultat[1];
                 $_SESSION["adminActif"] = true;
-                echo "Connecté en tant que admin !";
+                echo "<h3 class=\"coAdmin\">Connecté en tant que admin !</h3>";
                 echo '<meta http-equiv="refresh" content="2;url=admin.php"/>';
             } else {
                 echo "Erreur lors de la connexion.";

@@ -118,6 +118,19 @@ input{
     bottom:0;
 }
 
+
+/*ici le style des éléments qui s'afficehtn lors de la connexion ou inscription*/
+
+/*Par exmeple pour le "connecté en temps qu'admin !"*/
+
+.ttChamps{
+    margin-top:20px;
+    margin-bottom: 0;
+}
+.coAdmin{
+    margin-top:100px;
+}
+
 @media(max-width:1200px){
     .bienvenue{
         font-size:3rem;
