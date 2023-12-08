@@ -1,12 +1,12 @@
-<div class = "container d-flex justify-content-center" >
-    <form class="form-inline align-items-center justify-content-center justify-content-md-between" action="connexion.php?action=ajout" method="post">
-        login: 
-            <input class='form-control mr-sm-2' type='text' name='login' placeholder='nom utilisateur unique'><br>
-        mail: 
-            <input class='form-control mr-sm-2' type='text' name='mail' placeholder='mail'><br>
-        mot de passe: 
-            <input class="form-control mr-sm-2" type="password" name="mdp" placeholder="mot de passe"><br>
-        <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Créer compte">
+<div class = "" >
+    <form class="formInscription" action="connexion.php?action=ajout" method="post">
+        <label for="login">Login :</label> 
+        <input type='text' name='login' id="login"><br>
+        <label for="mail">Mail :</label> 
+            <input id="mail" type='text' name='mail'><br>
+        <label for="mdp">Mot de passe :</label> 
+            <input id="mdp" type="password" name="mdp"><br>
+        <input class="submit" type="submit" value="Créer compte">
         
         <?php if (isset($_SESSION['error'])){
             echo $_SESSION['error']; //message d'erreur si l'utilisateur a fait une erreur dans le formulaire
