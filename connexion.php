@@ -36,7 +36,7 @@ $affichageModule = $module->afficheModule();
     <!-- En-tête -->
     <div class = "container">
             <div class="blockContainer">
-                <img src="./style/img/championsLeague.svg" class="logoLeague">
+                <img src="./style/img/logo.svg" class="logoLeague">
                 <div class="line"></div>
                 <div class="form">
                     <img src="./style/img/abeille.png" class="abeille"alt="">
