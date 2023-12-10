@@ -56,8 +56,7 @@ class ContScorcast {
 
     public function afficheClassement(){
         $classement = $this->modele->recupereClassement($_GET['id']);
-        var_dump($classement);
-
+        $this->vue->afficheClassement($classement);
     }
 
 }
