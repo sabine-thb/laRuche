@@ -14,7 +14,7 @@
                     <?php echo $tuple["description"]; ?> 
                 </p>
 
-                <a href="scoruche.php" class="btn btn-primary">
+                <a href="competition.php?action=classement&id=<?php echo $tuple['competition_id']; ?>" class="btn btn-primary">
                     faire des paris
                 </a>
 

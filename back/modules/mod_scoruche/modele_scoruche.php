@@ -80,6 +80,27 @@ class ModeleScorcast extends Connexion {
 
     }
 
+    public function recupereClassement($idCompet){
+
+        try {
+            $query = "
+            SELECT login, points
+            FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.users
+            WHERE competition_id =". $idCompet ."
+            ORDER BY points
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $result = $this->executeQuery($stmt);
+
+            return $result;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return false;
+        }
+
+    }
+
 }
 
 

@@ -36,6 +36,9 @@ class ModScorcast {
             case 'afficheMesCompet':
                 $this->controlleur->afficheCompetActive();
                 break;
+            case 'classement':
+                $this->controlleur->afficheClassement();
+                break;
         }
     }
 

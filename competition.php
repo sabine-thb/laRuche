@@ -5,6 +5,14 @@ if (!isset($_SESSION["loginActif"]) ) {
     header('Location: connexion.php?action=deconnexion');
 }
 
+//ici on parle de l'id de la competition
+//si elle n'est pas presente dans l'url il faut rediriger l'utilisateur
+//car il y aura des erreurs par la suite
+if (!isset($_GET["id"]) ) {
+    header('Location: scoruche.php');
+}
+
+
 //pour la securité, a revoir
 const BASE_URL = "securité";
 

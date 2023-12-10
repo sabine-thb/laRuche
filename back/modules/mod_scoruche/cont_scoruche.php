@@ -54,6 +54,11 @@ class ContScorcast {
         $this->vue->afficheCompetitionActive($compets);
     }
 
+    public function afficheClassement(){
+        $classement = $this->modele->recupereClassement($_GET['id']);
+        var_dump($classement);
+
+    }
 
 }
 ?>
