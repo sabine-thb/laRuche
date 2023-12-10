@@ -42,18 +42,18 @@ class ContConnexion {
 
                 if ($resultat) {
                     // $_SESSION["loginActif"] = $_POST['login'];
-                    echo "une demande a été envoyer a la ruche vous recevrez un mail lorsque la demande sera acceptée.";
+                    echo "Une demande a été envoyée à la ruche, vous recevrez un mail lorsque la demande sera acceptée.";
                     $_SESSION['error'] = null;
                 } else {
-                    echo "Erreur lors de la creation de compte.";
+                    echo "Erreur lors de la création de compte.";
                     $_SESSION['error'] = null;
                 }
             }else{
-                $_SESSION['error'] = 'veullez saisir un mot de passe plus long<br>';
+                $_SESSION['error'] = 'Veuillez saisir un mot de passe plus long.<br>';
                 header('Location: connexion.php?action=inscription');  
             }
         } else {
-            $_SESSION['error'] = 'veullez remplir tout les champ<br>';
+            $_SESSION['error'] = '<h3 class="ttChamps">veuillez remplir tout les champs.</h3><br>';
             header('Location: connexion.php?action=inscription');
         }
 
@@ -82,27 +82,29 @@ class ContConnexion {
             
             $resultat = $this->modele->verifUser($_POST['login'],$_POST['mdp']);
 
-            if ($resultat[0] == 1) {
+            if (isset($resultat[0])&&$resultat[0] == 1) {
                 $_SESSION["loginActif"] = $resultat[1];
                 $_SESSION["adminActif"] = false;
-                echo "Conexion etablie !<br>";
-                echo "redirection en cours";
+                echo "Connexion établie !<br>";
+                echo "Redirection en cours";
                 echo '<meta http-equiv="refresh" content="3;url=ruche.php"/>';
-            }else if($resultat[0] == 2){
-                echo "votre demande n'a pas encore été traiter par la ruche !<br>";
-                echo "un peu de patience ;)";
+            }else if(isset($resultat[0])&&$resultat[0] == 2){
+                echo "Votre demande n'a pas encore été traitée par la ruche !<br>";
+                echo "Un peu de patience ;)";
                 echo '<meta http-equiv="refresh" content="4;url=connexion.php"/>';
-            }else if($resultat[0] == 3){
+            }else if(isset($resultat[0])&&$resultat[0] == 3){
                 $_SESSION["loginActif"] = $resultat[1];
                 $_SESSION["adminActif"] = true;
-                echo "connecter en tant que admin !";
+                echo "<h3 class=\"coAdmin\">Connecté en tant que admin !</h3>";
                 echo '<meta http-equiv="refresh" content="2;url=admin.php"/>';
             } else {
-                echo "Erreur lors de la connexion.";
+                echo "Erreur lors de la connexion.<br>";                
+                echo "redirection en cours";
+                echo '<meta http-equiv="refresh" content="1;url=connexion.php?action=connexion"/>';
             }
             
         } else {
-            die("veullez remplir tout les champ");
+            die("veuillez remplir tout les champs");
         }
 
     }

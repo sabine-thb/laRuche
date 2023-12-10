@@ -36,12 +36,12 @@ class ModeleConnexion extends Connexion {
             if ($this->nouveau("mail",$mail)) {
                 return $this->ajoutFinal($login, $mail, $mdp);
             } else {
-                $_SESSION['error'] =  "<p> mail deja utilisée! </p><br>";
+                $_SESSION['error'] =  "<p> Mail déja utilisé! </p><br>";
                 header('Location: index.php?module=mod_connexion&action=inscription'); 
             }
         }
         else {
-            $_SESSION['error'] =  "<p> login deja utilisé ! </p><br>";
+            $_SESSION['error'] =  "<p> Login déjà utilisé ! </p><br>";
             header('Location: index.php?module=mod_connexion&action=inscription'); 
         }
 
@@ -98,7 +98,7 @@ class ModeleConnexion extends Connexion {
 
 
             if(isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp)){
-                return [3,$login];//admin good
+                return [3,$login];  //admin good
             }else{
 
                 $stmt = Connexion::$bdd->prepare("SELECT * FROM LaRuche.users WHERE login='" .$login. "' or mail='" . $login . "' ");
@@ -133,7 +133,7 @@ class ModeleConnexion extends Connexion {
             if (password_needs_rehash($mdpCripte, PASSWORD_BCRYPT, $this->option)) {
                 // On crée un nouveau hachage afin de mettre à jour l'ancien
                 $newHash = password_hash($mdp, PASSWORD_BCRYPT, $this->option);
-                echo"il faut mettre a jour!";
+                echo"il faut mettre à jour!";
 
                 //todo mettre a jour le mdp dans phpmyadmin
             }

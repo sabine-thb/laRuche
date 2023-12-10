@@ -10,6 +10,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    position:relative;
 }
 
 .logoLeague{
@@ -40,7 +41,7 @@ body{
 }
 
 .bouton:hover{
-    background-color: #FFC000
+    background-color: #FFC000;
 }
 
 a{
@@ -58,17 +59,85 @@ a{
     text-shadow: 1px 3px 0 #000000;
 }
 
-.form{
-    position: relative;
+main{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.form{
+    position: relative;    
+}
+
+.formInscription, .formConnexion{
+    display:flex;
+    flex-direction: column;
+    z-index:1000;
+    position:relative;
+    margin-top:25px;
+}
+
+label{
+    margin-bottom:5px;
+}
+
+input{
+   border:none;
+}
+
+.submit{
+    font-family: "montserratExtraBold", sans-serif;
+    background-color:#020849;
+    color:white;
+    padding:10px 20px 10px 20px;
+    border-radius:20px;
+    width:150px;
+    margin:auto;
+}
+
+.submit:hover{
+    background-color: #FFC000;
+}
 .abeille{
     width:200px;
     height:auto;
     position: absolute;
     left:-30px;
-    top:-165px;
+    top:-130px;
 
+}
+.option{
+    margin-top:20px;
+    font-size:0.8rem;
+}
+
+.nav-link{
+    font-size:1.2rem;
+}
+
+.linkOption{
+    text-decoration: underline;
+}
+
+.credits{
+    font-family: "montserratRegular";
+    font-size:0.8rem;
+    position: absolute;
+    right:15px;
+    bottom:0;
+}
+
+
+/*ici le style des éléments qui s'afficehtn lors de la connexion ou inscription*/
+
+/*Par exmeple pour le "connecté en temps qu'admin !"*/
+
+.ttChamps{
+    margin-top:20px;
+    margin-bottom: 0;
+}
+.coAdmin{
+    margin-top:100px;
 }
 
 @media(max-width:1200px){
@@ -84,6 +153,11 @@ a{
         width:150px;
         top:-104px;
     }
+
+    
+    .formInscription, .formConnexion{
+        margin-top:36px;
+    }
 }
 
 @media(max-width:880px){
@@ -96,8 +170,12 @@ a{
         display: none;
     }
 
-    .bouton{
+    .bouton,.submit{
         background-color:#0B54CD;
+    }
+
+    .nav-link{
+        font-size:1rem;
     }
 }
 
