@@ -20,6 +20,10 @@ class VueScorcast extends VueGenerique {
         require_once('./front/scoruche/listeCompetitionDispo.php');
     }
 
+    public function afficheCompetitionActive($tableau) {
+        require_once('./front/scoruche/listeCompetitionActive.php');
+    }
+
 }
 
 ?>

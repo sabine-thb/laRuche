@@ -51,7 +51,7 @@ class ContScorcast {
 
     public function afficheCompetActive(){
         $compets = $this->modele->recupereCompActive();
-        // $this->vue->afficheCompetitionDispo($compets);
+        $this->vue->afficheCompetitionActive($compets);
     }
 
 

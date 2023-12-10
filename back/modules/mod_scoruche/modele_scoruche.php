@@ -47,6 +47,8 @@ class ModeleScorcast extends Connexion {
         try {
             $query = "
             SELECT competition_id,nom,description,date_creation 
+            FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.competition NATURAL JOIN LaRuche.users
+            WHERE login ='" . $_SESSION['loginActif'] . "'
             ";
             $stmt = Connexion::$bdd->prepare($query);
             $resultat = $this->executeQuery($stmt);
