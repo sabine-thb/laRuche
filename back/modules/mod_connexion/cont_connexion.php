@@ -87,7 +87,7 @@ class ContConnexion {
                 $_SESSION["adminActif"] = false;
                 echo "Connexion établie !<br>";
                 echo "Redirection en cours";
-                echo '<meta http-equiv="refresh" content="3;url=ruche.php"/>';
+                echo '<meta http-equiv="refresh" content="3;url=scoruche.php"/>';
             }else if(isset($resultat[0])&&$resultat[0] == 2){
                 echo "Votre demande n'a pas encore été traitée par la ruche !<br>";
                 echo "Un peu de patience ;)";

@@ -35,13 +35,39 @@ CREATE TABLE competition(
 );
 
 CREATE TABLE pronostiqueur(
-    pronostiqueur_id SERIAL NOT NULL PRIMARY KEY,
+    pronostiqueur_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     user_id INT NOT NULL,
     competition_id INT NOT NULL,
     points INT DEFAULT 0,
     CONSTRAINT fk_pronostiqueur_users FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT fk_pronostiqueur_competition FOREIGN KEY(competition_id) REFERENCES competition(competition_id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
+
+CREATE TABLE equipe(
+    equipe_id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL,
+    srcLogo VARCHAR(50)
+);
+
+CREATE TABLE matchApronostiquer(
+    match_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    equipe1_id INT NOT NULL,
+    equipe2_id INT NOT NULL,
+    competition_id INT NOT NULL,
+    date_max_pari DATE NOT NULL,
+    CONSTRAINT fk_match_equipe1 FOREIGN KEY(equipe1_id) REFERENCES equipe(equipe_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT fk_match_equipe2 FOREIGN KEY(equipe2_id) REFERENCES equipe(equipe_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT fk_match_competition FOREIGN KEY(competition_id) REFERENCES competition(competition_id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+CREATE TABLE resultatMatch(
+    match_id INT NOT NULL PRIMARY KEY,
+    nb_but_equipe1 INT,
+    nb_but_equipe2 INT,
+    CONSTRAINT fk_resultatMatch_match FOREIGN KEY(match_id) REFERENCES matchApronostiquer(match_id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+
 
 -- INSERTION DEFAUT
 
