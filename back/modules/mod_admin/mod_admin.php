@@ -53,15 +53,19 @@ class ModAdmin {
                 break;
 
             case 'afficheFormEquipe':
-                echo "TODO a coder";
+                $this->controlleur->afficherFormCreationEquipe();
+                break;
+
+            case 'ajoutEquipe':
+                $this->controlleur->ajoutEquipe();
                 break;
 
             case 'gererEquipe':
-                echo "TODO a coder";
+                $this->controlleur->gererEquipe();
                 break;
 
             case 'afficheFormMatch':
-                echo "TODO a coder";
+                $this->controlleur->afficherFormCreationMatch();
                 break;
 
             case 'voirMatch':
@@ -69,12 +73,20 @@ class ModAdmin {
                 break;
             
             case 'supprimerCompetition':
-                $this->controlleur->spprimerCompetition();
+                $this->controlleur->supprimerCompetition();
                 break;    
              
             case 'detailCompetition':
                 echo "TODO a coder";
-                break;        
+                break;
+
+            case 'supprimerEquipe':
+                $this->controlleur->supprimerEquipe();
+                break;    
+                
+            case 'detailEquipe':
+                echo "TODO a coder";
+                break;
         }
     }
 
