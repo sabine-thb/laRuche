@@ -55,19 +55,19 @@ $affichageModule = $module->afficheModule();
         </button>
 
         <button  type="button" class="btn btn-outline-primary me-2">
-            <a href="scoruche.php" class="nav-link px-2">
+            <a href="competition.php?action=classement" class="nav-link px-2">
                 classement
             </a>
         </button>
 
         <button  type="button" class="btn btn-outline-primary me-2">
-            <a href="scoruche.php" class="nav-link px-2">
+            <a href="competition.php?action=classement" class="nav-link px-2">
                 Pronostics
             </a>
         </button>
 
         <button  type="button" class="btn btn-outline-primary me-2">
-            <a href="scoruche.php" class="nav-link px-2">
+            <a href="competition.php?action=resultat" class="nav-link px-2">
                 Resultats
             </a>
         </button>

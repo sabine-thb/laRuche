@@ -101,6 +101,27 @@ class ModeleScorcast extends Connexion {
 
     }
 
+    public function recupereMatchApronostic($idCompet){
+
+        try {
+            $query = "
+            SELECT nom, date_max_pari
+            FROM LaRuche.matchApronostiquer NATURAL JOIN LaRuche.equipe
+            WHERE competition_id =". $idCompet ."
+            ORDER BY date_max_pari
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $result = $this->executeQuery($stmt);
+
+            return $result;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return false;
+        }
+
+    }
+
 }
 
 
