@@ -120,15 +120,26 @@ class ModeleAdmin extends Connexion {
             return false;
         }
     }
+
     public function insererEquipe($nom){
         $chemin= $this->gererLogo();
 
+        try{
         $stmt = Connexion::$bdd->prepare("SELECT nom FROM LaRuche.equipe Where nom='".$nom."';");
         $res=$this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return false;
+        }   
 
         if(count($res)==0){
-            $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.equipe(nom, srcLogo) VALUES ('".$nom."','".$chemin."');");
-           $stmt->execute();
+            try{
+                $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.equipe(nom, srcLogo) VALUES ('".$nom."','".$chemin."');");
+                $stmt->execute();
+            }catch (PDOException $e) {
+                echo "<script>console.log('erreur:" . $e ."');</script>";
+                return false;
+            }      
             echo " Equipe bien enregistrée ✌️"."<br>";
 
         }else{
@@ -140,9 +151,45 @@ class ModeleAdmin extends Connexion {
 
     }
 
+    public function insererMatch($eq1,$eq2,$ptsExa,$ptsEcart,$ptsVainq,$compet,$dateMatch){
+
+        try{
+            $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.matchApronostiquer(equipe1_id,equipe2_id,competition_id,pts_Exact,pts_Ecart,pts_Vainq,date_max_pari ) VALUES ('".$eq1."','".$eq2."','".$compet."','".$ptsExa."','".$ptsEcart."','".$ptsVainq."','".$dateMatch."');");
+            $stmt->execute();
+      }catch (PDOException $e) {
+          echo "<script>console.log('erreur:" . $e ."');</script>";
+          echo $e;
+          return false;
+      }      
+      echo " Equipe bien enregistrée ✌️"."<br>";
+      echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormMatch"/>';
+  }
+
+  public function getMatch(){
+    try{
+        $stmt = Connexion::$bdd->prepare("SELECT * from LaRuche.matchApronostiquer;");
+        $res=$this->executeQuery($stmt);
+        return $res;
+    }catch (PDOException $e) {
+        echo "<script>console.log('erreur:" . $e ."');</script>";
+        return $e;
+    }
+    
+}
     public function getEquipes(){
         try{
             $stmt = Connexion::$bdd->prepare("SELECT * from LaRuche.equipe;");
+            $res=$this->executeQuery($stmt);
+            return $res;
+        }catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return $e;
+        }
+        
+    }
+    public function getCompet(){
+        try{
+            $stmt = Connexion::$bdd->prepare("SELECT * from LaRuche.competition;");
             $res=$this->executeQuery($stmt);
             return $res;
         }catch (PDOException $e) {

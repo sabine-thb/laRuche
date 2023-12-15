@@ -60,6 +60,13 @@ class ModAdmin {
                 $this->controlleur->ajoutEquipe();
                 break;
 
+            case 'ajoutMatch':
+                echo var_dump($_POST); 
+                $this->controlleur->ajoutMatch();
+                
+                // echo ("2023-12-05"-date("Y-m-d"));
+                break;
+
             case 'gererEquipe':
                 $this->controlleur->gererEquipe();
                 break;
@@ -69,7 +76,7 @@ class ModAdmin {
                 break;
 
             case 'voirMatch':
-                echo "TODO a coder";
+                $this->controlleur->gererMatch();
                 break;
             
             case 'supprimerCompetition':
