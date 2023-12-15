@@ -28,7 +28,7 @@ class VueAdmin extends VueGenerique {
         require_once("./front/admin/formulaireCompetition.php");
     }
 
-    public function afficheFormCreationMatch($token,$eq){
+    public function afficheFormCreationMatch($token,$eq,$comp){
         require_once("./front/admin/formulaireCreationMatch.php");
     }
 
@@ -38,6 +38,10 @@ class VueAdmin extends VueGenerique {
 
     public function afficheEquipes($eq){
         require_once("./front/admin/listeEquipes.php");
+    }
+
+    public function afficheMatch($match){
+        require_once("./front/admin/listeMatch.php");
     }
 
 
