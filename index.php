@@ -2,12 +2,16 @@
 session_start();
 
 if (isset($_SESSION["loginActif"])) {
-    //todo checker si c'est un admin
-    if (isset($_GET['module'])){
-        $module = $_GET['module'] ;
-    }else{
-        $module = "mod_ruche";
+
+    if (isset($_SESSION["adminActif"]) && $_SESSION["adminActif"]){
+        $module = "mod_admin" ;
     }
+    else if (isset($_GET['module'])){
+        $module = $_GET['module'];
+    }else{
+        $module = "mod_scoruche";
+    }
+
 }else{
     $module = 'mod_connexion';
 }
