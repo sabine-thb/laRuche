@@ -39,6 +39,9 @@ class ModScorcast {
             case 'classement':
                 $this->controlleur->afficheClassement();
                 break;
+            case 'affichePronostic':
+                echo "en cours";
+                break;
         }
     }
 
