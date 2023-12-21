@@ -31,7 +31,7 @@ CREATE TABLE competition(
     competition_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     nom VARCHAR(50) NOT NULL,
     description VARCHAR(1024),
-    date_creation DATE DEFAULT '0000-00-00'
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE pronostiqueur(
@@ -70,12 +70,48 @@ CREATE TABLE resultatMatch(
     CONSTRAINT fk_resultatMatch_match FOREIGN KEY(match_id) REFERENCES matchApronostiquer(match_id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+CREATE TABLE pronostique(
+    match_id INT NOT NULL,
+    pronostiqueur_id INT NOT NULL,
+    prono_equipe1 INT,
+    prono_equipe1 INT,
+    CONSTRAINT fk_resultatMatch_match FOREIGN KEY(match_id) REFERENCES matchApronostiquer(match_id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
 
+
+-- Trigger
+
+-- syntaxe :
+
+-- delimiter |
+
+-- CREATE TRIGGER testref BEFORE INSERT ON test1
+--   FOR EACH ROW
+--   BEGIN
+--     INSERT INTO test2 SET a2 = NEW.a1;
+--     DELETE FROM test3 WHERE a3 = NEW.a1;
+--     UPDATE test4 SET b4 = b4 + 1 WHERE a4 = NEW.a1;
+--   END;
+-- |
+
+-- CREATE TRIGGER ajoutAutoPronoDefaut BEFORE INSERT ON LaRuche.matchApronostiquer
+-- FOR EACH ROW
+-- BEGIN 
+
+--     DECLARE nbPronostiqueur INT;
+
+--     SELECT count(*) INTO nbPronostiqueur 
+--     FROM LaRuche.pronostiqueur as P 
+--     WHERE P.competition_id = NEW.competition_id;
+
+
+
+-- delimiter ;
 
 -- INSERTION DEFAUT
 
-INSERT INTO admin(login,password) values ('admin','$2y$10$NgQgoczV30jYL290isx3pOSP3eUfJaVsWpjQW8xz1ruhazMEVN7WO');
+INSERT INTO admin(login,password) VALUES ('admin','$2y$10$NgQgoczV30jYL290isx3pOSP3eUfJaVsWpjQW8xz1ruhazMEVN7WO');
 
-INSERT INTO competition(nom,description,date_creation) values
-('test','supprime moi en cliquant sur la corbeille',CURDATE()),
-('champions league','championnat des meilleurs club d europe',CURDATE());
+INSERT INTO competition(nom,description) VALUES
+('test','supprime moi en cliquant sur la corbeille'),
+('champions league','championnat des meilleurs club d europe');

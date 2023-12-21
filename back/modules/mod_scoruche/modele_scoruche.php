@@ -101,14 +101,16 @@ class ModeleScorcast extends Connexion {
 
     }
 
-    public function recupereMatchApronostic($idCompet){
+    public function recupereMatch($idCompet){
 
         try {
             $query = "
-            SELECT nom, date_max_pari
-            FROM LaRuche.matchApronostiquer NATURAL JOIN LaRuche.equipe
+            SELECT date_max_pari,
+            FROM LaRuche.matchApronostiquer as M
+            INNER JOIN equipe E ON M.equipe1_id=E.equipe_id
+            INNER JOIN equipe E2 ON M.equipe2_id=E2.equipe_id
             WHERE competition_id =". $idCompet ."
-            ORDER BY date_max_pari
+            ORDER BY points
             ";
             $stmt = Connexion::$bdd->prepare($query);
             $result = $this->executeQuery($stmt);

@@ -38,13 +38,13 @@
         <input type="date" name="dateMatch">
 
         <label>Points Score Exact :</label>
-        <input type="text" name="ptsExact" maxlength="2" size="1">        
+        <input type="number" name="ptsExact" maxlength="2" size="1">        
 
         <label>Points Ecart De But :</label>
-        <input type="text" name="ptsEcart" maxlength="2" size="1">        
+        <input type="number" name="ptsEcart" maxlength="2" size="1">        
 
         <label>Points bon vainqueur :</label>
-        <input type="text" name="ptsVainq" maxlength="2" size="1"><br>
+        <input type="number" name="ptsVainq" maxlength="2" size="1"><br>
 
 
 

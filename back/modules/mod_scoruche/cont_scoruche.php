@@ -55,14 +55,14 @@ class ContScorcast {
     }
 
     public function afficheClassement(){
+        //le 'id' dans le get correspond a l'id de la competition
         $classement = $this->modele->recupereClassement($_GET['id']);
         $this->vue->afficheClassement($classement);
     }
 
-    public function pronostics(){
-        $matchs = $this->modele->recupereClassement($_GET['id']);
-        
-        var_dump($matchs);
+    public function afficheMatchApronostique(){
+        // $matchs = $this->modele->recupereClassement($_GET['id']);
+        // $this->vue->afficheClassement($classement);
     }
 
 }

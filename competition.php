@@ -50,24 +50,24 @@ $affichageModule = $module->afficheModule();
     <div class="col-md-3 text-end">
         <button  type="button" class="btn btn-outline-primary me-2">
             <a href="ruche.php" class="nav-link px-2">
-                retour à la ruche
+                retour à la ruche (beta)
             </a>
         </button>
 
         <button  type="button" class="btn btn-outline-primary me-2">
-            <a href="competition.php?action=classement" class="nav-link px-2">
+            <a href="competition.php?action=classement&id=<? echo $_GET['id']; ?>" class="nav-link px-2">
                 classement
             </a>
         </button>
 
         <button  type="button" class="btn btn-outline-primary me-2">
-            <a href="competition.php?action=classement" class="nav-link px-2">
+            <a href="competition.php?action=affichePronostic&id=<? echo $_GET['id']; ?>" class="nav-link px-2">
                 Pronostics
             </a>
         </button>
 
         <button  type="button" class="btn btn-outline-primary me-2">
-            <a href="competition.php?action=resultat" class="nav-link px-2">
+            <a href="scoruche.php" class="nav-link px-2">
                 Resultats
             </a>
         </button>
