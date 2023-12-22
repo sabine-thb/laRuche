@@ -11,7 +11,7 @@ class Connexion {
     public static function initConnexion() {
         $host = 'laruche2.cah82lrh4zyj.eu-west-3.rds.amazonaws.com';
 
-        //mysql -h laruche.cah82lrh4zyj.eu-west-3.rds.amazonaws.com -P 3306 -u admin -p
+        //mysql -h laruche2.cah82lrh4zyj.eu-west-3.rds.amazonaws.com -P 3306 -u admin -p
 
         try {
             Connexion::$bdd = new PDO("mysql:host=$host;port=3306;user=admin;password=CouCou&85");
