@@ -74,8 +74,9 @@ CREATE TABLE pronostique(
     match_id INT NOT NULL,
     pronostiqueur_id INT NOT NULL,
     prono_equipe1 INT,
-    prono_equipe1 INT,
-    CONSTRAINT fk_resultatMatch_match FOREIGN KEY(match_id) REFERENCES matchApronostiquer(match_id) ON DELETE RESTRICT ON UPDATE CASCADE
+    prono_equipe2 INT,
+    CONSTRAINT fk_pronostique_pronostiqueur FOREIGN KEY(pronostiqueur_id) REFERENCES pronostiqueur(pronostiqueur_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT fk_pronostique_match FOREIGN KEY(match_id) REFERENCES matchApronostiquer(match_id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 
