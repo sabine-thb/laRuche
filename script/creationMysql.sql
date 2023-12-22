@@ -54,9 +54,9 @@ CREATE TABLE matchApronostiquer(
     equipe1_id INT NOT NULL,
     equipe2_id INT NOT NULL,
     competition_id INT NOT NULL,
-    pts_Exact INT NOT NULL,
-    pts_Ecart INT NOT NULL,
-    pts_Vainq INT NOT NULL,
+    pts_Exact INT NOT NULL DEFAULT 0,
+    pts_Ecart INT NOT NULL DEFAULT 0,
+    pts_Vainq INT NOT NULL DEFAULT 0,
     date_max_pari DATE NOT NULL,
     CONSTRAINT fk_match_equipe1 FOREIGN KEY(equipe1_id) REFERENCES equipe(equipe_id) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT fk_match_equipe2 FOREIGN KEY(equipe2_id) REFERENCES equipe(equipe_id) ON DELETE RESTRICT ON UPDATE CASCADE,
@@ -82,28 +82,37 @@ CREATE TABLE pronostique(
 
 -- Trigger
 
--- syntaxe :
+-- trigger qui ajoute automatiquement des tuple pour chaque personne d'une competition lorsqu'un match est crée
 
--- delimiter |
+delimiter |
 
--- CREATE TRIGGER testref BEFORE INSERT ON test1
---   FOR EACH ROW
---   BEGIN
---     INSERT INTO test2 SET a2 = NEW.a1;
---     DELETE FROM test3 WHERE a3 = NEW.a1;
---     UPDATE test4 SET b4 = b4 + 1 WHERE a4 = NEW.a1;
---   END;
--- |
+CREATE TRIGGER ajoutAutoPronoDefaut AFTER INSERT ON LaRuche.matchApronostiquer
+FOR EACH ROW
+BEGIN 
 
--- CREATE TRIGGER ajoutAutoPronoDefaut BEFORE INSERT ON LaRuche.matchApronostiquer
--- FOR EACH ROW
--- BEGIN 
+    DECLARE is_done INTEGER DEFAULT 0;
 
---     DECLARE nbPronostiqueur INT;
+    DECLARE idTemp INT;
+    DECLARE myCursor CURSOR FOR SELECT pronostiqueur_id FROM LaRuche.pronostiqueur;
+    
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
 
---     SELECT count(*) INTO nbPronostiqueur 
---     FROM LaRuche.pronostiqueur as P 
---     WHERE P.competition_id = NEW.competition_id;
+    OPEN myCursor;
+
+    read_loop: LOOP
+        FETCH myCursor INTO idTemp;
+        
+        IF is_done = 1 THEN
+            LEAVE read_loop;
+        END IF;
+
+        INSERT INTO LaRuche.pronostique(match_id,pronostiqueur_id) VALUES (NEW.match_id,idTemp);
+    END LOOP;
+
+    CLOSE myCursor;
+END;
+
+|
 
 
 

@@ -40,7 +40,7 @@ class ModScorcast {
                 $this->controlleur->afficheClassement();
                 break;
             case 'affichePronostic':
-                echo "en cours";
+                $this->controlleur->afficheMatchApronostique();
                 break;
         }
     }
