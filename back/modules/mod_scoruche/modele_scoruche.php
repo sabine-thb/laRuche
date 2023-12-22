@@ -105,12 +105,12 @@ class ModeleScorcast extends Connexion {
 
         try {
             $query = "
-            SELECT date_max_pari,
+            SELECT date_max_pari,E.nom as nom1,E2.nom as nom2,P.prono_equipe1,P.prono_equipe2,E.srcLogo as src1,E2.srcLogo as src2
             FROM LaRuche.matchApronostiquer as M
-            INNER JOIN equipe E ON M.equipe1_id=E.equipe_id
-            INNER JOIN equipe E2 ON M.equipe2_id=E2.equipe_id
-            WHERE competition_id =". $idCompet ."
-            ORDER BY points
+            INNER JOIN LaRuche.equipe E ON M.equipe1_id=E.equipe_id
+            INNER JOIN LaRuche.equipe E2 ON M.equipe2_id=E2.equipe_id
+            INNER JOIN LaRuche.pronostique P ON P.match_id = M.match_id
+            WHERE competition_id =". $idCompet ." and pronostiqueur_id = ".$_SESSION['idUser']."
             ";
             $stmt = Connexion::$bdd->prepare($query);
             $result = $this->executeQuery($stmt);
@@ -118,6 +118,7 @@ class ModeleScorcast extends Connexion {
             return $result;
 
         } catch (PDOException $e) {
+            var_dump($e);
             echo "<script>console.log('erreur:" . $e ."');</script>";
             return false;
         }

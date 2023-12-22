@@ -107,7 +107,7 @@ class ModeleConnexion extends Connexion {
                 if( isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp) ){
                     var_dump($resultat[0]["est_verifier"]);
                     if($resultat[0]["est_verifier"]){
-                        $_SESSION['id'] = $resultat[0]["user_id"];
+                        $_SESSION['idUser'] = $resultat[0]["user_id"];
                         return [1,$resultat[0]["login"]];//user good
                     }else{
                         return [2,$resultat[0]["login"]];//user pas encore verifier

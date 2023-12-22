@@ -61,8 +61,8 @@ class ContScorcast {
     }
 
     public function afficheMatchApronostique(){
-        // $matchs = $this->modele->recupereClassement($_GET['id']);
-        // $this->vue->afficheClassement($classement);
+        $matchs = $this->modele->recupereMatch($_GET['id']);
+        $this->vue->afficheMatchs($matchs);
     }
 
 }
