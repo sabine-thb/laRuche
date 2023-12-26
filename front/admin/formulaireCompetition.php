@@ -12,7 +12,7 @@
         <textarea class="form-control mr-sm-2" name="description" rows="4" cols="50"></textarea><br>
 
         <p>
-            <? echo $erreur; ?>
+            <?php echo $erreur; ?>
         </p>
 
         <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="créer">

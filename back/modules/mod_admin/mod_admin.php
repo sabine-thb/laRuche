@@ -61,9 +61,7 @@ class ModAdmin {
                 break;
 
             case 'ajoutMatch':
-                echo var_dump($_POST); 
                 $this->controlleur->ajoutMatch();
-                
                 // echo ("2023-12-05"-date("Y-m-d"));
                 break;
 

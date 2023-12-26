@@ -18,13 +18,12 @@ class ModeleAdmin extends Connexion {
         $stmt->execute();
 
         // Récupérez les résultats sous forme d'un tableau associatif
-        $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $resultats;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     
-    public function genereToken($var){
+    public function genereToken($var): string
+    {
         $string = "";
         $chaine = "a0b1c2d3e4f5g6h7i8j9klmnpqrstuvwxy123456789";
         srand((double)microtime()*1000000);
@@ -40,10 +39,9 @@ class ModeleAdmin extends Connexion {
     public function recupereDemande() {
         try {
             $stmt = Connexion::$bdd->prepare("SELECT user_id,login,mail FROM LaRuche.users WHERE est_verifier=false");
-            $resultat = $this->executeQuery($stmt);
-          //  echo var_dump($resultat);
+            //  echo var_dump($resultat);
 
-            return $resultat;
+            return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur:" . $e ."');</script>";
@@ -54,9 +52,7 @@ class ModeleAdmin extends Connexion {
     public function recupereComp() {
         try {
             $stmt = Connexion::$bdd->prepare("SELECT * FROM LaRuche.competition");
-            $resultat = $this->executeQuery($stmt);
-
-            return $resultat;
+            return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur:" . $e ."');</script>";
@@ -64,10 +60,11 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    public function deleteCompetition($id) {
+    public function deleteCompetition($id): bool
+    {
         try {
-            $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.competition WHERE competition_id=" . $id ."");
-            $resultat = $this->executeQuery($stmt);
+            $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.competition WHERE competition_id=" . $id);
+            $this->executeQuery($stmt);
 
             return true;
 
@@ -79,11 +76,12 @@ class ModeleAdmin extends Connexion {
 
     
 
-    public function accepteDemande($id) {
+    public function accepteDemande($id): bool
+    {
 
         try {
-            $stmt = Connexion::$bdd->prepare("UPDATE LaRuche.users SET est_verifier=true WHERE user_id=" . $id ."");
-            $resultat = $this->executeQuery($stmt);
+            $stmt = Connexion::$bdd->prepare("UPDATE LaRuche.users SET est_verifier=true WHERE user_id=" . $id);
+            $this->executeQuery($stmt);
 
             return true;
 
@@ -93,11 +91,12 @@ class ModeleAdmin extends Connexion {
         }
 
     }
-    public function refuseDemande($id) {
+    public function refuseDemande($id): bool
+    {
 
         try {
-            $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.users WHERE user_id=" . $id ."");
-            $resultat = $this->executeQuery($stmt);
+            $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.users WHERE user_id=" . $id);
+            $this->executeQuery($stmt);
 
             return true;
 
@@ -108,10 +107,11 @@ class ModeleAdmin extends Connexion {
 
     }
 
-    public function ajoutCompet($nom,$detail) {
+    public function ajoutCompet($nom,$detail): bool
+    {
         try {
             $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.competition (nom,description,date_creation) VALUES ('".$nom."', '".$detail."',CURDATE())");
-            $resultat = $stmt->execute();
+            $stmt->execute();
 
             return true;
 
@@ -151,25 +151,25 @@ class ModeleAdmin extends Connexion {
 
     }
 
-    public function insererMatch($eq1,$eq2,$ptsExa,$ptsEcart,$ptsVainq,$compet,$dateMatch){
+    public function insererMatch($eq1,$eq2,$ptsExa,$ptsEcart,$ptsVainq,$compet,$dateMatch): bool
+    {
 
         try{
-            $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.matchApronostiquer(equipe1_id,equipe2_id,competition_id,pts_Exact,pts_Ecart,pts_Vainq,date_max_pari ) VALUES ('".$eq1."','".$eq2."','".$compet."','".$ptsExa."','".$ptsEcart."','".$ptsVainq."','".$dateMatch."');");
+            $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.matchApronostiquer(equipe1_id,equipe2_id,competition_id,pts_Exact,pts_Ecart,pts_Vainq,date_match ) VALUES ('".$eq1."','".$eq2."','".$compet."','".$ptsExa."','".$ptsEcart."','".$ptsVainq."','".$dateMatch."');");
             $stmt->execute();
-      }catch (PDOException $e) {
-          echo "<script>console.log('erreur:" . $e ."');</script>";
-          echo $e;
-          return false;
-      }      
-      echo " Equipe bien enregistrée ✌️"."<br>";
-      echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormMatch"/>';
-  }
+
+            return true;
+        }catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return false;
+        }
+
+    }
 
   public function getMatch(){
     try{
         $stmt = Connexion::$bdd->prepare("SELECT * from LaRuche.matchApronostiquer;");
-        $res=$this->executeQuery($stmt);
-        return $res;
+        return $this->executeQuery($stmt);
     }catch (PDOException $e) {
         echo "<script>console.log('erreur:" . $e ."');</script>";
         return $e;
@@ -179,8 +179,7 @@ class ModeleAdmin extends Connexion {
     public function getEquipes(){
         try{
             $stmt = Connexion::$bdd->prepare("SELECT * from LaRuche.equipe;");
-            $res=$this->executeQuery($stmt);
-            return $res;
+            return $this->executeQuery($stmt);
         }catch (PDOException $e) {
             echo "<script>console.log('erreur:" . $e ."');</script>";
             return $e;
@@ -190,18 +189,18 @@ class ModeleAdmin extends Connexion {
     public function getCompet(){
         try{
             $stmt = Connexion::$bdd->prepare("SELECT * from LaRuche.competition;");
-            $res=$this->executeQuery($stmt);
-            return $res;
+            return $this->executeQuery($stmt);
         }catch (PDOException $e) {
             echo "<script>console.log('erreur:" . $e ."');</script>";
             return $e;
         }
         
     }
-    public function deleteEquipe($id) {
+    public function deleteEquipe($id): bool
+    {
         try {
-            $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.equipe WHERE equipe_id=" . $id ."");
-            $resultat = $this->executeQuery($stmt);
+            $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.equipe WHERE equipe_id=" . $id);
+            $this->executeQuery($stmt);
 
             return true;
 
@@ -211,7 +210,8 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    public function gererLogo(){        
+    public function gererLogo(): string
+    {
         
         $temp_name = $_FILES["logo"]["tmp_name"];
         $name = $_FILES["logo"]["name"];
