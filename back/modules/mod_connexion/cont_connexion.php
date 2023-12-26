@@ -38,10 +38,9 @@ class ContConnexion {
         if ($this->checkAllInput() ) {
             if ($this->checkForceMdp($_POST['mdp'])) {
                 
-                $resultat = $this->modele->ajoutDemandeUser($_POST['login'],$_POST['mail'],$_POST['mdp']);
+                $resultat = $this->modele->ajoutDemandeUser($_POST['login'],$_POST['mail'],$_POST['mdp'],$_POST['description']);
 
                 if ($resultat) {
-                    // $_SESSION["loginActif"] = $_POST['login'];
                     echo "Une demande a été envoyée à la ruche, vous recevrez un mail lorsque la demande sera acceptée.";
                 } else {
                     echo "Erreur lors de la création de compte.";
