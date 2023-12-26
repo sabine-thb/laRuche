@@ -38,7 +38,7 @@ class ModeleAdmin extends Connexion {
 
     public function recupereDemande() {
         try {
-            $stmt = Connexion::$bdd->prepare("SELECT user_id,login,mail FROM LaRuche.users WHERE est_verifier=false");
+            $stmt = Connexion::$bdd->prepare("SELECT user_id,login,mail,description FROM LaRuche.users WHERE est_verifier=false");
             //  echo var_dump($resultat);
 
             return $this->executeQuery($stmt);

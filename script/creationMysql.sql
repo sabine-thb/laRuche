@@ -18,6 +18,7 @@ CREATE TABLE users(
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     login VARCHAR(50) NOT NULL,
     mail VARCHAR(50) NOT NULL,
+    description VARCHAR(500),
     password VARCHAR(255) NOT NULL,
     est_verifier BOOLEAN NOT NULL DEFAULT false
 );
@@ -32,7 +33,7 @@ CREATE TABLE competition(
     competition_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     nom VARCHAR(50) NOT NULL,
     description VARCHAR(1024),
-    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    date_creation DATE
 );
 
 CREATE TABLE pronostiqueur(
@@ -149,6 +150,6 @@ delimiter ;
 
 INSERT INTO admin(login,password) VALUES ('admin','$2y$10$NgQgoczV30jYL290isx3pOSP3eUfJaVsWpjQW8xz1ruhazMEVN7WO');
 
-INSERT INTO competition(nom,description) VALUES
-('test','supprime moi en cliquant sur la corbeille'),
-('champions league','championnat des meilleurs club d europe');
+INSERT INTO competition(nom,description,date_creation) VALUES
+('test','supprime moi en cliquant sur la corbeille',CURRENT_DATE()),
+('champions league','championnat des meilleurs club d europe',CURRENT_DATE());
