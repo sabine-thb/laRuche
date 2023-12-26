@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <div class="row">
                             <p>
-                                <?php echo $tuple['date_max_pari']; ?>
+                                <?php echo $tuple['date_match']; ?>
                             </p>
                             <div class="col-md-4">
                                 <!-- Équipe 1 -->
