@@ -1,6 +1,5 @@
 <?php
 session_start();
-date_default_timezone_set('UTC+1');
 
 if (isset($_SESSION["loginActif"])) {
 
