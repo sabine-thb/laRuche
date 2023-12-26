@@ -66,9 +66,28 @@ class ContScorcast {
     }
 
     public function valideProno(){
-     
-        
 
+        $totalBool = true;
+
+        foreach ($_POST as $key => $value) {
+
+            $idMatch = (int)substr($key, -1);
+            $prono = (int)substr($key, 0);
+
+            if ($prono == 1){
+                $res = $this->modele->modifiProno1($idMatch,$value);
+            }else{
+                $res = $this->modele->modifiProno2($idMatch,$value);
+            }
+
+            if (!$res)
+                $totalBool = false;
+        }
+
+        if (!$totalBool)
+            echo "erreur pendant au moins une modification";
+        else
+            echo "changements enregistrés avec succés";
     }
 
 }

@@ -55,13 +55,13 @@ $affichageModule = $module->afficheModule();
         </button>
 
         <button  type="button" class="btn btn-outline-primary me-2">
-            <a href="competition.php?action=classement&id=<? echo $_GET['id']; ?>" class="nav-link px-2">
+            <a href="competition.php?action=classement&id=<?php echo $_GET['id']; ?>" class="nav-link px-2">
                 classement
             </a>
         </button>
 
         <button  type="button" class="btn btn-outline-primary me-2">
-            <a href="competition.php?action=affichePronostic&id=<? echo $_GET['id']; ?>" class="nav-link px-2">
+            <a href="competition.php?action=affichePronostic&id=<?php echo $_GET['id']; ?>" class="nav-link px-2">
                 Pronostics
             </a>
         </button>
