@@ -65,5 +65,11 @@ class ContScorcast {
         $this->vue->afficheMatchs($matchs);
     }
 
+    public function valideProno(){
+     
+        
+
+    }
+
 }
 ?>
