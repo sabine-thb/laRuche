@@ -24,9 +24,7 @@ class ModeleConnexion extends Connexion {
         $stmt->execute();
         
         // Récupérez les résultats sous forme d'un tableau associatif
-        $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $resultats;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function ajoutDemandeUser($login,$mail,$mdp) {
@@ -53,9 +51,7 @@ class ModeleConnexion extends Connexion {
         try {
             $mdp = password_hash($mdp,PASSWORD_BCRYPT,$this->option);
             $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.users (login,mail,password) VALUES ('".$login."', '".$mail."', '".$mdp."')");
-            $resultat = $stmt->execute();
-
-            return $resultat;
+            return $stmt->execute();
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur:" . $e ."');</script>";
@@ -63,7 +59,8 @@ class ModeleConnexion extends Connexion {
         }
     }
 
-    private function nouveau($champSql, $var) {
+    private function nouveau($champSql, $var): bool
+    {
 
         try {
             
@@ -80,8 +77,6 @@ class ModeleConnexion extends Connexion {
             
 
         } catch (PDOException $e) {
-            
-            echo "erreur fonction nouveau !";
             return false;
         }
 
@@ -124,7 +119,8 @@ class ModeleConnexion extends Connexion {
     
     }
 
-    private function checkMdp($resultat, $mdp){
+    private function checkMdp($resultat, $mdp): bool
+    {
         $mdpCripte = $resultat[0]["password"];
 
         if (password_verify($mdp, $mdpCripte)) {

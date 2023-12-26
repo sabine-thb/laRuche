@@ -4,6 +4,7 @@
 -- collaborateurs: Maitre Arsene, Thibout Sabine
 -- script création
 -- test1.cah82lrh4zyj.eu-west-3.rds.amazonaws.com
+-- source creationMysql.sql
 
 
 -- CREATION
@@ -57,7 +58,8 @@ CREATE TABLE matchApronostiquer(
     pts_Exact INT NOT NULL DEFAULT 0,
     pts_Ecart INT NOT NULL DEFAULT 0,
     pts_Vainq INT NOT NULL DEFAULT 0,
-    date_max_pari DATE NOT NULL,
+    date_match DATE NOT NULL,
+    pari_ouvert BOOLEAN NOT NULL DEFAULT true,
     CONSTRAINT fk_match_equipe1 FOREIGN KEY(equipe1_id) REFERENCES equipe(equipe_id) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT fk_match_equipe2 FOREIGN KEY(equipe2_id) REFERENCES equipe(equipe_id) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT fk_match_competition FOREIGN KEY(competition_id) REFERENCES competition(competition_id) ON DELETE RESTRICT ON UPDATE CASCADE
