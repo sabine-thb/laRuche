@@ -4,6 +4,7 @@
 -- collaborateurs: Maitre Arsene, Thibout Sabine
 -- script création
 -- test1.cah82lrh4zyj.eu-west-3.rds.amazonaws.com
+-- source creationMysql.sql
 
 
 -- CREATION
@@ -17,6 +18,7 @@ CREATE TABLE users(
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     login VARCHAR(50) NOT NULL,
     mail VARCHAR(50) NOT NULL,
+    description VARCHAR(500),
     password VARCHAR(255) NOT NULL,
     est_verifier BOOLEAN NOT NULL DEFAULT false
 );
@@ -31,7 +33,7 @@ CREATE TABLE competition(
     competition_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     nom VARCHAR(50) NOT NULL,
     description VARCHAR(1024),
-    date_creation DATE DEFAULT '0000-00-00'
+    date_creation DATE
 );
 
 CREATE TABLE pronostiqueur(
@@ -54,7 +56,11 @@ CREATE TABLE matchApronostiquer(
     equipe1_id INT NOT NULL,
     equipe2_id INT NOT NULL,
     competition_id INT NOT NULL,
-    date_max_pari DATE NOT NULL,
+    pts_Exact INT NOT NULL DEFAULT 0,
+    pts_Ecart INT NOT NULL DEFAULT 0,
+    pts_Vainq INT NOT NULL DEFAULT 0,
+    date_match DATE NOT NULL,
+    pari_ouvert BOOLEAN NOT NULL DEFAULT true,
     CONSTRAINT fk_match_equipe1 FOREIGN KEY(equipe1_id) REFERENCES equipe(equipe_id) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT fk_match_equipe2 FOREIGN KEY(equipe2_id) REFERENCES equipe(equipe_id) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT fk_match_competition FOREIGN KEY(competition_id) REFERENCES competition(competition_id) ON DELETE RESTRICT ON UPDATE CASCADE
@@ -67,12 +73,83 @@ CREATE TABLE resultatMatch(
     CONSTRAINT fk_resultatMatch_match FOREIGN KEY(match_id) REFERENCES matchApronostiquer(match_id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
+CREATE TABLE pronostique(
+    match_id INT NOT NULL,
+    pronostiqueur_id INT NOT NULL,
+    prono_equipe1 INT,
+    prono_equipe2 INT,
+    CONSTRAINT fk_pronostique_pronostiqueur FOREIGN KEY(pronostiqueur_id) REFERENCES pronostiqueur(pronostiqueur_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT fk_pronostique_match FOREIGN KEY(match_id) REFERENCES matchApronostiquer(match_id) ON DELETE RESTRICT ON UPDATE CASCADE
+);
 
+
+-- Trigger
+
+-- trigger qui ajoute automatiquement des tuple pour chaque personne d'une competition lorsqu'un match est crée
+
+delimiter $$
+
+CREATE TRIGGER ajoutAutoPronoDefaut AFTER INSERT ON LaRuche.matchApronostiquer
+    FOR EACH ROW
+BEGIN 
+
+    DECLARE is_done INTEGER DEFAULT 0;
+
+    DECLARE idTemp INT;
+    DECLARE myCursor CURSOR FOR SELECT pronostiqueur_id FROM LaRuche.pronostiqueur;
+    
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
+
+    OPEN myCursor;
+
+    read_loop: LOOP
+        FETCH myCursor INTO idTemp;
+        
+        IF is_done = 1 THEN
+            LEAVE read_loop;
+        END IF;
+
+        INSERT INTO LaRuche.pronostique(match_id,pronostiqueur_id) VALUES (NEW.match_id,idTemp);
+    END LOOP;
+
+    CLOSE myCursor;
+END $$
+
+-- trigger qui ajoute automatiquement des prono au matchs créé précédemment si un user rejoint une competition en cours de route
+
+CREATE TRIGGER ajoutAutoPronoBefore AFTER INSERT ON LaRuche.pronostiqueur
+    FOR EACH ROW
+BEGIN
+
+    DECLARE is_done INTEGER DEFAULT 0;
+
+    DECLARE idTemp INT;
+    DECLARE myCursor CURSOR FOR SELECT match_id FROM LaRuche.matchApronostiquer WHERE competition_id = NEW.competition_id;
+
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
+
+    OPEN myCursor;
+
+    read_loop: LOOP
+        FETCH myCursor INTO idTemp;
+
+        IF is_done = 1 THEN
+            LEAVE read_loop;
+        END IF;
+
+        INSERT INTO LaRuche.pronostique(match_id,pronostiqueur_id) VALUES (idTemp,NEW.pronostiqueur_id);
+    END LOOP;
+
+    CLOSE myCursor;
+END $$
+
+
+delimiter ;
 
 -- INSERTION DEFAUT
 
-INSERT INTO admin(login,password) values ('admin','$2y$10$NgQgoczV30jYL290isx3pOSP3eUfJaVsWpjQW8xz1ruhazMEVN7WO');
+INSERT INTO admin(login,password) VALUES ('admin','$2y$10$NgQgoczV30jYL290isx3pOSP3eUfJaVsWpjQW8xz1ruhazMEVN7WO');
 
-INSERT INTO competition(nom,description,date_creation) values
-('test','supprime moi en cliquant sur la corbeille',CURDATE()),
-('champions league','championnat des meilleurs club d europe',CURDATE());
+INSERT INTO competition(nom,description,date_creation) VALUES
+('test','supprime moi en cliquant sur la corbeille',CURRENT_DATE()),
+('champions league','championnat des meilleurs club d europe',CURRENT_DATE());

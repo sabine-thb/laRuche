@@ -15,6 +15,7 @@ include_once('back/modules/mod_scoruche/mod_scoruche.php');
 Connexion::initConnexion();
 
 $module = new ModScorcast();
+$module->start();
 
 //fin du tampon
 $affichageModule = $module->afficheModule();
@@ -40,11 +41,11 @@ $affichageModule = $module->afficheModule();
     <header>
 
     <div class="col-md-3 text-end">
-        <button  type="button" class="btn btn-outline-primary me-2">
+        <!--<button  type="button" class="btn btn-outline-primary me-2">
             <a href="ruche.php" class="nav-link px-2">
                 retour à la ruche
             </a>
-        </button>
+        </button>-->
 
         <button  type="button" class="btn btn-outline-primary me-2">
             <a href="scoruche.php?action=afficheMesCompet" class="nav-link px-2">

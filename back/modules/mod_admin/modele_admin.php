@@ -18,18 +18,30 @@ class ModeleAdmin extends Connexion {
         $stmt->execute();
 
         // Récupérez les résultats sous forme d'un tableau associatif
-        $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $resultats;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    
+    public function genereToken($var): string
+    {
+        $string = "";
+        $chaine = "a0b1c2d3e4f5g6h7i8j9klmnpqrstuvwxy123456789";
+        srand((double)microtime()*1000000);
+        for($i=0; $i<$var; $i++){
+            $string .= $chaine[rand()%strlen($chaine)];
+        }
+        $_SESSION['token']=$string;
+        $_SESSION['creationToken']= time();
+        return $string;
+    }
+
 
     public function recupereDemande() {
         try {
-            $stmt = Connexion::$bdd->prepare("SELECT user_id,login,mail FROM LaRuche.users WHERE est_verifier=false");
-            $resultat = $this->executeQuery($stmt);
-          //  echo var_dump($resultat);
+            $stmt = Connexion::$bdd->prepare("SELECT user_id,login,mail,description FROM LaRuche.users WHERE est_verifier=false");
+            //  echo var_dump($resultat);
 
-            return $resultat;
+            return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur:" . $e ."');</script>";
@@ -40,9 +52,7 @@ class ModeleAdmin extends Connexion {
     public function recupereComp() {
         try {
             $stmt = Connexion::$bdd->prepare("SELECT * FROM LaRuche.competition");
-            $resultat = $this->executeQuery($stmt);
-
-            return $resultat;
+            return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur:" . $e ."');</script>";
@@ -50,10 +60,11 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    public function deleteCompetition($id) {
+    public function deleteCompetition($id): bool
+    {
         try {
-            $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.competition WHERE competition_id=" . $id ."");
-            $resultat = $this->executeQuery($stmt);
+            $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.competition WHERE competition_id=" . $id);
+            $this->executeQuery($stmt);
 
             return true;
 
@@ -65,11 +76,12 @@ class ModeleAdmin extends Connexion {
 
     
 
-    public function accepteDemande($id) {
+    public function accepteDemande($id): bool
+    {
 
         try {
-            $stmt = Connexion::$bdd->prepare("UPDATE LaRuche.users SET est_verifier=true WHERE user_id=" . $id ."");
-            $resultat = $this->executeQuery($stmt);
+            $stmt = Connexion::$bdd->prepare("UPDATE LaRuche.users SET est_verifier=true WHERE user_id=" . $id);
+            $this->executeQuery($stmt);
 
             return true;
 
@@ -79,11 +91,12 @@ class ModeleAdmin extends Connexion {
         }
 
     }
-    public function refuseDemande($id) {
+    public function refuseDemande($id): bool
+    {
 
         try {
-            $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.users WHERE user_id=" . $id ."");
-            $resultat = $this->executeQuery($stmt);
+            $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.users WHERE user_id=" . $id);
+            $this->executeQuery($stmt);
 
             return true;
 
@@ -94,10 +107,11 @@ class ModeleAdmin extends Connexion {
 
     }
 
-    public function ajoutCompet($nom,$detail) {
+    public function ajoutCompet($nom,$detail): bool
+    {
         try {
             $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.competition (nom,description,date_creation) VALUES ('".$nom."', '".$detail."',CURDATE())");
-            $resultat = $stmt->execute();
+            $stmt->execute();
 
             return true;
 
@@ -105,6 +119,110 @@ class ModeleAdmin extends Connexion {
             echo "<script>console.log('erreur:" . $e ."');</script>";
             return false;
         }
+    }
+
+    public function insererEquipe($nom){
+        $chemin= $this->gererLogo();
+
+        try{
+        $stmt = Connexion::$bdd->prepare("SELECT nom FROM LaRuche.equipe Where nom='".$nom."';");
+        $res=$this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return false;
+        }   
+
+        if(count($res)==0){
+            try{
+                $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.equipe(nom, srcLogo) VALUES ('".$nom."','".$chemin."');");
+                $stmt->execute();
+            }catch (PDOException $e) {
+                echo "<script>console.log('erreur:" . $e ."');</script>";
+                return false;
+            }      
+            echo " Equipe bien enregistrée ✌️"."<br>";
+
+        }else{
+            echo" Une equipe porte déja ce nom.."."<br>";
+            echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
+
+
+        }
+
+    }
+
+    public function insererMatch($eq1,$eq2,$ptsExa,$ptsEcart,$ptsVainq,$compet,$dateMatch): bool
+    {
+
+        try{
+            $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.matchApronostiquer(equipe1_id,equipe2_id,competition_id,pts_Exact,pts_Ecart,pts_Vainq,date_match ) VALUES ('".$eq1."','".$eq2."','".$compet."','".$ptsExa."','".$ptsEcart."','".$ptsVainq."','".$dateMatch."');");
+            $stmt->execute();
+
+            return true;
+        }catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return false;
+        }
+
+    }
+
+  public function getMatch(){
+    try{
+        $stmt = Connexion::$bdd->prepare("SELECT * from LaRuche.matchApronostiquer;");
+        return $this->executeQuery($stmt);
+    }catch (PDOException $e) {
+        echo "<script>console.log('erreur:" . $e ."');</script>";
+        return $e;
+    }
+    
+}
+    public function getEquipes(){
+        try{
+            $stmt = Connexion::$bdd->prepare("SELECT * from LaRuche.equipe;");
+            return $this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return $e;
+        }
+        
+    }
+    public function getCompet(){
+        try{
+            $stmt = Connexion::$bdd->prepare("SELECT * from LaRuche.competition;");
+            return $this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return $e;
+        }
+        
+    }
+    public function deleteEquipe($id): bool
+    {
+        try {
+            $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.equipe WHERE equipe_id=" . $id);
+            $this->executeQuery($stmt);
+
+            return true;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return false;
+        }
+    }
+
+    public function gererLogo(): string
+    {
+        
+        $temp_name = $_FILES["logo"]["tmp_name"];
+        $name = $_FILES["logo"]["name"];
+        $destination = "./style/img/logo/" . $name;
+
+        // Déplacer le fichier téléchargé vers un répertoire sur le serveur
+        if (!move_uploaded_file($temp_name, $destination)){
+            echo "Une erreur s'est produite lors du téléchargement de l'image."."<br>";
+        }
+            
+        return $destination;
     }
 
 

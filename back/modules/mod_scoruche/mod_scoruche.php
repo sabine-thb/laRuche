@@ -14,13 +14,12 @@ class ModScorcast {
     public function __construct(){
 
         $this->controlleur = new ContScorcast();
-        $this->action = isset($_GET['action']) ? $_GET['action'] : 'bienvenue';
+        $this->action = $_GET['action'] ?? 'bienvenue';
 
-        $this->start();
 
     }
 
-    private function start(){
+    public function start(){
 
         switch($this->action){
 
@@ -39,17 +38,21 @@ class ModScorcast {
             case 'classement':
                 $this->controlleur->afficheClassement();
                 break;
-            case 'pronostics':
-                $this->controlleur->pronostics();
+            case 'affichePronostic':
+                $this->controlleur->afficheMatchApronostique();
                 break;
-            case 'resultat':
-                echo"en cours";
+            case 'validationProno':
+                $this->controlleur->valideProno();
                 break;
         }
     }
 
     public function afficheModule(){
         return $this->controlleur->affichage();
+    }
+
+    public function getPronostiqueurIdActuelle(){
+        return $this->controlleur->demandePronostiqueurIdActuelle();
     }
 
 }

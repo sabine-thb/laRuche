@@ -9,10 +9,13 @@
                 <p class="card-text">
                     Mail: <?php echo $tuple['mail']; ?> 
                 </p>
+                <p class="card-text">
+                    Description: <?php echo $tuple['description']; ?>
+                </p>
                 <a href="admin.php?action=valider&id='<?php echo $tuple['user_id']; ?>'" class="btn btn-primary">
                     Valider
                 </a>
-                <a href="admin.php?action=refuser&id='<?php echo $tuple['user_id']; ?>'" class="btn btn-primary">
+                <a class="btn btn-primary" onclick="confirmerRefusezUser('<?php echo $tuple['login']; ?>',<?php echo $tuple['user_id']; ?>)">
                     Refuser
                 </a>
             </div>

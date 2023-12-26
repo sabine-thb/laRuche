@@ -28,6 +28,10 @@ class VueScorcast extends VueGenerique {
         require_once('./front/scoruche/Classement.php');
     }
 
+    public function afficheMatchs($matchs) {
+        require_once('./front/scoruche/matchs.php');
+    }
+
 }
 
 ?>

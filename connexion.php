@@ -39,8 +39,9 @@ $affichageModule = $module->afficheModule();
                 <img src="./style/img/logo.svg" class="logoLeague">
                 <div class="line"></div>
                 <div class="form">
-                    <img src="./style/img/abeille.png" class="abeille"alt="">
-                    
+                    <a href="connexion.php">
+                        <img src="./style/img/abeille.png" class="abeille" alt="">
+                    </a>
                     <main>
                         <?php echo $affichageModule; // le code html pour cette endroit est dans le dossier front/connexion ?>
                     </main>

@@ -55,7 +55,7 @@ class ContAdmin {
         }
     }
 
-    public function spprimerCompetition() {
+    public function supprimerCompetition() {
     
         if (isset($_GET["idCompet"])) {
             $resultat=$this->modele->deleteCompetition($_GET["idCompet"]);
@@ -98,6 +98,98 @@ class ContAdmin {
         }else{
             $this->vue->afficheFormulaireCompet("veullez remplir tout les champ !");
         }
+    }
+
+    public function ajoutEquipe(){
+        // echo  var_dump($_POST);
+
+        if(isset($_SESSION['token'],$_POST['token'])){
+            if(null!==($_SESSION['creationToken']&& time()-$_SESSION['creationToken']<60 )){
+                if(isset($_POST['name'],$_FILES['logo']['tmp_name'])){
+                    $this->modele->insererEquipe($_POST['name'],$_FILES['logo']);
+                    
+//                    echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
+                }else{
+                    echo " Remplissez tous les champs et réessayez"."<br>";
+                    echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
+                }
+            }else{
+                echo " Délai atteint, veuillez réessayer "."<br>";
+                echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
+            }
+        }else {
+            echo " Erreur de Token, redirection..";
+            echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
+        }
+        unset($_SESSION['token'],$_SESSION['creationToken']);
+
+    }
+
+    public function ajoutMatch(){
+        // echo  var_dump($_POST);
+
+        if(isset($_SESSION['token'],$_POST['token'])){
+            if(null!==($_SESSION['creationToken']&& time()-$_SESSION['creationToken']<60 )){
+                if(isset($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch'])){
+                    if ($_POST['equipe1']!=='default' && $_POST['equipe2']!=='default' && $_POST['compet']!=='default' ) {
+                        if ($this->modele->insererMatch($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch'])){
+                            echo " Match bien enregistrée ✌️"."<br>";
+//                            echo '<meta http-equiv="refresh" content="3;url=admin.php?action=afficheFormMatch"/>';
+                        }else{
+                            echo "erreur lors de l'insertion de l'equipe";
+                        }
+                        // echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormMatch"/>';
+                    }else{
+                        echo " Un champ ne peut pas être \"...\""."<br>";
+                        // echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormMatch"/>';
+                    }                  
+                }else{
+                    echo " Remplissez tous les champs et réessayez"."<br>";
+                    echo '<meta http-equiv="refresh" content="5;url=admin.php?action=afficheFormMatch"/>';
+                }
+            }else{
+                echo " Délai atteint, veuillez réessayer";
+            }
+        }else {
+            echo " Erreur de Token, veuillez resseyer";
+        }
+        unset($_SESSION['token'],$_SESSION['creationToken']);
+
+    }
+
+    public function gererEquipe(){
+        $eq=$this->modele->getEquipes();
+        $this->vue->afficheEquipes($eq);
+    }
+
+    public function supprimerEquipe() {
+    
+        if (isset($_GET["idEquipe"])) {
+            $resultat=$this->modele->deleteEquipe($_GET["idEquipe"]);
+            
+            if ($resultat) {
+                header('Location: admin.php?action=gererEquipe');
+            }else{
+                echo "erreur lors de la suppression";
+            }
+        }
+    }
+    public function gererMatch(){
+        $match=$this->modele->getMatch();
+        $this->vue->afficheMatch($match);
+    }
+
+
+    public function afficherFormCreationMatch(){
+        $token=$this->modele->genereToken(30);
+        $eq=$this->modele->getEquipes();
+        $compet=$this->modele->getCompet();
+        $this->vue->afficheFormCreationMatch($token,$eq,$compet);
+    }
+
+    public function afficherFormCreationEquipe(){
+        $token=$this->modele->genereToken(30);
+        $this->vue->afficheFormCreationEquipe($token);
     }
 
 }

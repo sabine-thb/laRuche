@@ -55,14 +55,49 @@ class ContScorcast {
     }
 
     public function afficheClassement(){
+        //le 'id' dans le get correspond a l'id de la competition
         $classement = $this->modele->recupereClassement($_GET['id']);
         $this->vue->afficheClassement($classement);
     }
 
-    public function pronostics(){
-        $matchs = $this->modele->recupereClassement($_GET['id']);
-        
-        var_dump($matchs);
+    public function afficheMatchApronostique(){
+        $matchs = $this->modele->recupereMatch($_GET['id']);
+        $this->vue->afficheMatchs($matchs);
+    }
+
+    public function valideProno(){
+
+        $totalBool = true;
+
+        foreach ($_POST as $key => $value) {
+
+            $idMatch = (int)substr($key, -1);
+            $prono = (int)substr($key, 0);
+
+            if ($prono == 1){
+                $res = $this->modele->modifiProno1($idMatch,$value);
+            }else{
+                $res = $this->modele->modifiProno2($idMatch,$value);
+            }
+
+            if (!$res)
+                $totalBool = false;
+        }
+
+        if (!$totalBool)
+            echo "erreur pendant au moins une modification";
+        else
+            echo "changements enregistrés avec succés";
+    }
+
+    public function demandePronostiqueurIdActuelle()
+    {
+        $id = $this->modele->PronostiqueurIdActuelle();
+
+        if ($id)
+            return $id;
+        else
+            die("erreur lors de la recuperation de l'id pronostiqueur");
     }
 
 }
