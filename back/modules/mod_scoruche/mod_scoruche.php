@@ -14,13 +14,12 @@ class ModScorcast {
     public function __construct(){
 
         $this->controlleur = new ContScorcast();
-        $this->action = isset($_GET['action']) ? $_GET['action'] : 'bienvenue';
+        $this->action = $_GET['action'] ?? 'bienvenue';
 
-        $this->start();
 
     }
 
-    private function start(){
+    public function start(){
 
         switch($this->action){
 
@@ -50,6 +49,10 @@ class ModScorcast {
 
     public function afficheModule(){
         return $this->controlleur->affichage();
+    }
+
+    public function getPronostiqueurIdActuelle(){
+        return $this->controlleur->demandePronostiqueurIdActuelle();
     }
 
 }

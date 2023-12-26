@@ -90,5 +90,15 @@ class ContScorcast {
             echo "changements enregistrés avec succés";
     }
 
+    public function demandePronostiqueurIdActuelle()
+    {
+        $id = $this->modele->PronostiqueurIdActuelle();
+
+        if ($id)
+            return $id;
+        else
+            die("erreur lors de la recuperation de l'id pronostiqueur");
+    }
+
 }
 ?>

@@ -8,6 +8,7 @@ if (!isset($_SESSION["loginActif"]) ) {
 //ici on parle de l'id de la competition
 //si elle n'est pas presente dans l'url il faut rediriger l'utilisateur
 //car il y aura des erreurs par la suite
+//todo mettre ce id dans la variable globale de session
 if (!isset($_GET["id"]) ) {
     header('Location: scoruche.php');
 }
@@ -16,13 +17,16 @@ if (!isset($_GET["id"]) ) {
 //pour la securité, a revoir
 const BASE_URL = "securité";
 
-//on inclue les fichiers de modules correspondant a la page connexion 
+//on inclue les fichiers de modules correspondant a la page scoruche
 include_once('back/modules/mod_scoruche/mod_scoruche.php');
 
 //connexion bdd
 Connexion::initConnexion();
 
 $module = new ModScorcast();
+
+$_SESSION['idPronostiqueur'] = $module->getPronostiqueurIdActuelle();
+$module->start();
 
 //fin du tampon
 $affichageModule = $module->afficheModule();
@@ -49,8 +53,8 @@ $affichageModule = $module->afficheModule();
 
     <div class="col-md-3 text-end">
         <button  type="button" class="btn btn-outline-primary me-2">
-            <a href="ruche.php" class="nav-link px-2">
-                retour à la ruche (beta)
+            <a href="scoruche.php?action=afficheMesCompet" class="nav-link px-2">
+                retour à mes competitions
             </a>
         </button>
 

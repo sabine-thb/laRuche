@@ -15,6 +15,7 @@ include_once('back/modules/mod_scoruche/mod_scoruche.php');
 Connexion::initConnexion();
 
 $module = new ModScorcast();
+$module->start();
 
 //fin du tampon
 $affichageModule = $module->afficheModule();
