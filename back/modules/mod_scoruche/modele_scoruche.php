@@ -61,7 +61,7 @@ class ModeleScorcast extends Connexion {
         }
     }
 
-    public function rejoindreCompet($idCompet) {
+    public function rejoindreCompet(int $idCompet) {
 
         try {
             $query = "
@@ -80,7 +80,7 @@ class ModeleScorcast extends Connexion {
 
     }
 
-    public function recupereClassement($idCompet){
+    public function recupereClassement(int $idCompet){
 
         try {
             $query = "
@@ -101,11 +101,11 @@ class ModeleScorcast extends Connexion {
 
     }
 
-    public function recupereMatch($idCompet){
+    public function recupereMatch(int $idCompet){
 
         try {
             $query = "
-            SELECT date_max_pari,E.nom as nom1,E2.nom as nom2,P.prono_equipe1,P.prono_equipe2,E.srcLogo as src1,E2.srcLogo as src2
+            SELECT date_max_pari,E.nom as nom1,E2.nom as nom2,P.prono_equipe1,P.prono_equipe2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id
             FROM LaRuche.matchApronostiquer as M
             INNER JOIN LaRuche.equipe E ON M.equipe1_id=E.equipe_id
             INNER JOIN LaRuche.equipe E2 ON M.equipe2_id=E2.equipe_id
@@ -118,7 +118,28 @@ class ModeleScorcast extends Connexion {
             return $result;
 
         } catch (PDOException $e) {
-            var_dump($e);
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return false;
+        }
+
+    }
+
+    public function modifiProno(int $idMatch,int $prono1,int $prono2){
+
+        try {
+            $query = "
+            UPDATE LaRuche.pronostique 
+            SET prono_equipe1 = " . $prono1 . ",
+                prono_equipe2 = " . $prono2 . " 
+            WHERE match_id = " . $idMatch . " and 
+                pronostiqueur_id = " . $_SESSION['idUser'] ."
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $result = $this->executeQuery($stmt);
+
+            return $result;
+
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur:" . $e ."');</script>";
             return false;
         }

@@ -64,4 +64,3 @@ switch($module) {
 // $menu = new CompMenu($module);
 
 // require_once "template.php";
-?>

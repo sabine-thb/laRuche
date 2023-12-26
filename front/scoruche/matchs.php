@@ -1,4 +1,4 @@
-<form class="formPronostics" action="" method="post">
+<form class="formPronostics" action="competition.php?action=validationProno&id=<? echo $_GET['id']; ?>" method="post">
 
     <div>
         <h2>Pronostics</h2>
@@ -21,13 +21,13 @@
                     <? echo $tuple['nom1']; ?>
                 </h3>
 
-                <input id="prono1" type="number" name="prono1" placeholder="<? echo $tuple['prono_equipe1']; ?>">
+                <input class="prono" type="number" name="prono1_match<? echo $tuple['match_id']; ?>" placeholder="<? echo $tuple['prono_equipe1']; ?>">
 
                 <p>
                      - 
                 </p>
 
-                <input id="prono2" type="number" name="prono2" placeholder="<? echo $tuple['prono_equipe2']; ?>">
+                <input class="prono" type="number" name="prono2_match<? echo $tuple['match_id']; ?>" placeholder="<? echo $tuple['prono_equipe2']; ?>">
                 
                 <h3>
                     <? echo $tuple['nom2']; ?>

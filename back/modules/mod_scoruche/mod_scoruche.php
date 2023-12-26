@@ -42,6 +42,9 @@ class ModScorcast {
             case 'affichePronostic':
                 $this->controlleur->afficheMatchApronostique();
                 break;
+            case 'validationProno':
+                $this->controlleur->valideProno();
+                break;
         }
     }
 
