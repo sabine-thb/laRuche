@@ -86,10 +86,10 @@ CREATE TABLE pronostique(
 
 -- trigger qui ajoute automatiquement des tuple pour chaque personne d'une competition lorsqu'un match est crée
 
-delimiter |
+delimiter $$
 
 CREATE TRIGGER ajoutAutoPronoDefaut AFTER INSERT ON LaRuche.matchApronostiquer
-FOR EACH ROW
+    FOR EACH ROW
 BEGIN 
 
     DECLARE is_done INTEGER DEFAULT 0;
@@ -112,13 +112,38 @@ BEGIN
     END LOOP;
 
     CLOSE myCursor;
-END;
+END $$
 
-|
+-- trigger qui ajoute automatiquement des prono au matchs créé précédemment si un user rejoint une competition en cours de route
+
+CREATE TRIGGER ajoutAutoPronoBefore AFTER INSERT ON LaRuche.pronostiqueur
+    FOR EACH ROW
+BEGIN
+
+    DECLARE is_done INTEGER DEFAULT 0;
+
+    DECLARE idTemp INT;
+    DECLARE myCursor CURSOR FOR SELECT match_id FROM LaRuche.matchApronostiquer WHERE competition_id = NEW.competition_id;
+
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
+
+    OPEN myCursor;
+
+    read_loop: LOOP
+        FETCH myCursor INTO idTemp;
+
+        IF is_done = 1 THEN
+            LEAVE read_loop;
+        END IF;
+
+        INSERT INTO LaRuche.pronostique(match_id,pronostiqueur_id) VALUES (idTemp,NEW.pronostiqueur_id);
+    END LOOP;
+
+    CLOSE myCursor;
+END $$
 
 
-
--- delimiter ;
+delimiter ;
 
 -- INSERTION DEFAUT
 
