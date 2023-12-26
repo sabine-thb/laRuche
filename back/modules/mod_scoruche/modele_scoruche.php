@@ -112,7 +112,7 @@ class ModeleScorcast extends Connexion {
             INNER JOIN LaRuche.equipe E ON M.equipe1_id=E.equipe_id
             INNER JOIN LaRuche.equipe E2 ON M.equipe2_id=E2.equipe_id
             INNER JOIN LaRuche.pronostique P ON P.match_id = M.match_id
-            WHERE competition_id =". $idCompet ." and pronostiqueur_id = ".$_SESSION['idUser']." and pari_ouvert = true
+            WHERE competition_id =". $idCompet ." and pronostiqueur_id = ".$_SESSION['idPronostiqueur']." and pari_ouvert = true
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -133,7 +133,7 @@ class ModeleScorcast extends Connexion {
             UPDATE LaRuche.pronostique 
             SET prono_equipe1 = " . $prono . "
             WHERE match_id = " . $idMatch . " and 
-                pronostiqueur_id = " . $_SESSION['idUser'] ."
+                pronostiqueur_id = " . $_SESSION['idPronostiqueur'] ."
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -155,7 +155,7 @@ class ModeleScorcast extends Connexion {
             UPDATE LaRuche.pronostique 
             SET prono_equipe2 = " . $prono . "
             WHERE match_id = " . $idMatch . " and 
-                pronostiqueur_id = " . $_SESSION['idUser'] ."
+                pronostiqueur_id = " . $_SESSION['idPronostiqueur'] ."
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -167,6 +167,24 @@ class ModeleScorcast extends Connexion {
             return false;
         }
 
+    }
+
+    public function PronostiqueurIdActuelle()
+    {
+        try {
+            $query = "
+                SELECT pronostiqueur_id
+                FROM LaRuche.pronostiqueur
+                WHERE user_id =" . $_SESSION['idUser'] . " and competition_id =". $_GET['id'] ." 
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            return $this->executeQuery($stmt)[0]['pronostiqueur_id'];
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur:" . $e ."');</script>";
+            return false;
+        }
     }
 
 }
