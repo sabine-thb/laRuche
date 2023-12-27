@@ -1,6 +1,6 @@
 <form class="formPronostics" action="competition.php?action=validationProno&id=<?php echo $_GET['id']; ?>" method="post">
 
-    <div>
+    <div class="topMain">
         <h2>Pronostics</h2>
 
         <input class="submit" type="submit" value="Enregistrer">
