@@ -12,12 +12,9 @@ class ModeleScorcast extends Connexion {
 
     }
 
-
     private function executeQuery($stmt)
     {
-
         $stmt->execute();
-
         // Récupérez les résultats sous forme d'un tableau associatif
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -29,8 +26,8 @@ class ModeleScorcast extends Connexion {
             SELECT * FROM LaRuche.competition 
             EXCEPT 
             SELECT competition_id,nom,description,date_creation 
-            FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.competition NATURAL JOIN LaRuche.users 
-            WHERE login ='" . $_SESSION['loginActif'] . "'
+            FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.competition 
+            WHERE user_id ='" . $_SESSION['idUser'] . "'
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -48,8 +45,8 @@ class ModeleScorcast extends Connexion {
         try {
             $query = "
             SELECT competition_id,nom,description,date_creation 
-            FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.competition NATURAL JOIN LaRuche.users
-            WHERE login ='" . $_SESSION['loginActif'] . "'
+            FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.competition
+            WHERE user_id ='" . $_SESSION['idUser'] . "'
             ";
 
             $stmt = Connexion::$bdd->prepare($query);

@@ -7,3 +7,13 @@ function confirmerRefusezUser(nom,id) {
         window.location.href = "admin.php?action=refuser&id=" + id;
     }
 }
+
+function confirmerDeleteCompet(nom,id) {
+
+    const confirmation = confirm("Êtes-vous sûr de vouloir supprimez la competition  " + nom + " ?");
+
+    // Si l'utilisateur clique sur "OK", la page sera redirigée
+    if (confirmation) {
+        window.location.href = "admin.php?action=supprimerCompetition&idCompet=" + id;
+    }
+}

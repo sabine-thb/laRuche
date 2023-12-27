@@ -60,11 +60,13 @@ class ContAdmin {
         if (isset($_GET["idCompet"])) {
             $resultat=$this->modele->deleteCompetition($_GET["idCompet"]);
             
-            if ($resultat) {
+            if ($resultat == -45)
                 header('Location: admin.php?action=gererCompetition');
-            }else{
-                echo "erreur lors de la suppression";
-            }
+            else if($resultat = 22000)
+                echo "impossible de supprimer la competition car il y a encore des matchs qui en dépendent";
+            else
+                echo "erreur inconnu - CODE = " . $resultat;
+
         }
     }
 
