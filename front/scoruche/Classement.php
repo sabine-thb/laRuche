@@ -1,4 +1,4 @@
-<div id="topClassement">
+<div class="topMain">
     <h2>
         Classement général
     </h2>
