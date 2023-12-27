@@ -9,46 +9,47 @@
     
     <?php foreach ($matchs as $tuple) { ?>
 
-            <div class="container mt-5">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <p>
-                                <?php echo $tuple['date_match']; ?>
-                            </p>
-                            <div class="col-md-4">
-                                <!-- Équipe 1 -->
-                                <h5>
-                                    <?php echo $tuple['nom1']; ?>
-                                </h5>
+        <div class="carteProno">
+            <p>
+                <?php echo $tuple['date_match']; ?>
+            </p>
 
-                                <img src="<?php echo $tuple['src1']; ?>" class="img-fluid" style="max-height: 250px; width: auto;">
+            <div class="CorpCarte">
+                <!-- Équipe 1 -->
+                <img src="<?php echo $tuple['src1']; ?>"
+                     alt="image_equipe_gauche"
+                     class="logoEquipe right">
 
-                                <input type="number" class="form-control" value="<?php echo $tuple['prono_equipe1']; ?>"
-                                       name="1prono_match<?php echo $tuple['match_id']; ?>">
-                            </div>
+                <h5 class="right">
+                    <?php echo $tuple['nom1']; ?>
+                </h5>
 
-                            <div class="col-md-4 d-flex justify-content-center align-items-center">
-                                <p>
-                                    VS
-                                </p>
-                            </div>
+                <input type="number" value="<?php echo $tuple['prono_equipe1']; ?>"
+                       name="1prono_match<?php echo $tuple['match_id']; ?>"
+                        class="inputScore right">
 
-                            <div class="col-md-4">
-                                <!-- Équipe 2 -->
-                                <h5>
-                                    <?php echo $tuple['nom2']; ?>
-                                </h5>
+                <p>
+                    VS
+                </p>
 
-                                <img src="<?php echo $tuple['src2']; ?>" class="img-fluid" style="max-height: 250px; width: auto;">
+                <!-- Équipe 2 -->
 
-                                <input type="number" class="form-control" value="<?php echo $tuple['prono_equipe2']; ?>"
-                                       name="2prono_match<?php echo $tuple['match_id']; ?>">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <input type="number" value="<?php echo $tuple['prono_equipe2']; ?>"
+                       name="2prono_match<?php echo $tuple['match_id']; ?>"
+                       class="inputScore left">
+
+                <h5 class="left">
+                    <?php echo $tuple['nom2']; ?>
+                </h5>
+
+                <img src="<?php echo $tuple['src2']; ?>"
+                     alt="image_equipe_droite"
+                     class="logoEquipe left">
             </div>
+
+
+        </div>
+
 
     <?php } ?>
 
