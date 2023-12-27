@@ -112,6 +112,55 @@ h3{
     text-align: center;
 }
 
+.carteProno{
+    padding-bottom: 2%;
+    padding-top: 3px;
+    margin-bottom: 1%;
+}
+
+.logoEquipe{
+    max-width: 130px;
+    height: auto;
+}
+
+.CorpCarte{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2%;
+    width: 92%;
+    border: rgba(98, 98, 98, 0.3) solid 0.08mm;
+}
+
+.CorpCarte *{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.CorpCarte p {
+    position: sticky;
+    left: 50%;
+    right: 50%;
+}
+
+.inputScore{
+    min-height: 15px;
+    min-width: 15px;
+    max-height: 40px;
+    max-width: 40px;
+    height: 30px;
+    width: 30px;
+    margin: auto 10px;
+}
+
+.left{
+    margin-left: auto;
+}
+
+.right{
+    margin-right: auto;
+}
+
 .point{
     margin-left: auto;
     font-size: 19px;
