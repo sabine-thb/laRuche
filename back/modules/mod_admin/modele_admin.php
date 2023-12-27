@@ -60,17 +60,17 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    public function deleteCompetition($id): bool
+    public function deleteCompetition($id)
     {
         try {
-            $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.competition WHERE competition_id=" . $id);
+            $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.competition WHERE competition_id=".$id);
             $this->executeQuery($stmt);
 
-            return true;
+            return -45; //pour etre sur que l'erreur n'existe pas dans mySQL
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur:" . $e ."');</script>";
-            return false;
+            return $e->getCode();
         }
     }
 

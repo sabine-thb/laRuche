@@ -41,8 +41,8 @@ CREATE TABLE pronostiqueur(
     user_id INT NOT NULL,
     competition_id INT NOT NULL,
     points INT DEFAULT 0,
-    CONSTRAINT fk_pronostiqueur_users FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT fk_pronostiqueur_competition FOREIGN KEY(competition_id) REFERENCES competition(competition_id) ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT fk_pronostiqueur_users FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_pronostiqueur_competition FOREIGN KEY(competition_id) REFERENCES competition(competition_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE equipe(
@@ -70,7 +70,7 @@ CREATE TABLE resultatMatch(
     match_id INT NOT NULL PRIMARY KEY,
     nb_but_equipe1 INT,
     nb_but_equipe2 INT,
-    CONSTRAINT fk_resultatMatch_match FOREIGN KEY(match_id) REFERENCES matchApronostiquer(match_id) ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT fk_resultatMatch_match FOREIGN KEY(match_id) REFERENCES matchApronostiquer(match_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE pronostique(
@@ -78,8 +78,8 @@ CREATE TABLE pronostique(
     pronostiqueur_id INT NOT NULL,
     prono_equipe1 INT,
     prono_equipe2 INT,
-    CONSTRAINT fk_pronostique_pronostiqueur FOREIGN KEY(pronostiqueur_id) REFERENCES pronostiqueur(pronostiqueur_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT fk_pronostique_match FOREIGN KEY(match_id) REFERENCES matchApronostiquer(match_id) ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT fk_pronostique_pronostiqueur FOREIGN KEY(pronostiqueur_id) REFERENCES pronostiqueur(pronostiqueur_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_pronostique_match FOREIGN KEY(match_id) REFERENCES matchApronostiquer(match_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 

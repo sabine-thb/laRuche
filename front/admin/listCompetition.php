@@ -12,10 +12,10 @@
                 <p class="card-text">
                     <?php echo $tuple["description"]; ?> 
                 </p>
-                <a href="admin.php?action=supprimerCompetition&idCompet= <?php echo $tuple['competition_id']; ?> ">
+                <a class="corbeille" onclick="confirmerDeleteCompet('<?php echo $tuple["nom"]; ?>',<?php echo $tuple['competition_id']; ?>)">
                     <i class="fa-solid fa-trash"></i>
                 </a>
-                <a href="admin.php?action=detailCompetition&idCompet= <?php echo $tuple['competition_id']; ?> ">
+                <a href="admin.php?action=detailCompetition&idCompet=<?php echo $tuple['competition_id']; ?> ">
                     <i class="fa-solid fa-calendar-day"></i>
                 </a>
 
