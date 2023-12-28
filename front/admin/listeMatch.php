@@ -1,23 +1,53 @@
-<p>
-    voici les Match existants :
-</p><br>
 <div class="container mt-5">
     <?php foreach ($match as $row) { ?>
         <div class="card mb-3">
             <div class="card-body">
 
-                <h5 class="card-title">
-                    <?php echo $row["equipe1_id"] ."VS" . $row["equipe2_id"] ; ?>
-                </h5>
-                <p class="card-text">
-                    <img src="<?php echo $row['date_max_pari'];?>" /> 
-                </p>
-                <a href="admin.php?action=supprimerMatch&idMatch= <?php echo $row['match_id']; ?> ">
-                    <i class="fa-solid fa-trash"></i>
-                </a>
-                <a href="admin.php?action=detailMatch&idMatch= <?php echo $row['match_id']; ?> ">
-                    <i class="fa-solid fa-calendar-day"></i>
-                </a>
+                <div class="row">
+                    <p>
+                        <?php echo $row['nomCompet']; ?> - <?php echo $row['date_match']; ?>
+                    </p>
+                    <div class="col-md-4">
+                        <!-- Équipe 1 -->
+                        <h5>
+                            <?php echo $row['nom1']; ?>
+                        </h5>
+
+                        <img src="<?php echo $row['src1']; ?>" class="img-fluid" style="max-height: 250px; width: auto;" alt="logo equipe gauche">
+
+                    </div>
+
+                    <div class="col-md-4 d-flex justify-content-center align-items-center">
+                        <p>
+                            VS
+                        </p>
+                    </div>
+
+                    <div class="col-md-4">
+                        <!-- Équipe 2 -->
+                        <h5>
+                            <?php echo $row['nom2']; ?>
+                        </h5>
+
+                        <img src="<?php echo $row['src2']; ?>" class="img-fluid" style="max-height: 250px; width: auto;" alt="logo equipe droite">
+                    </div>
+                </div>
+
+                <div class="container text-center mt-5">
+
+                    <a href="admin.php?action=supprimerMatch&idMatch= <?php echo $row['match_id']; ?> ">
+                        <button class="btn btn-danger">
+                            Supprimez
+                        </button>
+                    </a>
+
+                    <a>
+                        <button class="btn btn-secondary">
+                            mettre en attente (fémer les parie)
+                        </button>
+                    </a>
+
+                </div>
 
             </div>
         </div>

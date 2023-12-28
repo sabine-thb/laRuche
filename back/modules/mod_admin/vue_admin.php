@@ -44,6 +44,11 @@ class VueAdmin extends VueGenerique {
         require_once("./front/admin/listeMatch.php");
     }
 
+    public function afficheButtonMatch()
+    {
+        require_once("./front/admin/bouttonMatch.html");
+    }
+
 
 }
 

@@ -86,8 +86,8 @@ $affichageModule = $module->afficheModule();
             </button>     
             
             <button  type="button" class="btn btn-outline-primary me-2">
-                <a href="admin.php?action=voirMatch" class="nav-link px-2">
-                    voir match
+                <a href="admin.php?action=gererMatch" class="nav-link px-2">
+                    gerer match
                 </a>
             </button>
         </div>
