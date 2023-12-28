@@ -177,8 +177,29 @@ class ContAdmin {
         }
     }
     public function gererMatch(){
-        $match=$this->modele->getMatch();
-        $this->vue->afficheMatch($match);
+
+        $typeMatch = $_GET['type'] ?? 'attente';
+
+        $this->vue->afficheButtonMatch();
+
+        switch ($typeMatch){
+            case 'attente':
+                $match=$this->modele->getMatchAttente();
+                break;
+            case 'ouvert':
+                $match=$this->modele->getMatchOuvert();
+                break;
+            case 'fermer':
+                $match=$this->modele->getMatchfermer();
+                break;
+        }
+
+        if (!isset($match) || $match == 404)
+            echo "erreur lors de la recherche de matchs";
+        else if (count($match) == 0)
+            echo "il n'y a aucun match ici actuelement";
+        else
+            $this->vue->afficheMatch($match);
     }
 
 
