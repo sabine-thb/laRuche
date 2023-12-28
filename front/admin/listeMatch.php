@@ -35,11 +35,12 @@
 
                 <div class="container text-center mt-5">
 
-                    <a href="admin.php?action=supprimerMatch&idMatch= <?php echo $row['match_id']; ?> ">
-                        <button class="btn btn-danger">
+                    <a href="admin.php?" onclick="return confirm('est-tu sur de vouloir supprimez ce match ?\n');" >
+                        <button class="btn btn-danger" >
                             Supprimez
                         </button>
                     </a>
+
 
                     <a>
                         <button class="btn btn-secondary">
