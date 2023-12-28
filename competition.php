@@ -48,7 +48,6 @@ $affichageModule = $module->afficheModule();
 
     <!-- En-tête -->
     <header>
-
         <div>
             <a href="scoruche.php">
                 <img src="style/img/abeille.png" alt="logo scoruche" title="retour à mes competitions">
@@ -83,15 +82,15 @@ $affichageModule = $module->afficheModule();
                     Parametres
                 </a>
             </button>
-        </div>
 
-        <div id="profile">
-            <button type="button">
+            <button type="button" class="linkDefaut deco">
                 <a href="connexion.php?action=deconnexion" class="linkNavbar">
-                    deconnexion
+                    Déconnexion
                 </a>
             </button>
         </div>
+
+        
         
     </header>
 
