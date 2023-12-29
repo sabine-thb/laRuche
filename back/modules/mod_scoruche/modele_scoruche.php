@@ -9,7 +9,7 @@ require_once './back/modules/Connexion.php';
 class ModeleScorcast extends Connexion {
 
     public function __construct() {
-
+        parent::__construct();
     }
 
     private function executeQuery($stmt)
@@ -19,7 +19,7 @@ class ModeleScorcast extends Connexion {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function recupereComp()
+    public function recupereComp(int $idUser)
     {
         try {
             $query = "
@@ -27,44 +27,44 @@ class ModeleScorcast extends Connexion {
             EXCEPT 
             SELECT competition_id,nom,description,date_creation 
             FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.competition 
-            WHERE user_id ='" . $_SESSION['idUser'] . "'
+            WHERE user_id = $idUser
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur:" . $e ."');</script>";
+            echo "<script>console.log('erreur: $e');</script>";
             return $e;
         }
     }
 
-    public function recupereCompActive()
+    public function recupereCompActive(int $idUser)
     {
 
         try {
             $query = "
             SELECT competition_id,nom,description,date_creation 
             FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.competition
-            WHERE user_id ='" . $_SESSION['idUser'] . "'
+            WHERE user_id = $idUser
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur:" . $e ."');</script>";
+            echo "<script>console.log('erreur: $e');</script>";
             return $e;
         }
     }
 
-    public function rejoindreCompet(int $idCompet): bool
+    public function rejoindreCompet(int $idCompet, int $idUser): bool
     {
 
         try {
             $query = "
             INSERT INTO LaRuche.pronostiqueur(user_id,competition_id) VALUES
-            (". $_SESSION['idUser'] .",". $idCompet .")
+            ($idUser,$idCompet)
             ";
             $stmt = Connexion::$bdd->prepare($query);
             $this->executeQuery($stmt);
@@ -72,7 +72,7 @@ class ModeleScorcast extends Connexion {
             return true;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur:" . $e ."');</script>";
+            echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
 
@@ -85,7 +85,7 @@ class ModeleScorcast extends Connexion {
             $query = "
             SELECT login, points
             FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.users
-            WHERE competition_id =". $idCompet ."
+            WHERE competition_id = $idCompet
             ORDER BY points
             ";
 
@@ -93,13 +93,13 @@ class ModeleScorcast extends Connexion {
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur:" . $e ."');</script>";
+            echo "<script>console.log('erreur: $e');</script>";
             return false;
         }
 
     }
 
-    public function recupereMatch(int $idCompet)
+    public function recupereMatch(int $idCompet,int $idPronostiqueur)
     {
 
         try {
@@ -109,28 +109,28 @@ class ModeleScorcast extends Connexion {
             INNER JOIN LaRuche.equipe E ON M.equipe1_id=E.equipe_id
             INNER JOIN LaRuche.equipe E2 ON M.equipe2_id=E2.equipe_id
             INNER JOIN LaRuche.pronostique P ON P.match_id = M.match_id
-            WHERE competition_id =". $idCompet ." and pronostiqueur_id = ".$_SESSION['idPronostiqueur']." and pari_ouvert = true
+            WHERE competition_id = $idCompet  and pronostiqueur_id = $idPronostiqueur and pari_ouvert = true
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur:" . $e ."');</script>";
+            echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
 
     }
 
-    public function modifiProno1(int $idMatch,int $prono): bool
+    public function modifiProno1(int $idMatch,int $prono,int $idPronostiqueur): bool
     {
 
         try {
             $query = "
             UPDATE LaRuche.pronostique 
-            SET prono_equipe1 = " . $prono . "
-            WHERE match_id = " . $idMatch . " and 
-                pronostiqueur_id = " . $_SESSION['idPronostiqueur'] ."
+            SET prono_equipe1 = $prono 
+            WHERE match_id = $idMatch and 
+                pronostiqueur_id = $idPronostiqueur
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -138,21 +138,20 @@ class ModeleScorcast extends Connexion {
             return true;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur:" . $e ."');</script>";
+            echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
 
     }
 
-    public function modifiProno2(int $idMatch,int $prono): bool
+    public function modifiProno2(int $idMatch,int $prono,int $idPronostiqueur): bool
     {
 
         try {
             $query = "
             UPDATE LaRuche.pronostique 
-            SET prono_equipe2 = " . $prono . "
-            WHERE match_id = " . $idMatch . " and 
-                pronostiqueur_id = " . $_SESSION['idPronostiqueur'] ."
+            SET prono_equipe2 = $prono 
+            WHERE match_id = $idMatch and pronostiqueur_id = $idPronostiqueur
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -160,31 +159,66 @@ class ModeleScorcast extends Connexion {
             return true;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur:" . $e ."');</script>";
+            echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
 
     }
 
-    public function PronostiqueurIdActuelle()
+    public function PronostiqueurIdActuelle($idUser,$idCompet)
     {
         try {
             $query = "
                 SELECT pronostiqueur_id
                 FROM LaRuche.pronostiqueur
-                WHERE user_id =" . $_SESSION['idUser'] . " and competition_id =". $_GET['id'] ." 
+                WHERE user_id = $idUser and competition_id = $idCompet
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
             return $this->executeQuery($stmt)[0]['pronostiqueur_id'];
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur:" . $e ."');</script>";
+            echo "<script>console.log('erreur: $e ');</script>";
+            return false;
+        }
+    }
+
+    public function recupereMatchFini(int $idCompet,int $idPronostiqueur)
+    {
+        try {
+            $query = "
+            SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id, R.nb_but_equipe1 as resultat1, R.nb_but_equipe2 as resultat2, point_obtenu
+            FROM LaRuche.matchApronostiquer as M
+            INNER JOIN LaRuche.equipe E ON M.equipe1_id = E.equipe_id
+            INNER JOIN LaRuche.equipe E2 ON M.equipe2_id = E2.equipe_id
+            INNER JOIN LaRuche.pronostique P ON M.match_id = P.match_id  
+            NATURAL JOIN LaRuche.resultatMatch R
+            WHERE pari_ouvert = false and competition_id = $idCompet and pronostiqueur_id = $idPronostiqueur
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            return $this->executeQuery($stmt);
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return false;
+        }
+    }
+
+    public function totalPoint(int $idPronostiqueur,int $idCompet)
+    {
+        try {
+            $query = "
+            SELECT LaRuche.totalPoint($idPronostiqueur,$idCompet) as totalPoints
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            return $this->executeQuery($stmt)[0]['totalPoints'];
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
     }
 
 }
-
-
-?>
