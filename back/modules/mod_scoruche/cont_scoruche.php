@@ -57,7 +57,11 @@ class ContScorcast {
     public function afficheClassement(){
         //le 'id' dans le get correspond a l'id de la competition
         $classement = $this->modele->recupereClassement($_GET['id']);
-        $this->vue->afficheClassement($classement);
+
+        if ($classement == 404)
+            echo "<p> Erreur lors de la recuperation du classement </p>";
+        else
+            $this->vue->afficheClassement($classement);
     }
 
     public function afficheMatchApronostique(){
