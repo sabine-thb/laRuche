@@ -83,7 +83,7 @@ class ModeleScorcast extends Connexion {
 
         try {
             $query = "
-            SELECT login, points
+            SELECT login, LaRuche.totalPoint(pronostiqueur_id,$idCompet) as points
             FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.users
             WHERE competition_id = $idCompet
             ORDER BY points
@@ -94,7 +94,7 @@ class ModeleScorcast extends Connexion {
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e');</script>";
-            return false;
+            return 404;
         }
 
     }
