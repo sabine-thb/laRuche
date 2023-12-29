@@ -28,7 +28,7 @@
                        name="1prono_match<?php echo $tuple['match_id']; ?>"
                         class="inputScore right">
 
-                <p>
+                <p class="centreCard">
                     VS
                 </p>
 

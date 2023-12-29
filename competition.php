@@ -65,10 +65,10 @@ $affichageModule = $module->afficheModule();
             <a href="scoruche.php" class="linkNavbar linkDefaut" id="resultats">
                     Résultats
             </a>
-            <a href="scoruche.php" class="linkNavbar linkDefaut"id="parametres" >
+            <a href="scoruche.php" class="linkNavbar linkDefaut" id="parametres" >
                     Paramètres
             </a>
-           <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
+            <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
                     Déconnexion
             </a>
         </div>

@@ -208,7 +208,7 @@ class ContAdmin {
         $res = $this->modele->miseEnAttenteMatch($_GET['idMatch']);
 
         if ($res)
-            echo "<p> Le changement a bien été pris en compte, les jeux sont fait </p>";
+            header('Location: admin.php?action=gererMatch');
         else
             echo "<p> Une erreur est survenu.</p>";
     }
@@ -219,7 +219,7 @@ class ContAdmin {
             $res = $this->modele->miseEnFiniMatch($_POST['match_id'], $_POST['resultatEquipe1'], $_POST['resultatEquipe2']);
 
             if ($res)
-                echo "<p> Le resultat a bien été pris en compte </p>";
+                header('Location: admin.php?action=gererMatch&type=fermer');
             else
                 echo "<p> Une erreur est survenu. </p>";
         }else
