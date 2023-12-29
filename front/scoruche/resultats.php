@@ -1,5 +1,4 @@
-
-<div>
+<div class="topMain">
     <h2>Resultats</h2>
 
     <p>
@@ -7,50 +6,52 @@
     </p>
 </div>
 
+
 <?php foreach ($matchs as $tuple) { ?>
-    <div class="container mt-5">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <p>
-                        <?php echo $tuple['date_match']; ?>
-                    </p>
-                    <div class="col-md-4 text-center mt-3">
-                        <!-- Équipe 1 -->
-                        <h5>
-                            <?php echo $tuple['nom1']; ?>
-                        </h5>
 
-                        <img src="<?php echo $tuple['src1']; ?>" class="img-fluid" style="max-height: 250px; width: auto;">
+    <div class="carteProno">
+        <p>
+            <?php echo $tuple['date_match']; ?>
+        </p>
 
-                        <p>
-                            <?php echo $tuple['resultat1']; ?>
-                        </p>
+        <div class="CorpCarte">
+            <!-- Équipe 1 -->
+            <img src="<?php echo $tuple['src1']; ?>"
+                 alt="image_equipe_gauche"
+                 class="logoEquipe right">
 
-                    </div>
+            <h5 class="right">
+                <?php echo $tuple['nom1']; ?>
+            </h5>
 
-                    <div class="col-md-4 d-flex justify-content-center align-items-center">
-                        <p class="fs-4 text-success">
-                            + <?php echo $tuple['point_obtenu']; ?>
-                        </p>
-                    </div>
+            <p class="right">
+                <?php echo $tuple['resultat1']; ?>
+            </p>
 
-                    <div class="col-md-4 text-center mt-3">
-                        <!-- Équipe 2 -->
-                        <h5>
-                            <?php echo $tuple['nom2']; ?>
-                        </h5>
+            <p class="centreCard">
+                + <?php echo $tuple['point_obtenu']; ?>
+            </p>
 
-                        <img src="<?php echo $tuple['src2']; ?>" class="img-fluid" style="max-height: 250px; width: auto;">
+            <!-- Équipe 2 -->
 
-                        <p>
-                            <?php echo $tuple['resultat2']; ?>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <p class="left">
+                <?php echo $tuple['resultat2']; ?>
+            </p>
+
+            <h5 class="left">
+                <?php echo $tuple['nom2']; ?>
+            </h5>
+
+            <img src="<?php echo $tuple['src2']; ?>"
+                 alt="image_equipe_droite"
+                 class="logoEquipe left">
         </div>
+
+
     </div>
 
+
 <?php } ?>
+
+
 

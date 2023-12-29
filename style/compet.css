@@ -147,6 +147,7 @@ h3{
 }
 
 .carteProno{
+    min-width:600px;
     padding:10px;
 }
 
@@ -167,7 +168,7 @@ h3{
     margin-bottom: auto;
 }
 
-.CorpCarte p {
+.centreCard {
     position: sticky;
     left: 50%;
     right: 50%;

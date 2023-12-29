@@ -192,7 +192,7 @@ class ModeleScorcast extends Connexion {
             INNER JOIN LaRuche.equipe E ON M.equipe1_id = E.equipe_id
             INNER JOIN LaRuche.equipe E2 ON M.equipe2_id = E2.equipe_id
             INNER JOIN LaRuche.pronostique P ON M.match_id = P.match_id  
-            NATURAL JOIN LaRuche.resultatMatch R
+            INNER JOIN LaRuche.resultatMatch R ON M.match_id = R.match_id
             WHERE pari_ouvert = false and competition_id = $idCompet and pronostiqueur_id = $idPronostiqueur
             ";
 
@@ -201,7 +201,7 @@ class ModeleScorcast extends Connexion {
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
-            return false;
+            return 404;
         }
     }
 
