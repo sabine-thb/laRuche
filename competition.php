@@ -48,46 +48,29 @@ $affichageModule = $module->afficheModule();
 
     <!-- En-tête -->
     <header>
-        <div>
-            <a href="scoruche.php">
-                <img src="style/img/abeille.png" alt="logo scoruche" title="retour à mes competitions">
-                <h3>
+        <a href="scoruche.php" class="linkTitreSite">
+            <img src="style/img/abeille.png" alt="logo scoruche" title="retour à mes competitions">
+            <h2 class="titreSite">
                     scoruche
-                </h3>
-            </a>
-        </div>
+            </h2>
+        </a>
 
         <div id="navbar">
-
-            <button type="button" id="classement" class="linkDefaut">
-                <a href="competition.php?action=classement&id=<?php echo $_GET['id']; ?>" class="linkNavbar" >
-                    classement
-                </a>
-            </button>
-
-            <button type="button" id="prono" class="linkDefaut">
-                <a href="competition.php?action=affichePronostic&id=<?php echo $_GET['id']; ?>" class="linkNavbar" >
+            <a href="competition.php?action=classement&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut"  id="classement">
+                    Classement
+            </a> 
+            <a href="competition.php?action=affichePronostic&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="prono">
                     Pronostics
-                </a>
-            </button>
-
-            <button type="button" id="resultat" class="linkDefaut">
-                <a href="scoruche.php" class="linkNavbar" >
+            </a>
+            <a href="scoruche.php" class="linkNavbar linkDefaut" id="resultats">
                     Résultats
-                </a>
-            </button>
-
-            <button type="button" id="parametres" class="linkDefaut">
-                <a href="scoruche.php" class="linkNavbar" >
-                    Parametres
-                </a>
-            </button>
-
-            <button type="button" class="linkDefaut deco">
-                <a href="connexion.php?action=deconnexion" class="linkNavbar">
+            </a>
+            <a href="scoruche.php" class="linkNavbar linkDefaut"id="parametres" >
+                    Paramètres
+            </a>
+           <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
                     Déconnexion
-                </a>
-            </button>
+            </a>
         </div>
 
         
