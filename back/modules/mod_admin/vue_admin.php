@@ -40,17 +40,23 @@ class VueAdmin extends VueGenerique {
         require_once("./front/admin/listeEquipes.php");
     }
 
-    public function afficheMatch($match){
-        require_once("./front/admin/listeMatch.php");
-    }
-
     public function afficheButtonMatch()
     {
         require_once("./front/admin/bouttonMatch.html");
     }
 
+    public function afficheMatchOuvert($match){
+        require_once("./front/admin/listeMatchOuvert.php");
+    }
+
+    public function afficheMatchEnAttente($match)
+    {
+        require_once("./front/admin/listeMatchEnAttente.php");
+    }
+
+    public function afficheMatchFermer($match)
+    {
+        require_once("./front/admin/listeMatchOuvert.php");
+    }
 
 }
-
-
-?>
