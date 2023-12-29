@@ -1,6 +1,6 @@
 <div class="container mt-5">
     <?php foreach ($match as $row) { ?>
-        <div class="card mb-3">
+        <div class="card mb-3" style="background-color: #c7e0ff">
             <div class="card-body">
 
                 <div class="row">
@@ -35,17 +35,19 @@
 
                 <div class="container text-center mt-5">
 
-                    <a href="admin.php?" onclick="return confirm('est-tu sur de vouloir supprimez ce match ?\n');" >
-                        <button class="btn btn-danger" >
-                            Supprimez
-                        </button>
+                    <a href="admin.php?"
+                       class="btn btn-danger"
+                       onclick="return confirm('est-tu sur de vouloir supprimez ce match ?\n');"
+                    >
+                        Supprimez
                     </a>
 
 
-                    <a>
-                        <button class="btn btn-secondary">
-                            mettre en attente (fémer les parie)
-                        </button>
+                    <a href="admin.php?action=miseEnAttenteMatch&idMatch=<?php echo $row['match_id']; ?>"
+                       class="btn btn-secondary"
+                       onclick="return confirm('est-tu sur de vouloir mettre en attente ce match ?\nIl n\'y a pas de retour arrière possible pour l\'instant');"
+                    >
+                        mettre en attente (fémer les parie)
                     </a>
 
                 </div>

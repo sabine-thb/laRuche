@@ -8,7 +8,6 @@
 
     
     <?php foreach ($matchs as $tuple) { ?>
-
             <div class="container mt-5">
                 <div class="card">
                     <div class="card-body">
@@ -24,7 +23,7 @@
 
                                 <img src="<?php echo $tuple['src1']; ?>" class="img-fluid" style="max-height: 250px; width: auto;">
 
-                                <input type="number" class="form-control" value=<?php echo $tuple['prono_equipe1']; ?>
+                                <input type="number" class="form-control" value='<?php echo $tuple['prono_equipe1']; ?>'
                                        name="1prono_match<?php echo $tuple['match_id']; ?>">
                             </div>
 
@@ -42,7 +41,7 @@
 
                                 <img src="<?php echo $tuple['src2']; ?>" class="img-fluid" style="max-height: 250px; width: auto;">
 
-                                <input type="number" class="form-control" value=<?php echo $tuple['prono_equipe2']; ?>
+                                <input type="number" class="form-control" value='<?php echo $tuple['prono_equipe2']; ?>'
                                        name="2prono_match<?php echo $tuple['match_id']; ?>">
                             </div>
                         </div>
