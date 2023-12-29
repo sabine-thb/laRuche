@@ -181,7 +181,7 @@ class ContAdmin {
         $match = $this->recupereMatchEnFonctionType($typeMatch);
 
         if (!isset($match) || $match == 404)
-            echo "<p>erreur lors de la recherche de matchs</p>";
+            echo "<p>Erreur lors de la recherche de matchs</p>";
         else if (count($match) == 0)
             echo "<p>il n'y a aucun match ici actuelement</p>";
         else
@@ -211,6 +211,19 @@ class ContAdmin {
             echo "<p> Le changement a bien été pris en compte, les jeux sont fait </p>";
         else
             echo "<p> Une erreur est survenu.</p>";
+    }
+
+    public function ajouteResultatMatch()
+    {
+        if ($_POST['resultatEquipe1'] != "" && $_POST['resultatEquipe2'] != "" ) {
+            $res = $this->modele->miseEnFiniMatch($_POST['match_id'], $_POST['resultatEquipe1'], $_POST['resultatEquipe2']);
+
+            if ($res)
+                echo "<p> Le resultat a bien été pris en compte </p>";
+            else
+                echo "<p> Une erreur est survenu. </p>";
+        }else
+            echo "<p> il manque des inputs </p>";
     }
 
     /*methode private */
@@ -243,5 +256,6 @@ class ContAdmin {
                 break;
         }
     }
+
 
 }

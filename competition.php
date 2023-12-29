@@ -71,7 +71,7 @@ $affichageModule = $module->afficheModule();
         </button>
 
         <button  type="button" class="btn btn-outline-primary me-2">
-            <a href="scoruche.php" class="nav-link px-2">
+            <a href="competition.php?action=resultat&id=<?php echo $_GET['id']; ?>" class="nav-link px-2">
                 Resultats
             </a>
         </button>

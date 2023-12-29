@@ -166,7 +166,7 @@ class ModeleAdmin extends Connexion {
 
     }
 
-/*    public function getMatch(){
+    public function getMatch(){
         try{
             $stmt = Connexion::$bdd->prepare("SELECT * from LaRuche.matchApronostiquer;");
             return $this->executeQuery($stmt);
@@ -175,7 +175,7 @@ class ModeleAdmin extends Connexion {
             return $e;
         }
     
-    }*/
+    }
 
     public function getMatchAttente()
     {
@@ -210,12 +210,12 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
-            SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id, C.nom as nomCompet
+            SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id, C.nom as nomCompet, R.nb_but_equipe1 as resultat1, R.nb_but_equipe2 as resultat2
             FROM LaRuche.matchApronostiquer as M
             INNER JOIN LaRuche.equipe E ON M.equipe1_id = E.equipe_id
             INNER JOIN LaRuche.equipe E2 ON M.equipe2_id = E2.equipe_id
             INNER JOIN LaRuche.competition C ON M.competition_id = C.competition_id
-            NATURAL JOIN LaRuche.resultatMatch
+            NATURAL JOIN LaRuche.resultatMatch R
             WHERE pari_ouvert = false
             ";
 
@@ -305,6 +305,25 @@ class ModeleAdmin extends Connexion {
             UPDATE LaRuche.matchApronostiquer 
             SET pari_ouvert = false 
             WHERE match_id = $match_id
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return false;
+        }
+    }
+
+    public function miseEnFiniMatch($match_id, $resultatEquipe1, $resultatEquipe2): bool
+    {
+        try {
+            $query = "
+            INSERT INTO LaRuche.resultatMatch(match_id, nb_but_equipe1, nb_but_equipe2)
+            VALUE ($match_id,$resultatEquipe1,$resultatEquipe2)
             ";
 
             $stmt = Connexion::$bdd->prepare($query);

@@ -15,7 +15,7 @@
                             <p>
                                 <?php echo $tuple['date_match']; ?>
                             </p>
-                            <div class="col-md-4">
+                            <div class="col-md-4 text-center mt-3">
                                 <!-- Équipe 1 -->
                                 <h5>
                                     <?php echo $tuple['nom1']; ?>
@@ -28,12 +28,12 @@
                             </div>
 
                             <div class="col-md-4 d-flex justify-content-center align-items-center">
-                                <p>
+                                <p class="fs-4">
                                     VS
                                 </p>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-4 text-center mt-3">
                                 <!-- Équipe 2 -->
                                 <h5>
                                     <?php echo $tuple['nom2']; ?>

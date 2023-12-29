@@ -56,7 +56,7 @@ class VueAdmin extends VueGenerique {
 
     public function afficheMatchFermer($match)
     {
-        require_once("./front/admin/listeMatchOuvert.php");
+        require_once("./front/admin/listeMatchFini.php");
     }
 
 }
