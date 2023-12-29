@@ -24,8 +24,27 @@ header{
 }
 
 header img{
-    height: 80px;;
+    height: 60px;
     width: auto;
+    
+}
+
+.linkTitreSite{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-right:25px;
+}
+
+.titreSite{
+    margin:0;
+    font-family:"montserratExtraBold", sans-serif;
+    font-size:1.7rem;
+    color:white;
+    position:relative;
+    left:-16px;
+    bottom:-9px;
+    
 }
 
 main{
@@ -54,16 +73,33 @@ h3{
     display: flex;
     gap:20px;
     align-items: center;
+    justify-content: flex-end;
     flex-wrap: wrap;
-    /* margin-left: 8%; */
+    align-content: center;
 }
 
-#navbar button{
+/*mise en place de la barre de nav*/
+
+.linkNavbar{
+    background-color: #080e50;
     padding:8px 15px 8px 15px;
-    border: none;
-    border-radius: 30px;
+    border-radius: 20px;
 }
 
+.linkNavbar:hover{
+    background-color: #cf9e00;
+}
+
+
+.linkActive{
+    /*je n'ai pas trouvé de propriéte pour faire ca automatiquement
+    cela est peut-etre du au rechargement de page*/
+    background-color: #007bff;
+}
+
+.linkDefaut{
+    background-color: #080e50;
+}
 
 #profile{
     margin-left: auto;
@@ -162,15 +198,7 @@ h3{
     color: grey;
 }
 
-.linkActive{
-    /*je n'ai pas trouvé de propriéte pour faire ca automatiquement
-    cela est peut-etre du au rechargement de page */
-    background-color: #007bff;
-}
 
-.linkDefaut{
-    background-color: #080e50;
-}
 
 .linkNavbar{
     text-decoration: none;
