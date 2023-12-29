@@ -1,0 +1,207 @@
+html{
+
+}
+body{
+    /*test*/
+    min-height: 100vh;
+    background-color: #EFF7FF;
+    margin: 0;
+    padding-top:130px;
+}
+
+header{
+    height:110px;
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: no-repeat url("img/fond.png");
+    background-size: cover;
+    position: fixed;
+    border-radius: 0 0 5px 5px;
+    padding: 10px 20px 10px 20px;
+}
+
+header img{
+    height: 60px;
+    width: auto;
+    
+}
+
+.linkTitreSite{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-right:25px;
+}
+
+.titreSite{
+    margin:0;
+    font-family:"montserratExtraBold", sans-serif;
+    font-size:1.7rem;
+    color:white;
+    position:relative;
+    left:-16px;
+    bottom:-9px;
+    
+}
+
+main{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin-top:20px;
+    gap:20px;
+    
+}
+
+main div{
+    max-width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+h3{
+    float: right;
+    font-family: Andale Mono, monospace;
+    color: aliceblue;
+}
+
+#navbar{
+    display: flex;
+    gap:20px;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+/*mise en place de la barre de nav*/
+
+.linkNavbar{
+    background-color: #080e50;
+    padding:8px 15px 8px 15px;
+    border-radius: 20px;
+}
+
+.linkNavbar:hover{
+    background-color: #cf9e00;
+}
+
+
+.linkActive{
+    /*je n'ai pas trouvé de propriéte pour faire ca automatiquement
+    cela est peut-etre du au rechargement de page*/
+    background-color: #007bff;
+}
+
+.linkDefaut{
+    background-color: #080e50;
+}
+
+#profile{
+    margin-left: auto;
+}
+
+#profile button{
+    border: none;
+    border-radius: 30px;
+    background-color: #080e50;
+}
+
+.topMain{
+    text-align: left;
+    padding: 10px 15px 10px 15px;
+    margin-bottom:20px;
+}
+
+#topClassement h2{
+    margin: auto;
+    font-family: Georgia, serif;
+    font-style: italic;
+}
+
+.classement{
+    width:200px;
+    gap:20px;
+    display: flex;
+    padding:10px 20px 10px 20px;
+}
+
+.classement h2{
+    font-family: Trebuchet MS, sans-serif;
+    font-size: 18px;
+
+}
+
+.numero{
+    width: 20px;
+    height: 20px;
+    background-color: #9b9b9b;
+    border-radius: 50%;
+    line-height: 20px;
+    padding: 3px;
+    text-align: center;
+}
+
+.carteProno{
+    padding:10px;
+}
+
+.logoEquipe{
+    max-width: 130px;
+    height: auto;
+}
+
+.CorpCarte{
+    display: flex;
+    gap:15px;
+    padding: 5px;
+    border: rgba(98, 98, 98, 0.3) solid 0.08mm;
+}
+
+.CorpCarte *{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.CorpCarte p {
+    position: sticky;
+    left: 50%;
+    right: 50%;
+}
+
+.inputScore{
+    min-height: 15px;
+    min-width: 15px;
+    max-height: 40px;
+    max-width: 40px;
+    height: 30px;
+    width: 30px;
+    margin: auto 10px;
+}
+
+.left{
+    margin-left: auto;
+}
+
+.right{
+    margin-right: auto;
+}
+
+.point{
+    margin-left: auto;
+    font-size: 19px;
+    font-family: Trebuchet MS, sans-serif;
+    color: grey;
+}
+
+
+
+.linkNavbar{
+    text-decoration: none;
+    color: white;
+    font-family: Verdana, sans-serif;
+}

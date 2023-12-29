@@ -1,13 +1,16 @@
-<h3>
-    classement général
-</h3><br>
+<div class="topMain">
+    <h2>
+        Classement général
+    </h2>
+</div>
+
 
 <?php
     $numero = 1;
     foreach ($classement as $personne) {
 ?>
 
-    <div>
+    <div class="classement">
         <p class="numero">
             <?php echo $numero; ?>
         </p>
