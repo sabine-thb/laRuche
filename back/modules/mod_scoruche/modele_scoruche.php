@@ -104,7 +104,7 @@ class ModeleScorcast extends Connexion {
 
         try {
             $query = "
-            SELECT date_match,E.nom as nom1,E2.nom as nom2,P.prono_equipe1,P.prono_equipe2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id
+            SELECT date_match,E.nom as nom1,E2.nom as nom2,P.prono_equipe1,P.prono_equipe2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,pts_Vainq,pts_Ecart,pts_Exact
             FROM LaRuche.matchApronostiquer as M
             INNER JOIN LaRuche.equipe E ON M.equipe1_id=E.equipe_id
             INNER JOIN LaRuche.equipe E2 ON M.equipe2_id=E2.equipe_id

@@ -47,6 +47,9 @@
                      class="logoEquipe left">
             </div>
 
+            <p>
+                Bon score : <?php echo $tuple['pts_Exact']; ?> <br> Bonne ecart + bon vainqueur : <?php echo $tuple['pts_Ecart']; ?> <br> Bon vainqueur : <?php echo $tuple['pts_Vainq']; ?>
+            </p>
 
         </div>
 
