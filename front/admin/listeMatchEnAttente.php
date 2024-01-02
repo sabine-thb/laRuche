@@ -46,9 +46,21 @@
                     </div>
 
                     <div class="container text-center mt-5">
+                        <a href="#"
+                           class="btn btn-danger"
+                           onclick="return confirm('est-tu sur de vouloir supprimez ce match ?\n');"
+                        >
+                            Supprimez
+                        </a>
                         <input class="btn btn-success" type="submit" value="Enregistrer"
                                title="les points seront attribué automatiquement"
-                               onclick="return confirm('confirme tu le resultat ?\nIl n\'y a pas de retour arrière possible pour l\'instant');">
+                               onclick="return confirm('confirme tu le resultat ?\nIl n\'y a pas de retour arrière possible pour l\'instant');"
+                        >
+                        <a href="#"
+                           class="btn btn-info"
+                        >
+                            modifier
+                        </a>
                     </div>
                 </div>
             </div>
