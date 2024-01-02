@@ -1,0 +1,153 @@
+input[type=checkbox] {
+    font: 80px/1.5 sans-serif;
+}
+input[type=checkbox]:before {
+    background-color: rgba(108,117,125,0.6);
+    background-size: 0.75em 0.375em;
+}
+.selectionFinale {
+    display: none;
+}
+input[type=checkbox] {
+    --off: #c7cad1;
+    --mid: #829ad6;
+    --on: #255ff4;
+    --transDur: 0.5s;
+    --timing: cubic-bezier(0.6,0,0.4,1);
+    animation: bgOff var(--transDur) var(--timing);
+    background-color: var(--off);
+    border-radius: 0.67em / 0.5em;
+    box-shadow:
+            0 0.05em 0.1em #00000007 inset,
+            0 -0.25em 0.25em #0001 inset,
+            0 -0.5em 0 #0001 inset,
+            0 0.1em 0.1em #0001;
+    cursor: pointer;
+    position: relative;
+    width: 1.125em;
+    height: 0.75em;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+}
+input[type=checkbox]:before {
+    animation: handleOff var(--transDur) var(--timing);
+    background-attachment: fixed;
+    background-position: 50% calc(50% - 0.1875em);
+    border-radius: 0.5em / 0.375em;
+    box-shadow:
+            0 0.175em 0.175em 0 #0001 inset,
+            0 0.375em 0 #0002 inset,
+            0 0.375em 0 var(--off) inset,
+            0 0.475em 0.1em #0001 inset;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0.0625em;
+    left: 0.0625em;
+    width: 0.5em;
+    height: 0.375em;
+}
+input[type=checkbox]:checked {
+    animation: bgOn var(--transDur) var(--timing) forwards;
+}
+input[type=checkbox]:checked:before {
+    animation: handleOn var(--transDur) var(--timing) forwards;
+}
+input[type=checkbox]:focus {
+    outline: none;
+}
+input[type=checkbox].pristine, input[type=checkbox].pristine:before {
+    animation: none;
+}
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    input[type=checkbox]:before {
+        background-color: rgba(108,117,125,0.6)
+    }
+    input[type=checkbox] {
+        --off: #aad0b1;
+        --mid: #3d5fb6;
+    }
+}
+/* Animations */
+@keyframes bgOff {
+    from {
+        background-color: var(--on);
+    }
+    50% {
+        background-color: var(--mid);
+    }
+    to {
+        background-color: var(--off);
+    }
+}
+@keyframes bgOn {
+    from {
+        background-color: var(--off);
+    }
+    50% {
+        background-color: var(--mid);
+    }
+    to {
+        background-color: var(--on);
+    }
+}
+@keyframes handleOff {
+    from {
+        box-shadow:
+                0 0.175em 0.175em 0 #0001 inset,
+                0 0.375em 0 #0002 inset,
+                0 0.375em 0 var(--on) inset,
+                0 0.475em 0.1em #0001 inset;
+        left: 0.5625em;
+        width: 0.5em;
+    }
+    50% {
+        box-shadow:
+                0 0.175em 0.175em 0 #0001 inset,
+                0 0.375em 0 #0002 inset,
+                0 0.375em 0 var(--mid) inset,
+                0 0.475em 0.1em #0001 inset;
+        left: 0.0625em;
+        width: 1em;
+    }
+    to {
+        box-shadow:
+                0 0.175em 0.175em 0 #0001 inset,
+                0 0.375em 0 #0002 inset,
+                0 0.375em 0 var(--off) inset,
+                0 0.475em 0.1em #0001 inset;
+        left: 0.0625em;
+        width: 0.5em;
+    }
+}
+@keyframes handleOn {
+    from {
+        box-shadow:
+                0 0.175em 0.175em 0 #0001 inset,
+                0 0.375em 0 #0002 inset,
+                0 0.375em 0 var(--off) inset,
+                0 0.475em 0.1em #0001 inset;
+        left: 0.0625em;
+        width: 0.5em;
+    }
+    50% {
+        box-shadow:
+                0 0.175em 0.175em 0 #0001 inset,
+                0 0.375em 0 #0002 inset,
+                0 0.375em 0 var(--mid) inset,
+                0 0.475em 0.1em #0001 inset;
+        left: 0.0625em;
+        width: 1em;
+    }
+    to {
+        box-shadow:
+                0 0.175em 0.175em 0 #0001 inset,
+                0 0.375em 0 #0002 inset,
+                0 0.375em 0 var(--on) inset,
+                0 0.475em 0.1em #0001 inset;
+        left: 0.5625em;
+        width: 0.5em;
+    }
+}

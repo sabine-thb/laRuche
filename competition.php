@@ -41,6 +41,8 @@ $affichageModule = $module->afficheModule();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/239660ff21.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./style/compet.css">
+    <link href="style/checkBox.css" rel="stylesheet">
+    <script src="./style/js/tools.js"></script>
     <script src="./style/js/competition.js"></script>
 </head>
 
