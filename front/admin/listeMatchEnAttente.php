@@ -19,7 +19,7 @@
                                  alt="image gauche">
 
                             <label>
-                                <input type="number" class="form-control" name="resultatEquipe1">
+                                <input type="number" class="form-control" name="resultatEquipe1" min="0">
                             </label>
                         </div>
 
@@ -39,7 +39,7 @@
                                  alt="image droite">
 
                             <label>
-                                <input type="number" class="form-control" name="resultatEquipe2">
+                                <input type="number" class="form-control" name="resultatEquipe2" min="0">
                             </label>
                         </div>
 

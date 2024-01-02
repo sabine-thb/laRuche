@@ -86,7 +86,7 @@ class ModeleScorcast extends Connexion {
             SELECT login, LaRuche.totalPoint(pronostiqueur_id,$idCompet) as points
             FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.users
             WHERE competition_id = $idCompet
-            ORDER BY points
+            ORDER BY points DESC
             ";
 
             $stmt = Connexion::$bdd->prepare($query);

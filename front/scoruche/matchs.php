@@ -26,7 +26,8 @@
 
                 <input type="number" value="<?php echo $tuple['prono_equipe1']; ?>"
                        name="1prono_match<?php echo $tuple['match_id']; ?>"
-                        class="inputScore right">
+                       class="inputScore right"
+                       min="0">
 
                 <p class="centreCard">
                     VS
@@ -36,7 +37,8 @@
 
                 <input type="number" value="<?php echo $tuple['prono_equipe2']; ?>"
                        name="2prono_match<?php echo $tuple['match_id']; ?>"
-                       class="inputScore left">
+                       class="inputScore left"
+                       min="0">
 
                 <h5 class="left">
                     <?php echo $tuple['nom2']; ?>
