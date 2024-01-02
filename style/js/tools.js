@@ -1,7 +1,7 @@
 
 document.addEventListener("click",e => {
     let tar = e.target;
-    if (tar.name === "toggle")
+    if (tar.classList.contains("toggle"))
         tar.removeAttribute("class");
 });
 
@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         input1.addEventListener('input', checkEquality);
         input2.addEventListener('input', checkEquality);
 
+        checkEquality();
     }
 });
 

@@ -73,19 +73,32 @@ class ContScorcast {
 
         $totalBool = true;
 
+        //todo revoir cette boucle
         foreach ($_POST as $key => $value) {
 
-            $idMatch = (int)substr($key, -1);
-            $prono = (int)substr($key, 0);
+            if ($value != ""){
+                if (!strpos($key, 'toggle')){
+                    if (strpos($key,"match_id")){
+                        $idMatch = $value;
+                    }else{
+                        $cote_equipe = (int)substr($key, -1);
+                        if (isset($idMatch)){
+                            if ($cote_equipe == 1){
+                                $res = $this->modele->modifiProno1($idMatch,$value,$_SESSION['idPronostiqueur']);
+                            }else{
+                                $res = $this->modele->modifiProno2($idMatch,$value,$_SESSION['idPronostiqueur']);
+                            }
 
-            if ($prono == 1){
-                $res = $this->modele->modifiProno1($idMatch,$value,$_SESSION['idPronostiqueur']);
-            }else{
-                $res = $this->modele->modifiProno2($idMatch,$value,$_SESSION['idPronostiqueur']);
+                            if (!$res)
+                                $totalBool = false;
+                        }else
+                            echo "<p> Erreur, il manque l'id du match </p>";
+                    }
+                }
             }
 
-            if (!$res)
-                $totalBool = false;
+
+
         }
 
         if (!$totalBool)

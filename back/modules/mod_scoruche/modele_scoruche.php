@@ -122,7 +122,7 @@ class ModeleScorcast extends Connexion {
 
     }
 
-    public function modifiProno1(int $idMatch,int $prono,int $idPronostiqueur): bool
+    public function modifiProno1($idMatch,$prono,int $idPronostiqueur): bool
     {
 
         try {
@@ -144,9 +144,8 @@ class ModeleScorcast extends Connexion {
 
     }
 
-    public function modifiProno2(int $idMatch,int $prono,int $idPronostiqueur): bool
+    public function modifiProno2(int $idMatch,$prono,int $idPronostiqueur): bool
     {
-
         try {
             $query = "
             UPDATE LaRuche.pronostique 
