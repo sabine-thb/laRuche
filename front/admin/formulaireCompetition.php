@@ -2,14 +2,14 @@
     <form action="admin.php?action=ajoutCompetition" method="post" class="align-items-center justify-content-center justify-content-md-between">
         
         <label>
-            nom de la competition:
+            nom de la competition :
+            <input class='form-control mr-sm-2' type='text' name='name'>
         </label>
-        <input class='form-control mr-sm-2' type='text' name='name'><br>
 
         <label>
-            courte description :
+            Courte description :
+            <textarea class="form-control mr-sm-2" name="description" rows="4" cols="50"></textarea>
         </label>
-        <textarea class="form-control mr-sm-2" name="description" rows="4" cols="50"></textarea><br>
 
         <p>
             <?php echo $erreur; ?>

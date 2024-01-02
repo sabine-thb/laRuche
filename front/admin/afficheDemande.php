@@ -16,7 +16,10 @@
                     Description: <?php echo $tuple['description']; ?>
                 </p>
 
-                <a href="admin.php?action=valider&id=<?php echo $tuple['user_id']; ?>" class="btn btn-primary">
+                <a class="btn btn-primary"
+                   href="admin.php?action=valider&id=<?php echo $tuple['user_id']; ?>"
+                   onclick="return confirm('Êtes-vous sûr de vouloir valider <?php echo $tuple['login']; ?> ?');"
+                >
                     Valider
                 </a>
 
