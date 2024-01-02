@@ -2,7 +2,7 @@
 <div class="container mt-5">
     <?php foreach ($match as $row) { ?>
         <form class="formPronostics" action="admin.php?action=ajouteResultatMatch&idMatch=<?php echo $row['match_id']; ?>" method="post">
-            <div class="card mb-3" style="background-color: rgba(108,117,125,0.6)">
+            <div class="card mb-3 carteProno" style="background-color: rgba(108,117,125,0.6)">
                 <div class="card-body">
                     <div class="row">
                         <input type="hidden" name="match_id" value="<?php echo $row['match_id']; ?>" >
@@ -19,7 +19,7 @@
                                  alt="image gauche">
 
                             <label>
-                                <input type="number" class="form-control" name="resultatEquipe1" min="0">
+                                <input type="number" class="form-control" name="resultatEquipe1" min="0" id="prono1">
                             </label>
                         </div>
 
@@ -39,7 +39,13 @@
                                  alt="image droite">
 
                             <label>
-                                <input type="number" class="form-control" name="resultatEquipe2" min="0">
+                                <input type="number" class="form-control" name="resultatEquipe2" min="0" id="prono2">
+                            </label>
+                        </div>
+
+                        <div class="container text-center mt-1 selectionFinale">
+                            <label>
+                                <input class="pristine" type="checkbox" name="toggle" value="on">
                             </label>
                         </div>
 
