@@ -127,7 +127,6 @@ class ContAdmin {
 
     public function ajoutMatch()
     {
-        // echo  var_dump($_POST);
         if(isset($_SESSION['token'],$_POST['token'])){
             if(null!==($_SESSION['creationToken']&& time()-$_SESSION['creationToken']<60 )){
                 if(isset($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch'])){

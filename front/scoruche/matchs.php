@@ -9,12 +9,16 @@
     
     <?php foreach ($matchs as $tuple) { ?>
 
-        <div class="carteProno">
+        <div class="carteProno" onload="">
             <p>
                 <?php echo $tuple['date_match']; ?>
             </p>
                 <div class="Carte">
                     <div class="CorpCarte">
+                        <input type="hidden"
+                               value="<?php echo $tuple['match_id']; ?>"
+                               name="<?php echo $tuple['match_id']; ?>_match_id"
+                        >
                         <!-- Équipe 1 -->
                         <img src="<?php echo $tuple['src1']; ?>"
                              alt="image_equipe_gauche"
@@ -24,11 +28,10 @@
                             <?php echo $tuple['nom1']; ?>
                         </h5>
 
-                        <input type="number" value="<?php echo $tuple['prono_equipe1']; ?>"
-                               name="1prono_match<?php echo $tuple['match_id']; ?>"
-                               class="inputScore right"
-                               min="0"
-                               id="prono1">
+                        <input type="number" name="<?php echo $tuple['match_id']; ?>_prono_equipe1"
+                               class="inputScore right" min="0" id="prono1"
+                               value="<?php echo $tuple['prono_equipe1']; ?>"
+                        >
 
                         <p class="centreCard">
                             VS
@@ -36,11 +39,10 @@
 
                         <!-- Équipe 2 -->
 
-                        <input type="number" value="<?php echo $tuple['prono_equipe2']; ?>"
-                               name="2prono_match<?php echo $tuple['match_id']; ?>"
-                               class="inputScore left"
-                               min="0"
-                               id="prono2">
+                        <input type="number" name="<?php echo $tuple['match_id']; ?>_prono_equipe2"
+                               class="inputScore left" min="0" id="prono2"
+                               value="<?php echo $tuple['prono_equipe2']; ?>"
+                        >
 
                         <h5 class="left">
                             <?php echo $tuple['nom2']; ?>
@@ -53,7 +55,8 @@
 
                     <div class="selectionFinale">
                         <label>
-                            <input class="pristine" type="checkbox" name="toggle" value="on">
+                            <input class="pristine toggle" type="checkbox"
+                                   name="<?php echo $tuple['match_id']; ?>_toggle" value="on">
                         </label>
                     </div>
                 </div>
