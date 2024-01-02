@@ -12,29 +12,30 @@ class ContAdmin {
     private $vue;
     private $modele;
     
-    public function __construct(){
-
+    public function __construct()
+    {
         $this->vue = new VueAdmin();
         $this->modele = new ModeleAdmin();
-
     }
 
-    public function affichage() {
+    public function affichage()
+    {
         return $this->vue->getAffichage();
     }
 
-    public function bienvenue(){
-
+    public function bienvenue()
+    {
         $this->vue->afficheBienvenue();
     }
 
-    public function afficheDemande() {
+    public function afficheDemande()
+    {
         $resultat=$this->modele->recupereDemande();
         $this->vue->afficheDemande($resultat);
     }
 
-    public function validerDemande() {
-    
+    public function validerDemande()
+    {
         if (isset($_GET["id"])) {
             $resultat=$this->modele->accepteDemande($_GET["id"]);
 
@@ -44,8 +45,8 @@ class ContAdmin {
         }
     }
 
-    public function refuserDemande() {
-    
+    public function refuserDemande()
+    {
         if (isset($_GET["id"])) {
             $resultat=$this->modele->refuseDemande($_GET["id"]);
 
@@ -55,34 +56,34 @@ class ContAdmin {
         }
     }
 
-    public function supprimerCompetition() {
-    
+    public function supprimerCompetition()
+    {
         if (isset($_GET["idCompet"])) {
             $resultat=$this->modele->deleteCompetition($_GET["idCompet"]);
             
-            if ($resultat) {
+            if ($resultat == -45)
                 header('Location: admin.php?action=gererCompetition');
-            }else{
-                echo "erreur lors de la suppression";
-            }
+            else if($resultat = 22000)
+                echo "impossible de supprimer la competition car il y a encore des matchs qui en dépendent";
+            else
+                echo "erreur inconnu - CODE = " . $resultat;
+
         }
     }
 
-    public function gererComp() {
-        
+    public function gererComp()
+    {
         $competitions = $this->modele->recupereComp();
         $this->vue->afficheListCompet($competitions);
-
     }
 
-    public function afficheFormCompet(){
-
+    public function afficheFormCompet()
+    {
         $this->vue->afficheFormulaireCompet('');
-
     }
 
-    public function ajoutCompet(){
-
+    public function ajoutCompet()
+    {
         if (isset($_POST['name']) && isset($_POST['description']) && $_POST['name'] != "" && $_POST['description'] != ""){
 
             $result = $this->modele->ajoutCompet($_POST['name'],$_POST['description']);
@@ -100,15 +101,15 @@ class ContAdmin {
         }
     }
 
-    public function ajoutEquipe(){
+    public function ajoutEquipe()
+    {
         // echo  var_dump($_POST);
-
         if(isset($_SESSION['token'],$_POST['token'])){
             if(null!==($_SESSION['creationToken']&& time()-$_SESSION['creationToken']<60 )){
                 if(isset($_POST['name'],$_FILES['logo']['tmp_name'])){
                     $this->modele->insererEquipe($_POST['name'],$_FILES['logo']);
                     
-                    echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
+//                    echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
                 }else{
                     echo " Remplissez tous les champs et réessayez"."<br>";
                     echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
@@ -122,17 +123,21 @@ class ContAdmin {
             echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
         }
         unset($_SESSION['token'],$_SESSION['creationToken']);
-
     }
 
-    public function ajoutMatch(){
+    public function ajoutMatch()
+    {
         // echo  var_dump($_POST);
-
         if(isset($_SESSION['token'],$_POST['token'])){
             if(null!==($_SESSION['creationToken']&& time()-$_SESSION['creationToken']<60 )){
                 if(isset($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch'])){
                     if ($_POST['equipe1']!=='default' && $_POST['equipe2']!=='default' && $_POST['compet']!=='default' ) {
-                        $this->modele->insererMatch($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch']);
+                        if ($this->modele->insererMatch($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch'])){
+                            echo " Match bien enregistrée ✌️"."<br>";
+//                            echo '<meta http-equiv="refresh" content="3;url=admin.php?action=afficheFormMatch"/>';
+                        }else{
+                            echo "erreur lors de l'insertion de l'equipe";
+                        }
                         // echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormMatch"/>';
                     }else{
                         echo " Un champ ne peut pas être \"...\""."<br>";
@@ -140,27 +145,25 @@ class ContAdmin {
                     }                  
                 }else{
                     echo " Remplissez tous les champs et réessayez"."<br>";
-                    echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormMatch"/>';
+                    echo '<meta http-equiv="refresh" content="5;url=admin.php?action=afficheFormMatch"/>';
                 }
             }else{
-                echo " Délai atteint, veuillez réessayer "."<br>";
-                echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormMatch"/>';
+                echo " Délai atteint, veuillez réessayer";
             }
         }else {
-            echo " Erreur de Token, redirection..";
-            echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormMatch"/>';
+            echo " Erreur de Token, veuillez resseyer";
         }
         unset($_SESSION['token'],$_SESSION['creationToken']);
-
     }
 
-    public function gererEquipe(){
+    public function gererEquipe()
+    {
         $eq=$this->modele->getEquipes();
         $this->vue->afficheEquipes($eq);
     }
 
-    public function supprimerEquipe() {
-    
+    public function supprimerEquipe()
+    {
         if (isset($_GET["idEquipe"])) {
             $resultat=$this->modele->deleteEquipe($_GET["idEquipe"]);
             
@@ -171,23 +174,88 @@ class ContAdmin {
             }
         }
     }
-    public function gererMatch(){
-        $match=$this->modele->getMatch();
-        $this->vue->afficheMatch($match);
+    public function gererMatch()
+    {
+        $typeMatch = $_GET['type'] ?? 'attente';
+        $this->vue->afficheButtonMatch();
+        $match = $this->recupereMatchEnFonctionType($typeMatch);
+
+        if (!isset($match) || $match == 404)
+            echo "<p>Erreur lors de la recherche de matchs</p>";
+        else if (count($match) == 0)
+            echo "<p>il n'y a aucun match ici actuelement</p>";
+        else
+            $this->afficheMatchEnFonctionType($typeMatch,$match);
     }
 
 
-    public function afficherFormCreationMatch(){
+    public function afficherFormCreationMatch()
+    {
         $token=$this->modele->genereToken(30);
         $eq=$this->modele->getEquipes();
         $compet=$this->modele->getCompet();
         $this->vue->afficheFormCreationMatch($token,$eq,$compet);
     }
 
-    public function afficherFormCreationEquipe(){
+    public function afficherFormCreationEquipe()
+    {
         $token=$this->modele->genereToken(30);
         $this->vue->afficheFormCreationEquipe($token);
     }
 
+    public function miseEnAttenteMatch()
+    {
+        $res = $this->modele->miseEnAttenteMatch($_GET['idMatch']);
+
+        if ($res)
+            header('Location: admin.php?action=gererMatch');
+        else
+            echo "<p> Une erreur est survenu.</p>";
+    }
+
+    public function ajouteResultatMatch()
+    {
+        if ($_POST['resultatEquipe1'] != "" && $_POST['resultatEquipe2'] != "" ) {
+            $res = $this->modele->miseEnFiniMatch($_POST['match_id'], $_POST['resultatEquipe1'], $_POST['resultatEquipe2']);
+
+            if ($res)
+                header('Location: admin.php?action=gererMatch&type=fermer');
+            else
+                echo "<p> Une erreur est survenu. </p>";
+        }else
+            echo "<p> il manque des inputs </p>";
+    }
+
+    /*methode private */
+
+    private function recupereMatchEnFonctionType($type)
+    {
+        switch ($type){
+            case 'attente':
+                return $this->modele->getMatchAttente();
+            case 'ouvert':
+                return $this->modele->getMatchOuvert();
+            case 'fermer':
+                return $this->modele->getMatchfermer();
+        }
+
+        return 404; //erreur
+    }
+
+    private function afficheMatchEnFonctionType($type,$match)
+    {
+        switch ($type){
+            case 'attente':
+                $this->vue->afficheMatchEnAttente($match);
+                break;
+            case 'ouvert':
+                $this->vue->afficheMatchOuvert($match);
+                break;
+            case 'fermer':
+                $this->vue->afficheMatchFermer($match);
+                break;
+        }
+    }
+
+
 }
-?>

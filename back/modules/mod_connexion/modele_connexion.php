@@ -24,17 +24,15 @@ class ModeleConnexion extends Connexion {
         $stmt->execute();
         
         // Récupérez les résultats sous forme d'un tableau associatif
-        $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $resultats;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajoutDemandeUser($login,$mail,$mdp) {
+    public function ajoutDemandeUser($login,$mail,$mdp,$description) {
 
         //todo verifier que le nouveau utilisateur n'aille pas les meme identifiant que un admin
         if ($this->nouveau("login",$login)){
             if ($this->nouveau("mail",$mail)) {
-                return $this->ajoutFinal($login, $mail, $mdp);
+                return $this->ajoutFinal($login, $mail, $mdp,$description);
             } else {
                 $_SESSION['error'] =  "<p> Mail déja utilisé! </p><br>";
                 header('Location: index.php?module=mod_connexion&action=inscription'); 
@@ -49,13 +47,11 @@ class ModeleConnexion extends Connexion {
     
     }
 
-    private function ajoutFinal($login,$mail,$mdp) {
+    private function ajoutFinal($login,$mail,$mdp,$description) {
         try {
             $mdp = password_hash($mdp,PASSWORD_BCRYPT,$this->option);
-            $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.users (login,mail,password) VALUES ('".$login."', '".$mail."', '".$mdp."')");
-            $resultat = $stmt->execute();
-
-            return $resultat;
+            $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.users (login,mail,description,password) VALUES ('".$login."', '".$mail."', '".$description."', '".$mdp."')");
+            return $stmt->execute();
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur:" . $e ."');</script>";
@@ -63,7 +59,8 @@ class ModeleConnexion extends Connexion {
         }
     }
 
-    private function nouveau($champSql, $var) {
+    private function nouveau($champSql, $var): bool
+    {
 
         try {
             
@@ -80,8 +77,6 @@ class ModeleConnexion extends Connexion {
             
 
         } catch (PDOException $e) {
-            
-            echo "erreur fonction nouveau !";
             return false;
         }
 
@@ -105,9 +100,9 @@ class ModeleConnexion extends Connexion {
                 $resultat = $this->executeQuery($stmt);
 
                 if( isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp) ){
-                    var_dump($resultat[0]["est_verifier"]);
+
                     if($resultat[0]["est_verifier"]){
-                        $_SESSION['id'] = $resultat[0]["user_id"];
+                        $_SESSION['idUser'] = $resultat[0]["user_id"];
                         return [1,$resultat[0]["login"]];//user good
                     }else{
                         return [2,$resultat[0]["login"]];//user pas encore verifier
@@ -124,7 +119,8 @@ class ModeleConnexion extends Connexion {
     
     }
 
-    private function checkMdp($resultat, $mdp){
+    private function checkMdp($resultat, $mdp): bool
+    {
         $mdpCripte = $resultat[0]["password"];
 
         if (password_verify($mdp, $mdpCripte)) {

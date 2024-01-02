@@ -14,7 +14,7 @@ class ModAdmin {
     public function __construct(){
 
         $this->controlleur = new ContAdmin();
-        $this->action = isset($_GET['action']) ? $_GET['action'] : 'bienvenue';
+        $this->action = $_GET['action'] ?? 'bienvenue';
 
         $this->start();
 
@@ -61,9 +61,7 @@ class ModAdmin {
                 break;
 
             case 'ajoutMatch':
-                echo var_dump($_POST); 
                 $this->controlleur->ajoutMatch();
-                
                 // echo ("2023-12-05"-date("Y-m-d"));
                 break;
 
@@ -75,25 +73,31 @@ class ModAdmin {
                 $this->controlleur->afficherFormCreationMatch();
                 break;
 
-            case 'voirMatch':
+            case 'gererMatch':
                 $this->controlleur->gererMatch();
                 break;
             
             case 'supprimerCompetition':
                 $this->controlleur->supprimerCompetition();
-                break;    
-             
+                break;
+
+            case 'miseEnAttenteMatch':
+                $this->controlleur->miseEnAttenteMatch();
+                break;
+
+            case 'ajouteResultatMatch':
+                $this->controlleur->ajouteResultatMatch();
+                break;
+
+            case 'detailEquipe':
             case 'detailCompetition':
                 echo "TODO a coder";
                 break;
 
             case 'supprimerEquipe':
                 $this->controlleur->supprimerEquipe();
-                break;    
-                
-            case 'detailEquipe':
-                echo "TODO a coder";
                 break;
+
         }
     }
 
