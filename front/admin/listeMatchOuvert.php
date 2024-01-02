@@ -35,7 +35,7 @@
 
                 <div class="container text-center mt-5">
 
-                    <a href="admin.php?"
+                    <a href="#"
                        class="btn btn-danger"
                        onclick="return confirm('est-tu sur de vouloir supprimez ce match ?\n');"
                     >
