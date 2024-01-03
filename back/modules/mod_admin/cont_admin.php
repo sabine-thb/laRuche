@@ -207,7 +207,7 @@ class ContAdmin {
         $res = $this->modele->miseEnAttenteMatch($_GET['idMatch']);
 
         if ($res)
-            header('Location: admin.php?action=gererMatch');
+            header('Location: admin.php?action=gererMatch&type=ouvert');
         else
             echo "<p> Une erreur est survenu.</p>";
     }
@@ -215,8 +215,13 @@ class ContAdmin {
     public function ajouteResultatMatch()
     {
         if ($_POST['resultatEquipe1'] != "" && $_POST['resultatEquipe2'] != "" ) {
-            $res = $this->modele->miseEnFiniMatch($_POST['match_id'], $_POST['resultatEquipe1'], $_POST['resultatEquipe2']);
 
+            if ($_POST['resultatEquipe1'] == $_POST['resultatEquipe2'])
+                $equipe_gagnate_peno = array_key_exists("toggle", $_POST) ? "'equipe2'" : "'equipe1'";
+            else
+                $equipe_gagnate_peno = "null";
+
+            $res = $this->modele->miseEnFiniMatch($_POST['match_id'], $_POST['resultatEquipe1'], $_POST['resultatEquipe2'],$equipe_gagnate_peno);
             if ($res)
                 header('Location: admin.php?action=gererMatch&type=fermer');
             else

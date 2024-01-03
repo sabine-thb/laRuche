@@ -15,10 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let input2 = cartePronos[i].querySelector('#prono2');
         let elementVisible = cartePronos[i].querySelector('.selectionFinale');
 
-        console.log("coucou");
-
         function checkEquality() {
-            console.log("check");
             let value1 = parseInt(input1.value, 10);
             let value2 = parseInt(input2.value, 10);
 

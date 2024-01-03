@@ -318,13 +318,15 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    public function miseEnFiniMatch($match_id, $resultatEquipe1, $resultatEquipe2): bool
+    public function miseEnFiniMatch($match_id, $resultatEquipe1, $resultatEquipe2,$resultatPeno): bool
     {
         try {
             $query = "
-            INSERT INTO LaRuche.resultatMatch(match_id, nb_but_equipe1, nb_but_equipe2)
-            VALUE ($match_id,$resultatEquipe1,$resultatEquipe2)
+            INSERT INTO LaRuche.resultatMatch(match_id, nb_but_equipe1, nb_but_equipe2,resultat_peno)
+            VALUE ($match_id,$resultatEquipe1,$resultatEquipe2,$resultatPeno)
             ";
+
+            var_dump($query);
 
             $stmt = Connexion::$bdd->prepare($query);
             $this->executeQuery($stmt);
@@ -332,7 +334,8 @@ class ModeleAdmin extends Connexion {
             return true;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+//            var_dump($e);
+            echo "<script>console.log(\"erreur: $e\");</script>"; //todo provoque une erreur car le $e n'est pas collé avec le );
             return false;
         }
     }
