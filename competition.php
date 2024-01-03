@@ -60,11 +60,11 @@ $affichageModule = $module->afficheModule();
         <div id="navbar">
             <a href="competition.php?action=classement&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut"  id="classement">
                     Classement
-            </a> 
+            </a>
             <a href="competition.php?action=affichePronostic&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="prono">
                     Pronostics
             </a>
-            <a href="scoruche.php" class="linkNavbar linkDefaut" id="resultats">
+            <a href="competition.php?action=resultat&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="resultats">
                     Résultats
             </a>
             <a href="scoruche.php" class="linkNavbar linkDefaut" id="parametres" >
@@ -76,7 +76,7 @@ $affichageModule = $module->afficheModule();
         </div>
 
         
-        
+
     </header>
 
     
