@@ -10,6 +10,7 @@
 <?php foreach ($matchs as $tuple) { ?>
 
     <div class="carteProno">
+        <p><?php echo $tuple['match_id']; ?></p>
         <p>
             <?php echo $tuple['date_match']; ?>
         </p>
