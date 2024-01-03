@@ -82,7 +82,7 @@ label{
 }
 
 input{
-   border:none;
+    border:none;
 }
 
 .submit{
@@ -92,7 +92,7 @@ input{
     padding:10px 20px 10px 20px;
     border-radius:20px;
     width:150px;
-    margin:auto;
+    margin: auto;
 }
 
 .submit:hover{
@@ -128,12 +128,23 @@ input{
 }
 
 .info{
-    padding: 1px 3px;
-    border: gray solid 1px;
+    padding: 2px 5px;
     border-radius: 50%;
     background-color: #007bff;
     cursor: help;
 }
+
+/* Styles spécifiques à Mozilla Firefox */
+@supports (-moz-appearance:none) {
+    label {
+        margin-top: 15px;
+    }
+    .submit{
+        margin-top: 15px;
+    }
+}
+
+
 
 
 /*ici le style des éléments qui s'afficehtn lors de la connexion ou inscription*/

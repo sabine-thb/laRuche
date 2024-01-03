@@ -13,10 +13,8 @@ class ContScorcast {
     private $modele;
     
     public function __construct(){
-
         $this->vue = new VueScorcast();
         $this->modele = new ModeleScorcast();
-
     }
 
     public function affichage() {
@@ -29,7 +27,7 @@ class ContScorcast {
 
     public function recupereCompetitionDisponible(){
 
-        $compets = $this->modele->recupereComp();
+        $compets = $this->modele->recupereComp($_SESSION['idUser']);
         $this->vue->afficheCompetitionDispo($compets);
 
     }
@@ -37,7 +35,7 @@ class ContScorcast {
     public function rejoindreCompetition(){
 
         if(isset($_GET['idCompet'])){
-            $result = $this->modele->rejoindreCompet($_GET['idCompet']);
+            $result = $this->modele->rejoindreCompet($_GET['idCompet'],$_SESSION['idUser']);
 
             if($result){
                 echo "vous avez rejoint la competiton avec succès";
@@ -50,18 +48,22 @@ class ContScorcast {
     }
 
     public function afficheCompetActive(){
-        $compets = $this->modele->recupereCompActive();
+        $compets = $this->modele->recupereCompActive($_SESSION['idUser']);
         $this->vue->afficheCompetitionActive($compets);
     }
 
     public function afficheClassement(){
         //le 'id' dans le get correspond a l'id de la competition
         $classement = $this->modele->recupereClassement($_GET['id']);
-        $this->vue->afficheClassement($classement);
+
+        if ($classement == 404)
+            echo "<p> Erreur lors de la recuperation du classement </p>";
+        else
+            $this->vue->afficheClassement($classement);
     }
 
     public function afficheMatchApronostique(){
-        $matchs = $this->modele->recupereMatch($_GET['id']);
+        $matchs = $this->modele->recupereMatch($_GET['id'],$_SESSION['idPronostiqueur']);
         $this->vue->afficheMatchs($matchs);
     }
 
@@ -71,17 +73,26 @@ class ContScorcast {
 
         foreach ($_POST as $key => $value) {
 
-            $idMatch = (int)substr($key, -1);
-            $prono = (int)substr($key, 0);
+            if (strpos($key, "match_id")) {
+                $idMatch = $value;
+                $str_input1 = $idMatch . "_prono_equipe1";
+                $str_input2 = $idMatch . "_prono_equipe2";
+                $input1 = $_POST["$str_input1"];
+                $input2 = $_POST["$str_input2"];
 
-            if ($prono == 1){
-                $res = $this->modele->modifiProno1($idMatch,$value);
-            }else{
-                $res = $this->modele->modifiProno2($idMatch,$value);
+                if ($input1 != "" && $input2 != "") {
+                    if ($input1 == $input2) {
+                        $str_toggle = $idMatch . "_toggle";
+                        $equipe_gagnate_peno = array_key_exists($str_toggle, $_POST) ? "'equipe2'" : "'equipe1'";
+                    } else
+                        $equipe_gagnate_peno = "null";
+
+                    $res = $this->modele->modifProno($idMatch, $input1, $input2, $equipe_gagnate_peno, $_SESSION['idPronostiqueur']);
+
+                    if (!$res)
+                        $totalBool = false;
+                }
             }
-
-            if (!$res)
-                $totalBool = false;
         }
 
         if (!$totalBool)
@@ -92,7 +103,7 @@ class ContScorcast {
 
     public function demandePronostiqueurIdActuelle()
     {
-        $id = $this->modele->PronostiqueurIdActuelle();
+        $id = $this->modele->PronostiqueurIdActuelle($_SESSION['idUser'],$_GET['id']);
 
         if ($id)
             return $id;
@@ -100,5 +111,17 @@ class ContScorcast {
             die("erreur lors de la recuperation de l'id pronostiqueur");
     }
 
+    public function afficheResultat()
+    {
+        $matchs = $this->modele->recupereMatchFini($_GET['id'],$_SESSION['idPronostiqueur']);
+
+        if ($matchs == 404)
+            echo "<p> Erreur lors de la recup des resultats </p>";
+        else{
+            $totalPoints = $this->modele->totalPoint($_SESSION['idPronostiqueur'],$_GET['id']);
+            $this->vue->afficheResultat($matchs,$totalPoints);
+        }
+
+    }
+
 }
-?>

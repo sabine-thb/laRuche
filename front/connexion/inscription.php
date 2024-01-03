@@ -7,7 +7,7 @@
         <label for="mail">Mail :</label> 
             <input id="mail" type='text' name='mail'><br>
 
-        <label for="description"> Description : <span class="info" title="La description est envoyée à l'admin pour qu'il puisse valider votre inscription. Identifiez-vous en une seule phrase (ex: 'Je suis le fils de Donald Trump')">&#8505;&#65039;</span>  </label>
+        <label for="description"> Description : <span class="info" title="La description est envoyée à l'admin pour qu'il puisse valider votre inscription. Identifiez-vous en une seule phrase (ex: 'Je suis le fils de Donald Trump')"> i </span>  </label>
             <input id="description" type='text' name='description'><br>
 
         <label for="mdp">Mot de passe :</label>
@@ -23,5 +23,5 @@
 </div>
 
 <div class="option">
-    Vous avez déjà un compte? <a href="connexion.php?action=connexion" class="linkOption"> Se connecter</a>
+    Vous avez déjà un compte ? <a href="connexion.php?action=connexion" class="linkOption">Se connecter</a>
 </div>

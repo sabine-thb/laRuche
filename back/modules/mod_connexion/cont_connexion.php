@@ -41,7 +41,7 @@ class ContConnexion {
                 $resultat = $this->modele->ajoutDemandeUser($_POST['login'],$_POST['mail'],$_POST['mdp'],$_POST['description']);
 
                 if ($resultat) {
-                    echo "Une demande a été envoyée à la ruche, vous recevrez un mail lorsque la demande sera acceptée.";
+                    echo "<p class=\"dmdOK\">Une demande a été envoyée à la ruche, vous recevrez un mail lorsque la demande sera acceptée.</p>";
                 } else {
                     echo "Erreur lors de la création de compte.";
                 }
@@ -85,8 +85,8 @@ class ContConnexion {
             if (isset($resultat[0])&&$resultat[0] == 1) {
                 $_SESSION["loginActif"] = $resultat[1];
                 $_SESSION["adminActif"] = false;
-                echo "Connexion établie !<br>";
-                echo "Redirection en cours";
+                echo "<p>Connexion établie !</p>";
+                echo "<p>Redirection en cours.</p>";
                 echo '<meta http-equiv="refresh" content="3;url=scoruche.php"/>';
             }else if(isset($resultat[0])&&$resultat[0] == 2){
                 echo "Votre demande n'a pas encore été traitée par la ruche !<br>";

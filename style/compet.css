@@ -4,7 +4,7 @@ main{
     justify-content: center;
     align-items: center;
     margin-top:20px;
-    gap:20px;   
+    gap:20px;
 }
 
 main div{
@@ -73,11 +73,24 @@ h3{
     height: auto;
 }
 
-.CorpCarte{
-    display: flex;
-    gap:15px;
+.Carte{
     padding: 5px;
     border: rgba(98, 98, 98, 0.3) solid 0.08mm;
+}
+
+.selectionFinale{
+    width: 100%;
+    display: flex;
+    text-align: center;
+}
+
+.selectionFinale label{
+    z-index: 0;
+}
+
+.CorpCarte{
+    display: flex;
+    gap:12px;
 }
 
 .CorpCarte *{
@@ -85,7 +98,7 @@ h3{
     margin-bottom: auto;
 }
 
-.CorpCarte p {
+.centreCard {
     position: sticky;
     left: 50%;
     right: 50%;
@@ -99,6 +112,7 @@ h3{
     height: 30px;
     width: 30px;
     margin: auto 10px;
+    text-align: center;
 }
 
 .left{

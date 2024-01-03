@@ -44,6 +44,9 @@ class ModScorcast {
             case 'validationProno':
                 $this->controlleur->valideProno();
                 break;
+            case 'resultat':
+                $this->controlleur->afficheResultat();
+                break;
         }
     }
 

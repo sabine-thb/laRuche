@@ -40,7 +40,7 @@ CREATE TABLE pronostiqueur(
     pronostiqueur_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     user_id INT NOT NULL,
     competition_id INT NOT NULL,
-    points INT DEFAULT 0,
+#     points INT DEFAULT 0,
     CONSTRAINT fk_pronostiqueur_users FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_pronostiqueur_competition FOREIGN KEY(competition_id) REFERENCES competition(competition_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -78,18 +78,55 @@ CREATE TABLE pronostique(
     pronostiqueur_id INT NOT NULL,
     prono_equipe1 INT,
     prono_equipe2 INT,
+    point_obtenu INT DEFAULT 0,
     CONSTRAINT fk_pronostique_pronostiqueur FOREIGN KEY(pronostiqueur_id) REFERENCES pronostiqueur(pronostiqueur_id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_pronostique_match FOREIGN KEY(match_id) REFERENCES matchApronostiquer(match_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-
--- Trigger
-
--- trigger qui ajoute automatiquement des tuple pour chaque personne d'une competition lorsqu'un match est crée
+-- Fonction
 
 delimiter $$
 
-CREATE TRIGGER ajoutAutoPronoDefaut AFTER INSERT ON LaRuche.matchApronostiquer
+DROP FUNCTION IF EXISTS LaRuche.bonVaiqueur $$
+CREATE FUNCTION LaRuche.bonVaiqueur(prono1 INT, prono2 INT, pronoVainqueurPeno ENUM('equipe1','equipe2'),
+                            resultat1 INT, resultat2 INT, pesultatVainqueurPeno ENUM('equipe1','equipe2')
+) RETURNS BOOLEAN
+BEGIN
+    DECLARE result BOOLEAN;
+
+    IF (prono1 - prono2) = 0 and (resultat1 - resultat2) = 0 and pronoVainqueurPeno IS NOT NULL and pronoVainqueurPeno = pesultatVainqueurPeno THEN -- egalité
+        SET result = TRUE;
+    ELSEIF prono1 > prono2 and resultat1 > resultat2 THEN -- equipe1 win
+        SET result = TRUE;
+    ELSEIF prono1 < prono2 and resultat1 < resultat2 THEN -- equipe2 win
+        SET result = TRUE;
+    ELSE
+        SET result = FALSE;
+    END IF;
+
+    RETURN result;
+END $$
+
+DROP FUNCTION IF EXISTS LaRuche.totalPoint $$
+CREATE FUNCTION LaRuche.totalPoint(id_pronostiqueur INT, id_compet INT) RETURNS INT
+BEGIN
+
+    DECLARE t INT;
+
+    SELECT SUM(point_obtenu) INTO t
+                             FROM LaRuche.pronostique
+                             NATURAL JOIN LaRuche.matchApronostiquer
+                             WHERE pronostiqueur_id = id_pronostiqueur and competition_id = id_compet;
+
+    RETURN t;
+end $$
+
+-- Trigger
+
+-- ajoute automatiquement des tuples de pronostique pour chaque personne d'une competition lorsqu'un match est crée
+
+DROP TRIGGER IF EXISTS LaRuche.ajoutAutoPronoDefaut $$
+CREATE TRIGGER LaRuche.ajoutAutoPronoDefaut AFTER INSERT ON LaRuche.matchApronostiquer
     FOR EACH ROW
 BEGIN 
 
@@ -115,9 +152,10 @@ BEGIN
     CLOSE myCursor;
 END $$
 
--- trigger qui ajoute automatiquement des prono au matchs créé précédemment si un user rejoint une competition en cours de route
+-- ajoute automatiquement des prono au matchs créé précédemment si un user rejoint une competition en cours de route
 
-CREATE TRIGGER ajoutAutoPronoBefore AFTER INSERT ON LaRuche.pronostiqueur
+DROP TRIGGER IF EXISTS LaRuche.ajoutAutoPronoBefore $$
+CREATE TRIGGER LaRuche.ajoutAutoPronoBefore AFTER INSERT ON LaRuche.pronostiqueur
     FOR EACH ROW
 BEGIN
 
@@ -138,6 +176,76 @@ BEGIN
         END IF;
 
         INSERT INTO LaRuche.pronostique(match_id,pronostiqueur_id) VALUES (idTemp,NEW.pronostiqueur_id);
+    END LOOP;
+
+    CLOSE myCursor;
+END $$
+
+-- permet d'ajouter les points au pronostiqueurs lors qu'un resultat est enregistrer
+
+DROP TRIGGER IF EXISTS LaRuche.calculsPoints $$
+CREATE TRIGGER LaRuche.calculsPoints AFTER INSERT ON LaRuche.resultatMatch
+    FOR EACH ROW
+BEGIN
+
+    DECLARE is_done INTEGER DEFAULT 0;
+
+    DECLARE idTemp INT;
+    DECLARE prono1 INT;
+    DECLARE prono2 INT;
+    DECLARE pronoResultatPeno ENUM('equipe1','equipe2');
+    DECLARE ptTemp INT;
+    DECLARE myCursor CURSOR FOR
+        SELECT pronostiqueur_id
+        FROM LaRuche.pronostiqueur
+        WHERE competition_id = (SELECT competition_id
+                                FROM LaRuche.resultatMatch
+                                NATURAL JOIN LaRuche.matchApronostiquer
+                                WHERE match_id = NEW.match_id
+                                )
+    ;
+
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
+
+    OPEN myCursor;
+
+    read_loop: LOOP
+        FETCH myCursor INTO idTemp;
+
+        IF is_done = 1 THEN
+            LEAVE read_loop;
+        END IF;
+
+        SELECT prono_equipe1,prono_equipe2,vainqueur_prono INTO prono1, prono2,pronoResultatPeno FROM LaRuche.pronostique WHERE pronostiqueur_id = idTemp and pronostique.match_id = NEW.match_id;
+
+        IF prono1 = prono2 and NEW.nb_but_equipe1 = NEW.nb_but_equipe2 THEN
+            IF prono1 = NEW.nb_but_equipe1 THEN
+                IF pronoResultatPeno = NEW.resultat_peno THEN
+                    SET ptTemp = (SELECT pts_Exact FROM LaRuche.matchApronostiquer WHERE match_id = NEW.match_id);
+                ELSE
+                    SET ptTemp = (SELECT (pts_Exact - pts_Vainq) FROM LaRuche.matchApronostiquer WHERE match_id = NEW.match_id);
+                END IF;
+            ELSE
+                IF pronoResultatPeno = NEW.resultat_peno THEN
+                    SET ptTemp = (SELECT pts_Ecart FROM LaRuche.matchApronostiquer WHERE match_id = NEW.match_id);
+                ELSE
+                    SET ptTemp = (SELECT (pts_Ecart - pts_Vainq) FROM LaRuche.matchApronostiquer WHERE match_id = NEW.match_id);
+                END IF;
+            END IF;
+        ELSEIF prono1 = NEW.nb_but_equipe1 and prono2 = NEW.nb_but_equipe2 THEN
+            SET ptTemp = (SELECT pts_Exact FROM LaRuche.matchApronostiquer WHERE match_id = NEW.match_id);
+        ELSEIF bonVaiqueur(prono1,prono2,pronoResultatPeno,NEW.nb_but_equipe1,NEW.nb_but_equipe2,NEW.resultat_peno) THEN
+            IF ABS(prono1 - prono2) = ABS(NEW.nb_but_equipe1 - NEW.nb_but_equipe2) THEN
+                SET ptTemp = (SELECT pts_Ecart FROM LaRuche.matchApronostiquer WHERE match_id = NEW.match_id);
+            ELSE
+                SET ptTemp = (SELECT pts_Vainq FROM LaRuche.matchApronostiquer WHERE match_id = NEW.match_id);
+            END IF;
+        ELSE
+            SET ptTemp = 0;
+        END IF;
+
+        UPDATE LaRuche.pronostique SET point_obtenu = ptTemp WHERE pronostiqueur_id = idTemp and pronostique.match_id = NEW.match_id;
+
     END LOOP;
 
     CLOSE myCursor;

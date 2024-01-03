@@ -43,6 +43,8 @@ $affichageModule = $module->afficheModule();
     <link rel="stylesheet" href="./style/menu.css">
     <link rel="stylesheet" href="./style/compet.css">
     <link rel="stylesheet" href="./style/fonts.css">
+    <link href="style/checkBox.css" rel="stylesheet">
+    <script src="./style/js/tools.js"></script>
     <script src="./style/js/competition.js"></script>
 </head>
 
@@ -60,20 +62,19 @@ $affichageModule = $module->afficheModule();
         <div id="navbar">
             <a href="competition.php?action=classement&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut"  id="classement">
                     Classement
-            </a> 
+            </a>
             <a href="competition.php?action=affichePronostic&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="prono">
                     Pronostics
             </a>
-            <a href="scoruche.php" class="linkNavbar linkDefaut" id="resultats">
+            <a href="competition.php?action=resultat&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="resultats">
                     Résultats
-            </a>
-           <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
+            <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
                     Déconnexion
             </a>
         </div>
 
         
-        
+
     </header>
 
     
