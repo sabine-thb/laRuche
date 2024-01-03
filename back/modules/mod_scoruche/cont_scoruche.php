@@ -13,10 +13,8 @@ class ContScorcast {
     private $modele;
     
     public function __construct(){
-
         $this->vue = new VueScorcast();
         $this->modele = new ModeleScorcast();
-
     }
 
     public function affichage() {
@@ -73,32 +71,28 @@ class ContScorcast {
 
         $totalBool = true;
 
-        //todo revoir cette boucle
         foreach ($_POST as $key => $value) {
 
-            if ($value != ""){
-                if (!strpos($key, 'toggle')){
-                    if (strpos($key,"match_id")){
-                        $idMatch = $value;
-                    }else{
-                        $cote_equipe = (int)substr($key, -1);
-                        if (isset($idMatch)){
-                            if ($cote_equipe == 1){
-                                $res = $this->modele->modifiProno1($idMatch,$value,$_SESSION['idPronostiqueur']);
-                            }else{
-                                $res = $this->modele->modifiProno2($idMatch,$value,$_SESSION['idPronostiqueur']);
-                            }
+            if (strpos($key, "match_id")) {
+                $idMatch = $value;
+                $str_input1 = $idMatch . "_prono_equipe1";
+                $str_input2 = $idMatch . "_prono_equipe2";
+                $input1 = $_POST["$str_input1"];
+                $input2 = $_POST["$str_input2"];
 
-                            if (!$res)
-                                $totalBool = false;
-                        }else
-                            echo "<p> Erreur, il manque l'id du match </p>";
-                    }
+                if ($input1 != "" && $input2 != "") {
+                    if ($input1 == $input2) {
+                        $str_toggle = $idMatch . "_toggle";
+                        $equipe_gagnate_peno = array_key_exists($str_toggle, $_POST) ? "'equipe2'" : "'equipe1'";
+                    } else
+                        $equipe_gagnate_peno = "null";
+
+                    $res = $this->modele->modifProno($idMatch, $input1, $input2, $equipe_gagnate_peno, $_SESSION['idPronostiqueur']);
+
+                    if (!$res)
+                        $totalBool = false;
                 }
             }
-
-
-
         }
 
         if (!$totalBool)

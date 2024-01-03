@@ -45,7 +45,7 @@
 
                         <div class="container text-center mt-1 selectionFinale">
                             <label>
-                                <input class="pristine" type="checkbox" name="toggle" value="on">
+                                <input class="pristine toggle" type="checkbox" name="toggle" value="on">
                             </label>
                         </div>
 
