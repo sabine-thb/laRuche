@@ -29,6 +29,7 @@ $affichageModule = $module->afficheModule();
     <link href="style/style.css" rel="stylesheet">
     <link rel="stylesheet" href="./style/fonts.css">
     <link rel="stylesheet" href="./style/styleConnexion.css">
+    <script src="./style/js/connexion.js"></script>
 </head>
 
 <body>

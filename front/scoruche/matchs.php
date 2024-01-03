@@ -29,7 +29,7 @@
                         </h5>
 
                         <input type="number" name="<?php echo $tuple['match_id']; ?>_prono_equipe1"
-                               class="inputScore right" min="0" id="prono1"
+                               class="inputScore right" min="0" id="prono1" inputmode="numeric"
                                value="<?php echo $tuple['prono_equipe1']; ?>"
                         >
 
@@ -40,7 +40,7 @@
                         <!-- Équipe 2 -->
 
                         <input type="number" name="<?php echo $tuple['match_id']; ?>_prono_equipe2"
-                               class="inputScore left" min="0" id="prono2"
+                               class="inputScore left" min="0" id="prono2" inputmode="numeric"
                                value="<?php echo $tuple['prono_equipe2']; ?>"
                         >
 

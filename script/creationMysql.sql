@@ -70,6 +70,7 @@ CREATE TABLE resultatMatch(
     match_id INT NOT NULL PRIMARY KEY,
     nb_but_equipe1 INT,
     nb_but_equipe2 INT,
+    resultat_peno ENUM('equipe1','equipe2'),
     CONSTRAINT fk_resultatMatch_match FOREIGN KEY(match_id) REFERENCES matchApronostiquer(match_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -79,6 +80,7 @@ CREATE TABLE pronostique(
     prono_equipe1 INT,
     prono_equipe2 INT,
     point_obtenu INT DEFAULT 0,
+    vainqueur_prono ENUM('equipe1','equipe2'),
     CONSTRAINT fk_pronostique_pronostiqueur FOREIGN KEY(pronostiqueur_id) REFERENCES pronostiqueur(pronostiqueur_id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_pronostique_match FOREIGN KEY(match_id) REFERENCES matchApronostiquer(match_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
