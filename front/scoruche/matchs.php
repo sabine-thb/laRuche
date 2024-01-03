@@ -55,9 +55,18 @@
 
                     <div class="selectionFinale">
                         <label>
-                            <input class="pristine toggle" type="checkbox"
+                            <input class="pristine toggle" type="checkbox" id="<?php echo $tuple['match_id']; ?>_toggle"
                                    name="<?php echo $tuple['match_id']; ?>_toggle" value="on">
                         </label>
+
+                        <?php
+                        if($tuple['vainqueur_prono'] != null && $tuple['vainqueur_prono'] == "equipe2"){
+                            $idTemp = $tuple["match_id"] . "_toggle";
+                            echo '<script>';
+                            echo "document.getElementById('$idTemp').click();";
+                            echo '</script>';
+                        }
+                        ?>
                     </div>
                 </div>
 
