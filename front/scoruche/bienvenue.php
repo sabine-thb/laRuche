@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?>
+
 <!-- 
     jsp pas encore comment va marché cette page 
     j'ai juste mis un ptit message pour faire un test 
@@ -7,3 +11,7 @@
     <p class="descr">Nous t'invitons à rejoindre une compétition dès maintenant.</p>
 </div>
 
+
+
+
+    
