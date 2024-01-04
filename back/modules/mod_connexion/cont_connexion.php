@@ -95,16 +95,16 @@ class ContConnexion {
             }else if(isset($resultat[0])&&$resultat[0] == 3){
                 $_SESSION["loginActif"] = $resultat[1];
                 $_SESSION["adminActif"] = true;
-                echo "<h3 class=\"coAdmin\">Connecté en tant que admin !</h3>";
+                echo "<h3 class=\"coAdmin\">Connecté en tant qu'admin !</h3>";
                 echo '<meta http-equiv="refresh" content="2;url=admin.php"/>';
             } else {
                 echo "Erreur lors de la connexion.<br>";                
-                echo "redirection en cours";
+                echo "Redirection en cours";
                 echo '<meta http-equiv="refresh" content="1;url=connexion.php?action=connexion"/>';
             }
             
         } else {
-            die("veuillez remplir tout les champs");
+            die("Veuillez remplir tous les champs");
         }
 
     }
