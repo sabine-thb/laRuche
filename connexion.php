@@ -29,6 +29,25 @@ $affichageModule = $module->afficheModule();
     <link href="style/style.css" rel="stylesheet">
     <link rel="stylesheet" href="./style/fonts.css">
     <link rel="stylesheet" href="./style/styleConnexion.css">
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCJOQ3MR_a8t614aGdbvc2zAKG_mmXdWdY",
+            authDomain: "ruche-5bf42.firebaseapp.com",
+            projectId: "ruche-5bf42",
+            storageBucket: "ruche-5bf42.appspot.com",
+            messagingSenderId: "604285621560",
+            appId: "1:604285621560:web:321dbbaa2c5aff870f5dcd"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+    </script>
 </head>
 
 <body>
