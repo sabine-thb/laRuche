@@ -11,7 +11,7 @@
 
         <div class="carteProno" onload="">
             <p>
-                <?php echo $tuple['date_match']; ?>
+                <?php echo $tuple['date_match']; ?> - <?php echo $tuple['heure']; ?>H
             </p>
                 <div class="Carte">
                     <div class="CorpCarte">

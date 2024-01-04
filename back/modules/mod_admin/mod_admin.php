@@ -62,7 +62,6 @@ class ModAdmin {
 
             case 'ajoutMatch':
                 $this->controlleur->ajoutMatch();
-                // echo ("2023-12-05"-date("Y-m-d"));
                 break;
 
             case 'gererEquipe':

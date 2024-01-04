@@ -151,11 +151,15 @@ class ModeleAdmin extends Connexion {
 
     }
 
-    public function insererMatch($eq1,$eq2,$ptsExa,$ptsEcart,$ptsVainq,$compet,$dateMatch): bool
+    public function insererMatch($eq1,$eq2,$ptsExa,$ptsEcart,$ptsVainq,$compet,$dateMatch,$heure): bool
     {
 
         try{
-            $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.matchApronostiquer(equipe1_id,equipe2_id,competition_id,pts_Exact,pts_Ecart,pts_Vainq,date_match ) VALUES ('$eq1','$eq2','$compet','$ptsExa','$ptsEcart','$ptsVainq','$dateMatch');");
+            $query = "
+            INSERT INTO LaRuche.matchApronostiquer(equipe1_id,equipe2_id,competition_id,pts_Exact,pts_Ecart,pts_Vainq,date_match,heure) 
+            VALUES ($eq1,$eq2,$compet,$ptsExa,$ptsEcart,$ptsVainq,'$dateMatch',$heure);
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
             $stmt->execute();
 
             return true;
@@ -181,14 +185,16 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
-            SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id, C.nom as nomCompet
+            SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,
+                   C.nom as nomCompet, heure
             FROM LaRuche.matchApronostiquer as M
             INNER JOIN LaRuche.equipe E ON M.equipe1_id=E.equipe_id
             INNER JOIN LaRuche.equipe E2 ON M.equipe2_id=E2.equipe_id
             INNER JOIN LaRuche.competition C ON M.competition_id = C.competition_id
             WHERE pari_ouvert = false
             EXCEPT 
-            SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id, C.nom as nomCompet
+            SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,
+                   C.nom as nomCompet,heure
             FROM LaRuche.matchApronostiquer as M
             INNER JOIN LaRuche.equipe E ON M.equipe1_id = E.equipe_id
             INNER JOIN LaRuche.equipe E2 ON M.equipe2_id = E2.equipe_id
@@ -210,7 +216,8 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
-            SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id, C.nom as nomCompet, R.nb_but_equipe1 as resultat1, R.nb_but_equipe2 as resultat2
+            SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,
+                   C.nom as nomCompet, R.nb_but_equipe1 as resultat1, R.nb_but_equipe2 as resultat2,heure
             FROM LaRuche.matchApronostiquer as M
             INNER JOIN LaRuche.equipe E ON M.equipe1_id = E.equipe_id
             INNER JOIN LaRuche.equipe E2 ON M.equipe2_id = E2.equipe_id
@@ -232,7 +239,8 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
-            SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id, C.nom as nomCompet
+            SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,
+                   C.nom as nomCompet, heure
             FROM LaRuche.matchApronostiquer as M
             INNER JOIN LaRuche.equipe E ON M.equipe1_id=E.equipe_id
             INNER JOIN LaRuche.equipe E2 ON M.equipe2_id=E2.equipe_id
