@@ -284,7 +284,10 @@ class ModeleAdmin extends Connexion {
     public function deleteEquipe($id): bool
     {
         try {
-            $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.equipe WHERE equipe_id=$id");
+            $query ="
+            DELETE FROM LaRuche.equipe WHERE equipe_id=$id
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
             $this->executeQuery($stmt);
 
             return true;
