@@ -39,11 +39,15 @@
         </label><br>
 
 
-        <label class="mb-2">Date du Match :
+        <label>Date du Match :
             <input type="date" name="dateMatch">
         </label><br>
 
-        <label class="mb-2">Points Score Exact :
+        <label>Heure du Match :
+            <input type="number" name="dateMatch">
+        </label><br>
+
+        <label>Points Score Exact :
             <input type="number" name="ptsExact" maxlength="2" size="1">
         </label><br>
 

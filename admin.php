@@ -40,8 +40,8 @@ $affichageModule = $module->afficheModule();
 
     <!-- En-tête -->
     <header>
-        <a href="scoruche.php" class="linkTitreSite">
-                <img src="style/img/abeille.png" alt="logo scoruche" title="retour à mes competitions">
+        <a href="admin.php" class="linkTitreSite">
+                <img src="style/img/abeille.png" alt="logo scoruche" title="retour acceuil admin">
                 <h2 class="titreSite">
                         scoruche
                 </h2>
