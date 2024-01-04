@@ -46,6 +46,32 @@ section{
     
 }
 
+.lienResetPwd{
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    padding: 9px;
+    border-radius: 10px;
+}
+
+.lienResetPwd:hover{
+    background-color:#e1b217;
+    cursor: pointer;
+}
+
+.lienDeleteUser{
+    text-decoration: none;
+    color: white;
+    background-color: #ff0015;
+    padding: 9px;
+    border-radius: 10px;
+}
+
+.lienDeleteUser:hover{
+    background-color: #412e10;
+    cursor: pointer;
+}
+
 .oneAction:hover{
     background-color:#e1b217;
 

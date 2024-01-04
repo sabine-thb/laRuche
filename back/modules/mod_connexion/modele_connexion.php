@@ -61,9 +61,7 @@ class ModeleConnexion extends Connexion {
 
     private function nouveau($champSql, $var): bool
     {
-
         try {
-            
             $stmt = Connexion::$bdd->prepare("SELECT " .$champSql. " FROM LaRuche.users WHERE " .$champSql. "='" .$var. "' ");
             $resultat = $this->executeQuery($stmt);
 
@@ -73,8 +71,6 @@ class ModeleConnexion extends Connexion {
             else{
                 return true;
             }
-
-            
 
         } catch (PDOException $e) {
             return false;
