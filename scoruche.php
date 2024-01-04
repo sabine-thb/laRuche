@@ -74,6 +74,8 @@ $affichageModule = $module->afficheModule();
                 // le code html dynamique, il faut regarder les fichier situé dans front/scoruche pour voir les possibilité d'affichage
                 echo $affichageModule;
         ?>
+        
+
 
     </main>
     

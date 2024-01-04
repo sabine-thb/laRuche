@@ -1,3 +1,5 @@
+/*Je stylise ce qui apparait sur la page lorsque l'on se connecte*/
+
 .msgArv{
     display: flex;
     flex-direction: column;
@@ -7,6 +9,8 @@
     left:50%;
     transform:translate(-50%,-50%);
     color:white;
+    background-color: rgba(0, 0, 0, 0.156);
+    padding:20px;
 }
 
 .descr,.bienvenue{
@@ -51,8 +55,50 @@
     text-align: center; */
 }
 
+.logo{
+    position:absolute;
+    width:200px;
+    z-index:100;
+    top:-120px;
+    right:-120px;
+    transform: rotate(20deg);
+    filter: grayscale(100);
+}
+
+/*Je stylise ce qui apparait sur la page des compétitions actives*/
+
+.titleCompet{
+    font-family:"montserratExtraBold", sans-serif;
+}
+
+section{
+    padding:25px;
+}
+
+.cardCompet{
+    background-color:white;
+    padding:20px;
+    border-radius:20px;
+}
+
+.cardTitle{
+    margin:25px,0px 0px 0px;
+}
+
+
+
+@media(max-width:790px){
+    .logo{
+        display:none;
+    }
+}
+
 @media(max-width:850px){
     body{
         padding-top:150px;
+    }
+
+    .msgArv{
+        background-color: rgba(0, 0, 0, 0);
     }
 }
