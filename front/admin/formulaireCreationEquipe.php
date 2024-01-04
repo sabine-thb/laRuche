@@ -1,16 +1,16 @@
-<div class = "container d-flex justify-content-center" >
+<div >
 
         <form action="admin.php?action=ajoutEquipe" method="post"
               enctype="multipart/form-data" class="align-items-center justify-content-center justify-content-md-between">
                 
             <label>
                 Nom de la Team:
-                <input class='form-control mr-sm-2' type='text' name='name'/>
+                <input class='form-control mr-sm-2' type='text' name='name' required/>
             </label><br>
 
             <label>
-                Logo (max 20 Mo):
-                <input type="hidden" name="MAX_FILE_SIZE" value="20000000">
+                Logo (max 2 Mo):
+                <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
                 <input type="file" name="logo" accept="image/*"/>
             </label>
 

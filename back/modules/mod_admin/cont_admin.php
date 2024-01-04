@@ -259,5 +259,44 @@ class ContAdmin {
         }
     }
 
+    public function afficheVueModifieEquipe()
+    {
+        $equipe = $this->modele->getEquipe($_GET['idEquipe']);
+
+        if ($equipe == 404)
+            echo "erreur equipe introuvable";
+        else
+            $this->vue->afficheModifieEquipe($equipe[0]);
+
+    }
+
+    public function modifieEquipe()
+    {
+        $erreur = false;
+        $id = $_POST['idEquipe'];
+        $newNom = $_POST['name'];
+
+        $this->modele->modifieNomEquipe($newNom,$id);
+
+        if ($_FILES['logo']["tmp_name"] != ""){
+            $ancien_src = $this->modele->getSrcLogoEquipe($id);
+
+            if (file_exists($ancien_src))
+                unlink($ancien_src);
+
+            $dest = $this->modele->gererLogo();
+
+            if ($dest != null)
+                $this->modele->modifielogoEquipe($dest,$id);
+            else {
+                echo "erreur changement logo";
+                $erreur = true;
+            }
+        }
+
+        if (!$erreur)
+            header('Location: admin.php?action=gererEquipe');
+    }
+
 
 }

@@ -88,6 +88,14 @@ class ModAdmin {
                 $this->controlleur->ajouteResultatMatch();
                 break;
 
+            case 'modifierEquipe':
+                $this->controlleur->afficheVueModifieEquipe();
+                break;
+
+            case 'modifieEquipe':
+                $this->controlleur->modifieEquipe();
+                break;
+
             case 'detailEquipe':
             case 'detailCompetition':
                 echo "TODO a coder";

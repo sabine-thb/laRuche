@@ -138,7 +138,11 @@ class ModeleAdmin extends Connexion {
 
         if(count($res)==0){
             try{
-                $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.equipe(nom, srcLogo) VALUES ('$nomEquipe','$chemin')");
+                $query = "
+                INSERT INTO LaRuche.equipe(nom, srcLogo)
+                VALUES ('$nomEquipe','$chemin')
+                ";
+                $stmt = Connexion::$bdd->prepare($query);
                 $stmt->execute();
             }catch (PDOException $e) {
                 echo "<script>console.log('erreur: $e');</script>";
@@ -261,6 +265,22 @@ class ModeleAdmin extends Connexion {
         }
     }
 
+    public function getEquipe($idEquipe)
+    {
+        try {
+            $query = "
+            SELECT * FROM LaRuche.equipe WHERE equipe_id = $idEquipe
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            return $this->executeQuery($stmt);
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return 404;
+        }
+    }
+
     public function getEquipes(){
         try{
             $stmt = Connexion::$bdd->prepare("SELECT * from LaRuche.equipe;");
@@ -271,6 +291,60 @@ class ModeleAdmin extends Connexion {
         }
         
     }
+
+    public function modifieNomEquipe($nom,$id)
+    {
+        try {
+            $query = "
+            UPDATE LaRuche.equipe
+            SET nom = '$nom'
+            WHERE equipe_id = $id
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return 404;
+        }
+    }
+
+    public function modifielogoEquipe($srcLogo,$id)
+    {
+        try {
+            $query = "
+            UPDATE LaRuche.equipe
+            SET srcLogo = '$srcLogo'
+            WHERE equipe_id = $id
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return 404;
+        }
+    }
+
+    public function getSrcLogoEquipe($id)
+    {
+        try {
+            $query = "
+            SELECT srcLogo FROM LaRuche.equipe WHERE equipe_id = $id
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            return $this->executeQuery($stmt)[0]['srcLogo'];
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return 404;
+        }
+    }
+
     public function getCompet(){
         try{
             $stmt = Connexion::$bdd->prepare("SELECT * from LaRuche.competition;");
@@ -298,7 +372,7 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    private function gererLogo()
+    public function gererLogo()
     {
         $taille = strlen(basename($_FILES["logo"]["name"]));
 

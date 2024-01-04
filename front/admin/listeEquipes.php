@@ -22,6 +22,11 @@
                 >
                     supprimer
                 </a>
+                <a href="admin.php?action=modifierEquipe&idEquipe=<?php echo $row['equipe_id']; ?> "
+                   style="text-decoration: none; padding: 9px; border-radius: 15px; background-color: #7b9cc7; color: #ebedf1"
+                >
+                    modifier
+                </a>
 
             </div>
         </div>
