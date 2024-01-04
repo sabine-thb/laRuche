@@ -107,9 +107,7 @@ class ContAdmin {
         if(isset($_SESSION['token'],$_POST['token'])){
             if(null!==($_SESSION['creationToken']&& time()-$_SESSION['creationToken']<60 )){
                 if(isset($_POST['name'],$_FILES['logo']['tmp_name'])){
-                    $this->modele->insererEquipe($_POST['name'],$_FILES['logo']);
-                    
-//                    echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
+                    $this->modele->insererEquipe($_POST['name']);
                 }else{
                     echo " Remplissez tous les champs et réessayez"."<br>";
                     echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';

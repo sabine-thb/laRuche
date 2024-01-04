@@ -121,20 +121,24 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    public function insererEquipe($nom){
+    public function insererEquipe($nomEquipe){
         $chemin= $this->gererLogo();
+        if ($chemin == null){
+            echo "erreur";
+            return false;
+        }
 
         try{
-        $stmt = Connexion::$bdd->prepare("SELECT nom FROM LaRuche.equipe Where nom='$nom';");
-        $res=$this->executeQuery($stmt);
+            $stmt = Connexion::$bdd->prepare("SELECT nom FROM LaRuche.equipe WHERE nom = '" . $nomEquipe . "'");
+            $res=$this->executeQuery($stmt);
         }catch (PDOException $e) {
-            echo "<script>console.log('erreur:" . $e ."');</script>";
+            var_dump($e);
             return false;
         }   
 
         if(count($res)==0){
             try{
-                $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.equipe(nom, srcLogo) VALUES ('$nom','$chemin');");
+                $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.equipe(nom, srcLogo) VALUES ('$nomEquipe','$chemin')");
                 $stmt->execute();
             }catch (PDOException $e) {
                 echo "<script>console.log('erreur: $e');</script>";
@@ -291,19 +295,25 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    public function gererLogo(): string
+    private function gererLogo()
     {
-        
+        $taille = strlen(basename($_FILES["logo"]["name"]));
+
+        $taille> 20 ?
+            $nom = substr(basename($_FILES["logo"]["name"]), -20) :
+            $nom = basename($_FILES["logo"]["name"]);
+
         $temp_name = $_FILES["logo"]["tmp_name"];
-        $name = $_FILES["logo"]["name"];
-        $destination = "./style/img/logo/" . $name;
+        $destination = "./style/img/logo/$nom";
 
         // Déplacer le fichier téléchargé vers un répertoire sur le serveur
         if (!move_uploaded_file($temp_name, $destination)){
             echo "Une erreur s'est produite lors du téléchargement de l'image.<br>";
-        }
+            return null;
+        }else
+            return $destination;
             
-        return $destination;
+
     }
 
     public function miseEnAttenteMatch($match_id): bool
