@@ -172,6 +172,7 @@ class ModeleScorcast extends Connexion {
             INNER JOIN LaRuche.pronostique P ON M.match_id = P.match_id  
             INNER JOIN LaRuche.resultatMatch R ON M.match_id = R.match_id
             WHERE pari_ouvert = false and competition_id = $idCompet and pronostiqueur_id = $idPronostiqueur
+            ORDER BY date_match DESC
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
