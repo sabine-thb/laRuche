@@ -143,6 +143,7 @@ class ModeleConnexion extends Connexion {
     public function setPassword($mdp,$id)
     {
         try {
+            $mdp = password_hash($mdp,PASSWORD_BCRYPT,$this->option);
             $query = "
             UPDATE LaRuche.users
             SET password = '$mdp'
