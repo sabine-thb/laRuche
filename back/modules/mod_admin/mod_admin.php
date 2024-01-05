@@ -96,6 +96,10 @@ class ModAdmin {
                 $this->controlleur->modifieEquipe();
                 break;
 
+            case 'gererComptes':
+                $this->controlleur->afficheRechercheCompte();
+                break;
+
             case 'detailEquipe':
             case 'detailCompetition':
                 echo "TODO a coder";

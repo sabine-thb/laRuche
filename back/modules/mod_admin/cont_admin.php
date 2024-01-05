@@ -298,5 +298,10 @@ class ContAdmin {
             header('Location: admin.php?action=gererEquipe');
     }
 
+    public function afficheRechercheCompte()
+    {
+        $this->vue->afficheGereUser();
+    }
+
 
 }

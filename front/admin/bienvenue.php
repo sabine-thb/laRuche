@@ -8,6 +8,9 @@
         <a href="admin.php?action=afficherDemande" class="linkAction">
                         <div class="oneAction">Demandes de compte</div>
         </a>
+        <a href="admin.php?action=gererComptes" class="linkAction">
+                        <div class="oneAction">Gérer les comptes</div>
+        </a>
         <a href="admin.php?action=afficheFormCompetition" class="linkAction">
                         <div class="oneAction">Créer une compétition</div>
         </a>

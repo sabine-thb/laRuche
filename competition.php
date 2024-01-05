@@ -8,7 +8,6 @@ if (!isset($_SESSION["loginActif"]) ) {
 //ici on parle de l'id de la competition
 //si elle n'est pas presente dans l'url il faut rediriger l'utilisateur
 //car il y aura des erreurs par la suite
-//todo mettre ce id dans la variable globale de session
 if (!isset($_GET["id"]) ) {
     header('Location: scoruche.php');
 }

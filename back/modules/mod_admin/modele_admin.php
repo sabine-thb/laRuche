@@ -311,6 +311,23 @@ class ModeleAdmin extends Connexion {
         }
     }
 
+    public function rechercheUser($name)
+    {
+        try {
+            $query = "
+            SELECT * FROM LaRuche.users
+            WHERE LOWER(login) LIKE '%$name%'
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            return $this->executeQuery($stmt);
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return 404;
+        }
+    }
+
     public function modifielogoEquipe($srcLogo,$id)
     {
         try {
