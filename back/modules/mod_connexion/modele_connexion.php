@@ -95,6 +95,10 @@ class ModeleConnexion extends Connexion {
                 $stmt = Connexion::$bdd->prepare("SELECT * FROM LaRuche.users WHERE login='" .$login. "' or mail='" . $login . "' ");
                 $resultat = $this->executeQuery($stmt);
 
+                if ($resultat[0]["password"] == "reset"){
+                    header('Location: connexion.php?action=resetPassword');
+                }
+
                 if( isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp) ){
 
                     if($resultat[0]["est_verifier"]){

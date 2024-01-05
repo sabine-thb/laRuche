@@ -14,7 +14,7 @@
                     <?php echo $row["nom"] ; ?>
                 </h5>
                 <p class="card-text">
-                    <img src="<?php echo $row['srcLogo'];?>" /> 
+                    <img src="<?php echo $row['srcLogo'];?>"  alt="logo equipe"/>
                 </p>
                 <a href="admin.php?action=supprimerEquipe&idEquipe=<?php echo $row['equipe_id']; ?> "
                    style="text-decoration: none; padding: 9px; border-radius: 15px; background-color: #c77b7b; color: #ebedf1"

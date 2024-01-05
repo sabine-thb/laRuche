@@ -347,6 +347,25 @@ class ModeleAdmin extends Connexion {
         }
     }
 
+    public function resetPasswordUser($id)
+    {
+        try {
+            $query = "
+            UPDATE LaRuche.users
+            SET password = 'reset'
+            WHERE user_id = $id
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return 404;
+        }
+    }
+
     public function getSrcLogoEquipe($id)
     {
         try {

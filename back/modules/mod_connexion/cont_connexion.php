@@ -78,8 +78,7 @@ class ContConnexion {
         $_SESSION['error'] = null;
 
         if (isset($_POST['login'],$_POST['mdp'])){
-            
-            
+
             $resultat = $this->modele->verifUser($_POST['login'],$_POST['mdp']);
 
             if (isset($resultat[0])&&$resultat[0] == 1) {
@@ -116,5 +115,9 @@ class ContConnexion {
 
     }
 
+    public function nouveauPassword()
+    {
+        $this->vue->afficheFormNouveauMDP();
+    }
+
 }
-?>

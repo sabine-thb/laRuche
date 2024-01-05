@@ -100,6 +100,10 @@ class ModAdmin {
                 $this->controlleur->afficheRechercheCompte();
                 break;
 
+            case'resetPwd':
+                $this->controlleur->resetPasswordUser();
+                break;
+
             case 'detailEquipe':
             case 'detailCompetition':
                 echo "TODO a coder";

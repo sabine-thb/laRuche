@@ -303,5 +303,18 @@ class ContAdmin {
         $this->vue->afficheGereUser();
     }
 
+    public function resetPasswordUser()
+    {
+        $idUser = $_GET['idUser'];
+
+        $rep = $this->modele->resetPasswordUser($idUser);
+
+        if ($rep)
+            echo "changement enregistrer avec succes";
+        else
+            echo "erreur";
+
+    }
+
 
 }

@@ -47,6 +47,10 @@ class ModConnexion {
             case 'deconnexion':
                 $this->controlleur->deconnexion();
                 break;
+
+            case 'resetPassword':
+                $this->controlleur->nouveauPassword();
+                break;
         }
     }
 
