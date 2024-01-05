@@ -1,0 +1,83 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+section{
+    padding:25px;
+}
+
+.titlePage{
+    font-family:"montserratExtraBold", sans-serif;
+}
+
+.linkAction{
+    color:white;
+    text-decoration: none;
+}
+
+.actionsContainer{
+    display: flex;
+    justify-content: space-around;
+}
+
+.actions{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap:50px;
+    margin-top:50px;
+}
+
+.oneAction{
+    font-size:1.3rem;
+    font-family:"montserratExtraBold", sans-serif;
+    width:250px;
+    height:250px;
+    background-color: #0B54CD;
+    transition:background-color 0.3s ease-in-out;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding:30px;
+    border-radius:25px;
+    text-align: center;
+    /* box-shadow: inset 5px 0px 15px 5px #041f70; */
+    
+}
+
+.oneAction:hover{
+    background-color:#e1b217;
+
+}
+
+@media(max-width:1215px){
+    .actions{
+
+        grid-template-columns: repeat(3, 1fr);
+
+    }
+
+}
+@media(max-width:930px){
+    .oneAction{
+        width:180px;
+        height:180px;
+        font-size:1rem;
+    }
+
+}
+@media(max-width:700px){
+    .actions{
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+}
+@media(max-width:500px){
+    .actions{
+        grid-template-columns: repeat(1, 1fr);
+
+    }
+
+}

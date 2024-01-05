@@ -7,7 +7,7 @@
                     <div class="row">
                         <input type="hidden" name="match_id" value="<?php echo $row['match_id']; ?>" >
                         <p>
-                            <?php echo $row['nomCompet']; ?> - <?php echo $row['date_match']; ?>
+                            <?php echo $row['nomCompet']; ?> - <?php echo $row['date_match']; ?> - <?php echo $row['heure']; ?>H
                         </p>
                         <div class="col-md-4 text-center mt-3">
                             <!-- Équipe 1 -->

@@ -104,7 +104,8 @@ class ModeleScorcast extends Connexion {
 
         try {
             $query = "
-            SELECT date_match,E.nom as nom1,E2.nom as nom2,P.prono_equipe1,P.prono_equipe2,P.vainqueur_prono,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,pts_Vainq,pts_Ecart,pts_Exact
+            SELECT date_match,E.nom as nom1,E2.nom as nom2,P.prono_equipe1,P.prono_equipe2,P.vainqueur_prono,
+                   E.srcLogo as src1,E2.srcLogo as src2,M.match_id,pts_Vainq,pts_Ecart,pts_Exact,heure
             FROM LaRuche.matchApronostiquer as M
             INNER JOIN LaRuche.equipe E ON M.equipe1_id=E.equipe_id
             INNER JOIN LaRuche.equipe E2 ON M.equipe2_id=E2.equipe_id
@@ -163,13 +164,15 @@ class ModeleScorcast extends Connexion {
     {
         try {
             $query = "
-            SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id, R.nb_but_equipe1 as resultat1, R.nb_but_equipe2 as resultat2, point_obtenu
+            SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,
+                   R.nb_but_equipe1 as resultat1, R.nb_but_equipe2 as resultat2, point_obtenu,heure
             FROM LaRuche.matchApronostiquer as M
             INNER JOIN LaRuche.equipe E ON M.equipe1_id = E.equipe_id
             INNER JOIN LaRuche.equipe E2 ON M.equipe2_id = E2.equipe_id
             INNER JOIN LaRuche.pronostique P ON M.match_id = P.match_id  
             INNER JOIN LaRuche.resultatMatch R ON M.match_id = R.match_id
             WHERE pari_ouvert = false and competition_id = $idCompet and pronostiqueur_id = $idPronostiqueur
+            ORDER BY date_match DESC
             ";
 
             $stmt = Connexion::$bdd->prepare($query);

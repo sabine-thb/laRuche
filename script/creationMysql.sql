@@ -90,17 +90,24 @@ CREATE TABLE pronostique(
 delimiter $$
 
 DROP FUNCTION IF EXISTS LaRuche.bonVaiqueur $$
-CREATE FUNCTION LaRuche.bonVaiqueur(prono1 INT, prono2 INT, pronoVainqueurPeno ENUM('equipe1','equipe2'),
-                            resultat1 INT, resultat2 INT, pesultatVainqueurPeno ENUM('equipe1','equipe2')
+CREATE FUNCTION LaRuche.bonVaiqueur(
+    prono1 INT, prono2 INT, pronoVainqueurPeno ENUM('equipe1','equipe2'),
+    resultat1 INT, resultat2 INT, pesultatVainqueurPeno ENUM('equipe1','equipe2')
 ) RETURNS BOOLEAN
 BEGIN
     DECLARE result BOOLEAN;
 
-    IF (prono1 - prono2) = 0 and (resultat1 - resultat2) = 0 and pronoVainqueurPeno IS NOT NULL and pronoVainqueurPeno = pesultatVainqueurPeno THEN -- egalité
+    IF (prono1 - prono2) = 0 and (resultat1 - resultat2) = 0 THEN -- egalité, ne devrait pas arrivé apriori
+        SET result = TRUE;
+    ELSEIF pronoVainqueurPeno IS NOT NULL and pronoVainqueurPeno = pesultatVainqueurPeno THEN
         SET result = TRUE;
     ELSEIF prono1 > prono2 and resultat1 > resultat2 THEN -- equipe1 win
         SET result = TRUE;
     ELSEIF prono1 < prono2 and resultat1 < resultat2 THEN -- equipe2 win
+        SET result = TRUE;
+    ELSEIF pronoVainqueurPeno = 'equipe1' and resultat1 > resultat2 THEN
+        SET result = TRUE;
+    ELSEIF pronoVainqueurPeno = 'equipe2' and resultat2 > resultat1 THEN
         SET result = TRUE;
     ELSE
         SET result = FALSE;
@@ -218,7 +225,10 @@ BEGIN
             LEAVE read_loop;
         END IF;
 
-        SELECT prono_equipe1,prono_equipe2,vainqueur_prono INTO prono1, prono2,pronoResultatPeno FROM LaRuche.pronostique WHERE pronostiqueur_id = idTemp and pronostique.match_id = NEW.match_id;
+        SELECT prono_equipe1,prono_equipe2,vainqueur_prono
+        INTO prono1, prono2,pronoResultatPeno
+        FROM LaRuche.pronostique
+        WHERE pronostiqueur_id = idTemp and pronostique.match_id = NEW.match_id;
 
         IF prono1 = prono2 and NEW.nb_but_equipe1 = NEW.nb_but_equipe2 THEN
             IF prono1 = NEW.nb_but_equipe1 THEN

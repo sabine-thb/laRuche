@@ -107,9 +107,7 @@ class ContAdmin {
         if(isset($_SESSION['token'],$_POST['token'])){
             if(null!==($_SESSION['creationToken']&& time()-$_SESSION['creationToken']<60 )){
                 if(isset($_POST['name'],$_FILES['logo']['tmp_name'])){
-                    $this->modele->insererEquipe($_POST['name'],$_FILES['logo']);
-                    
-//                    echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
+                    $this->modele->insererEquipe($_POST['name']);
                 }else{
                     echo " Remplissez tous les champs et réessayez"."<br>";
                     echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
@@ -129,9 +127,9 @@ class ContAdmin {
     {
         if(isset($_SESSION['token'],$_POST['token'])){
             if(null!==($_SESSION['creationToken']&& time()-$_SESSION['creationToken']<60 )){
-                if(isset($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch'])){
+                if(isset($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch'],$_POST['heure'])){
                     if ($_POST['equipe1']!=='default' && $_POST['equipe2']!=='default' && $_POST['compet']!=='default' ) {
-                        if ($this->modele->insererMatch($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch'])){
+                        if ($this->modele->insererMatch($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch'],$_POST['heure'])){
                             echo " Match bien enregistrée ✌️"."<br>";
 //                            echo '<meta http-equiv="refresh" content="3;url=admin.php?action=afficheFormMatch"/>';
                         }else{
@@ -259,6 +257,45 @@ class ContAdmin {
                 $this->vue->afficheMatchFermer($match);
                 break;
         }
+    }
+
+    public function afficheVueModifieEquipe()
+    {
+        $equipe = $this->modele->getEquipe($_GET['idEquipe']);
+
+        if ($equipe == 404)
+            echo "erreur equipe introuvable";
+        else
+            $this->vue->afficheModifieEquipe($equipe[0]);
+
+    }
+
+    public function modifieEquipe()
+    {
+        $erreur = false;
+        $id = $_POST['idEquipe'];
+        $newNom = $_POST['name'];
+
+        $this->modele->modifieNomEquipe($newNom,$id);
+
+        if ($_FILES['logo']["tmp_name"] != ""){
+            $ancien_src = $this->modele->getSrcLogoEquipe($id);
+
+            if (file_exists($ancien_src))
+                unlink($ancien_src);
+
+            $dest = $this->modele->gererLogo();
+
+            if ($dest != null)
+                $this->modele->modifielogoEquipe($dest,$id);
+            else {
+                echo "erreur changement logo";
+                $erreur = true;
+            }
+        }
+
+        if (!$erreur)
+            header('Location: admin.php?action=gererEquipe');
     }
 
 
