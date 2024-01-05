@@ -51,6 +51,10 @@ class ModConnexion {
             case 'resetPassword':
                 $this->controlleur->nouveauPassword();
                 break;
+
+            case 'changeMDP':
+                $this->controlleur->setPassword();
+                break;
         }
     }
 
@@ -59,5 +63,3 @@ class ModConnexion {
     }
 
 }
-
-?>

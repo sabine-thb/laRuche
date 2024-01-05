@@ -35,20 +35,18 @@ $affichageModule = $module->afficheModule();
 <body>
 
     <!-- En-tête -->
-    <div class = "container">
-            <div class="blockContainer">
-                <img src="./style/img/logo.svg" class="logoLeague">
-                <div class="line"></div>
-                <div class="form">
-                    <a href="connexion.php">
-                        <img src="./style/img/abeille.png" class="abeille" alt="">
-                    </a>
-                    <main>
-                        <?php echo $affichageModule; // le code html pour cette endroit est dans le dossier front/connexion ?>
-                    </main>
-                </div>
-            </div>
+    <div class="blockContainer">
+        <img src="./style/img/logo.svg" class="logoLeague" alt="logo champion cup">
+        <div class="line"></div>
     </div>
+
+    <main>
+        <a href="connexion.php">
+            <img src="./style/img/abeille.png" class="abeille" alt="logo abeille">
+        </a>
+        <?php echo $affichageModule; // le code html pour cette endroit est dans le dossier front/connexion ?>
+    </main>
+
 
     <p class="credits">Ruche corp. written by Sab / Arsène / BenJ</p>
 

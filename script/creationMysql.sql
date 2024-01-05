@@ -127,8 +127,12 @@ BEGIN
                              NATURAL JOIN LaRuche.matchApronostiquer
                              WHERE pronostiqueur_id = id_pronostiqueur and competition_id = id_compet;
 
+    IF t IS NULL THEN
+        SET t = 0;
+    END IF;
+
     RETURN t;
-end $$
+END $$
 
 -- Trigger
 

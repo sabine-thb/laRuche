@@ -51,7 +51,7 @@ class ContConnexion {
                 header('Location: connexion.php?action=inscription');  
             }
         } else {
-            $_SESSION['error'] = '<h3 class="ttChamps">veuillez remplir tout les champs.</h3><br>';
+            $_SESSION['error'] = '<h3 class="ttChamps">Veuillez remplir tous les champs.</h3><br>';
             header('Location: connexion.php?action=inscription');
         }
 
@@ -68,18 +68,19 @@ class ContConnexion {
     }
 
     public function afficheFormConnexion() {
-        $_SESSION['error'] = null;
         $this->vue->afficheFormulaireConnexion();
-
     }
 
     public function connexion() {
         
         $_SESSION['error'] = null;
 
+        $loginTemp = $_POST['login'];
+        $mdpTemp = $_POST['mdp'];
+
         if (isset($_POST['login'],$_POST['mdp'])){
 
-            $resultat = $this->modele->verifUser($_POST['login'],$_POST['mdp']);
+            $resultat = $this->modele->verifUser($loginTemp,$mdpTemp);
 
             if (isset($resultat[0])&&$resultat[0] == 1) {
                 $_SESSION["loginActif"] = $resultat[1];
@@ -96,10 +97,13 @@ class ContConnexion {
                 $_SESSION["adminActif"] = true;
                 echo "<h3 class=\"coAdmin\">Connecté en tant qu'admin !</h3>";
                 echo '<meta http-equiv="refresh" content="2;url=admin.php"/>';
-            } else {
-                echo "Erreur lors de la connexion.<br>";                
-                echo "Redirection en cours";
-                echo '<meta http-equiv="refresh" content="1;url=connexion.php?action=connexion"/>';
+            } else if ($resultat == -1){
+                $_SESSION['error'] = "login ou mot de passe incorrect";
+                $_SESSION["tempLogin"] = $loginTemp;
+                $_SESSION["tempPawword"] = $mdpTemp;
+                header('Location: connexion.php?action=connexion');
+            }else if ($resultat == 45){
+                header('Location: connexion.php?action=resetPassword');
             }
             
         } else {
@@ -118,6 +122,20 @@ class ContConnexion {
     public function nouveauPassword()
     {
         $this->vue->afficheFormNouveauMDP();
+    }
+
+    public function setPassword()
+    {
+        $newMdp = $_POST['mdp'];
+        $idUser = $_POST['idUser'];
+        $res = $this->modele->setPassword($newMdp,$idUser);
+
+        if ($res) {
+            echo "<p>Changement enregistrer avec succes</p>";
+            echo "<p>Cliquez <a href='connexion.php?action=connexion'>ici</a> pour vous connecter si la redirection auto est fatigué</p>";
+            echo '<meta http-equiv="refresh" content="3;url=connexion.php?action=connexion"/>';
+        } else
+            echo "<p>erreur</p>";
     }
 
 }

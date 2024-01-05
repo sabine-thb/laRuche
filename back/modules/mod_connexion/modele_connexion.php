@@ -96,7 +96,8 @@ class ModeleConnexion extends Connexion {
                 $resultat = $this->executeQuery($stmt);
 
                 if ($resultat[0]["password"] == "reset"){
-                    header('Location: connexion.php?action=resetPassword');
+                    $_SESSION['idUser'] = $resultat[0]["user_id"];
+                    return 45;
                 }
 
                 if( isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp) ){
@@ -139,7 +140,23 @@ class ModeleConnexion extends Connexion {
         return false;
     }
 
+    public function setPassword($mdp,$id)
+    {
+        try {
+            $query = "
+            UPDATE LaRuche.users
+            SET password = '$mdp'
+            WHERE user_id = $id
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return 404;
+        }
+    }
+
 }
-
-
-?>

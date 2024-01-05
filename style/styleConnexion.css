@@ -23,7 +23,7 @@ body{
     height:400px;
     background-color: white;
     margin-right:100px;
-    margin-left:100px;
+    margin-left:85px;
 }
 
 .blockContainer{
@@ -46,8 +46,12 @@ body{
 
 a{
     font-family: "montserratExtraBold", sans-serif;
-    color:white;
+    color:#e1b217;
     text-decoration: none;
+}
+
+.bouton a{
+    color: white;
 }
 
 .bienvenue{
@@ -72,9 +76,11 @@ main{
 .formInscription, .formConnexion{
     display:flex;
     flex-direction: column;
+    align-items: center;
     z-index:1000;
+    max-width: 300px;
     position:relative;
-    margin-top:25px;
+    margin-top:10px;
 }
 
 label{
@@ -83,11 +89,12 @@ label{
 
 input{
     border:none;
+    border-radius: 15px;
+    padding: 5px;
 }
 
 .erreurInputVide{
     border: 2px solid transparent;
-    border-radius: 10px;
     animation: shake 0s 2s ease-in-out;
 }
 
@@ -112,7 +119,7 @@ input{
     padding:10px 20px 10px 20px;
     border-radius:20px;
     width:150px;
-    margin: auto;
+    margin-top: 10px;
 }
 
 .submit:hover{
@@ -121,9 +128,9 @@ input{
 .abeille{
     width:200px;
     height:auto;
-    position: absolute;
-    left:-20px;
-    top:-180px;
+    /*position: absolute;*/
+    /*left:-20px;*/
+    /*top:-180px;*/
 
 }
 .option{
@@ -164,9 +171,6 @@ input{
     }
 }
 
-
-
-
 /*ici le style des éléments qui s'afficehtn lors de la connexion ou inscription*/
 
 /*Par exmeple pour le "connecté en temps qu'admin !"*/
@@ -199,7 +203,54 @@ input{
     }
 }
 
+@media(min-width: 1350px){
+    input{
+        font-size: 19px;
+        min-width: 250px;
+        padding: 8px;
+        border-radius: 18px;
+    }
+
+    label{
+       font-size: 24px;
+    }
+
+    .submit{
+        min-width: auto;
+        max-width: 150px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
+
+    .option{
+        font-size: 19px;
+    }
+
+    .logoLeague{
+        margin-left: 120px;
+    }
+
+    main{
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
 @media(max-width:880px){
+
+    body{
+        justify-content: normal;
+    }
+
+    .logoLeague{
+        margin-left: 100px;
+    }
+
+    main{
+        margin-right: auto;
+        margin-left: auto;
+    }
+
     .blockContainer{
         flex-direction: column;
         gap:70px;
@@ -218,7 +269,16 @@ input{
     }
 }
 
-@media(max-width:440px){
+@media(max-width:610px){
+
+    body{
+        justify-content: center;
+    }
+
+    .logoLeague{
+        margin: auto;
+    }
+
     .bienvenue{
         font-size:2.5rem;
     }
@@ -226,4 +286,12 @@ input{
     .logoLeague{
         width:230px;
     }
+
+    body{
+        display: block;
+        height: auto;
+        padding-bottom: 60px;
+    }
+
+
 }

@@ -310,9 +310,9 @@ class ContAdmin {
         $rep = $this->modele->resetPasswordUser($idUser);
 
         if ($rep)
-            echo "changement enregistrer avec succes";
+            echo "<p>Changement enregistrer avec succes</p>";
         else
-            echo "erreur";
+            echo "<p>erreur</p>";
 
     }
 
