@@ -85,9 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
         input1.addEventListener('input', checkEquality);
         input2.addEventListener('input', checkEquality);
 
-        input1.addEventListener('change', checkEquality);
-        input2.addEventListener('change', checkEquality);
-
         checkEquality();
     }
 });

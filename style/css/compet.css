@@ -7,7 +7,7 @@ main{
     gap:20px;
 }
 
-main div{
+.element{
     max-width: 100%;
     background-color: white;
     border-radius: 10px;
@@ -66,6 +66,33 @@ h3{
 
 .carteProno{
     padding:10px;
+    margin-bottom: 10px;
+}
+
+.hautCarte{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+}
+
+.custom-pts{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nbPoints{
+     color: #fff;
+     background-color: grey;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     border-radius: 14px;
+     width: 40px;
+     height: 40px;
+     text-align: center;
+     font-size: 19px;
+     font-family: Trebuchet MS, sans-serif;
 }
 
 .logoEquipe{
@@ -103,15 +130,6 @@ h3{
     left: 50%;
     right: 50%;
 }
-
-/*.inputScore{
-    min-height: 15px;
-    min-width: 15px;
-    height: 36px;
-    width: 36px;
-    margin: auto 10px;
-    text-align: center;
-}*/
 
 .left{
     margin-left: auto;

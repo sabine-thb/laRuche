@@ -1,6 +1,6 @@
 <form class="formPronostics" action="competition.php?action=validationProno&id=<?php echo $_GET['id']; ?>" method="post">
 
-    <div class="topMain">
+    <div class="topMain element">
         <h2>Pronostics</h2>
 
         <input class="submit" type="submit" value="Enregistrer">
@@ -9,7 +9,7 @@
     
     <?php foreach ($matchs as $tuple) { ?>
 
-        <div class="carteProno" onload="">
+        <div class="carteProno element" onload="">
             <p>
                 <?php echo $tuple['date_match']; ?> - <?php echo $tuple['heure']; ?>H
             </p>
