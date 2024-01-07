@@ -1,0 +1,36 @@
+.custom-input{
+    display: flex;
+    width: 3em;
+    height: 7em;
+    border: 1px #000000 solid;
+    border-radius: 3em;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    transition: 0.5s;
+}
+
+.inputScore::-webkit-outer-spin-button,
+.inputScore::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.inputScore{
+    font-size: 1.5em;
+    text-align: center;
+    background: none;
+    border: none;
+    color: #7fef51;
+    font-weight: bold;
+    width: 100%;
+}
+
+.inputScore:focus {
+    outline: none;
+}
+
+.custom-input i {
+    font-size: 2em;
+    cursor: pointer;
+}

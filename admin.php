@@ -29,11 +29,11 @@ $affichageModule = $module->afficheModule();
     <title>LaRuche - admin</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link href="style/style.css" rel="stylesheet">
-    <link href="style/fonts.css" rel="stylesheet">
-    <link href="style/styleAccAdmin.css" rel="stylesheet">
-    <link href="style/menu.css" rel="stylesheet">
-    <script src="./style/js/tools.js"></script>
+    <link href="style/css/style.css" rel="stylesheet">
+    <link href="style/css/fonts.css" rel="stylesheet">
+    <link href="style/css/styleAccAdmin.css" rel="stylesheet">
+    <link href="style/css/menu.css" rel="stylesheet">
+    <script src="style/js/inputScore.js"></script>
 </head>
 
 <body>

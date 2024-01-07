@@ -10,9 +10,15 @@
 <?php foreach ($matchs as $tuple) { ?>
 
     <div class="carteProno">
-        <p>
-            <?php echo $tuple['date_match']; ?> - <?php echo $tuple['heure']; ?>H
-        </p>
+        <div class="hautCarte">
+            <p>
+                <?php echo $tuple['date_match']; ?> - <?php echo $tuple['heure']; ?>H
+            </p>
+
+            <p class="nbPoints">
+                <?php echo $tuple['point_obtenu']; ?>
+            </p>
+        </div>
 
         <div class="CorpCarte">
             <!-- Équipe 1 -->
@@ -29,7 +35,7 @@
             </p>
 
             <p class="centreCard">
-                + <?php echo $tuple['point_obtenu']; ?>
+                VS
             </p>
 
             <!-- Équipe 2 -->

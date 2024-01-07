@@ -104,16 +104,14 @@ h3{
     right: 50%;
 }
 
-.inputScore{
+/*.inputScore{
     min-height: 15px;
     min-width: 15px;
-    max-height: 40px;
-    max-width: 40px;
-    height: 30px;
-    width: 30px;
+    height: 36px;
+    width: 36px;
     margin: auto 10px;
     text-align: center;
-}
+}*/
 
 .left{
     margin-left: auto;

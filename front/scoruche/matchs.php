@@ -28,21 +28,28 @@
                             <?php echo $tuple['nom1']; ?>
                         </h5>
 
-                        <input type="number" name="<?php echo $tuple['match_id']; ?>_prono_equipe1"
-                               class="inputScore right" min="0" id="prono1" inputmode="numeric"
-                               value="<?php echo $tuple['prono_equipe1']; ?>"
-                        >
+                        <div class="custom-input">
+                            <i class="fas fa-angle-up arr-up"></i>
+                            <input type="number" name="<?php echo $tuple['match_id']; ?>_prono_equipe1"
+                                   class="inputScore right" min="0" max="45" id="prono1" inputmode="numeric"
+                                   value="<?php echo $tuple['prono_equipe1']; ?>"
+                            >
+                            <i class="fas fa-angle-down arr-down"></i>
+                        </div>
 
                         <p class="centreCard">
                             VS
                         </p>
 
                         <!-- Équipe 2 -->
-
-                        <input type="number" name="<?php echo $tuple['match_id']; ?>_prono_equipe2"
-                               class="inputScore left" min="0" id="prono2" inputmode="numeric"
-                               value="<?php echo $tuple['prono_equipe2']; ?>"
-                        >
+                        <div class="custom-input">
+                            <i class="fas fa-angle-up arr-up"></i>
+                            <input type="number" name="<?php echo $tuple['match_id']; ?>_prono_equipe2"
+                                   class="inputScore left" min="0" max="45" id="prono2" inputmode="numeric"
+                                   value="<?php echo $tuple['prono_equipe2']; ?>"
+                            >
+                            <i class="fas fa-angle-down arr-down"></i>
+                        </div>
 
                         <h5 class="left">
                             <?php echo $tuple['nom2']; ?>

@@ -26,9 +26,9 @@ $affichageModule = $module->afficheModule();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/239660ff21.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <link href="style/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="./style/fonts.css">
-    <link rel="stylesheet" href="./style/styleConnexion.css">
+    <link href="style/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/css/fonts.css">
+    <link rel="stylesheet" href="style/css/styleConnexion.css">
     <script src="./style/js/connexion.js"></script>
 </head>
 
