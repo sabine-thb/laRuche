@@ -62,6 +62,21 @@ header img{
     align-content: center;
 }
 
+li,ul{
+    list-style: none;
+}
+
+#profil-details{
+    display: block;
+    position: absolute;
+    padding: 20px;
+    background-color: #a6a6a6;
+}
+
+#logo-user{
+
+}
+
 .linkNavbar{
     text-decoration: none;
     color: white;

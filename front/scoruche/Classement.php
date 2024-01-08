@@ -1,4 +1,4 @@
-<div class="topMain">
+<div class="topMain element">
     <h2>
         Classement général
     </h2>
@@ -10,7 +10,7 @@
     foreach ($classement as $personne) {
 ?>
 
-    <div class="classement">
+    <div class="classement element">
         <p class="numero">
             <?php echo $numero; ?>
         </p>

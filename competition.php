@@ -68,6 +68,20 @@ $affichageModule = $module->afficheModule();
             </a>
             <a href="competition.php?action=resultat&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="resultats">
                     Résultats
+            </a>
+
+            <li><img src="<?php echo $_SESSION['srcLogoUser'];?>"
+                     alt="logo de <?php echo $_SESSION['loginActif']; ?>"
+                     id="logo-user">
+                <ul>
+                    <div id="profil-details">
+                        <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
+                            Déconnexion
+                        </a>
+                    </div>
+                </ul>
+            </li>
+
             <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
                     Déconnexion
             </a>
