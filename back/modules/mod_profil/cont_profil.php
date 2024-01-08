@@ -29,7 +29,8 @@ class ContProfil {
 
     public function editProfil()
     {
-        $this->vue->afficheFormEdit();
+        $data = $this->modele->getInfo($_SESSION['idUser']);
+        $this->vue->afficheFormEdit($data);
     }
 
 }

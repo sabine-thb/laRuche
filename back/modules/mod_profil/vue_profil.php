@@ -16,7 +16,7 @@ class VueProfil extends VueGenerique {
         require_once("./front/ruche/bienvenue.php");
     }
 
-    public function afficheFormEdit()
+    public function afficheFormEdit($data)
     {
         require_once("./front/profil/editProfil.php");
     }

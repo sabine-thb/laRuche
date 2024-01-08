@@ -31,6 +31,7 @@ $affichageModule = $module->afficheModule();
     <link rel="stylesheet" href="style/css/menu.css">
     <link rel="stylesheet" href="style/css/compet.css">
     <link rel="stylesheet" href="style/css/fonts.css">
+    <link rel="stylesheet" href="style/css/profilEdit.css">
     <script src="style/js/inputScore.js"></script>
     <script src="./style/js/competition.js"></script>
 </head>
@@ -47,6 +48,9 @@ $affichageModule = $module->afficheModule();
         </a>
 
         <div id="navbar">
+            <a href="scoruche.php" class="linkNavbar linkDefaut" id="competition">
+                Competitions
+            </a>
             <li class="drop-menu">
                 <img src="<?php echo $_SESSION['srcLogoUser'];?>"
                      alt="logo de <?php echo $_SESSION['loginActif']; ?>"
