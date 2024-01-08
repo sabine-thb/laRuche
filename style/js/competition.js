@@ -21,3 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
     monElement.classList.remove('linkDefaut');
     monElement.classList.add('linkActive');
 });
+
+function afficherMenuProfil(){
+    const menu = document.querySelector('.profilDetails');
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}

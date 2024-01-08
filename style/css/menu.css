@@ -49,7 +49,6 @@ header img{
     position:relative;
     left:-16px;
     bottom:-9px;
-    
 }
 
 /*mise en place de la barre de nav*/
@@ -66,15 +65,17 @@ li,ul{
     list-style: none;
 }
 
-#profil-details{
-    display: block;
+.profilDetails{
+    display: none;
+    flex-direction: column;
     position: absolute;
+    right: 3%;
     padding: 20px;
     background-color: #a6a6a6;
 }
 
-#logo-user{
-
+.profilDetails *{
+    margin-bottom: 10px;
 }
 
 .linkNavbar{
@@ -93,7 +94,6 @@ li,ul{
 .linkNavbar:hover{
     background-color: #cf9e00;
 }
-
 
 .linkActive{
     /*je n'ai pas trouvé de propriéte pour faire ca automatiquement

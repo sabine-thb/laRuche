@@ -14,7 +14,7 @@ class ModConnexion {
     public function __construct(){
 
         $this->controlleur = new ContConnexion();
-        $this->action = isset($_GET['action']) ? $_GET['action'] : 'bienvenue';
+        $this->action = $_GET['action'] ?? 'bienvenue';
 
         $this->start();
 
