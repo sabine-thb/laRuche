@@ -83,7 +83,7 @@ class ModeleScorcast extends Connexion {
 
         try {
             $query = "
-            SELECT login, LaRuche.totalPoint(pronostiqueur_id,$idCompet) as points
+            SELECT login, LaRuche.totalPoint(pronostiqueur_id,$idCompet) as points,src_logo_user,user_id as id
             FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.users
             WHERE competition_id = $idCompet
             ORDER BY points DESC
