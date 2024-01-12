@@ -5,6 +5,9 @@ main{
     align-items: center;
     margin-top:20px;
     gap:20px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .element{
@@ -55,13 +58,16 @@ h3{
 }
 
 .numero{
-    width: 20px;
-    height: 20px;
+    min-width: 25px;
+    min-height: 25px;
     background-color: #9b9b9b;
     border-radius: 50%;
     line-height: 20px;
-    padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    font-family: Trebuchet MS, sans-serif;
 }
 
 .carteProno{
@@ -148,9 +154,13 @@ h3{
 
 @media(max-width:850px){
 
+    main{
+        margin-top: 80px;
+    }
 
     body{
         padding-top:200px;
+        padding-bottom: 60px;
     }
 
     header{
@@ -160,6 +170,20 @@ h3{
     #navbar{
         flex-direction: column;
         align-items: flex-end;
+    }
+
+    .logoEquipe{
+        max-width: 70px;
+    }
+    .centreCard {
+        position: initial;
+    }
+    .Carte{
+        padding:10px 2px;
+
+    }
+    .CorpCarte{
+        gap:6px;
     }
 
 }

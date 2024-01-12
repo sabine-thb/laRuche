@@ -273,6 +273,13 @@ input{
 
     body{
         justify-content: center;
+        display: block;
+        height: auto;
+        padding-bottom: 170px;
+    }
+
+    html{
+        padding-bottom: 15px;
     }
 
     .logoLeague{
@@ -285,12 +292,6 @@ input{
 
     .logoLeague{
         width:230px;
-    }
-
-    body{
-        display: block;
-        height: auto;
-        padding-bottom: 60px;
     }
 
 
