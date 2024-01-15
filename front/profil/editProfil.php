@@ -1,4 +1,4 @@
-<form action="editProfil.php?action=edit" method="post" id="formProfil" enctype="multipart/form-data">
+<form action="profil.php?action=edit" method="post" id="formProfil" enctype="multipart/form-data">
 
     <div class="topLeft-form">
         <div class="logoInput">
@@ -6,7 +6,7 @@
             <label>
 
                 <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
-                <input type="file" name="logo" accept="image/*"/>
+                <input type="file" name="new_logo" accept="image/*"/>
             </label>
         </div>
 
@@ -14,6 +14,10 @@
             <label for="login"></label>
             <input type='text' name='login' id="login" inputmode="text" value="<?php echo $data['login'];?>">
         </div>
+    </div>
+
+    <div class="btn-save">
+        <input class="submit" type="submit" value="Save">
     </div>
 </form>
 

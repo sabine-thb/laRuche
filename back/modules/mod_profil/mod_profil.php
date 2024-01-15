@@ -27,6 +27,9 @@ class ModProfil {
             case 'editProfil':
                 $this->controlleur->editProfil();
                 break;
+            case 'edit':
+                $this->controlleur->recupFormEdit();
+                break;
         }
     }
 

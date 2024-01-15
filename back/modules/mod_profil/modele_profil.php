@@ -38,4 +38,22 @@ class ModeleProfil extends Connexion {
             return 404;
         }
     }
+
+    public function changeLogo(string $dest): bool
+    {
+        try{
+            $query = "
+            UPDATE LaRuche.users 
+            SET src_logo_user = '$dest'
+            WHERE user_id = $_SESSION[idUser]
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
 }

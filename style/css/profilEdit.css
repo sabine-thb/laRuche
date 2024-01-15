@@ -1,3 +1,16 @@
+main{
+    width: 80%;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px 30px 20px 20px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top:20px;
+    flex-direction: initial;
+    justify-content: normal;
+    align-items: normal;
+}
+
 .logoInput{
     position: relative;
     width: 150px;
@@ -60,20 +73,13 @@ input[type=file]:hover{
     align-items: center;
 }
 
+.btn-save{
+    margin-top: 10px;
+    text-align: center;
+}
+
 .inputNom{
     margin-left: 10px;
 }
 
-main{
-    width: 80%;
-    background-color: white;
-    border-radius: 20px;
-    padding-top: 20px;
-    padding-bottom: 50px;
-    padding-left: 30px;
-    margin-right: auto;
-    margin-left: auto;
-    flex-direction: initial;
-    justify-content: normal;
-    align-items: normal;
-}
+

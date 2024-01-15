@@ -24,7 +24,7 @@ Connexion::initConnexion();
 
 $module = new ModScorcast();
 
-$_SESSION['idPronostiqueur'] = $module->getPronostiqueurIdActuelle();
+$module->updateSession();
 $module->start();
 
 //fin du tampon

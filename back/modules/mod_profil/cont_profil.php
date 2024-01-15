@@ -33,4 +33,47 @@ class ContProfil {
         $this->vue->afficheFormEdit($data);
     }
 
+    public function recupFormEdit()
+    {
+        if (isset($_FILES['new_logo']['tmp_name'])){
+            $dest = $this->gererLogo();
+            if ($dest == null) {
+                echo "erreur";
+            }else {
+                $res = $this->modele->changeLogo($dest);
+                if (!$res)
+                    echo "<p>Erreur changement logo</p>";
+                else {
+                    $_SESSION['srcLogoUser'] = $dest;
+                    header('Location: profil.php?action=editProfil');
+                }
+            }
+        }
+    }
+
+    public function gererLogo()
+    {
+        $taille = strlen(basename($_FILES["new_logo"]["name"]));
+
+        $taille> 20 ?
+            $nom = substr(basename($_FILES["new_logo"]["name"]), -20) :
+            $nom = basename($_FILES["new_logo"]["name"]);
+
+        $temp_name = $_FILES["new_logo"]["tmp_name"];
+
+        $nom_dossier = "./style/img/imageProfil/$_SESSION[loginActif]";
+
+        if (!is_dir($nom_dossier))
+            mkdir($nom_dossier);
+
+        $destination = "./style/img/imageProfil/$_SESSION[loginActif]/$nom";
+
+        // Déplacer le fichier téléchargé vers un répertoire sur le serveur
+        if (!move_uploaded_file($temp_name, $destination)){
+            echo "Une erreur s'est produite lors du téléchargement de l'image.<br>";
+            return null;
+        }else
+            return $destination;
+    }
+
 }

@@ -425,8 +425,6 @@ class ModeleAdmin extends Connexion {
             return null;
         }else
             return $destination;
-            
-
     }
 
     public function miseEnAttenteMatch($match_id): bool

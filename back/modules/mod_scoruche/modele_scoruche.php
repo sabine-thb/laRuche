@@ -200,4 +200,22 @@ class ModeleScorcast extends Connexion {
         }
     }
 
+    public function getSrcLogo($id)
+    {
+        try {
+            $query = "
+                SELECT src_logo_user
+                FROM LaRuche.users
+                WHERE user_id = $id
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            return $this->executeQuery($stmt)[0]['src_logo_user'];
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return false;
+        }
+    }
+
 }
