@@ -4,3 +4,5 @@
 .idea
 .idea/*
 *.xml
+
+./composer.json
