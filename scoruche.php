@@ -58,11 +58,11 @@ $affichageModule = $module->afficheModule();
             <a href="scoruche.php?action=afficheMesCompet" class="linkNavbar linkDefaut">
                 Mes compétitions
             </a>
-            <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
-               Déconnexion
-           </a>
+<!--            <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">-->
+<!--               Déconnexion-->
+<!--           </a>-->
 
-            <!-- <li class="drop-menu">
+             <li class="drop-menu">
                 <img src="<?php echo $_SESSION['srcLogoUser'];?>"
                      alt="logo de <?php echo $_SESSION['loginActif']; ?>"
                      id="logoUser" ondragover="afficherMenuProfil()" onclick="afficherMenuProfil()">
@@ -76,7 +76,7 @@ $affichageModule = $module->afficheModule();
                         </a>
                     </div>
                 </ul>
-            </li> -->
+            </li>
 
            
     </div>
