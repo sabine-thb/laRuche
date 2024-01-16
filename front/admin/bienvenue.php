@@ -1,7 +1,7 @@
 <section>
-    <p class="titlePage">
+    <h1 class="titlePage">
         Bon retour parmi nous cher <?php echo $_SESSION["loginActif"]; ?>, vous êtes sur votre page d'accueil !
-    </p>
+    </h1>
     <p>Choisissez ci-dessous les actions que vous souhaitez effectuer.</p>
     <div class="actionsContainer">
         <div class="actions">

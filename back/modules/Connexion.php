@@ -1,10 +1,5 @@
 <?php
 
-require './vendor/autoload.php';
-
-use Aws\Exception\AwsException;
-use Aws\Rds\RdsClient;
-
 class Connexion {
 
     protected static $bdd;
@@ -31,31 +26,9 @@ class Connexion {
 
         } catch (PDOException $e) {
 
-            $region = 'eu-west-3';
-            $key = 'AKIA2S3VHVIGLJZYU276';
-            $secret = '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';
+            die("Il y a une erreur de connexion avec la base de données : 
+            Veullez vous connexter via http://35.181.154.112 pour relancer la base de donnée \n");
 
-            $nom_instance_rds = 'laruche2';
-
-            try {
-                $rdsClient = new RdsClient([
-                    'version'     => 'latest',
-                    'region'      => $region,
-                    'credentials' => [
-                        'key'    => $key,
-                        'secret' => $secret,
-                    ],
-                ]);
-
-                // Redémarrer l'instance RDS
-                $result = $rdsClient->rebootDBInstance([
-                    'DBInstanceIdentifier' => $nom_instance_rds,
-                ]);
-
-                die("Redémarrage en cours de l'instance RDS : " . $nom_instance_rds . "\n");
-            } catch (AwsException $e) {
-                die("Une erreur s'est produite : " . $e->getAwsErrorMessage() . "\n");
-            }
         }  
     }
 

@@ -27,21 +27,23 @@ function afficherResultats(resultats) {
         resultats.forEach(function (utilisateur) {
             let verifier = utilisateur.est_verifier ? ' oui ' : ' non ';
 
-            let confirmPwd = 'Est-tu sur de reset le mot de passe de ' + utilisateur.login + ' cela entrainera la ' +
-                'suppression definitif de son ancian mot de passe et ' + utilisateur.login + ' pourra creer un nouveau ' +
-                'mot de passe lors de sa prochaine connexion';
+            let confirmPwd = 'Est-tu sur de reset le mot de passe de ' + utilisateur.login + ' ? Cela entrainera la ' +
+                'suppression definitive de son ancien mot de passe et ' + utilisateur.login + ' pourra créer un nouveau ' +
+                'mot de passe lors de sa prochaine connexion.';
 
-            let confirmDelete = 'Est-tu sur de vouloir supprimer ' + utilisateur.login + '?';
+            let confirmDelete = 'Est-tu sur de vouloir supprimer ' + utilisateur.login + ' ?';
 
             // desolé c'est illisible
             resultatDiv.innerHTML +=
-                '<p>Nom :' + utilisateur.login + ', Mail :' + utilisateur.mail + ', ' +
-                'description :' + utilisateur.description + ', validé : ' + verifier + '</p>' +
-                '<a class="lienResetPwd" href="admin.php?action=resetPwd&idUser='+utilisateur.user_id+'" ' +
-                'onclick="return confirm(\''+confirmPwd+'\');"> reset PassWord</a> ' +
-                '<a class="lienDeleteUser" href="admin.php?action=supprimeUser&idUser='+utilisateur.user_id+'" ' +
-                'onclick="return confirm(\''+confirmDelete+'\');"> supprimez</a>';
-        });
+            '<div class="oneUser">' +
+                '<p>Nom : ' + utilisateur.login + '</p> <p> Mail : ' + utilisateur.mail + ' </p>' +
+                '<p>Description : ' + utilisateur.description + '</p><p> Validé : ' + verifier + '</p>' +
+                '<div class="gerer"> <a class="lienResetPwd" href="admin.php?action=resetPwd&idUser=' + utilisateur.user_id + '" ' +
+                'onclick="return confirm(\'' + confirmPwd + '\');"> changer le mot de passe</a> ' +
+                '<a class="lienDeleteUser" href="admin.php?action=supprimeUser&idUser=' + utilisateur.user_id + '" ' +
+                'onclick="return confirm(\'' + confirmDelete + '\');"> supprimer</a> </div>' +
+            '</div>';
+            });
     } else {
         resultatDiv.innerHTML = '<p>Aucun utilisateur trouvé.</p>';
     }

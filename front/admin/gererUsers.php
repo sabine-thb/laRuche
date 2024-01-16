@@ -1,8 +1,20 @@
 <script src="./style/js/rechercheUser.js"></script>
 
-<label for="search">Rechercher :</label>
-<input type="text" id="search" name="search" oninput="rechercherUtilisateur()">
 
-<div id="resultats">
+<section class="gererUser">
 
-</div>
+    <div class="search">
+        <label class="labelSearch" for="search">Rechercher un utilisateur :</label>
+        <input type="text" id="search" name="search" oninput="rechercherUtilisateur()">
+
+    </div>
+        
+
+        <div id="resultats">
+
+        </div>
+
+    
+
+</section>
+
