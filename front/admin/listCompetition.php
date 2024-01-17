@@ -2,7 +2,7 @@
 
 <section class="listCompet">
     <h1 class="titlePage">
-        Voici les competitions existantes :
+        Voici les compétitions existantes :
     </h1>
         <?php foreach ($tableau as $tuple) { 
             $date_creation = $tuple["date_creation"];
