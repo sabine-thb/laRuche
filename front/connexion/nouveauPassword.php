@@ -3,6 +3,7 @@
 <form class="formInscription" action="connexion.php?action=changeMDP" method="POST">
     <h2>Entrez un nouveau mot de passe</h2>
     <input type="hidden" value="<?php echo $_SESSION['idUser']; ?>" name="idUser">
+    <input type="hidden" value="<?php echo $nextPage; ?>" name="nextPage">
 
     <label for="mdp">Mot de passe :</label>
     <input id="mdp" type="password" name="mdp" minlength="6" autocomplete="new-password"><br>

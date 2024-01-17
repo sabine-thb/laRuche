@@ -76,4 +76,9 @@ class ContProfil {
             return $destination;
     }
 
+    public function afficheFormMdp()
+    {
+        $this->vue->afficheFormNouveauMDP();
+    }
+
 }

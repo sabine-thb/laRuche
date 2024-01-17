@@ -21,4 +21,10 @@ class VueProfil extends VueGenerique {
         require_once("./front/profil/editProfil.php");
     }
 
+    public function afficheFormNouveauMDP()
+    {
+        $nextPage = 'profil.php?action=editProfil';
+        require_once('./front/connexion/nouveauPassword.php');
+    }
+
 }

@@ -68,6 +68,8 @@ h3{
 .logo-classement{
     width: 50px;
     height: 50px;
+    border-radius: 10px;
+    border: #05e07e solid 3px;
     cursor: pointer;
 }
 
@@ -77,6 +79,10 @@ h3{
     color: #007bff;
     background-color: rgba(99, 167, 246, 0.22);
     border-radius: 10px;
+}
+
+.bleu .logo-classement{
+    border: #5505e0 solid 3px;
 }
 
 .bleu .numero{

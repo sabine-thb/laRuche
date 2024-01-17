@@ -32,8 +32,8 @@ $affichageModule = $module->afficheModule();
 
     <link rel="stylesheet" href="style/css/fonts.css">
     <link rel="stylesheet" href="style/css/profilEdit.css">
-    <script src="style/js/inputScore.js"></script>
     <script src="./style/js/competition.js"></script>
+    <script src="./style/js/profil/editLogo.js"></script>
 </head>
 
 <body>

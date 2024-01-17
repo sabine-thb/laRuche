@@ -2,18 +2,23 @@
 
     <div class="topLeft-form">
         <div class="logoInput">
-            <img src="<?php echo $data['src_logo_user']; ?>" class="imgProfil" alt="image profil">
+            <img src="<?php echo $data['src_logo_user']; ?>" class="imgProfil" alt="image profil" id="logo">
             <label>
 
                 <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
-                <input type="file" name="new_logo" accept="image/*"/>
+                <input type="file" name="new_logo" accept="image/*" id="inputLogo" onchange="changeLogo()"/>
             </label>
         </div>
 
         <div class="inputNom">
-            <label for="login"></label>
-            <input type='text' name='login' id="login" inputmode="text" value="<?php echo $data['login'];?>">
+            <h2><?php echo $data['login'];?></h2>
         </div>
+    </div>
+
+    <div id="center">
+        <a href="profil.php?action=changePassword" style="text-decoration: none; padding: 5px; background-color: #9b9b9b; border-radius: 10px; cursor: pointer;">
+            changer mot de passe
+        </a>
     </div>
 
     <div class="btn-save">
