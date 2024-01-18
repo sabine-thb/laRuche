@@ -223,6 +223,59 @@ section{
 
 /*Je fais le code de la page de création des équipes*/
 
+/*Je fais le code de la page pour gérer les équipes*/
+
+.gridContainer{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap:50px;
+    
+}
+
+.oneEquipe{
+
+    
+
+    background-color: white;
+    border-radius:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+    box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25);
+}
+
+.card-title{
+    font-size:1.3rem;
+}
+
+.logoEquipe{
+    width:150px;
+    height:150px;
+}
+
+.linkActions{
+    display:flex;
+    gap:10px;
+}
+
+.link{
+    cursor: pointer;
+    text-decoration: none;
+    color:white;
+    border-radius:25px;
+    padding:5px 15px 5px 15px;
+    font-size:0.8rem;
+}
+
+.supprEquipe{
+    background-color: rgb(170, 0, 0);
+}
+
+.modifEquipe{
+    background-color: #007bff;
+}
 
 
 
@@ -239,6 +292,14 @@ section{
     }
 
 }
+
+@media(max-width:1170px){
+    .gridContainer{
+        grid-template-columns: repeat(3, 1fr);
+        
+    }
+}
+
 @media(max-width:930px){
     .oneAction{
         width:180px;
@@ -246,6 +307,14 @@ section{
         font-size:1rem;
     }
 
+}
+
+@media(max-width:900px){
+    .gridContainer{
+        grid-template-columns: repeat(2, 1fr);
+
+        
+    }
 }
 
 @media(max-width:780px){
@@ -259,6 +328,13 @@ section{
 
     }
 
+}
+
+@media(max-width:600px){
+    .gridContainer{
+        grid-template-columns: repeat(1, 1fr);
+        
+    }
 }
 
 @media(max-width:575px){
