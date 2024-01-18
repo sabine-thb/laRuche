@@ -96,8 +96,9 @@ label{
 
 input{
     border:none;
-    /* border-radius: 15px;
-    padding: 5px; */
+    border-radius: 15px;
+    padding: 3px 3px 3px 6px;
+    margin-top: 2px;
 }
 
 .erreurInputVide{
@@ -253,14 +254,10 @@ input{
         gap:20px;
     }
 
-    
-
-
     main{
         margin-right: auto;
         margin-left: auto;
     }
-
     
     .line{
         display: none;
