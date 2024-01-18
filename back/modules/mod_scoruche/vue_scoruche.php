@@ -39,7 +39,7 @@ class VueScorcast extends VueGenerique {
 
     public function afficheInfoUser($data, $competActive)
     {
-        require_once('./front/profil/PageProfil.php');
+        require_once('./front/profil/ViewProfil.php');
     }
 
 }

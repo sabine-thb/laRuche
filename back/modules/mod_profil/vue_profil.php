@@ -18,8 +18,7 @@ class VueProfil extends VueGenerique {
 
     public function afficheFormEdit($data,$competActive)
     {
-        require_once("./front/profil/PageProfil.php");
-        require_once("./front/profil/btnChangePassword.html");
+        require_once("./front/profil/EditProfil.php");
     }
 
     public function afficheFormNouveauMDP()

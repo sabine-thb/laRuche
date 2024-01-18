@@ -25,8 +25,8 @@ class ModeleProfil extends Connexion {
     {
         try {
             $query = "
-            SELECT src_logo_user,login,c.nom as nom
-            FROM LaRuche.users
+            SELECT U.src_logo_user,U.login,c.nom as nom, U.description, U.age , U.Gender
+            FROM LaRuche.users U
             NATURAL JOIN LaRuche.pronostiqueur
             INNER JOIN LaRuche.competition join LaRuche.competition c on pronostiqueur.competition_id = c.competition_id
             WHERE user_id = $id
@@ -41,13 +41,13 @@ class ModeleProfil extends Connexion {
         }
     }
 
-    public function changeLogo(string $dest): bool
+    public function changeLogo(string $dest,$idUser): bool
     {
         try{
             $query = "
             UPDATE LaRuche.users 
             SET src_logo_user = '$dest'
-            WHERE user_id = $_SESSION[idUser]
+            WHERE user_id = $idUser
             ";
             $stmt = Connexion::$bdd->prepare($query);
             $this->executeQuery($stmt);
@@ -72,6 +72,42 @@ class ModeleProfil extends Connexion {
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function editAge($age, $idUser): bool
+    {
+        try{
+            $query = "
+            UPDATE LaRuche.users 
+            SET age = $age
+            WHERE user_id = $idUser
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function editGenre($gender, $idUser): bool
+    {
+        try{
+            $query = "
+            UPDATE LaRuche.users 
+            SET Gender = '$gender'
+            WHERE user_id = $idUser
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
         }catch (PDOException $e) {
             var_dump($e);
             return false;

@@ -222,11 +222,11 @@ class ModeleScorcast extends Connexion {
     {
         try {
             $query = "
-            SELECT src_logo_user,login,c.nom as nom
-            FROM LaRuche.users
+            SELECT U.src_logo_user,U.login,c.nom as nom, U.description, U.age , U.Gender
+            FROM LaRuche.users U
             NATURAL JOIN LaRuche.pronostiqueur
             INNER JOIN LaRuche.competition join LaRuche.competition c on pronostiqueur.competition_id = c.competition_id
-            WHERE user_id = $idUser
+            WHERE U.user_id = $idUser
             ";
 
             $stmt = Connexion::$bdd->prepare($query);

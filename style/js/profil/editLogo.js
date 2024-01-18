@@ -18,3 +18,17 @@ function changeLogo() {
         image.src = "#";
     }
 }
+
+function afficheBtnSave() {
+    // Récupérer les éléments
+    const inputNombre = document.getElementById("inputAge");
+    const selectElement = document.getElementById("gender");
+    const maDiv = document.getElementById("btn-save");
+
+    // Vérifier si l'input de nombre est modifié ou une option est sélectionnée
+    if (inputNombre.value !== "" || selectElement.value !== "") {
+        maDiv.style.display = "block";
+    } else {
+        maDiv.style.display = "none";
+    }
+}
