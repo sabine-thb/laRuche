@@ -117,6 +117,10 @@ class ModAdmin {
                 $this->controlleur->supprimerMatch();
                 break;
 
+            case 'ajouterPariSpecial':
+                $this->controlleur->afficheFormPariSpecial();
+                break;
+
         }
     }
 

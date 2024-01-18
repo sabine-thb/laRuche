@@ -331,5 +331,11 @@ class ContAdmin {
         }
     }
 
+    public function afficheFormPariSpecial()
+    {
+        $compet=$this->modele->getCompet();
+        $this->vue->afficheFormPariSpecial($compet);
+    }
+
 
 }
