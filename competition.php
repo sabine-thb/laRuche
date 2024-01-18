@@ -39,10 +39,10 @@ $affichageModule = $module->afficheModule();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/239660ff21.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style/css/menu.css">
     <link rel="stylesheet" href="style/css/compet.css">
-    <link rel="stylesheet" href="style/css/fonts.css">
     <link rel="stylesheet" href="style/css/inputScore.css">
+    <link rel="stylesheet" href="style/css/menu.css">
+    <link rel="stylesheet" href="style/css/fonts.css">
     <link href="style/css/checkBox.css" rel="stylesheet">
     <script src="style/js/inputScore.js"></script>
     <script src="./style/js/competition.js"></script>

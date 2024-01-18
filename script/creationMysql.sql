@@ -134,6 +134,23 @@ BEGIN
     RETURN t;
 END $$
 
+DROP FUNCTION IF EXISTS LaRuche.getClassement $$
+CREATE FUNCTION LaRuche.getClassement(id_pronostiqueur INT, id_compet INT) RETURNS INT
+BEGIN
+
+    DECLARE t INT;
+
+    SELECT COUNT(*) + 1 INTO t
+    FROM pronostiqueur
+    WHERE competition_id = id_compet and totalPoint(pronostiqueur_id,competition_id) > totalPoint(id_pronostiqueur,id_compet);
+
+    IF t IS NULL THEN
+        SET t = -1;
+    END IF;
+
+    RETURN t;
+END $$
+
 -- Trigger
 
 -- ajoute automatiquement des tuples de pronostique pour chaque personne d'une competition lorsqu'un match est crée

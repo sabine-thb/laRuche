@@ -17,9 +17,9 @@
                 <?php echo $numero; ?>
             </p>
 
-            <img src="<?php echo $personne["src_logo_user"]; ?>" alt="logo" class="logo-classement">
-
-            <!-- a faire plus tard : image du profile ici  -->
+            <a href="competition.php?action=detailUser&id=<?php echo $_GET["id"]; ?>&userId=<?php echo $personne["id"]; ?>">
+                <img src="<?php echo $personne["src_logo_user"]; ?>" alt="logo" class="logo-classement">
+            </a>
 
             <h2>
                 <?php echo $personne["login"]; ?>

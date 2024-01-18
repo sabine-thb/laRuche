@@ -46,6 +46,9 @@ class ModScorcast {
             case 'resultat':
                 $this->controlleur->afficheResultat();
                 break;
+            case 'detailUser':
+                $this->controlleur->afficheInfoUser();
+                break;
         }
     }
 

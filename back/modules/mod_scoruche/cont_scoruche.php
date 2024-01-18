@@ -132,4 +132,13 @@ class ContScorcast {
 
     }
 
+    public function afficheInfoUser()
+    {
+        $idUser = $_GET['userId'];
+
+        $data = $this->modele->getInfo($idUser);
+        $competActive = $this->modele->getCompetAndClassement($idUser);
+        $this->vue->afficheInfoUser($data,$competActive);
+    }
+
 }

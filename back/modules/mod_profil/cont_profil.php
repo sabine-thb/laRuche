@@ -29,8 +29,11 @@ class ContProfil {
 
     public function editProfil()
     {
-        $data = $this->modele->getInfo($_SESSION['idUser']);
-        $this->vue->afficheFormEdit($data);
+        $isUser = $_SESSION['idUser'];
+
+        $data = $this->modele->getInfo($isUser);
+        $competActive = $this->modele->getCompetAndClassement($isUser);
+        $this->vue->afficheFormEdit($data,$competActive);
     }
 
     public function recupFormEdit()

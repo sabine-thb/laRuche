@@ -11,6 +11,12 @@ main{
     align-items: normal;
 }
 
+#content{
+    flex-direction: initial;
+    justify-content: normal;
+    align-items: normal;
+}
+
 .logoInput{
     position: relative;
     width: 150px;
@@ -76,6 +82,11 @@ input[type=file]:hover{
 .btn-save{
     margin-top: 10px;
     text-align: center;
+}
+
+.oneCompet{
+    display: flex;
+    align-items: center;
 }
 
 .inputNom{
