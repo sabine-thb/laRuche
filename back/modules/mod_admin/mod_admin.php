@@ -113,6 +113,10 @@ class ModAdmin {
                 $this->controlleur->supprimerEquipe();
                 break;
 
+            case 'supprimerMatch':
+                $this->controlleur->supprimerMatch();
+                break;
+
         }
     }
 

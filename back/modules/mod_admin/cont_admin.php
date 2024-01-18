@@ -316,5 +316,20 @@ class ContAdmin {
 
     }
 
+    public function supprimerMatch()
+    {
+        if (isset($_GET["idMatch"])) {
+            $resultat=$this->modele->deleteMatch($_GET["idMatch"]);
+
+            if ($resultat == -45)
+                header('Location: admin.php?action=gererMatch');
+            else if($resultat = 22000)
+                echo "impossible de supprimer le match";
+            else
+                echo "erreur inconnu - CODE = " . $resultat;
+
+        }
+    }
+
 
 }

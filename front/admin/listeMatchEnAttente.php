@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="container text-center mt-5">
-                        <a href="#"
+                        <a href="admin.php?action=supprimerMatch&idMatch=<?php echo $row['match_id']; ?>"
                            class="btn btn-danger"
                            onclick="return confirm('est-tu sur de vouloir supprimez ce match ?\n');"
                         >
