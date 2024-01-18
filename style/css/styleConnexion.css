@@ -1,7 +1,7 @@
 body{
     margin:0;
     width:100vw;
-    height:100vh;
+    min-height: 100vh;
     font-family: "montserratExtraBold", sans-serif;
     background-image: url(../img/fond.png);
     background-size: cover;
@@ -77,10 +77,17 @@ main{
     display:flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     z-index:1000;
     max-width: 300px;
     position:relative;
     margin-top:10px;
+}
+
+.pForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 label{
@@ -89,16 +96,16 @@ label{
 
 input{
     border:none;
-    border-radius: 15px;
-    padding: 5px;
+    /* border-radius: 15px;
+    padding: 5px; */
 }
 
 .erreurInputVide{
     border: 2px solid transparent;
-    animation: shake 0s 2s ease-in-out;
+    /* animation: shake 0s 2s ease-in-out; */
 }
 
-@keyframes shake{
+/* @keyframes shake{
     0% { transform: translate(1px,1px) rotate(0deg); }
     10% { transform: translate(-1px,2px) rotate(-1deg); border-color: #E94646 ;}
     20% { transform: translate(-3px,0px) rotate(1deg); border-color: #E94646 ;}
@@ -110,7 +117,7 @@ input{
     80% { transform: translate(-1px,-1px) rotate(1deg); border-color: #E94646 ;}
     90% { transform: translate(1px,2px) rotate(0deg); border-color: #E94646 ;}
     100% { transform: translate(1px,-2px) rotate(-1deg); border-color: #E94646 ;}
-}
+} */
 
 .submit{
     font-family: "montserratExtraBold", sans-serif;
@@ -135,6 +142,7 @@ input{
 }
 .option{
     margin-top:20px;
+    margin-bottom:50px;
     font-size:0.8rem;
 }
 
@@ -155,7 +163,7 @@ input{
 }
 
 .info{
-    padding: 2px 5px;
+    padding: 4px 10px 4px 10px;
     border-radius: 50%;
     background-color: #007bff;
     cursor: help;
@@ -198,28 +206,16 @@ input{
     }
 
     
-    .formInscription, .formConnexion{
+    /* .formInscription, .formConnexion{
         margin-top:36px;
-    }
+    } */
 }
 
 @media(min-width: 1350px){
-    input{
-        font-size: 19px;
-        min-width: 250px;
-        padding: 8px;
-        border-radius: 18px;
-    }
-
-    label{
-       font-size: 24px;
-    }
 
     .submit{
         min-width: auto;
         max-width: 150px;
-        padding-top: 14px;
-        padding-bottom: 14px;
     }
 
     .option{
@@ -237,25 +233,35 @@ input{
 }
 
 @media(max-width:880px){
-
     body{
-        justify-content: normal;
+        flex-direction: column;
+        gap:20px;
     }
 
     .logoLeague{
-        margin-left: 100px;
+        height:250px;
     }
+
+    .abeille{
+        height:120px;
+        width:120px;
+    }
+
+    .flexContainer{
+        display: flex;
+        flex-direction: row;
+        gap:20px;
+    }
+
+    
+
 
     main{
         margin-right: auto;
         margin-left: auto;
     }
 
-    .blockContainer{
-        flex-direction: column;
-        gap:70px;
-    }
-
+    
     .line{
         display: none;
     }
@@ -271,17 +277,6 @@ input{
 
 @media(max-width:610px){
 
-    body{
-        justify-content: center;
-        display: block;
-        height: auto;
-        padding-bottom: 170px;
-    }
-
-    html{
-        padding-bottom: 15px;
-    }
-
     .logoLeague{
         margin: auto;
     }
@@ -295,4 +290,25 @@ input{
     }
 
 
+}
+
+@media(max-width:400px){
+    body{
+        /* min-height: 100vh; */
+        gap:0px;
+        justify-content: flex-start;
+    }
+
+    .logoLeague{
+        width:190px;
+    }
+
+    .bienvenue{
+        margin-bottom:25px;
+    }
+
+    .flexContainer{
+        flex-direction: column;
+        gap:0px;
+    }
 }
