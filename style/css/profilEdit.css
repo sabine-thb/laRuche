@@ -1,0 +1,85 @@
+main{
+    width: 80%;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px 30px 20px 20px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top:20px;
+    flex-direction: initial;
+    justify-content: normal;
+    align-items: normal;
+}
+
+.logoInput{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border: solid #4fffb6 5px;
+    border-radius: 50%;
+    overflow: hidden;
+    float: left;
+}
+
+.imgProfil{
+     width: 100%;
+     height: 100%;
+ }
+
+input[type=file]{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    outline: none;
+    color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 7px 60px;
+    cursor: pointer;
+    transition: 0.5s;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+}
+
+input[type=file]::-webkit-file-upload-button{
+    visibility: hidden;
+}
+
+input[type=file]::before{
+    content: '\f030';
+    font-family: fontAwesome, serif;
+    font-size: 25px;
+    color: #fff;
+    display: inline-block;
+    -webkit-user-select: none;
+}
+
+input[type=file]::after{
+    content: 'Update';
+    font-family: 'arial', serif;
+    font-weight: bold;
+    color: #fff;
+    display: block;
+    top: 35px;
+    font-size: 11px;
+}
+
+input[type=file]:hover{
+    opacity: 1;
+}
+
+.topLeft-form{
+    display: flex;
+    align-items: center;
+}
+
+.btn-save{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.inputNom{
+    margin-left: 10px;
+}
+
+

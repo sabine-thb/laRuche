@@ -31,8 +31,18 @@ header{
 header img{
     height: 60px;
     width: auto;
+<<<<<<< HEAD
     cursor: pointer;
     
+=======
+}
+
+#logoUser{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+>>>>>>> 2e4d36fc35f4a86d1bcf0d2e1846f03284e32b18
 }
 
 .linkTitreSite{

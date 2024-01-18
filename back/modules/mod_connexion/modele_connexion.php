@@ -104,7 +104,7 @@ class ModeleConnexion extends Connexion {
 
                     if($resultat[0]["est_verifier"]){
                         $_SESSION['idUser'] = $resultat[0]["user_id"];
-                        $_SESSION['srcLogoUser'] = $resultat[0]["src_logo_user"];
+//                        $_SESSION['srcLogoUser'] = $resultat[0]["src_logo_user"];
                         return [1,$resultat[0]["login"]];//user good
                     }else{
                         return [2,$resultat[0]["login"]];//user pas encore verifier

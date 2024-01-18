@@ -101,12 +101,20 @@ class ContScorcast {
             echo "changements enregistrés avec succés";
     }
 
-    public function demandePronostiqueurIdActuelle()
+    public function recupLogoUser()
+    {
+        $srcLogoUser = $this->modele->getSrcLogo($_SESSION['idUser']);
+
+        if ($srcLogoUser)
+            $_SESSION['srcLogoUser'] = $srcLogoUser;
+    }
+
+    public function recupIdPronostiqueur()
     {
         $id = $this->modele->PronostiqueurIdActuelle($_SESSION['idUser'],$_GET['id']);
 
         if ($id)
-            return $id;
+            $_SESSION['idPronostiqueur'] = $id;
         else
             die("erreur lors de la recuperation de l'id pronostiqueur");
     }

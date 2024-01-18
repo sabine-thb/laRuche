@@ -1,4 +1,4 @@
-<div class="topMain element">
+<div class="topMain element classement-titre">
     <h2>
         Classement général
     </h2>
@@ -8,22 +8,27 @@
 <?php
     $numero = 1;
     foreach ($classement as $personne) {
+        $goodUser = $_SESSION['idUser'] == $personne["id"] ? "bleu" : "classic";
 ?>
 
     <div class="classement element">
-        <p class="numero">
-            <?php echo $numero; ?>
-        </p>
+        <div class="<?php echo $goodUser; ?> case-classement">
+            <p class="numero">
+                <?php echo $numero; ?>
+            </p>
 
-        <!-- a faire plus tard : image du profile ici  -->
+            <img src="<?php echo $personne["src_logo_user"]; ?>" alt="logo" class="logo-classement">
 
-        <h2>
-            <?php echo $personne["login"]; ?>
-        </h2>
+            <!-- a faire plus tard : image du profile ici  -->
 
-        <p class ="point">
-            <?php echo $personne["points"]; ?>
-        </p>
+            <h2>
+                <?php echo $personne["login"]; ?>
+            </h2>
+
+            <p class ="point">
+                <?php echo $personne["points"]; ?>
+            </p>
+        </div>
     </div>
 
         <?php

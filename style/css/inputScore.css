@@ -31,6 +31,22 @@
 }
 
 .custom-input i {
+    transition: 0s;
     font-size: 2em;
     cursor: pointer;
+}
+
+@media(max-width:850px){
+    .custom-input{
+        width: 2.2em;
+        height: 5em;
+        border-radius: 2.2em;
+    }
+
+    .inputScore{
+        font-size: 1.3em;
+    }
+    .custom-input i {
+        font-size: 1em;
+    }
 }

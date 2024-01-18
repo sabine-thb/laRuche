@@ -83,7 +83,7 @@ class ModeleScorcast extends Connexion {
 
         try {
             $query = "
-            SELECT login, LaRuche.totalPoint(pronostiqueur_id,$idCompet) as points
+            SELECT login, LaRuche.totalPoint(pronostiqueur_id,$idCompet) as points,src_logo_user,user_id as id
             FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.users
             WHERE competition_id = $idCompet
             ORDER BY points DESC
@@ -193,6 +193,24 @@ class ModeleScorcast extends Connexion {
 
             $stmt = Connexion::$bdd->prepare($query);
             return $this->executeQuery($stmt)[0]['totalPoints'];
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return false;
+        }
+    }
+
+    public function getSrcLogo($id)
+    {
+        try {
+            $query = "
+                SELECT src_logo_user
+                FROM LaRuche.users
+                WHERE user_id = $id
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            return $this->executeQuery($stmt)[0]['src_logo_user'];
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
