@@ -13,10 +13,7 @@ class VueRuche extends VueGenerique {
     }
 
     public function afficheBienvenue() {
-        require_once("./front/ruche/bienvenue.php");
+        require_once ('./front/ruche/bienvenue.php');
     }
 
 }
-
-
-?>

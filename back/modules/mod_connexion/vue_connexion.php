@@ -21,7 +21,12 @@ class VueConnexion extends VueGenerique {
     }
 
     public function afficheFormulaireConnexion(){
-        require_once('./front/connexion/connexion.html');
+        require_once('./front/connexion/connexion.php');
+    }
+
+    public function afficheFormNouveauMDP()
+    {
+        require_once('./front/connexion/nouveauPassword.php');
     }
 
 }

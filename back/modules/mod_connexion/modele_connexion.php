@@ -61,9 +61,7 @@ class ModeleConnexion extends Connexion {
 
     private function nouveau($champSql, $var): bool
     {
-
         try {
-            
             $stmt = Connexion::$bdd->prepare("SELECT " .$champSql. " FROM LaRuche.users WHERE " .$champSql. "='" .$var. "' ");
             $resultat = $this->executeQuery($stmt);
 
@@ -73,8 +71,6 @@ class ModeleConnexion extends Connexion {
             else{
                 return true;
             }
-
-            
 
         } catch (PDOException $e) {
             return false;
@@ -99,10 +95,16 @@ class ModeleConnexion extends Connexion {
                 $stmt = Connexion::$bdd->prepare("SELECT * FROM LaRuche.users WHERE login='" .$login. "' or mail='" . $login . "' ");
                 $resultat = $this->executeQuery($stmt);
 
+                if ($resultat[0]["password"] == "reset"){
+                    $_SESSION['idUser'] = $resultat[0]["user_id"];
+                    return 45;
+                }
+
                 if( isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp) ){
 
                     if($resultat[0]["est_verifier"]){
                         $_SESSION['idUser'] = $resultat[0]["user_id"];
+//                        $_SESSION['srcLogoUser'] = $resultat[0]["src_logo_user"];
                         return [1,$resultat[0]["login"]];//user good
                     }else{
                         return [2,$resultat[0]["login"]];//user pas encore verifier
@@ -139,7 +141,24 @@ class ModeleConnexion extends Connexion {
         return false;
     }
 
+    public function setPassword($mdp,$id)
+    {
+        try {
+            $mdp = password_hash($mdp,PASSWORD_BCRYPT,$this->option);
+            $query = "
+            UPDATE LaRuche.users
+            SET password = '$mdp'
+            WHERE user_id = $id
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return 404;
+        }
+    }
+
 }
-
-
-?>

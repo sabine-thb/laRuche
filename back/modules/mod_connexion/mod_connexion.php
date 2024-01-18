@@ -14,7 +14,7 @@ class ModConnexion {
     public function __construct(){
 
         $this->controlleur = new ContConnexion();
-        $this->action = isset($_GET['action']) ? $_GET['action'] : 'bienvenue';
+        $this->action = $_GET['action'] ?? 'bienvenue';
 
         $this->start();
 
@@ -47,6 +47,14 @@ class ModConnexion {
             case 'deconnexion':
                 $this->controlleur->deconnexion();
                 break;
+
+            case 'resetPassword':
+                $this->controlleur->nouveauPassword();
+                break;
+
+            case 'changeMDP':
+                $this->controlleur->setPassword();
+                break;
         }
     }
 
@@ -55,5 +63,3 @@ class ModConnexion {
     }
 
 }
-
-?>

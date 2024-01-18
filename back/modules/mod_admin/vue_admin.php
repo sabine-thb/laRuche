@@ -40,6 +40,14 @@ class VueAdmin extends VueGenerique {
         require_once("./front/admin/listeEquipes.php");
     }
 
+    public function afficheGereUser(){
+        require_once("./front/admin/gererUsers.php");
+    }
+
+    public function afficheModifieEquipe($equipe){
+        require_once("./front/admin/modifieEquipe.php");
+    }
+
     public function afficheButtonMatch()
     {
         require_once("./front/admin/bouttonMatch.html");

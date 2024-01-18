@@ -1,33 +1,46 @@
-<!-- readme : il faut juste conserver la boucle for sinon on peut tout modifier -->
-<div class="container mt-5">
-    <?php foreach ($tableau as $tuple) { ?> <!-- ici-->
-        <div class="card mb-3">
-            <div class="card-body">
+<section class="secDmd">
+    <h1 class="titlePage">Demandes de compte : </h1>
+    <div class="dmdContainer">
+        <?php if(!empty($tableau)){ ?>
+            <?php foreach ($tableau as $tuple) { ?>
+                    <div class="oneDemande">
 
-                <h5 class="card-title">
-                    Login: <?php echo $tuple['login']; ?> 
-                </h5>
+                        <p class=" p login">
+                            <span class="underline">Login :</span> <?php echo $tuple['login']; ?>
+                        </p>
 
-                <p class="card-text">
-                    Mail: <?php echo $tuple['mail']; ?> 
-                </p>
+                        <p class="p mail">
+                            <span class="underline">Mail :</span> <?php echo $tuple['mail']; ?>
+                        </p>
 
-                <p class="card-text">
-                    Description: <?php echo $tuple['description']; ?>
-                </p>
+                        <p class="p descr">
+                            <span class="underline">Description :</span> <?php echo $tuple['description']; ?>
+                        </p>
 
-                <a href="admin.php?action=valider&id=<?php echo $tuple['user_id']; ?>" class="btn btn-primary">
-                    Valider
-                </a>
+                        <div class="choice">
+                            <a class="p valid"
+                            href="admin.php?action=valider&id=<?php echo $tuple['user_id']; ?>"
+                            onclick="return confirm('Êtes-vous sûr de vouloir valider <?php echo $tuple['login']; ?> ?');"
+                            >
+                                Valider
+                            </a>
 
-                <a class="btn btn-danger"
-                   href="admin.php?action=refuser&id=<?php echo $tuple['user_id']; ?>"
-                   onclick="return confirm('Êtes-vous sûr de vouloir refusez <?php echo $tuple['login']; ?> ?');"
-                >
-                    Refuser
-                </a>
+                            <a class="p refuse"
+                            href="admin.php?action=refuser&id=<?php echo $tuple['user_id']; ?>"
+                            onclick="return confirm('Êtes-vous sûr de vouloir refusez <?php echo $tuple['login']; ?> ?');"
+                            >
+                                Refuser
+                            </a>
 
-            </div>
-        </div>
-    <?php } ?> <!--et là -->
-</div>
+                        </div>
+                        
+
+                    </div>
+            <?php } ?>
+        <?php }else{ ?>
+            <p>Il n'y a aucune demande de compte pour le moment </p>
+            <img src="./style/gif/pageVideHomer.gif" width="320" height="240" frameBorder="0" alt="gif de homer"/>
+        <?php } ?>
+    </div>
+
+</section>

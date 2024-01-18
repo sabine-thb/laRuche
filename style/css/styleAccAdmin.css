@@ -1,0 +1,402 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+section{
+    padding:25px;
+}
+
+.titlePage{
+    font-family:"montserratExtraBold", sans-serif;
+    font-size:1.2rem;
+}
+
+.linkAction{
+    color:white;
+    text-decoration: none;
+}
+
+.actionsContainer{
+    display: flex;
+    justify-content: space-around;
+}
+
+.actions{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap:50px;
+    margin-top:50px;
+}
+
+.oneAction{
+    font-size:1.3rem;
+    font-family:"montserratExtraBold", sans-serif;
+    width:250px;
+    height:250px;
+    background-color: #0B54CD;
+    transition:background-color 0.3s ease-in-out;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding:30px;
+    border-radius:25px;
+    text-align: center;
+    box-shadow: inset 5px 0px 15px 5px rgba(0, 0, 0, 0.25);;
+    /* box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25); */
+    
+}
+
+
+
+
+/*Je stylise la page de demande de compte*/
+
+.secDmd{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dmdContainer{
+    display: flex;
+    flex-direction: column;
+    gap:50px;
+    margin: auto;
+}
+
+.oneDemande, .oneUser, .oneCardCompet{
+    background-color: white;
+    border-radius:10px;
+    padding:20px;
+    width:700px;
+    box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25);
+}
+
+.choice{
+    display: flex;
+    gap:25px;
+    width: fit-content;
+    margin-left: auto;
+}
+
+.p.login, .p.descr, .p.mail{
+    margin:0;
+    margin-bottom:20px;
+    line-height: 1.8;
+}
+
+
+.p.valid, .p.refuse, .lienResetPwd, .lienDeleteUser{
+    font-family:"montserratRegular", sans-serif ;
+    font-size:0.9rem;
+    color:white;
+    background-color:   #0B54CD;
+    border-radius: 20px;
+    padding:5px 10px 5px 10px;
+    text-decoration: none;
+    transition:0.3s background-color ease-in-out;
+    
+}
+.p.valid:hover, .p.refuse:hover, .lienResetPwd:hover, .lienDeleteUser:hover{
+    background-color:#007bff;
+}
+.underline, .labelSearch, .labelCompet, .labelEquipe{
+    padding:5px;
+    background-color: #f3db8b;
+    border-radius: 5px;
+    margin-right:10px;
+}
+
+/*Je stylise la page de recherche d'utilisateur*/
+
+.gererUser{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.oneUser{
+    margin-bottom:30px;
+}
+
+.labelSearch{
+    font-family: "montserratExtraBold", sans-serif;
+}
+
+.search{
+    margin-bottom: 25px;
+}
+
+.gerer{
+    width: fit-content;
+    margin-left:auto;
+    display: flex;
+    gap:25px;
+}
+
+.oneAction:hover{
+    background-color:#e1b217;
+
+}
+
+/*Je stylise la page de creation de compétition*/
+
+.creerCompet, .creaEquipe{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.formCompet, .formEquipe{
+    width:fit-content;
+    background-color: white;
+    padding:20px 20px 50px 20px;
+    position: relative;
+    border-radius:10px;
+    box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25);
+}
+
+.descrCompet{
+    display:flex;
+    align-items: center;
+}
+
+.areaDescr{
+    width:300px;
+}
+
+.creer, .creerEquipe{
+    color:white;
+    position:absolute;
+    left:50%;
+    transform: translate(-50%,0);
+    background-color: #0B54CD;
+    border:none;
+    padding:5px 10px 5px 10px;
+    border-radius:25px;
+    cursor: pointer;
+    font-family: "montserratRegular", sans-serif;
+    transition: 0.2s ease-in-out padding;
+}
+
+.labelCompet{
+    width:fit-content;
+}
+
+.creer:hover, .creerEquipe:hover{
+    padding:5px 15px 5px 15px;
+}
+
+/*Je stylise la page de toutes les compet qui existent déjà*/
+
+.listCompet{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:30px;
+
+}
+.competTitle{
+    font-size: 1.4rem;
+    font-weight:600;
+    margin:0;
+}
+
+.supprCompet{
+    font-family: "montserratRegular", sans-serif;
+    float: right;
+    color:white;
+    background-color: #0B54CD;
+    border-radius: 25px;
+    text-decoration: none;
+    padding:5px 15px 5px 15px;
+    transition: 0.2s ease-in-out background-color;
+}
+
+.supprCompet:hover{
+    background-color:#007bff;
+}
+
+/*Je fais le code de la page de création des équipes*/
+
+/*Je fais le code de la page pour gérer les équipes*/
+
+.gridContainer{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap:50px;
+    
+}
+
+.oneEquipe{
+
+    
+
+    background-color: white;
+    border-radius:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+    box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25);
+}
+
+.card-title{
+    font-size:1.3rem;
+}
+
+.logoEquipe{
+    width:150px;
+    height:150px;
+}
+
+.linkActions{
+    display:flex;
+    gap:10px;
+}
+
+.link{
+    cursor: pointer;
+    text-decoration: none;
+    color:white;
+    border-radius:25px;
+    padding:5px 15px 5px 15px;
+    font-size:0.8rem;
+}
+
+.supprEquipe{
+    background-color: rgb(170, 0, 0);
+}
+
+.modifEquipe{
+    background-color: #007bff;
+}
+
+
+
+
+
+
+
+
+@media(max-width:1215px){
+    .actions{
+
+        grid-template-columns: repeat(3, 1fr);
+
+    }
+
+}
+
+@media(max-width:1170px){
+    .gridContainer{
+        grid-template-columns: repeat(3, 1fr);
+        
+    }
+}
+
+@media(max-width:930px){
+    .oneAction{
+        width:180px;
+        height:180px;
+        font-size:1rem;
+    }
+
+}
+
+@media(max-width:900px){
+    .gridContainer{
+        grid-template-columns: repeat(2, 1fr);
+
+        
+    }
+}
+
+@media(max-width:780px){
+    .oneDemande, .oneUser, .oneCardCompet{
+        width:500px;
+    }
+}
+@media(max-width:700px){
+    .actions{
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+}
+
+@media(max-width:600px){
+    .gridContainer{
+        grid-template-columns: repeat(1, 1fr);
+        
+    }
+}
+
+@media(max-width:575px){
+    .oneDemande, .oneUser, .oneCardCompet{
+        width:350px;
+    }
+
+    .gerer{
+        flex-direction: column;
+        gap:10px;
+        margin: auto;
+    }
+
+    .lienDeleteUser{
+        text-align: center;
+    }
+
+    .nomCompet, .descrCompet, p.equipe{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap:10px;
+    }
+
+    #nom, #descr, #nomEquipe{
+        width:100%;
+    }
+
+    #descr{
+        height:180px;
+    }
+
+    .descrCompet{
+        margin-top:40px;
+    }
+
+    
+}
+@media(max-width:500px){
+    .actions{
+        grid-template-columns: repeat(1, 1fr);
+
+    }
+
+}
+@media(max-width:480px){
+    .search{
+        display: flex;
+        flex-direction: column;
+        gap:25px;
+
+    }
+
+}
+
+@media(max-width:420px){
+    .oneDemande, .oneUser, .oneCardCompet{
+        width:260px;
+    }
+
+    .choice{
+        flex-direction: column;
+        gap:10px;
+    }
+}

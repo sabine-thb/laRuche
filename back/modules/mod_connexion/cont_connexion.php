@@ -41,7 +41,7 @@ class ContConnexion {
                 $resultat = $this->modele->ajoutDemandeUser($_POST['login'],$_POST['mail'],$_POST['mdp'],$_POST['description']);
 
                 if ($resultat) {
-                    echo "Une demande a été envoyée à la ruche, vous recevrez un mail lorsque la demande sera acceptée.";
+                    echo "<p class=\"dmdOK\">Une demande a été envoyée à la ruche, vous recevrez un mail lorsque la demande sera acceptée.</p>";
                 } else {
                     echo "Erreur lors de la création de compte.";
                 }
@@ -51,7 +51,7 @@ class ContConnexion {
                 header('Location: connexion.php?action=inscription');  
             }
         } else {
-            $_SESSION['error'] = '<h3 class="ttChamps">veuillez remplir tout les champs.</h3><br>';
+            $_SESSION['error'] = '<h3 class="ttChamps">Veuillez remplir tous les champs.</h3><br>';
             header('Location: connexion.php?action=inscription');
         }
 
@@ -68,25 +68,25 @@ class ContConnexion {
     }
 
     public function afficheFormConnexion() {
-        $_SESSION['error'] = null;
         $this->vue->afficheFormulaireConnexion();
-
     }
 
     public function connexion() {
         
         $_SESSION['error'] = null;
 
+        $loginTemp = $_POST['login'];
+        $mdpTemp = $_POST['mdp'];
+
         if (isset($_POST['login'],$_POST['mdp'])){
-            
-            
-            $resultat = $this->modele->verifUser($_POST['login'],$_POST['mdp']);
+
+            $resultat = $this->modele->verifUser($loginTemp,$mdpTemp);
 
             if (isset($resultat[0])&&$resultat[0] == 1) {
                 $_SESSION["loginActif"] = $resultat[1];
                 $_SESSION["adminActif"] = false;
-                echo "Connexion établie !<br>";
-                echo "Redirection en cours";
+                echo "<p>Connexion établie !</p>";
+                echo "<p>Redirection en cours.</p>";
                 echo '<meta http-equiv="refresh" content="3;url=scoruche.php"/>';
             }else if(isset($resultat[0])&&$resultat[0] == 2){
                 echo "Votre demande n'a pas encore été traitée par la ruche !<br>";
@@ -95,16 +95,19 @@ class ContConnexion {
             }else if(isset($resultat[0])&&$resultat[0] == 3){
                 $_SESSION["loginActif"] = $resultat[1];
                 $_SESSION["adminActif"] = true;
-                echo "<h3 class=\"coAdmin\">Connecté en tant que admin !</h3>";
+                echo "<h3 class=\"coAdmin\">Connecté en tant qu'admin !</h3>";
                 echo '<meta http-equiv="refresh" content="2;url=admin.php"/>';
-            } else {
-                echo "Erreur lors de la connexion.<br>";                
-                echo "redirection en cours";
-                echo '<meta http-equiv="refresh" content="1;url=connexion.php?action=connexion"/>';
+            } else if ($resultat == -1){
+                $_SESSION['error'] = "login ou mot de passe incorrect";
+                $_SESSION["tempLogin"] = $loginTemp;
+                $_SESSION["tempPawword"] = $mdpTemp;
+                header('Location: connexion.php?action=connexion');
+            }else if ($resultat == 45){
+                header('Location: connexion.php?action=resetPassword');
             }
             
         } else {
-            die("veuillez remplir tout les champs");
+            die("Veuillez remplir tous les champs");
         }
 
     }
@@ -116,5 +119,23 @@ class ContConnexion {
 
     }
 
+    public function nouveauPassword()
+    {
+        $this->vue->afficheFormNouveauMDP();
+    }
+
+    public function setPassword()
+    {
+        $newMdp = $_POST['mdp'];
+        $idUser = $_POST['idUser'];
+        $res = $this->modele->setPassword($newMdp,$idUser);
+
+        if ($res) {
+            echo "<p>Changement enregistrer avec succes</p>";
+            echo "<p>Cliquez <a href='connexion.php?action=connexion'>ici</a> pour vous connecter si la redirection auto est fatigué</p>";
+            echo '<meta http-equiv="refresh" content="3;url=connexion.php?action=connexion"/>';
+        } else
+            echo "<p>erreur</p>";
+    }
+
 }
-?>

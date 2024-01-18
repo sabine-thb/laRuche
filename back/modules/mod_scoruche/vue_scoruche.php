@@ -13,7 +13,7 @@ class VueScorcast extends VueGenerique {
     }
 
     public function afficheBienvenue() {
-        require_once('./front/scoruche/bienvenue.html');
+        require_once('./front/scoruche/bienvenue.php');
     }
 
     public function afficheCompetitionDispo($tableau) {

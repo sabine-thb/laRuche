@@ -83,10 +83,10 @@ class ModeleScorcast extends Connexion {
 
         try {
             $query = "
-            SELECT login, LaRuche.totalPoint(pronostiqueur_id,$idCompet) as points
+            SELECT login, LaRuche.totalPoint(pronostiqueur_id,$idCompet) as points,src_logo_user,user_id as id
             FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.users
             WHERE competition_id = $idCompet
-            ORDER BY points
+            ORDER BY points DESC
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -104,7 +104,8 @@ class ModeleScorcast extends Connexion {
 
         try {
             $query = "
-            SELECT date_match,E.nom as nom1,E2.nom as nom2,P.prono_equipe1,P.prono_equipe2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,pts_Vainq,pts_Ecart,pts_Exact
+            SELECT date_match,E.nom as nom1,E2.nom as nom2,P.prono_equipe1,P.prono_equipe2,P.vainqueur_prono,
+                   E.srcLogo as src1,E2.srcLogo as src2,M.match_id,pts_Vainq,pts_Ecart,pts_Exact,heure
             FROM LaRuche.matchApronostiquer as M
             INNER JOIN LaRuche.equipe E ON M.equipe1_id=E.equipe_id
             INNER JOIN LaRuche.equipe E2 ON M.equipe2_id=E2.equipe_id
@@ -122,35 +123,12 @@ class ModeleScorcast extends Connexion {
 
     }
 
-    public function modifiProno1(int $idMatch,int $prono,int $idPronostiqueur): bool
+    public function modifProno($idMatch,$prono1,$prono2,$equipeGagnantePeno,$idPronostiqueur): bool
     {
-
         try {
             $query = "
             UPDATE LaRuche.pronostique 
-            SET prono_equipe1 = $prono 
-            WHERE match_id = $idMatch and 
-                pronostiqueur_id = $idPronostiqueur
-            ";
-
-            $stmt = Connexion::$bdd->prepare($query);
-            $this->executeQuery($stmt);
-            return true;
-
-        } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
-            return false;
-        }
-
-    }
-
-    public function modifiProno2(int $idMatch,int $prono,int $idPronostiqueur): bool
-    {
-
-        try {
-            $query = "
-            UPDATE LaRuche.pronostique 
-            SET prono_equipe2 = $prono 
+            SET prono_equipe2 = $prono2 , prono_equipe1 = $prono1 , vainqueur_prono = $equipeGagnantePeno
             WHERE match_id = $idMatch and pronostiqueur_id = $idPronostiqueur
             ";
 
@@ -162,7 +140,6 @@ class ModeleScorcast extends Connexion {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
-
     }
 
     public function PronostiqueurIdActuelle($idUser,$idCompet)
@@ -187,13 +164,15 @@ class ModeleScorcast extends Connexion {
     {
         try {
             $query = "
-            SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id, R.nb_but_equipe1 as resultat1, R.nb_but_equipe2 as resultat2, point_obtenu
+            SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,
+                   R.nb_but_equipe1 as resultat1, R.nb_but_equipe2 as resultat2, point_obtenu,heure
             FROM LaRuche.matchApronostiquer as M
             INNER JOIN LaRuche.equipe E ON M.equipe1_id = E.equipe_id
             INNER JOIN LaRuche.equipe E2 ON M.equipe2_id = E2.equipe_id
             INNER JOIN LaRuche.pronostique P ON M.match_id = P.match_id  
             INNER JOIN LaRuche.resultatMatch R ON M.match_id = R.match_id
             WHERE pari_ouvert = false and competition_id = $idCompet and pronostiqueur_id = $idPronostiqueur
+            ORDER BY date_match DESC
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -214,6 +193,24 @@ class ModeleScorcast extends Connexion {
 
             $stmt = Connexion::$bdd->prepare($query);
             return $this->executeQuery($stmt)[0]['totalPoints'];
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return false;
+        }
+    }
+
+    public function getSrcLogo($id)
+    {
+        try {
+            $query = "
+                SELECT src_logo_user
+                FROM LaRuche.users
+                WHERE user_id = $id
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            return $this->executeQuery($stmt)[0]['src_logo_user'];
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";

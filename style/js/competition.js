@@ -13,12 +13,16 @@ document.addEventListener('DOMContentLoaded', function() {
         case 'validationProno':
             monElement = document.getElementById('prono');
             break;
+        case 'resultat':
+            monElement = document.getElementById('resultats');
+            break;
     }
-
-
-
     // Ajoutez une classe à l'élément
-
     monElement.classList.remove('linkDefaut');
     monElement.classList.add('linkActive');
 });
+
+function afficherMenuProfil(){
+    const menu = document.querySelector('.profilDetails');
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}

@@ -1,0 +1,231 @@
+
+main{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin-top:20px;
+    gap:20px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body{
+    padding-bottom: 60px;
+}
+
+.element{
+    max-width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+h3{
+    float: right;
+    font-family: Andale Mono, monospace;
+    color: aliceblue;
+}
+
+#profile{
+    margin-left: auto;
+}
+
+#profile button{
+    border: none;
+    border-radius: 30px;
+    background-color: #080e50;
+}
+
+.topMain{
+    text-align: left;
+    padding: 10px 15px 10px 15px;
+    margin-bottom:20px;
+}
+
+.classement-titre{
+    text-align: center;
+    min-width: 370px;
+}
+
+#topClassement h2{
+    margin: auto;
+    font-family: Georgia, serif;
+    font-style: italic;
+}
+
+.classement{
+    width:350px;
+    padding:8px 10px 8px 10px;
+}
+
+.case-classement{
+    display: flex;
+    gap:20px;
+    align-items: center;
+}
+
+.logo-classement{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.bleu{
+    border: rgba(42, 74, 155, 0.53) solid 1px;
+    padding: 5px 10px 7px 10px;
+    color: #007bff;
+    background-color: rgba(99, 167, 246, 0.22);
+    border-radius: 10px;
+}
+
+.bleu .numero{
+    color: white;
+    background-color: blue;
+}
+
+.classic{
+    border: none;
+    padding: 5px 10px 7px 10px;
+    color: #151515;
+    border-radius: 0;
+}
+
+.classement h2{
+    font-family: Trebuchet MS, sans-serif;
+    font-size: 18px;
+
+}
+
+.numero{
+    min-width: 25px;
+    min-height: 25px;
+    background-color: #9b9b9b;
+    border-radius: 50%;
+    line-height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Trebuchet MS, sans-serif;
+}
+
+.carteProno{
+    padding:10px;
+    margin-bottom: 10px;
+}
+
+.hautCarte{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+}
+
+.custom-pts{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nbPoints{
+     color: #fff;
+     background-color: grey;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     border-radius: 14px;
+     width: 40px;
+     height: 40px;
+     text-align: center;
+     font-size: 19px;
+     font-family: Trebuchet MS, sans-serif;
+}
+
+.logoEquipe{
+    max-width: 130px;
+    height: auto;
+}
+
+.Carte{
+    padding: 5px;
+    border: rgba(98, 98, 98, 0.3) solid 0.08mm;
+}
+
+.selectionFinale{
+    width: 100%;
+    display: flex;
+    text-align: center;
+}
+
+.selectionFinale label{
+    z-index: 0;
+}
+
+.CorpCarte{
+    display: flex;
+    gap:12px;
+}
+
+.CorpCarte *{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.centreCard {
+    position: sticky;
+    left: 50%;
+    right: 50%;
+}
+
+.left{
+    margin-left: auto;
+}
+
+.right{
+    margin-right: auto;
+}
+
+.point{
+    margin-left: auto;
+    font-size: 19px;
+    font-family: Trebuchet MS, sans-serif;
+    color: grey;
+}
+
+@media(max-width:850px){
+
+    main{
+        margin-top: 80px;
+    }
+
+    body{
+        padding-top:255px;
+    }
+
+    header{
+        height:auto;
+    }
+
+    #navbar{
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .logoEquipe{
+        max-width: 70px;
+    }
+    .centreCard {
+        position: initial;
+    }
+    .Carte{
+        padding:10px 2px;
+
+    }
+    .CorpCarte{
+        gap:6px;
+    }
+
+}
+
+
+

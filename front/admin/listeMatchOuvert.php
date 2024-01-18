@@ -5,7 +5,7 @@
 
                 <div class="row">
                     <p>
-                        <?php echo $row['nomCompet']; ?> - <?php echo $row['date_match']; ?>
+                        <?php echo $row['nomCompet']; ?> - <?php echo $row['date_match']; ?> - <?php echo $row['heure']; ?>H
                     </p>
                     <div class="col-md-4 text-center mt-3">
                         <!-- Équipe 1 -->
@@ -35,7 +35,7 @@
 
                 <div class="container text-center mt-5">
 
-                    <a href="admin.php?"
+                    <a href="#"
                        class="btn btn-danger"
                        onclick="return confirm('est-tu sur de vouloir supprimez ce match ?\n');"
                     >

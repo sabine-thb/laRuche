@@ -13,10 +13,8 @@ class ContScorcast {
     private $modele;
     
     public function __construct(){
-
         $this->vue = new VueScorcast();
         $this->modele = new ModeleScorcast();
-
     }
 
     public function affichage() {
@@ -75,17 +73,26 @@ class ContScorcast {
 
         foreach ($_POST as $key => $value) {
 
-            $idMatch = (int)substr($key, -1);
-            $prono = (int)substr($key, 0);
+            if (strpos($key, "match_id")) {
+                $idMatch = $value;
+                $str_input1 = $idMatch . "_prono_equipe1";
+                $str_input2 = $idMatch . "_prono_equipe2";
+                $input1 = $_POST["$str_input1"];
+                $input2 = $_POST["$str_input2"];
 
-            if ($prono == 1){
-                $res = $this->modele->modifiProno1($idMatch,$value,$_SESSION['idPronostiqueur']);
-            }else{
-                $res = $this->modele->modifiProno2($idMatch,$value,$_SESSION['idPronostiqueur']);
+                if ($input1 != "" && $input2 != "") {
+                    if ($input1 == $input2) {
+                        $str_toggle = $idMatch . "_toggle";
+                        $equipe_gagnate_peno = array_key_exists($str_toggle, $_POST) ? "'equipe2'" : "'equipe1'";
+                    } else
+                        $equipe_gagnate_peno = "null";
+
+                    $res = $this->modele->modifProno($idMatch, $input1, $input2, $equipe_gagnate_peno, $_SESSION['idPronostiqueur']);
+
+                    if (!$res)
+                        $totalBool = false;
+                }
             }
-
-            if (!$res)
-                $totalBool = false;
         }
 
         if (!$totalBool)
@@ -94,12 +101,20 @@ class ContScorcast {
             echo "changements enregistrés avec succés";
     }
 
-    public function demandePronostiqueurIdActuelle()
+    public function recupLogoUser()
+    {
+        $srcLogoUser = $this->modele->getSrcLogo($_SESSION['idUser']);
+
+        if ($srcLogoUser)
+            $_SESSION['srcLogoUser'] = $srcLogoUser;
+    }
+
+    public function recupIdPronostiqueur()
     {
         $id = $this->modele->PronostiqueurIdActuelle($_SESSION['idUser'],$_GET['id']);
 
         if ($id)
-            return $id;
+            $_SESSION['idPronostiqueur'] = $id;
         else
             die("erreur lors de la recuperation de l'id pronostiqueur");
     }

@@ -62,7 +62,6 @@ class ModAdmin {
 
             case 'ajoutMatch':
                 $this->controlleur->ajoutMatch();
-                // echo ("2023-12-05"-date("Y-m-d"));
                 break;
 
             case 'gererEquipe':
@@ -87,6 +86,22 @@ class ModAdmin {
 
             case 'ajouteResultatMatch':
                 $this->controlleur->ajouteResultatMatch();
+                break;
+
+            case 'modifierEquipe':
+                $this->controlleur->afficheVueModifieEquipe();
+                break;
+
+            case 'modifieEquipe':
+                $this->controlleur->modifieEquipe();
+                break;
+
+            case 'gererComptes':
+                $this->controlleur->afficheRechercheCompte();
+                break;
+
+            case'resetPwd':
+                $this->controlleur->resetPasswordUser();
                 break;
 
             case 'detailEquipe':

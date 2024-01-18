@@ -107,9 +107,7 @@ class ContAdmin {
         if(isset($_SESSION['token'],$_POST['token'])){
             if(null!==($_SESSION['creationToken']&& time()-$_SESSION['creationToken']<60 )){
                 if(isset($_POST['name'],$_FILES['logo']['tmp_name'])){
-                    $this->modele->insererEquipe($_POST['name'],$_FILES['logo']);
-                    
-//                    echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
+                    $this->modele->insererEquipe($_POST['name']);
                 }else{
                     echo " Remplissez tous les champs et réessayez"."<br>";
                     echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
@@ -127,12 +125,11 @@ class ContAdmin {
 
     public function ajoutMatch()
     {
-        // echo  var_dump($_POST);
         if(isset($_SESSION['token'],$_POST['token'])){
             if(null!==($_SESSION['creationToken']&& time()-$_SESSION['creationToken']<60 )){
-                if(isset($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch'])){
+                if(isset($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch'],$_POST['heure'])){
                     if ($_POST['equipe1']!=='default' && $_POST['equipe2']!=='default' && $_POST['compet']!=='default' ) {
-                        if ($this->modele->insererMatch($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch'])){
+                        if ($this->modele->insererMatch($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch'],$_POST['heure'])){
                             echo " Match bien enregistrée ✌️"."<br>";
 //                            echo '<meta http-equiv="refresh" content="3;url=admin.php?action=afficheFormMatch"/>';
                         }else{
@@ -208,7 +205,7 @@ class ContAdmin {
         $res = $this->modele->miseEnAttenteMatch($_GET['idMatch']);
 
         if ($res)
-            header('Location: admin.php?action=gererMatch');
+            header('Location: admin.php?action=gererMatch&type=ouvert');
         else
             echo "<p> Une erreur est survenu.</p>";
     }
@@ -216,8 +213,13 @@ class ContAdmin {
     public function ajouteResultatMatch()
     {
         if ($_POST['resultatEquipe1'] != "" && $_POST['resultatEquipe2'] != "" ) {
-            $res = $this->modele->miseEnFiniMatch($_POST['match_id'], $_POST['resultatEquipe1'], $_POST['resultatEquipe2']);
 
+            if ($_POST['resultatEquipe1'] == $_POST['resultatEquipe2'])
+                $equipe_gagnate_peno = array_key_exists("toggle", $_POST) ? "'equipe2'" : "'equipe1'";
+            else
+                $equipe_gagnate_peno = "null";
+
+            $res = $this->modele->miseEnFiniMatch($_POST['match_id'], $_POST['resultatEquipe1'], $_POST['resultatEquipe2'],$equipe_gagnate_peno);
             if ($res)
                 header('Location: admin.php?action=gererMatch&type=fermer');
             else
@@ -255,6 +257,63 @@ class ContAdmin {
                 $this->vue->afficheMatchFermer($match);
                 break;
         }
+    }
+
+    public function afficheVueModifieEquipe()
+    {
+        $equipe = $this->modele->getEquipe($_GET['idEquipe']);
+
+        if ($equipe == 404)
+            echo "erreur equipe introuvable";
+        else
+            $this->vue->afficheModifieEquipe($equipe[0]);
+
+    }
+
+    public function modifieEquipe()
+    {
+        $erreur = false;
+        $id = $_POST['idEquipe'];
+        $newNom = $_POST['name'];
+
+        $this->modele->modifieNomEquipe($newNom,$id);
+
+        if ($_FILES['logo']["tmp_name"] != ""){
+            $ancien_src = $this->modele->getSrcLogoEquipe($id);
+
+            if (file_exists($ancien_src))
+                unlink($ancien_src);
+
+            $dest = $this->modele->gererLogo();
+
+            if ($dest != null)
+                $this->modele->modifielogoEquipe($dest,$id);
+            else {
+                echo "erreur changement logo";
+                $erreur = true;
+            }
+        }
+
+        if (!$erreur)
+            header('Location: admin.php?action=gererEquipe');
+    }
+
+    public function afficheRechercheCompte()
+    {
+        $this->vue->afficheGereUser();
+    }
+
+    public function resetPasswordUser()
+    {
+        $idUser = $_GET['idUser'];
+
+        $rep = $this->modele->resetPasswordUser($idUser);
+
+        if ($rep)
+            echo "<p>Changement enregistrer avec succes</p>";
+        else
+            echo "<p>erreur</p>";
+
     }
 
 

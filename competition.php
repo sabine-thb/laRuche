@@ -8,7 +8,6 @@ if (!isset($_SESSION["loginActif"]) ) {
 //ici on parle de l'id de la competition
 //si elle n'est pas presente dans l'url il faut rediriger l'utilisateur
 //car il y aura des erreurs par la suite
-//todo mettre ce id dans la variable globale de session
 if (!isset($_GET["id"]) ) {
     header('Location: scoruche.php');
 }
@@ -25,7 +24,7 @@ Connexion::initConnexion();
 
 $module = new ModScorcast();
 
-$_SESSION['idPronostiqueur'] = $module->getPronostiqueurIdActuelle();
+$module->updateSession();
 $module->start();
 
 //fin du tampon
@@ -40,7 +39,12 @@ $affichageModule = $module->afficheModule();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/239660ff21.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./style/compet.css">
+    <link rel="stylesheet" href="style/css/menu.css">
+    <link rel="stylesheet" href="style/css/compet.css">
+    <link rel="stylesheet" href="style/css/fonts.css">
+    <link rel="stylesheet" href="style/css/inputScore.css">
+    <link href="style/css/checkBox.css" rel="stylesheet">
+    <script src="style/js/inputScore.js"></script>
     <script src="./style/js/competition.js"></script>
 </head>
 
@@ -65,12 +69,26 @@ $affichageModule = $module->afficheModule();
             <a href="competition.php?action=resultat&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="resultats">
                     Résultats
             </a>
-            <a href="scoruche.php" class="linkNavbar linkDefaut" id="parametres" >
-                    Paramètres
-            </a>
-            <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
-                    Déconnexion
-            </a>
+
+            <li class="drop-menu">
+                <img src="<?php echo $_SESSION['srcLogoUser'];?>"
+                     alt="logo de <?php echo $_SESSION['loginActif']; ?>"
+                     id="logoUser" ondragover="afficherMenuProfil()" onclick="afficherMenuProfil()">
+                <ul>
+                    <div class="profilDetails">
+                        <a href="profil.php?action=editProfil" class="linkNavbar linkDefaut" id="editProfil">
+                            Edit profil
+                        </a>
+                        <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
+                            Déconnexion
+                        </a>
+                    </div>
+                </ul>
+            </li>
+
+<!--            <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">-->
+<!--                    Déconnexion-->
+<!--            </a>-->
         </div>
 
         
