@@ -89,8 +89,8 @@ label{
 
 input{
     border:none;
-    border-radius: 15px;
-    padding: 5px;
+    /* border-radius: 15px;
+    padding: 5px; */
 }
 
 .erreurInputVide{
@@ -204,22 +204,20 @@ input{
 }
 
 @media(min-width: 1350px){
-    input{
+    /* input{
         font-size: 19px;
         min-width: 250px;
         padding: 8px;
         border-radius: 18px;
-    }
+    } */
 
-    label{
+    /* label{
        font-size: 24px;
-    }
+    } */
 
     .submit{
         min-width: auto;
         max-width: 150px;
-        padding-top: 14px;
-        padding-bottom: 14px;
     }
 
     .option{
