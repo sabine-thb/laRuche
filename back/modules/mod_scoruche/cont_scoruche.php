@@ -83,7 +83,7 @@ class ContScorcast {
                 if ($input1 != "" && $input2 != "") {
                     if ($input1 == $input2) {
                         $str_toggle = $idMatch . "_toggle";
-                        $equipe_gagnante_peno = array_key_exists($str_toggle, $_POST) ? "'equipe2'" : "'equipe1'";
+                        array_key_exists($str_toggle, $_POST) ? $equipe_gagnante_peno = $_POST[$str_toggle] : $totalBool = false;
                     } else
                         $equipe_gagnante_peno = "null";
 

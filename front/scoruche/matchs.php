@@ -62,9 +62,16 @@
 
                     <div class="selectionFinale">
                         <label>
-                            <input class="pristine toggle" type="checkbox" id="<?php echo $tuple['match_id']; ?>_toggle"
-                                   name="<?php echo $tuple['match_id']; ?>_toggle" value="on">
-                                   <p>vainqueur aux tirs au buts si égalité <br>  Vainqueur du coté de l'indicateur</p>
+                                   <p>vainqueur aux tirs au buts</p>
+                                    
+                                   <div>
+                                        <label for="equipe1"><?php echo $tuple['nom1']; ?></label>
+                                        <input class="" type="radio" id="equipe1" name="<?php echo $tuple['match_id']; ?>_toggle" value="'equipe1'" checked />
+                                    </div>
+                                    <div>
+                                        <input class="" type="radio" id="equipe2" name="<?php echo $tuple['match_id']; ?>_toggle" value="'equipe2'" checked />
+                                        <label for="equipe2"><?php echo $tuple['nom2']; ?></label>
+                                    </div>
                         </label>
 
                         <?php
