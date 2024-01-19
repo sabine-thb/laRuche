@@ -1,63 +1,57 @@
-<div>
+<section class="creaEquipe">
 
-    <form action="admin.php?action=ajoutMatch" method="post">
-        
-        <label>Equipe 1 :
-            <select name="equipe1">
-                <nom>Equipe 1</nom>
-                <option value="default">...</option>
-                <?php foreach($eq as $row){
-                    echo  '<option value="' .$row['equipe_id'].'">' .$row['nom'].'</option>';
-                }?>
+    <form action="admin.php?action=ajoutMatch" method="post" class="formEquipe">
+
+        <p class="pMatch">
+            <label for="equipe1" class="labelEquipe">Équipe 1 :</label>
+            <select name="equipe1" id="equipe1">
+                        <option value="default">...</option>
+                        <?php foreach($eq as $row){
+                            echo  '<option value="' .$row['equipe_id'].'">' .$row['nom'].'</option>';
+                        }?>
             </select>
-        </label><br>
-
-
-        <label>Equipe 2 :
-            <select name="equipe2">
-                <nom>Equipe 2</nom>
-                <option value="default">...</option>
-                <?php foreach($eq as $row){
-                    echo  '<option value="' .$row['equipe_id'].'">' .$row['nom'].'</option>';
-                }?>
+        </p>
+        <p class="pMatch">
+            <label for="equipe2" class="labelEquipe">Équipe 2 :</label>
+            <select name="equipe2" id="equipe2">
+                    <option value="default">...</option>
+                        <?php foreach($eq as $row){
+                            echo  '<option value="' .$row['equipe_id'].'">' .$row['nom'].'</option>';
+                        }?>
             </select>
-        </label>
-
-        <br>
-
-        <label>competition :
-            <select name="compet">
-            <nom>Compétition</nom>
-            <option value="default">...</option>
-            <?php foreach($comp as $row){
-                echo  '<option value="' .$row['competition_id'].'">' .$row['nom'].'</option>';
-            }?>
+        </p>
+        <p class="pMatch">
+            <label for="compet" class="labelEquipe">Compétition :</label>
+            <select name="compet" id="compet">
+                    <nom>Compétition</nom>
+                    <option value="default">...</option>
+                    <?php foreach($comp as $row){
+                        echo  '<option value="' .$row['competition_id'].'">' .$row['nom'].'</option>';
+                    }?>
             </select>
-        </label><br>
+        </p>
+        <p class="pMatch">
+            <label for="date" class="labelEquipe">Date du Match :</label>
+            <input type="date" name="dateMatch" id="date">
 
-
-        <label>Date du Match :
-            <input type="date" name="dateMatch">
-        </label><br>
-
-        <label>Heure du Match :
-            <input type="number" name="heure" inputmode="numeric" min="1" max="23">
-        </label><br>
-
-        <label>Points Score Exact :
-            <input type="number" name="ptsExact" inputmode="numeric" min="0">
-        </label><br>
-
-        <label>Points Ecart De But :
-            <input type="number" name="ptsEcart" inputmode="numeric" min="0">
-        </label><br>
-
-        <label>Points bon vainqueur :
-            <input type="number" name="ptsVainq" inputmode="numeric" min="0"><br>
-        </label><br>
-
+        </p>
+        <p class="pMatch">
+            <label for="heure" class="labelEquipe">Heure du Match :</label>
+            <input type="number" name="heure" inputmode="numeric" min="1" max="23" id="heure">
+        </p>
+        <p class="pMatch">
+            <label for="pointEx" class="labelEquipe">Points Score Exact :</label>
+            <input type="number" name="ptsExact" inputmode="numeric" min="0" id="pointEx">
+        </p>
+        <p class="pMatch">
+            <label for="pointEc" class="labelEquipe">Points Écart De But :</label>
+            <input type="number" name="ptsEcart" inputmode="numeric" min="0" id="pointEc">
+        </p>
+        <p class="pMatch">
+            <label for="pointVainc" class="labelEquipe">Points bon vainqueur :</label>
+            <input type="number" name="ptsVainq" inputmode="numeric" min="0" id="pointVainc">
+        </p>
         <input type="hidden" name="token" value="<?php echo $token; ?>">
-
-        <input type="submit" value="créer">
+        <input type="submit" value="créer" class="creerEquipe">
     </form>
-</div>
+</section>
