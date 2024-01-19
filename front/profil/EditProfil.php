@@ -5,7 +5,7 @@
 
         <div class="topLeft-form">
             <div class="logoInput">
-                <img src="<?php echo $data['src_logo_user']; ?>" class="imgProfil" alt="image profil" id="logo">
+                <img src="./style/img/logoBleu.png" class="imgProfil" alt="image profil" id="logo">
                <!-- <label>
 
                     <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
@@ -35,7 +35,7 @@
                 <option value="homme">Homme</option>
                 <option value="femme">Femme</option>
                 <option value="autre">autre</option>
-                <option value="default">je prefere ne pas dire</option>
+                <option value="default">je préfère ne pas dire</option>
                 <option value="croissant">I'm a croissant</option>
             </select>
         </div>
@@ -54,7 +54,7 @@
 
         <div id="center">
             <a href="profil.php?action=changePassword" style="text-decoration: none; padding: 5px; background-color: #9b9b9b; border-radius: 10px; cursor: pointer;">
-                changer mot de passe
+                Changer mot de passe
             </a>
         </div>
 

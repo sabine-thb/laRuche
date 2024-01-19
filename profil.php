@@ -30,6 +30,7 @@ $affichageModule = $module->afficheModule();
     <script src="https://kit.fontawesome.com/239660ff21.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style/css/menu.css">
     <link rel="stylesheet" href="style/css/fonts.css">
+    <link rel="stylesheet" href="style/css/profil.css">
     <script src="./style/js/competition.js"></script>
     <script src="./style/js/profil/editLogo.js"></script>
 </head>
@@ -49,21 +50,9 @@ $affichageModule = $module->afficheModule();
             <a href="scoruche.php" class="linkNavbar linkDefaut" id="competition">
                 Competitions
             </a>
-            <li class="drop-menu">
-                <img src="<?php echo $_SESSION['srcLogoUser'];?>"
-                     alt="logo de <?php echo $_SESSION['loginActif']; ?>"
-                     id="logoUser" ondragover="afficherMenuProfil()" onclick="afficherMenuProfil()">
-                <ul>
-                    <div class="profilDetails">
-                        <a href="profil.php?action=editProfil" class="linkNavbar linkDefaut" id="editProfil">
-                            Edit profil
-                        </a>
-                        <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
-                            Déconnexion
-                        </a>
-                    </div>
-                </ul>
-            </li>
+            <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
+                Déconnexion
+            </a>
         </div>
     </header>
 

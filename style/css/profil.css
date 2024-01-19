@@ -1,0 +1,12 @@
+@media(max-width:470px){
+    header{
+        height:auto;
+    }
+    #navbar{
+        flex-direction: column;
+    }
+
+    body{
+        padding-top:170px;
+    }
+}

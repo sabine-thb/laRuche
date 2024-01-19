@@ -89,7 +89,7 @@ class ContConnexion {
                 echo "<p>Redirection en cours.</p>";
                 echo '<meta http-equiv="refresh" content="3;url=scoruche.php"/>';
             }else if(isset($resultat[0])&&$resultat[0] == 2){
-                echo "Votre demande n'a pas encore été traitée par la ruche !<br>";
+                echo "<p>Votre demande n'a pas encore été traitée par la ruche !</p>";
                 echo "Un peu de patience ;)";
                 echo '<meta http-equiv="refresh" content="4;url=connexion.php"/>';
             }else if(isset($resultat[0])&&$resultat[0] == 3){
@@ -98,7 +98,7 @@ class ContConnexion {
                 echo "<h3 class=\"coAdmin\">Connecté en tant qu'admin !</h3>";
                 echo '<meta http-equiv="refresh" content="2;url=admin.php"/>';
             } else if ($resultat == -1){
-                $_SESSION['error'] = "login ou mot de passe incorrect";
+                $_SESSION['error'] = "Login ou mot de passe incorrect.";
                 $_SESSION["tempLogin"] = $loginTemp;
                 $_SESSION["tempPawword"] = $mdpTemp;
                 header('Location: connexion.php?action=connexion');
@@ -107,7 +107,7 @@ class ContConnexion {
             }
             
         } else {
-            die("Veuillez remplir tous les champs");
+            die("Veuillez remplir tous les champs.");
         }
 
     }
