@@ -101,6 +101,8 @@ h3{
     display: flex;
     justify-content: center;
     align-items: center;
+    position:relative;
+    left:-3px;
 }
 
 .carteProno{
@@ -209,7 +211,7 @@ h3{
 @media(max-width:750px){
 
     body{
-        padding-top:255px !important;
+        padding-top:255px !important; 
     }
     header{
         height: auto !important;
