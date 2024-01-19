@@ -29,11 +29,11 @@
         <a href="admin.php?action=gererMatch" class="linkAction">
                         <div class="oneAction">Gérer un match</div>
         </a>
-        <a href="admin.php?action=ajouterPariSpecial" class="linkAction">
-            <div class="oneAction">Ajouter pari special</div>
+        <a href="admin.php?action=ajouterQuestionBonus" class="linkAction">
+            <div class="oneAction">Ajouter une question bonus</div>
         </a>
-        <a href="admin.php?action=gererPariSpeciaux" class="linkAction">
-            <div class="oneAction">Gérer les paris speciaux</div>
+        <a href="admin.php?action=gererQuestionBonus" class="linkAction">
+            <div class="oneAction">Gérer les questions bonus</div>
         </a>
         
     </div>
