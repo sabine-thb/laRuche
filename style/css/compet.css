@@ -209,7 +209,7 @@ h3{
 @media(max-width:750px){
 
     body{
-        padding-top:255px !important;
+        padding-top:255px !important; 
     }
     header{
         height: auto !important;
