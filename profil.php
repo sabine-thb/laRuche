@@ -30,6 +30,7 @@ $affichageModule = $module->afficheModule();
     <script src="https://kit.fontawesome.com/239660ff21.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style/css/menu.css">
     <link rel="stylesheet" href="style/css/fonts.css">
+    <link rel="stylesheet" href="style/css/profil.css">
     <script src="./style/js/competition.js"></script>
     <script src="./style/js/profil/editLogo.js"></script>
 </head>
@@ -50,7 +51,7 @@ $affichageModule = $module->afficheModule();
                 Competitions
             </a>
             <li class="drop-menu">
-                <img src="<?php echo $_SESSION['srcLogoUser'];?>"
+                <img src="style/img/logoBleu.png"
                      alt="logo de <?php echo $_SESSION['loginActif']; ?>"
                      id="logoUser" ondragover="afficherMenuProfil()" onclick="afficherMenuProfil()">
                 <ul>
