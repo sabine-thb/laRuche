@@ -47,7 +47,7 @@ class VueScorcast extends VueGenerique {
         require_once('./front/scoruche/QuestionBonus/boutons.php');
     }
 
-    public function afficheQuestionAttente($questions)
+    public function afficheQuestionAttente($questions,$equipes)
     {
         require_once('./front/scoruche/QuestionBonus/listeQuestionsAttente.php');
     }
@@ -60,6 +60,27 @@ class VueScorcast extends VueGenerique {
     public function afficheQuestionFini($questions)
     {
         require_once('./front/scoruche/QuestionBonus/listeQuestionsFini.php');
+    }
+
+    public function afficheFormEdit($data,$competActive)
+    {
+        $newURL = $this->changeUrl('action','edit');
+        require_once("./front/profil/EditProfil.php");
+    }
+
+    public function afficheFormNouveauMDP()
+    {
+        $nextPage = 'profil.php?action=editProfil';
+        require_once('./front/connexion/nouveauPassword.php');
+    }
+
+    public function changeUrl($queryParam, $value): string
+    {
+        $currentURL = $_SERVER['REQUEST_URI'];
+        parse_str(parse_url($currentURL, PHP_URL_QUERY), $queryParams);
+        $queryParams[$queryParam] = $value;
+        $newQueryString = http_build_query($queryParams);
+        return strtok($currentURL, '?') . '?' . $newQueryString;
     }
 
 }

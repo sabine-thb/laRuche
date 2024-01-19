@@ -318,4 +318,76 @@ class ModeleScorcast extends Connexion {
         }
     }
 
+    public function getEquipes($idCompet)
+    {
+        try{
+            $query = "
+            SELECT DISTINCT E.nom,E.equipe_id
+            FROM LaRuche.equipe E
+            NATURAL JOIN LaRuche.matchApronostiquer M
+            WHERE M.competition_id = $idCompet
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+
+            return $this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function editAge($age, $idUser): bool
+    {
+        try{
+            $query = "
+            UPDATE LaRuche.users 
+            SET age = $age
+            WHERE user_id = $idUser
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function editGenre($gender, $idUser): bool
+    {
+        try{
+            $query = "
+            UPDATE LaRuche.users 
+            SET Gender = '$gender'
+            WHERE user_id = $idUser
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function changeLogo(string $dest,$idUser): bool
+    {
+        try{
+            $query = "
+            UPDATE LaRuche.users 
+            SET src_logo_user = '$dest'
+            WHERE user_id = $idUser
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
 }
