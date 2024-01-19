@@ -171,6 +171,20 @@ class ContAdmin {
             }
         }
     }
+
+    public function supprimerUser()
+    {
+        if (isset($_GET["idUser"])) {
+            $resultat=$this->modele->deleteUser($_GET["idUser"]);
+            
+            if ($resultat) {
+                header('Location: admin.php?action=gererComptes');
+            }else{
+                echo "erreur lors de la suppression du compte";
+            }
+        }
+
+    }
     public function gererMatch()
     {
         $typeMatch = $_GET['type'] ?? 'attente';

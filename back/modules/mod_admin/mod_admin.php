@@ -105,12 +105,23 @@ class ModAdmin {
                 break;
 
             case 'detailEquipe':
+                echo "TODO a coder";
+                break;
+
             case 'detailCompetition':
                 echo "TODO a coder";
                 break;
 
             case 'supprimerEquipe':
                 $this->controlleur->supprimerEquipe();
+                break;
+
+            case 'supprimeUser':
+                $this->controlleur->supprimerUser();
+                break;
+
+            default :
+                echo "erreur 404 : Cette page s'est faite dégager aux 6m ! <br><br><br> cliquez l''abeille pour retourner au menu";
                 break;
 
         }

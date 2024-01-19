@@ -408,6 +408,24 @@ class ModeleAdmin extends Connexion {
         }
     }
 
+    public function deleteUser($id): bool
+    {
+        try {
+            $query ="
+            DELETE FROM LaRuche.users WHERE user_id=$id
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e');</script>";
+            return false;
+        }
+        
+    }
+    
     public function gererLogo()
     {
         $taille = strlen(basename($_FILES["logo"]["name"]));
