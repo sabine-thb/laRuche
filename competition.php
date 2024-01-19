@@ -69,26 +69,13 @@ $affichageModule = $module->afficheModule();
             <a href="competition.php?action=resultat&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="resultats">
                     Résultats
             </a>
+            <a href="profil.php?action=editProfil" class="linkNavbar linkDefaut" id="editProfil">
+                Edit profil
+            </a>
+            <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
+                Déconnexion
+            </a>
 
-            <li class="drop-menu">
-                <img src="./style/img/logoBleu.png"
-                     alt="logo de <?php echo $_SESSION['loginActif']; ?>"
-                     id="logoUser" ondragover="afficherMenuProfil()" onclick="afficherMenuProfil()">
-                <ul>
-                    <div class="profilDetails">
-                        <a href="profil.php?action=editProfil" class="linkNavbar linkDefaut" id="editProfil">
-                            Edit profil
-                        </a>
-                        <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
-                            Déconnexion
-                        </a>
-                    </div>
-                </ul>
-            </li>
-
-<!--            <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">-->
-<!--                    Déconnexion-->
-<!--            </a>-->
         </div>
 
         
