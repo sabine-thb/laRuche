@@ -26,3 +26,11 @@ function afficherErreurInscription() {
 
     return erreur;
 }
+
+function showTitle(element) {
+
+    if (window.innerWidth <= 880) {
+        const titleText = element.getAttribute('title');
+        alert(titleText);
+    }
+}

@@ -29,6 +29,12 @@
         <a href="admin.php?action=gererMatch" class="linkAction">
                         <div class="oneAction">Gérer un match</div>
         </a>
+        <a href="admin.php?action=ajouterQuestionBonus" class="linkAction">
+            <div class="oneAction">Ajouter une question bonus</div>
+        </a>
+        <a href="admin.php?action=gererQuestionBonus" class="linkAction">
+            <div class="oneAction">Gérer les questions bonus</div>
+        </a>
         
     </div>
 

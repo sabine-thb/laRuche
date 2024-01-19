@@ -30,6 +30,9 @@ class ModProfil {
             case 'edit':
                 $this->controlleur->recupFormEdit();
                 break;
+            case 'changePassword':
+                $this->controlleur->afficheFormMdp();
+                break;
         }
     }
 

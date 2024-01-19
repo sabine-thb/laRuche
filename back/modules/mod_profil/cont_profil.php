@@ -29,26 +29,54 @@ class ContProfil {
 
     public function editProfil()
     {
-        $data = $this->modele->getInfo($_SESSION['idUser']);
-        $this->vue->afficheFormEdit($data);
+        $isUser = $_SESSION['idUser'];
+
+        $data = $this->modele->getInfo($isUser);
+        $competActive = $this->modele->getCompetAndClassement($isUser);
+        switch ($data['Gender']){
+            case 'homme':
+                $data["optionGender"] = "Homme";
+                break;
+            case 'femme':
+                $data["optionGender"] = "Femme";
+                break;
+            case 'autre':
+                $data["optionGender"] = "autre";
+                break;
+            case 'default':
+                $data["optionGender"] = "je prefere ne pas dire";
+                break;
+            case 'croissant':
+                $data["optionGender"] = "I'm a croissant";
+                break;
+        }
+
+        $this->vue->afficheFormEdit($data,$competActive);
     }
 
     public function recupFormEdit()
     {
+        $idUser = $_SESSION['idUser'];
+
         if (isset($_FILES['new_logo']['tmp_name'])){
             $dest = $this->gererLogo();
             if ($dest == null) {
                 echo "erreur";
             }else {
-                $res = $this->modele->changeLogo($dest);
+                $res = $this->modele->changeLogo($dest,$idUser);
                 if (!$res)
                     echo "<p>Erreur changement logo</p>";
                 else {
                     $_SESSION['srcLogoUser'] = $dest;
-                    header('Location: profil.php?action=editProfil');
                 }
             }
+        }if (isset($_POST['age'])){
+            $this->modele->editAge($_POST['age'],$idUser);
+        }if (isset($_POST['gender'])){
+            $this->modele->editGenre($_POST['gender'],$idUser);
         }
+
+        header('Location: profil.php?action=editProfil');
     }
 
     public function gererLogo()
@@ -74,6 +102,11 @@ class ContProfil {
             return null;
         }else
             return $destination;
+    }
+
+    public function afficheFormMdp()
+    {
+        $this->vue->afficheFormNouveauMDP();
     }
 
 }

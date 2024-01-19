@@ -38,9 +38,9 @@ class ContScorcast {
             $result = $this->modele->rejoindreCompet($_GET['idCompet'],$_SESSION['idUser']);
 
             if($result){
-                echo "vous avez rejoint la competiton avec succès";
+                echo "<section>Vous avez rejoint la competiton avec succès.</section>";
             }else{
-                echo "erreur, impossible de rejoindre la competition";
+                echo "<section>Erreur, impossible de rejoindre la compétition.</section>";
             }
 
         }
@@ -57,7 +57,7 @@ class ContScorcast {
         $classement = $this->modele->recupereClassement($_GET['id']);
 
         if ($classement == 404)
-            echo "<p> Erreur lors de la recuperation du classement </p>";
+            echo "<p> Erreur lors de la récuperation du classement </p>";
         else
             $this->vue->afficheClassement($classement);
     }
@@ -96,9 +96,9 @@ class ContScorcast {
         }
 
         if (!$totalBool)
-            echo "erreur pendant au moins une modification";
+            echo "Erreur pendant au moins une modification";
         else
-            echo "changements enregistrés avec succés";
+            echo "Changements enregistrés avec succès";
     }
 
     public function recupLogoUser()
@@ -130,6 +130,15 @@ class ContScorcast {
             $this->vue->afficheResultat($matchs,$totalPoints);
         }
 
+    }
+
+    public function afficheInfoUser()
+    {
+        $idUser = $_GET['userId'];
+
+        $data = $this->modele->getInfo($idUser);
+        $competActive = $this->modele->getCompetAndClassement($idUser);
+        $this->vue->afficheInfoUser($data,$competActive);
     }
 
 }

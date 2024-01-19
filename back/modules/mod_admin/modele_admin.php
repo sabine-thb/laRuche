@@ -486,4 +486,21 @@ class ModeleAdmin extends Connexion {
             return false;
         }
     }
+
+    public function deleteMatch($idMatch)
+    {
+        try {
+            $query ="
+            DELETE FROM LaRuche.matchApronostiquer WHERE match_id=$idMatch
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return -45; //pour etre sur que l'erreur n'existe pas dans mySQL
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e');</script>";
+            return $e->getCode();
+        }
+    }
 }

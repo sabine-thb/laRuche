@@ -1,6 +1,6 @@
 <div>
     <div class="topMain element">
-        <h2>Resultats</h2>
+        <h2>Résultats</h2>
 
         <p>
             Total points : <?php echo $totalPoints; ?>

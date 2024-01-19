@@ -284,6 +284,8 @@ section{
 
 
 
+
+
 @media(max-width:1215px){
     .actions{
 
@@ -352,7 +354,7 @@ section{
         text-align: center;
     }
 
-    .nomCompet, .descrCompet, p.equipe{
+    .nomCompet, .descrCompet, p.equipe, .pMatch{
         display: flex;
         flex-direction: column;
         align-items: center;

@@ -20,8 +20,7 @@
                     <a class="supprCompet"
                     href="admin.php?action=supprimerCompetition&idCompet=<?php echo $tuple['competition_id']; ?>"
                     onclick="return confirm('Êtes-vous sûr de vouloir supprimez la competition <?php echo $tuple['nom']; ?> ?\n' +
-                                'Par mesure de securité cette action est impossible si il y a des matchs dans <?php echo $tuple['nom']; ?>.\n' +
-                            'Si vous voulez supprimez rapidement <?php echo $tuple['nom']; ?> rendez-vous dans les details de <?php echo $tuple['nom']; ?>');"
+                                'Cette action est definitive !');"
                     >
                         Supprimer
                     </a>

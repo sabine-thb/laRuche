@@ -116,6 +116,18 @@ class ModAdmin {
                 $this->controlleur->supprimerEquipe();
                 break;
 
+            case 'supprimerMatch':
+                $this->controlleur->supprimerMatch();
+                break;
+
+            case 'ajouterQuestionBonus':
+                $this->controlleur->afficheFormQuestionBous();
+                break;
+
+            case 'ajouteQuestionBonus':
+                $this->controlleur->ajouteQuestionBonus();
+                break;
+
             case 'supprimeUser':
                 $this->controlleur->supprimerUser();
                 break;
@@ -132,5 +144,3 @@ class ModAdmin {
     }
 
 }
-
-?>

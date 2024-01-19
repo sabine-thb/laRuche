@@ -218,4 +218,43 @@ class ModeleScorcast extends Connexion {
         }
     }
 
+    public function getInfo($idUser)
+    {
+        try {
+            $query = "
+            SELECT U.src_logo_user,U.login,c.nom as nom, U.description, U.age , U.Gender
+            FROM LaRuche.users U
+            NATURAL JOIN LaRuche.pronostiqueur
+            INNER JOIN LaRuche.competition join LaRuche.competition c on pronostiqueur.competition_id = c.competition_id
+            WHERE U.user_id = $idUser
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+
+            return $this->executeQuery($stmt)[0];
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return 404;
+        }
+    }
+
+    public function getCompetAndClassement($idUser)
+    {
+        try{
+            $query = "
+            SELECT c.nom,LaRuche.getClassement(p.pronostiqueur_id,c.competition_id) as classement
+            FROM LaRuche.users u
+            INNER JOIN LaRuche.pronostiqueur p on u.user_id = p.user_id
+            INNER JOIN LaRuche.competition c on p.competition_id = c.competition_id
+            WHERE u.user_id = $idUser;
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+
+            return $this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
 }

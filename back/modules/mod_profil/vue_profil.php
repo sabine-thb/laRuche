@@ -16,9 +16,15 @@ class VueProfil extends VueGenerique {
         require_once("./front/ruche/bienvenue.php");
     }
 
-    public function afficheFormEdit($data)
+    public function afficheFormEdit($data,$competActive)
     {
-        require_once("./front/profil/editProfil.php");
+        require_once("./front/profil/EditProfil.php");
+    }
+
+    public function afficheFormNouveauMDP()
+    {
+        $nextPage = 'profil.php?action=editProfil';
+        require_once('./front/connexion/nouveauPassword.php');
     }
 
 }

@@ -85,6 +85,16 @@ CREATE TABLE pronostique(
     CONSTRAINT fk_pronostique_match FOREIGN KEY(match_id) REFERENCES matchApronostiquer(match_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE LaRuche.questionBonus(
+    question_bonus_id INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(50) NOT NULL,
+    competition_id INT NOT NULL,
+    objectif VARCHAR(150),
+    type ENUM('nombre','string','equipe','bool') NOT NULL,
+    point_bonne_reponse INT,
+    CONSTRAINT fk_questionBonus_competition FOREIGN KEY(competition_id) REFERENCES LaRuche.competition(competition_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 -- Fonction
 
 delimiter $$
@@ -129,6 +139,23 @@ BEGIN
 
     IF t IS NULL THEN
         SET t = 0;
+    END IF;
+
+    RETURN t;
+END $$
+
+DROP FUNCTION IF EXISTS LaRuche.getClassement $$
+CREATE FUNCTION LaRuche.getClassement(id_pronostiqueur INT, id_compet INT) RETURNS INT
+BEGIN
+
+    DECLARE t INT;
+
+    SELECT COUNT(*) + 1 INTO t
+    FROM pronostiqueur
+    WHERE competition_id = id_compet and totalPoint(pronostiqueur_id,competition_id) > totalPoint(id_pronostiqueur,id_compet);
+
+    IF t IS NULL THEN
+        SET t = -1;
     END IF;
 
     RETURN t;

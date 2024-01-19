@@ -1,24 +1,24 @@
-
-main{
-    display:flex;
-    flex-direction:column;
-    justify-content: center;
-    align-items: center;
-    margin-top:20px;
-    gap:20px;
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+section{
+    padding:25px;
 }
+
+.titlePage{
+    font-family:"montserratExtraBold", sans-serif;
+    font-size:1.2rem;
+}
+
 
 body{
     padding-bottom: 60px;
 }
 
-.element{
-    max-width: 100%;
-    background-color: white;
-    border-radius: 10px;
+.classementContainer{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin-top:20px;
+    gap:10px;
 }
 
 h3{
@@ -37,11 +37,6 @@ h3{
     background-color: #080e50;
 }
 
-.topMain{
-    text-align: left;
-    padding: 10px 15px 10px 15px;
-    margin-bottom:20px;
-}
 
 .classement-titre{
     text-align: center;
@@ -56,10 +51,13 @@ h3{
 
 .classement{
     width:350px;
-    padding:8px 10px 8px 10px;
+    height: 55px;
+    background-color: white;
+    border-radius: 40px;
 }
 
 .case-classement{
+    height:100%;
     display: flex;
     gap:20px;
     align-items: center;
@@ -68,27 +66,23 @@ h3{
 .logo-classement{
     width: 50px;
     height: 50px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
 .bleu{
-    border: rgba(42, 74, 155, 0.53) solid 1px;
-    padding: 5px 10px 7px 10px;
+    border: #0B54CD solid 3px;
     color: #007bff;
-    background-color: rgba(99, 167, 246, 0.22);
-    border-radius: 10px;
+    border-radius:40px;
 }
 
 .bleu .numero{
     color: white;
-    background-color: blue;
+    background-color: #0B54CD;;
 }
 
 .classic{
-    border: none;
-    padding: 5px 10px 7px 10px;
     color: #151515;
-    border-radius: 0;
 }
 
 .classement h2{
@@ -98,16 +92,15 @@ h3{
 }
 
 .numero{
-    min-width: 25px;
-    min-height: 25px;
-    background-color: #9b9b9b;
-    border-radius: 50%;
-    line-height: 20px;
+    font-family: "montserratExtraBold", sans-serif;
+    height:100%;
+    background-color: #e7c147;
+    color:white;
+    width:55px;
+    border-radius:40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    font-family: Trebuchet MS, sans-serif;
 }
 
 .carteProno{
@@ -190,30 +183,16 @@ h3{
     font-size: 19px;
     font-family: Trebuchet MS, sans-serif;
     color: grey;
+    margin:0px 20px 0px auto;
+
+}
+
+.loginUser{
+    margin:0;
 }
 
 @media(max-width:850px){
-
-    main{
-        margin-top: 80px;
-    }
-
-    body{
-        padding-top:255px;
-    }
-
-    header{
-        height:auto;
-    }
-
-    #navbar{
-        flex-direction: column;
-        align-items: flex-end;
-    }
-
-    .logoEquipe{
-        max-width: 70px;
-    }
+    
     .centreCard {
         position: initial;
     }
@@ -225,6 +204,22 @@ h3{
         gap:6px;
     }
 
+}
+
+@media(max-width:750px){
+
+    body{
+        padding-top:255px !important;
+    }
+    header{
+        height: auto !important;
+    }
+
+    #navbar{
+        flex-direction:column;
+        align-items:flex-end;
+
+    }
 }
 
 
