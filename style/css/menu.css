@@ -31,10 +31,6 @@ header{
 header img{
     height: 60px;
     width: auto;
-<<<<<<< HEAD
-    cursor: pointer;
-    
-=======
 }
 
 #logoUser{
@@ -42,7 +38,7 @@ header img{
     width: 70px;
     border-radius: 50%;
     overflow: hidden;
->>>>>>> 2e4d36fc35f4a86d1bcf0d2e1846f03284e32b18
+    cursor:pointer;
 }
 
 .linkTitreSite{
@@ -68,8 +64,7 @@ header img{
     display: flex;
     gap:20px;
     align-items: center;
-    justify-content: flex-end;
-    align-content: center;
+    justify-content: center;
 }
 
 li,ul{
@@ -114,6 +109,10 @@ li,ul{
 
 .linkDefaut{
     background-color: #080e50;
+}
+
+.drop-menu{
+    height:70px;
 }
 
 

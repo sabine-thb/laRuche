@@ -63,7 +63,7 @@ $affichageModule = $module->afficheModule();
 <!--           </a>-->
 
              <li class="drop-menu">
-                <img src="<?php echo $_SESSION['srcLogoUser'];?>"
+                <img src="./style/img/logoBleu.png"
                      alt="logo de <?php echo $_SESSION['loginActif']; ?>"
                      id="logoUser" ondragover="afficherMenuProfil()" onclick="afficherMenuProfil()">
                 <ul>
