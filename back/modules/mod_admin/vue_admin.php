@@ -67,9 +67,9 @@ class VueAdmin extends VueGenerique {
         require_once("./front/admin/listeMatchFini.php");
     }
 
-    public function afficheFormPariSpecial($comp)
+    public function afficheFormQuestionBonus($comp)
     {
-        require_once("./front/admin/pariSpecial/formPariSpecial.php");
+        require_once("./front/admin/QuestionBonus/formQuestionBonus.php");
     }
 
 }

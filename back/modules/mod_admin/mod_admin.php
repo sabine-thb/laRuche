@@ -117,8 +117,12 @@ class ModAdmin {
                 $this->controlleur->supprimerMatch();
                 break;
 
-            case 'ajouterPariSpecial':
-                $this->controlleur->afficheFormPariSpecial();
+            case 'ajouterQuestionBonus':
+                $this->controlleur->afficheFormQuestionBous();
+                break;
+
+            case 'ajouteQuestionBonus':
+                $this->controlleur->ajouteQuestionBonus();
                 break;
 
         }
@@ -129,5 +133,3 @@ class ModAdmin {
     }
 
 }
-
-?>

@@ -85,6 +85,16 @@ CREATE TABLE pronostique(
     CONSTRAINT fk_pronostique_match FOREIGN KEY(match_id) REFERENCES matchApronostiquer(match_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE LaRuche.questionBonus(
+    question_bonus_id INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(50) NOT NULL,
+    competition_id INT NOT NULL,
+    objectif VARCHAR(150),
+    type ENUM('nombre','string','equipe','bool') NOT NULL,
+    point_bonne_reponse INT,
+    CONSTRAINT fk_questionBonus_competition FOREIGN KEY(competition_id) REFERENCES LaRuche.competition(competition_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 -- Fonction
 
 delimiter $$
