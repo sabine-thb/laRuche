@@ -84,11 +84,6 @@ input[type=file]:hover{
     text-align: center;
 }
 
-.oneCompet{
-    display: flex;
-    align-items: center;
-}
-
 .Nom{
     margin-left: 10px;
 }

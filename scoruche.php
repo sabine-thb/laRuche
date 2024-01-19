@@ -58,7 +58,7 @@ $affichageModule = $module->afficheModule();
             <a href="scoruche.php?action=afficheMesCompet" class="linkNavbar linkDefaut">
                 Mes compétitions
             </a>
-            <a href="profil.php?action=editProfil" class="linkNavbar linkDefaut" id="editProfil">
+            <a href="scoruche.php?action=editProfil" class="linkNavbar linkDefaut" id="editProfil">
                 Edit profil
             </a>
             <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">

@@ -1,10 +1,7 @@
 
--- Thibout benjamin
--- Projet : Site LaRuche
--- collaborateurs: Maitre Arsene, Thibout Sabine
--- script création
--- test1.cah82lrh4zyj.eu-west-3.rds.amazonaws.com
--- source creationMysql.sql
+# write by Arsene Maitre
+# Projet : Site LaRuche
+# script for init database 'LaRuche'
 
 
 -- CREATION

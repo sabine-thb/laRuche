@@ -72,7 +72,7 @@ $affichageModule = $module->afficheModule();
             <a href="competition.php?action=resultat&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="resultats">
                     Résultats
             </a>
-            <a href="profil.php?action=editProfil" class="linkNavbar linkDefaut" id="editProfil">
+            <a href="competition.php?action=editProfil&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="editProfil">
                 Edit profil
             </a>
             <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">

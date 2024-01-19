@@ -1,8 +1,7 @@
 -------------------------------------
 -- maitre arsene
 -- Projet : Site La ruche
--- script creation
--- test1.cah82lrh4zyj.eu-west-3.rds.amazonaws.com
+-- ancien script pour postgresSQL
 -------------------------------------
 
 -------------------------------------
