@@ -152,7 +152,7 @@ class ContScorcast {
         else if (count($question) == 0)
             echo "<p>il n'y a rien a voir ici actuelement</p>";
         else
-            var_dump($question);
+            $this->afficheMatchEnFonctionType($type,$question);
     }
 
     private function recupereMatchEnFonctionType($type)
@@ -168,6 +168,21 @@ class ContScorcast {
         }
 
         return 404; //erreur
+    }
+
+    private function afficheMatchEnFonctionType($type, $question)
+    {
+        switch ($type){
+            case 'attente':
+                $this->vue->afficheQuestionAttente($question);
+                break;
+            case 'en_cours':
+                $this->vue->afficheQuestionEnCours($question);
+                break;
+            case 'fini':
+                $this->vue->afficheQuestionFini($question);
+                break;
+        }
     }
 
 }

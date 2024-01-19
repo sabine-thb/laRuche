@@ -47,4 +47,19 @@ class VueScorcast extends VueGenerique {
         require_once('./front/scoruche/QuestionBonus/boutons.php');
     }
 
+    public function afficheQuestionAttente($questions)
+    {
+        require_once('./front/scoruche/QuestionBonus/listeQuestionsAttente.php');
+    }
+
+    public function afficheQuestionEnCours($questions)
+    {
+        require_once('./front/scoruche/QuestionBonus/listeQuestionsEnCours.php');
+    }
+
+    public function afficheQuestionFini($questions)
+    {
+        require_once('./front/scoruche/QuestionBonus/listeQuestionsFini.php');
+    }
+
 }
