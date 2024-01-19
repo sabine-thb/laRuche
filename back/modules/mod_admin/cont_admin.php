@@ -340,9 +340,12 @@ class ContAdmin {
     public function ajouteQuestionBonus()
     {
         $titre = $_POST['name'];
-//        $ = $_POST['name'];
-//        $titre = $_POST['name'];
-//        $titre = $_POST['name'];
+        $compet_id = $_POST['compet'];
+        $objectif = $_POST['description'];
+        $type = $_POST['typeResultat'];
+        $pts = $_POST['points'];
+
+        $this->modele->ajouteQuestionBonus($titre,$compet_id,$objectif,$type,$pts);
     }
 
 
