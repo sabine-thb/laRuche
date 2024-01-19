@@ -331,10 +331,18 @@ class ContAdmin {
         }
     }
 
-    public function afficheFormPariSpecial()
+    public function afficheFormQuestionBous()
     {
         $compet=$this->modele->getCompet();
-        $this->vue->afficheFormPariSpecial($compet);
+        $this->vue->afficheFormQuestionBonus($compet);
+    }
+
+    public function ajouteQuestionBonus()
+    {
+        $titre = $_POST['name'];
+//        $ = $_POST['name'];
+//        $titre = $_POST['name'];
+//        $titre = $_POST['name'];
     }
 
 
