@@ -64,6 +64,7 @@
                         <label>
                             <input class="pristine toggle" type="checkbox" id="<?php echo $tuple['match_id']; ?>_toggle"
                                    name="<?php echo $tuple['match_id']; ?>_toggle" value="on">
+                                   <p>vainqueur aux tirs au buts si égalité <br>  Vainqueur du coté de l'indicateur</p>
                         </label>
 
                         <?php
@@ -78,7 +79,7 @@
                 </div>
 
                 <p>
-                    Bon score : <?php echo $tuple['pts_Exact']; ?> <br> Bonne ecart + bon vainqueur : <?php echo $tuple['pts_Ecart']; ?> <br> Bon vainqueur : <?php echo $tuple['pts_Vainq']; ?>
+                    Bon score : <?php echo $tuple['pts_Exact']; ?> <br> Bon écart + bon vainqueur : <?php echo $tuple['pts_Ecart']; ?> <br> Bon vainqueur : <?php echo $tuple['pts_Vainq']; ?>
                 </p>
 
             </div>

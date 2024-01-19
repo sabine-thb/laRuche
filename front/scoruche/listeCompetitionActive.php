@@ -16,7 +16,7 @@
                     </p>
 
                     <a href="competition.php?action=classement&id=<?php echo $tuple['competition_id']; ?>" class="lienPari">
-                        Faire des paris
+                        Accéder à la Compet'
                     </a>
 
                 </div>

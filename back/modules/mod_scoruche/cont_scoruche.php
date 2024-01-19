@@ -83,11 +83,11 @@ class ContScorcast {
                 if ($input1 != "" && $input2 != "") {
                     if ($input1 == $input2) {
                         $str_toggle = $idMatch . "_toggle";
-                        $equipe_gagnate_peno = array_key_exists($str_toggle, $_POST) ? "'equipe2'" : "'equipe1'";
+                        $equipe_gagnante_peno = array_key_exists($str_toggle, $_POST) ? "'equipe2'" : "'equipe1'";
                     } else
-                        $equipe_gagnate_peno = "null";
+                        $equipe_gagnante_peno = "null";
 
-                    $res = $this->modele->modifProno($idMatch, $input1, $input2, $equipe_gagnate_peno, $_SESSION['idPronostiqueur']);
+                    $res = $this->modele->modifProno($idMatch, $input1, $input2, $equipe_gagnante_peno, $_SESSION['idPronostiqueur']);
 
                     if (!$res)
                         $totalBool = false;
