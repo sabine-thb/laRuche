@@ -42,4 +42,9 @@ class VueScorcast extends VueGenerique {
         require_once('./front/profil/ViewProfil.php');
     }
 
+    public function afficheButton()
+    {
+        require_once('./front/scoruche/QuestionBonus/boutons.php');
+    }
+
 }

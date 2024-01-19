@@ -72,4 +72,10 @@ class VueAdmin extends VueGenerique {
         require_once("./front/admin/QuestionBonus/formQuestionBonus.php");
     }
 
+    public function questionEnregister()
+    {
+        require_once("./front/admin/QuestionBonus/SuccesSave.html");
+    }
+
+
 }

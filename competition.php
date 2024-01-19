@@ -66,6 +66,9 @@ $affichageModule = $module->afficheModule();
             <a href="competition.php?action=affichePronostic&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="prono">
                     Pronostics
             </a>
+            <a href="competition.php?action=questionsBonus&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="questions">
+                    Questions Bonus
+            </a>
             <a href="competition.php?action=resultat&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="resultats">
                     Résultats
             </a>

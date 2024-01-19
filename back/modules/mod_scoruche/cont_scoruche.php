@@ -141,4 +141,33 @@ class ContScorcast {
         $this->vue->afficheInfoUser($data,$competActive);
     }
 
+    public function questionsBonus()
+    {
+        $type = $_GET['type'] ?? 'attente'; // attente - en_cours - fini
+        $this->vue->afficheButton();
+        $question = $this->recupereMatchEnFonctionType($type);
+
+        if (!isset($question) || $question == 404)
+            echo "<p>Erreur lors de la recherche des questions</p>";
+        else if (count($question) == 0)
+            echo "<p>il n'y a rien a voir ici actuelement</p>";
+        else
+            var_dump($question);
+    }
+
+    private function recupereMatchEnFonctionType($type)
+    {
+        $id = $_SESSION['idPronostiqueur'];
+        switch ($type){
+            case 'attente':
+                return $this->modele->getQuestionAttente($id);
+            case 'en_cours':
+                return $this->modele->getQuestionEnCours($id);
+            case 'fini':
+                return $this->modele->getQuestionFini($id);
+        }
+
+        return 404; //erreur
+    }
+
 }

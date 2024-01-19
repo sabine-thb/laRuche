@@ -92,7 +92,23 @@ CREATE TABLE LaRuche.questionBonus(
     objectif VARCHAR(150),
     type ENUM('nombre','string','equipe','bool') NOT NULL,
     point_bonne_reponse INT,
+    pari_ouvert BOOLEAN NOT NULL DEFAULT true,
     CONSTRAINT fk_questionBonus_competition FOREIGN KEY(competition_id) REFERENCES LaRuche.competition(competition_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE LaRuche.pronoQuestionBonus(
+    question_bonus_id INT NOT NULL,
+    pronostiqueur_id INT NOT NULL,
+    reponse VARCHAR(20),
+    point_obtenu INT DEFAULT 0,
+    CONSTRAINT fk_pronoQuestionBonus_pronostiqueur FOREIGN KEY(pronostiqueur_id) REFERENCES pronostiqueur(pronostiqueur_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_pronoQuestionBonus_match FOREIGN KEY(question_bonus_id) REFERENCES questionBonus(question_bonus_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE LaRuche.resultatQuestionBonus(
+    question_bonus_id INT NOT NULL PRIMARY KEY,
+    bonne_reponse VARCHAR(20),
+    CONSTRAINT fk_resultatQuestionBonus_questionBonus FOREIGN KEY(question_bonus_id) REFERENCES questionBonus(question_bonus_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Fonction
@@ -131,6 +147,7 @@ CREATE FUNCTION LaRuche.totalPoint(id_pronostiqueur INT, id_compet INT) RETURNS 
 BEGIN
 
     DECLARE t INT;
+    DECLARE t2 INT;
 
     SELECT SUM(point_obtenu) INTO t
                              FROM LaRuche.pronostique
@@ -141,7 +158,16 @@ BEGIN
         SET t = 0;
     END IF;
 
-    RETURN t;
+    SELECT SUM(point_obtenu) INTO t2
+                            FROM LaRuche.pronoQuestionBonus
+                            NATURAL JOIN LaRuche.questionBonus
+                            WHERE pronostiqueur_id = id_pronostiqueur and competition_id = id_compet;
+
+    IF t2 IS NULL THEN
+        SET t2 = 0;
+    END IF;
+
+    RETURN t + t2;
 END $$
 
 DROP FUNCTION IF EXISTS LaRuche.getClassement $$
@@ -173,7 +199,7 @@ BEGIN
     DECLARE is_done INTEGER DEFAULT 0;
 
     DECLARE idTemp INT;
-    DECLARE myCursor CURSOR FOR SELECT pronostiqueur_id FROM LaRuche.pronostiqueur;
+    DECLARE myCursor CURSOR FOR SELECT pronostiqueur_id FROM LaRuche.pronostiqueur WHERE pronostiqueur.competition_id = NEW.competition_id;
     
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
 
@@ -192,7 +218,36 @@ BEGIN
     CLOSE myCursor;
 END $$
 
--- ajoute automatiquement des prono au matchs créé précédemment si un user rejoint une competition en cours de route
+-- ajoute automatiquement des tuples de prono pour chaque personne d'une competition lorsqu'une question bonus est crée
+
+DROP TRIGGER IF EXISTS LaRuche.ajoutAutoPronoQuestionDefaut $$
+CREATE TRIGGER LaRuche.ajoutAutoPronoQuestionDefaut AFTER INSERT ON LaRuche.questionBonus
+    FOR EACH ROW
+BEGIN
+
+    DECLARE is_done INTEGER DEFAULT 0;
+
+    DECLARE idTemp INT;
+    DECLARE myCursor CURSOR FOR SELECT pronostiqueur_id FROM LaRuche.pronostiqueur WHERE pronostiqueur.competition_id = NEW.competition_id;
+
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
+
+    OPEN myCursor;
+
+    read_loop: LOOP
+        FETCH myCursor INTO idTemp;
+
+        IF is_done = 1 THEN
+            LEAVE read_loop;
+        END IF;
+
+        INSERT INTO LaRuche.pronoQuestionBonus(question_bonus_id,pronostiqueur_id) VALUES (NEW.question_bonus_id,idTemp);
+    END LOOP;
+
+    CLOSE myCursor;
+END $$
+
+-- ajoute automatiquement des prono au matchs + question bonus créé précédemment si un user rejoint une competition en cours de route
 
 DROP TRIGGER IF EXISTS LaRuche.ajoutAutoPronoBefore $$
 CREATE TRIGGER LaRuche.ajoutAutoPronoBefore AFTER INSERT ON LaRuche.pronostiqueur
@@ -203,6 +258,7 @@ BEGIN
 
     DECLARE idTemp INT;
     DECLARE myCursor CURSOR FOR SELECT match_id FROM LaRuche.matchApronostiquer WHERE competition_id = NEW.competition_id;
+    DECLARE myCursor2 CURSOR FOR SELECT question_bonus_id FROM LaRuche.questionBonus WHERE competition_id = NEW.competition_id;
 
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
 
@@ -219,6 +275,23 @@ BEGIN
     END LOOP;
 
     CLOSE myCursor;
+
+    SET is_done = 0;
+
+    OPEN myCursor2;
+
+    read_loop: LOOP
+        FETCH myCursor2 INTO idTemp;
+
+        IF is_done = 1 THEN
+            LEAVE read_loop;
+        END IF;
+
+        INSERT INTO LaRuche.pronoQuestionBonus(question_bonus_id,pronostiqueur_id) VALUES (idTemp,NEW.pronostiqueur_id);
+    END LOOP;
+
+    CLOSE myCursor2;
+
 END $$
 
 -- permet d'ajouter les points au pronostiqueurs lors qu'un resultat est enregistrer

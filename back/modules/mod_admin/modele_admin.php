@@ -489,14 +489,14 @@ class ModeleAdmin extends Connexion {
     public function ajouteQuestionBonus($titre, $compet_id, $objectif, $type, $pts)
     {
         try {
-////            $query ="
-////            INSERT INTO LaRuche.questionBonus(question_bonus_id, titre, competition_id, objectif, type, point_bonne_reponse)
-////            VALUES
-////            ";
-//            $stmt = Connexion::$bdd->prepare($query);
-//            $this->executeQuery($stmt);
+            $query ="
+            INSERT INTO LaRuche.questionBonus(titre, competition_id, objectif, type, point_bonne_reponse)
+            VALUES ('$titre',$compet_id,'$objectif','$type',$pts)
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
 
-            return -45; //pour etre sur que l'erreur n'existe pas dans mySQL
+            return -45;
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e');</script>";

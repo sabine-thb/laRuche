@@ -345,7 +345,13 @@ class ContAdmin {
         $type = $_POST['typeResultat'];
         $pts = $_POST['points'];
 
-        $this->modele->ajouteQuestionBonus($titre,$compet_id,$objectif,$type,$pts);
+        $res = $this->modele->ajouteQuestionBonus($titre,$compet_id,$objectif,$type,$pts);
+
+        if ($res == -45)
+            $this->vue->questionEnregister();
+        else
+            echo "<p>Erreur !</p>";
+
     }
 
 

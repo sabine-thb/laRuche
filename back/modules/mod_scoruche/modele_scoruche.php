@@ -257,4 +257,65 @@ class ModeleScorcast extends Connexion {
         }
     }
 
+    public function getQuestionAttente($id)
+    {
+        try{
+            $query = "
+            SELECT *
+            FROM LaRuche.questionBonus Q
+            INNER JOIN LaRuche.pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+            WHERE pari_ouvert = true and pronostiqueur_id = $id
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+
+            return $this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function getQuestionEnCours($id)
+    {
+        try{
+            $query = "
+            SELECT Q.*,P.*
+            FROM LaRuche.questionBonus Q
+            INNER JOIN LaRuche.pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+            WHERE pari_ouvert = false and pronostiqueur_id = $id
+            EXCEPT 
+            SELECT Q.*,P.*
+            FROM LaRuche.questionBonus Q
+            INNER JOIN LaRuche.pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+            INNER JOIN LaRuche.resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
+            WHERE pari_ouvert = false and pronostiqueur_id = $id
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+
+            return $this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function getQuestionFini($id)
+    {
+        try{
+            $query = "
+            SELECT *
+            FROM LaRuche.questionBonus Q
+            INNER JOIN LaRuche.pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+            INNER JOIN LaRuche.resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
+            WHERE pari_ouvert = false and pronostiqueur_id = $id
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+
+            return $this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
 }
