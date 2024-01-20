@@ -48,7 +48,7 @@ $affichageModule = $module->afficheModule();
 
         <div id="navbar">
             <a href="scoruche.php" class="linkNavbar linkDefaut" id="competition">
-                Competitions
+                Compétitions
             </a>
             <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
                 Déconnexion
