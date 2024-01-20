@@ -145,6 +145,13 @@ h3{
     border: rgba(98, 98, 98, 0.3) solid 0.08mm;
 }
 
+.jaune{
+    padding:5px;
+    background-color: #f3db8b;
+    border-radius: 5px;
+    margin-right:10px;
+}
+
 .selectionFinale{
     width: 100%;
     display: flex;

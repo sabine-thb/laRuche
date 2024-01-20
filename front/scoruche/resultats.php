@@ -6,9 +6,12 @@
         </p>
 
     <div class="resultPronos">
-        <?php foreach ($matchs as $tuple) { 
+        <?php foreach ($matchs as $tuple) {
             $timestamp = strtotime($tuple["date_match"]);
-            $date_formattee = date("d/m/Y", $timestamp);?>
+            $date_formattee = date("d/m/Y", $timestamp);
+            $equipe1Win = $tuple['resultat_peno'] == 'equipe1' ? "jaune" : "";
+            $equipe2Win = $tuple['resultat_peno'] == 'equipe2' ? "jaune" : "";?>
+
             <div class="carteProno element">
                 <div class="hautCarte">
                     <p>
@@ -30,7 +33,7 @@
                             alt="image_equipe_gauche"
                             class="logoEquipe right">
 
-                        <h5 class="nomEquipe right">
+                        <h5 class="nomEquipe right <?php echo $equipe1Win; ?>">
                             <?php echo $tuple['nom1']; ?>
                         </h5>
 
@@ -48,7 +51,7 @@
                             <?php echo $tuple['resultat2']; ?>
                         </p>
 
-                        <h5 class="nomEquipe left">
+                        <h5 class="nomEquipe left <?php echo $equipe2Win; ?>">
                             <?php echo $tuple['nom2']; ?>
                         </h5>
 
