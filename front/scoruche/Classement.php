@@ -22,7 +22,7 @@
                     </a> -->
 
                     <h2 class="loginUser">
-                        <span title="<?php echo $personne["description"]; ?>"><?php echo $personne["login"]; ?></span>
+                        <span title="<?php echo $personne["description"]; ?>" class="loginUser"><?php echo $personne["login"]; ?></span>
                     </h2>
 
                     <p class ="point">

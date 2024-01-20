@@ -105,10 +105,9 @@ h3{
     left:-3px;
 }
 
-.carteProno{
-    padding:10px;
-    margin-bottom: 10px;
-}
+
+
+
 
 .hautCarte{
     display: flex;
@@ -166,12 +165,6 @@ h3{
     margin-bottom: auto;
 }
 
-.centreCard {
-    position: sticky;
-    left: 50%;
-    right: 50%;
-}
-
 .left{
     margin-left: auto;
 }
@@ -193,6 +186,47 @@ h3{
     margin:0;
 }
 
+/*Je mets en place la page des pronos*/
+
+.formPronostics{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carteProno{
+    background-color: white;
+    border-radius: 20px;
+    width:750px;
+    box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25);
+    padding:10px;
+    margin-bottom: 10px;
+
+}
+
+.submit{
+    font-family: "montserratRegular", sans-serif;
+    background-color: white;
+    cursor: pointer;
+    border:none;
+    border-radius:25px;
+    padding:5px 15px 5px 15px;
+    transition:padding 0.3s ease-in-out;
+    margin-top:30px;
+}
+
+.submit:hover{
+    padding:5px 20px 5px 20px;
+}
+
+/*Je mets en place la section des résultats*/
+
+.resultPronos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 @media(max-width:850px){
     
     .centreCard {
@@ -206,9 +240,13 @@ h3{
         gap:6px;
     }
 
+    .carteProno{
+        width:460px;
+    }
+
 }
 
-@media(max-width:750px){
+@media(max-width:930px){
 
     body{
         padding-top:255px !important; 
@@ -221,6 +259,36 @@ h3{
         flex-direction:column;
         align-items:flex-end;
 
+    }
+}
+
+@media(max-width:500px){
+    .logoEquipe{
+        width:80px;
+    }
+
+    .carteProno{
+        width:320px;
+    }
+
+    .nomEquipe{
+        display:none;
+    }
+
+}
+
+@media(max-width:450px){
+    .classement{
+        width:260px;
+        height:30px;
+    }
+
+    .loginUser{
+        font-size:0.8rem;
+    }
+
+    .numero{
+        width:30px;
     }
 }
 
