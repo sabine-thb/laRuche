@@ -37,7 +37,7 @@
                             <?php echo $tuple['nom1']; ?>
                         </h5>
 
-                        <p class="right">
+                        <p class="right <?php echo $equipe1Win; ?>">
                             <?php echo $tuple['resultat1']; ?>
                         </p>
 
@@ -47,7 +47,7 @@
 
                         <!-- Équipe 2 -->
 
-                        <p class="left">
+                        <p class="left <?php echo $equipe2Win; ?>">
                             <?php echo $tuple['resultat2']; ?>
                         </p>
 
