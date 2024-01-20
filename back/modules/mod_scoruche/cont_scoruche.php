@@ -98,7 +98,7 @@ class ContScorcast {
         if (!$totalBool)
             echo "Erreur pendant au moins une modification";
         else
-            echo "Changements enregistrés avec succès";
+            header("Location: competition.php?action=affichePronostic&id=$_GET[id]");
     }
 
     public function recupLogoUser()
