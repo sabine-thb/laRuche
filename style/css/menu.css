@@ -117,7 +117,7 @@ li,ul{
 
 
 
-@media(max-width:400px){
+@media(max-width:450px){
     .titreSite{
         font-size:1.4rem;
     }

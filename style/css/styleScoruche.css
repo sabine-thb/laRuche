@@ -185,6 +185,16 @@ section{
     .logo{
         display:none;
     }
+
+    .oneCompet{
+        width:500px;
+    }
+}
+
+@media(max-width:600px){
+    .oneCompet{
+        width:300px;
+    }
 }
 
 @media(max-width:530px){
