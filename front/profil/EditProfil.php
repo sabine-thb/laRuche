@@ -1,7 +1,7 @@
-
+<script src="./style/js/profil/editLogo.js"></script>
 <link rel="stylesheet" href="./style/css/PageProfil.css">
 <div id="content">
-    <form action="profil.php?action=edit" method="post" id="formProfil" enctype="multipart/form-data">
+    <form action="<?php echo $newURL; ?>" method="post" id="formProfil" enctype="multipart/form-data">
 
         <div class="topLeft-form">
             <div class="logoInput">
@@ -31,7 +31,7 @@
 
             <label for="gender" >Genre :</label>
             <select name="gender" id="gender" onchange="afficheBtnSave()">
-                <option value="none"><?php echo $data["optionGender"]; ?></option>
+                <option value="<?php echo $data["optionGender"]; ?>"><?php echo $data["optionGender"]; ?></option>
                 <option value="homme">Homme</option>
                 <option value="femme">Femme</option>
                 <option value="autre">autre</option>
@@ -43,7 +43,7 @@
         <div id="competActive">
             <h4> Compétition Active :</h4>
             <?php foreach ($competActive as $tuple) { ?>
-                <div class="oneCompet">
+                <div class="one-compet" style="display: flex;text-align: center"> <!--attention 'oneCompet' est deja utilisé dans un css-->
                     <h2>
                         <?php echo $tuple['nom']; ?>
                     </h2>

@@ -485,4 +485,22 @@ class ModeleAdmin extends Connexion {
             return $e->getCode();
         }
     }
+
+    public function ajouteQuestionBonus($titre, $compet_id, $objectif, $type, $pts)
+    {
+        try {
+            $query ="
+            INSERT INTO LaRuche.questionBonus(titre, competition_id, objectif, type, point_bonne_reponse)
+            VALUES ('$titre',$compet_id,'$objectif','$type',$pts)
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return -45;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e');</script>";
+            return $e->getCode();
+        }
+    }
 }
