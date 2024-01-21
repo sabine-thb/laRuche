@@ -253,10 +253,10 @@ h3{
 
 }
 
-@media(max-width:930px){
+@media(max-width:1170px){
 
     body{
-        padding-top:255px !important; 
+        padding-top:310px !important; 
     }
     header{
         height: auto !important;
@@ -264,7 +264,7 @@ h3{
 
     #navbar{
         flex-direction:column;
-        align-items:flex-end;
+        align-items:flex-end !important;
 
     }
 }

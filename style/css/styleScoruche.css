@@ -163,10 +163,6 @@ section{
         padding-top:206px;
     }
 
-    .msgArv{
-        background-color: rgba(0, 0, 0, 0);
-    }
-
     .cardCompet{
         width:500px;
 
@@ -185,6 +181,10 @@ section{
 @media(max-width:790px){
     .logo{
         display:none;
+    }
+
+    .msgArv{
+        background-color: rgba(0, 0, 0, 0);
     }
 
     .oneCompet{
