@@ -2,7 +2,7 @@
 <?php foreach ($questions as $oneQuestion) { ?>
 
     <div class="oneQuestion"> <!--la class 'oneQuestion' est utilisé par le js-->
-        <form action="#" method="post">
+        <form action="competition.php?action=validationQuestionBonus&id=<?php echo $_GET['id']; ?>" method="post">
             <input type="hidden" name="idQuestion" value="<?php echo $oneQuestion['question_bonus_id']; ?>">
 
             <h2>
@@ -25,14 +25,14 @@
                     break;
                 case 'equipe':
                     echo "<select name='reponse' class='input' required>";
-                    echo    "<option value=''></option>";
+                    echo    "<option value='$oneQuestion[reponse]'>$oneQuestion[reponse]</option>";
                     foreach ($equipes as $e)
-                        echo    "<option value='$e[equipe_id]'>$e[nom]</option>";
+                        echo    "<option value='$e[nom]'>$e[nom]</option>";
                     echo "</select>";
                     break;
                 case 'bool':
                     echo "<select name='reponse' class='input' required>";
-                    echo    "<option value=''></option>";
+                    echo    "<option value='$oneQuestion[reponse]'>$oneQuestion[reponse]</option>";
                     echo    "<option value='oui'>oui</option>";
                     echo    "<option value='non'>non</option>";
                     echo "</select>";

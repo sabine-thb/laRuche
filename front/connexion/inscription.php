@@ -3,7 +3,12 @@
     <div class="flexContainer">
         <div>
             <p class="pForm">
-                <label for="login">Login :</label>
+                <label for="prenom">Prenom :</label>
+                <input type='text' name='prenom' id="prenom" inputmode="text">
+            </p>
+
+            <p class="pForm">
+                <label for="login">Pseudo :</label>
                 <input type='text' name='login' id="login" inputmode="text">
             </p>
         

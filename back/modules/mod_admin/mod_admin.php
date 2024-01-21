@@ -75,13 +75,20 @@ class ModAdmin {
             case 'gererMatch':
                 $this->controlleur->gererMatch();
                 break;
-            
+
+            case 'gererQuestionBonus':
+                $this->controlleur->gererQuestion();
+                break;
+
             case 'supprimerCompetition':
                 $this->controlleur->supprimerCompetition();
                 break;
 
             case 'miseEnAttenteMatch':
                 $this->controlleur->miseEnAttenteMatch();
+                break;
+            case 'miseEnAttenteQuestion':
+                $this->controlleur->miseEnAttenteQuestion();
                 break;
 
             case 'ajouteResultatMatch':

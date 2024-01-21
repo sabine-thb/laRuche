@@ -70,12 +70,29 @@ class ModeleScorcast extends Connexion {
             $this->executeQuery($stmt);
 
             return true;
-
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
+    }
 
+    public function updatePronoQuestionBonus(int $idPronostiqueur,$idQuestion, $prono): bool
+    {
+
+        try {
+            $query = "
+            UPDATE LaRuche.pronoQuestionBonus 
+            SET reponse = '$prono'
+            WHERE question_bonus_id = $idQuestion and pronostiqueur_id = $idPronostiqueur
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return false;
+        }
     }
 
     public function recupereClassement(int $idCompet)

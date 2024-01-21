@@ -61,6 +61,9 @@ class ModScorcast {
             case 'changePassword':
                 $this->controlleur->afficheFormMdp();
                 break;
+            case 'validationQuestionBonus':
+                $this->controlleur->valideQuestionBonus();
+                break;
         }
     }
 
