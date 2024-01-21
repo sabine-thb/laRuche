@@ -216,10 +216,10 @@ class ContScorcast {
                 }
             }
         }if (isset($_POST['age'])){
-        $this->modele->editAge($_POST['age'],$idUser);
-    }if (isset($_POST['gender'])){
-        $this->modele->editGenre($_POST['gender'],$idUser);
-    }
+            $this->modele->editAge($_POST['age'],$idUser);
+        }if (isset($_POST['gender'])){
+            $this->modele->editGenre($_POST['gender'],$idUser);
+        }
         $newUrl = $this->vue->changeUrl('action','editProfil');
         header("Location: $newUrl");
     }

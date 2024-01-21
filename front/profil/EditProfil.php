@@ -53,7 +53,7 @@
                 <?php } ?>
             </div>
 
-            <a href="profil.php?action=changePassword" class="mdp">
+            <a href="<?php echo $newUrlEditPassword; ?>" class="mdp">
                     Changer mon mot de passe
             </a>
             

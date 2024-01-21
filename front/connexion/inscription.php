@@ -1,11 +1,11 @@
 
 <form class="formInscription" action="connexion.php?action=ajout" method="post">
-    <div class="flexContainer">
+    <div class="flexContainer1">
         <div>
-            <p class="pForm">
-                <label for="prenom">Prenom :</label>
-                <input type='text' name='prenom' id="prenom" inputmode="text">
-            </p>
+<!--            <p class="pForm">-->
+<!--                <label for="prenom">Prenom :</label>-->
+<!--                <input type='text' name='prenom' id="prenom" inputmode="text">-->
+<!--            </p>-->
 
             <p class="pForm">
                 <label for="login">Pseudo :</label>

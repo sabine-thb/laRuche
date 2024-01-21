@@ -133,13 +133,12 @@ class ContConnexion {
         $link = $_POST['nextPage'];
 
         if ($res) {
-            if ($link == "profil.php?action=editProfil"){ //pas beau du tout mais pas le temps de faire mieux
-                header("Location: $link");
-            }else {
+            if ($link == "connexion.php?action=connexion"){ //pas beau du tout mais pas le temps de faire mieux
                 echo "<p>Changement enregistrer avec succes</p>";
                 echo "<p>Cliquez <a href='$link'>ici</a> pour vous connecter si la redirection auto est fatigué</p>";
                 echo "<meta http-equiv='refresh' content='3;url=$link'/>";
-            }
+            }else
+                header("Location: $link");
         } else
             echo "<p>erreur</p>";
     }

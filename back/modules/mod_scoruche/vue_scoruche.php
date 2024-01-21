@@ -65,12 +65,13 @@ class VueScorcast extends VueGenerique {
     public function afficheFormEdit($data,$competActive)
     {
         $newURL = $this->changeUrl('action','edit');
+        $newUrlEditPassword = $this->changeUrl('action','changePassword');
         require_once("./front/profil/EditProfil.php");
     }
 
     public function afficheFormNouveauMDP()
     {
-        $nextPage = 'profil.php?action=editProfil';
+        $nextPage = $this->changeUrl('action','editProfil');
         require_once('./front/connexion/nouveauPassword.php');
     }
 
