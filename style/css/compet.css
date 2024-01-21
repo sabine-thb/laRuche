@@ -212,9 +212,9 @@ h3{
 }
 
 .submit{
+    cursor: pointer;
     font-family: "montserratRegular", sans-serif;
     background-color: white;
-    cursor: pointer;
     border:none;
     border-radius:25px;
     padding:5px 15px 5px 15px;

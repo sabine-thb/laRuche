@@ -13,7 +13,7 @@
                 <?php echo $oneQuestion['objectif']; ?>
             </p>
 
-            <label>Votre reponse :
+            <label>Votre réponse :
             <?php //input dynamique en fonction du type de la reponse de la question choisie par l'admin
             switch ($oneQuestion['type']){
                 //les classes 'input' sont utilisé par le js
@@ -41,7 +41,7 @@
             } ?>
             </label>
             <p>
-                Bonne reponse = <?php echo $oneQuestion['point_bonne_reponse']; ?>pts
+                Bonne réponse = <?php echo $oneQuestion['point_bonne_reponse']; ?>pts
             </p>
 
             <input type="submit" name="submit" class="submit" value="enregistrer" style="display: none;">
