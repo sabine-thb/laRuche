@@ -282,6 +282,12 @@ h3{
         display:none;
     }
 
+    .submit{
+        width:140px;
+        height:45px;
+        font-size: 18px;
+        border-radius:30px;
+    }
 }
 
 @media(max-width:450px){

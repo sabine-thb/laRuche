@@ -70,12 +70,29 @@ class ModeleScorcast extends Connexion {
             $this->executeQuery($stmt);
 
             return true;
-
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
+    }
 
+    public function updatePronoQuestionBonus(int $idPronostiqueur,$idQuestion, $prono): bool
+    {
+
+        try {
+            $query = "
+            UPDATE LaRuche.pronoQuestionBonus 
+            SET reponse = '$prono'
+            WHERE question_bonus_id = $idQuestion and pronostiqueur_id = $idPronostiqueur
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return false;
+        }
     }
 
     public function recupereClassement(int $idCompet)
@@ -83,10 +100,10 @@ class ModeleScorcast extends Connexion {
 
         try {
             $query = "
-            SELECT login, LaRuche.totalPoint(pronostiqueur_id,$idCompet) as points,description,user_id as id
+            SELECT login, LaRuche.totalPoint(pronostiqueur_id,$idCompet) as points,description,user_id as id,LaRuche.getClassement(pronostiqueur_id,$idCompet) as position
             FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.users
             WHERE competition_id = $idCompet
-            ORDER BY points DESC
+            ORDER BY position
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -222,7 +239,7 @@ class ModeleScorcast extends Connexion {
     {
         try {
             $query = "
-            SELECT U.src_logo_user,U.login,c.nom as nom, U.description, U.age , U.Gender
+            SELECT U.login,c.nom as nom, U.description, U.age , U.Gender
             FROM LaRuche.users U
             NATURAL JOIN LaRuche.pronostiqueur
             INNER JOIN LaRuche.competition join LaRuche.competition c on pronostiqueur.competition_id = c.competition_id

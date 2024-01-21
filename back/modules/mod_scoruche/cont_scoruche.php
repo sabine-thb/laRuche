@@ -101,6 +101,23 @@ class ContScorcast {
             header("Location: competition.php?action=affichePronostic&id=$_GET[id]");
     }
 
+    public function valideQuestionBonus()
+    {
+        if (isset($_POST['reponse'])) {
+            $prono = $_POST['reponse'];
+            $idQuestion = $_POST['idQuestion'];
+            $idPronostiqueur = $_SESSION['idPronostiqueur'];
+
+            $res = $this->modele->updatePronoQuestionBonus($idPronostiqueur,$idQuestion,$prono);
+
+            if (!$res)
+                echo "<p>Erreur !</p>";
+            else
+                header("Location: competition.php?action=questionsBonus&id=$_GET[id]");
+
+        }
+    }
+
     public function recupLogoUser()
     {
         $srcLogoUser = $this->modele->getSrcLogo($_SESSION['idUser']);
@@ -145,7 +162,7 @@ class ContScorcast {
     {
         $type = $_GET['type'] ?? 'attente'; // attente - en_cours - fini
         $this->vue->afficheButton();
-        $question = $this->recupereMatchEnFonctionType($type);
+        $question = $this->recupereQuestionEnFonctionType($type);
 
         if (!isset($question) || $question == 404)
             echo "<p>Erreur lors de la recherche des questions</p>";
@@ -237,7 +254,7 @@ class ContScorcast {
         $this->vue->afficheFormNouveauMDP();
     }
 
-    private function recupereMatchEnFonctionType($type)
+    private function recupereQuestionEnFonctionType($type)
     {
         $id = $_SESSION['idPronostiqueur'];
         switch ($type){

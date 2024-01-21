@@ -283,8 +283,14 @@ class ModeleAdmin extends Connexion {
 
     public function getEquipes(){
         try{
-            $stmt = Connexion::$bdd->prepare("SELECT * from LaRuche.equipe;");
+            $query = "
+            SELECT * 
+            FROM LaRuche.equipe
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
             return $this->executeQuery($stmt);
+
         }catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return $e;
@@ -408,6 +414,24 @@ class ModeleAdmin extends Connexion {
         }
     }
 
+    public function deleteUser($id): bool
+    {
+        try {
+            $query ="
+            DELETE FROM LaRuche.users WHERE user_id=$id
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e');</script>";
+            return false;
+        }
+        
+    }
+    
     public function gererLogo()
     {
         $taille = strlen(basename($_FILES["logo"]["name"]));
@@ -501,6 +525,86 @@ class ModeleAdmin extends Connexion {
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e');</script>";
             return $e->getCode();
+        }
+    }
+
+    public function getQuestionAttente()
+    {
+        try{
+            $query = "
+            SELECT Q.question_bonus_id,titre,objectif,type,point_bonne_reponse,C.nom
+            FROM LaRuche.questionBonus Q
+            INNER JOIN LaRuche.competition C on Q.competition_id = C.competition_id
+            WHERE pari_ouvert = true
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+
+            return $this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function getQuestionEnCours()
+    {
+        try{
+            $query = "
+            SELECT Q.*,C.nom
+            FROM LaRuche.questionBonus Q
+            INNER JOIN LaRuche.competition C ON Q.competition_id = C.competition_id
+            WHERE pari_ouvert = false 
+            EXCEPT 
+            SELECT Q.*,C.nom
+            FROM LaRuche.questionBonus Q
+            INNER JOIN LaRuche.resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
+            INNER JOIN LaRuche.competition C ON Q.competition_id = C.competition_id
+            WHERE pari_ouvert = false
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+
+            return $this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function getQuestionFini()
+    {
+        try{
+            $query = "
+            SELECT *
+            FROM LaRuche.questionBonus Q
+            INNER JOIN LaRuche.resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
+            WHERE pari_ouvert = false
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+
+            return $this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function miseEnAttenteQuestion($idQuestion): bool
+    {
+        try {
+            $query = "
+            UPDATE LaRuche.questionBonus 
+            SET pari_ouvert = false 
+            WHERE question_bonus_id = $idQuestion
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return false;
         }
     }
 }

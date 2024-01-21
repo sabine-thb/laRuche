@@ -171,6 +171,20 @@ class ContAdmin {
             }
         }
     }
+
+    public function supprimerUser()
+    {
+        if (isset($_GET["idUser"])) {
+            $resultat=$this->modele->deleteUser($_GET["idUser"]);
+            
+            if ($resultat) {
+                header('Location: admin.php?action=gererComptes');
+            }else{
+                echo "erreur lors de la suppression du compte";
+            }
+        }
+
+    }
     public function gererMatch()
     {
         $typeMatch = $_GET['type'] ?? 'attente';
@@ -352,6 +366,61 @@ class ContAdmin {
         else
             echo "<p>Erreur !</p>";
 
+    }
+
+    public function gererQuestion()
+    {
+        $type = $_GET['type'] ?? 'attente'; // attente - en_cours - fini
+        $this->vue->afficheButtonQuestion();
+        $question = $this->recupereQuestionEnFonctionType($type);
+
+        if (!isset($question) || $question == 404)
+            echo "<p>Erreur lors de la recherche des questions</p>";
+        else if (count($question) == 0)
+            echo "<p>il n'y a rien a voir ici actuelement</p>";
+        else
+            $this->afficheQuestionEnFonctionType($type,$question);
+    }
+
+    private function recupereQuestionEnFonctionType($type)
+    {
+        switch ($type){
+            case 'attente':
+                return $this->modele->getQuestionAttente();
+            case 'en_cours':
+                return $this->modele->getQuestionEnCours();
+            case 'fini':
+                return $this->modele->getQuestionFini();
+        }
+
+        return 404; //erreur
+    }
+
+    private function afficheQuestionEnFonctionType($type, $question)
+    {
+        switch ($type){
+            case 'attente':
+                $this->vue->afficheQuestionAttente($question);
+                break;
+            case 'en_cours':
+                $equipes = $this->modele->getEquipes();
+                $this->vue->afficheQuestionEnCours($question,$equipes);
+                break;
+            case 'fini':
+                $this->vue->afficheQuestionFini($question);
+                break;
+        }
+    }
+
+    public function miseEnAttenteQuestion()
+    {
+        $idQuestion = $_GET['idQuestion'];
+        $res = $this->modele->miseEnAttenteQuestion($idQuestion);
+
+        if ($res)
+            header('Location: admin.php?action=gererQuestionBonus&type=attente');
+        else
+            echo "<p> Une erreur est survenu.</p>";
     }
 
 
