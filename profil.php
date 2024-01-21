@@ -31,6 +31,7 @@ $affichageModule = $module->afficheModule();
     <link rel="stylesheet" href="style/css/menu.css">
     <link rel="stylesheet" href="style/css/fonts.css">
     <link rel="stylesheet" href="style/css/profil.css">
+    <link rel="stylesheet" href="style/css/styleAccAdmin.css">
     <script src="./style/js/competition.js"></script>
     <script src="./style/js/profil/editLogo.js"></script>
 </head>

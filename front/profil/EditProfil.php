@@ -41,7 +41,7 @@
         </div>
 
         <div id="competActive">
-            <h4> Compétition Active :</h4>
+            <h4> Mes compétitions Actives :</h4>
             <?php foreach ($competActive as $tuple) { ?>
                 <div class="one-compet" style="display: flex;text-align: center"> <!--attention 'oneCompet' est deja utilisé dans un css-->
                     <h2>
@@ -54,12 +54,12 @@
 
         <div id="center">
             <a href="profil.php?action=changePassword" style="text-decoration: none; padding: 5px; background-color: #9b9b9b; border-radius: 10px; cursor: pointer;">
-                Changer mot de passe
+                Changer mon mot de passe
             </a>
         </div>
 
         <div class="btn-save" style="display: none;" id="btn-save">
-            <input class="submit" type="submit" value="Save">
+            <input class="submit" type="submit" value="Sauvegarder">
         </div>
     </form>
 </div>

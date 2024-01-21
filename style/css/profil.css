@@ -1,4 +1,16 @@
-@media(max-width:470px){
+.flexContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media(max-width:550px){
+
+    .pForm{
+        display: flex;
+        flex-direction: column;
+        gap:12px;
+    }
     header{
         height:auto;
     }
