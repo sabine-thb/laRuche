@@ -42,9 +42,7 @@ class ModeleConnexion extends Connexion {
             $_SESSION['error'] =  "<p> Login déjà utilisé ! </p><br>";
             header('Location: index.php?module=mod_connexion&action=inscription'); 
         }
-
         return false;
-    
     }
 
     private function ajoutFinal($prenom,$login,$mail,$mdp,$description) {

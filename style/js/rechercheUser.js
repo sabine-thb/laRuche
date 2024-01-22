@@ -45,8 +45,9 @@ function afficherResultats(resultats) {
             // desolé c'est illisible
             resultatDiv.innerHTML +=
             '<div class="oneUser">' +
-                '<p>Nom : ' + utilisateur.login + '</p> <p> Mail : ' + utilisateur.mail + ' </p>' +
-                '<p>Description : ' + utilisateur.description + '</p><p> Validé : ' + verifier + '</p>' +
+                '<p>Prenom : ' + utilisateur.prenom + '</p>' +
+                '<p>Pseudo : ' + utilisateur.login + '</p> <p> Mail : ' + utilisateur.mail + ' </p>' +
+                '<p>Description : ' + utilisateur.description + '</p> <p> Validé : ' + verifier + '</p>' +
                 '<div class="gerer"> ' +
                     '<a class="lienResetPwd" href="admin.php?action=resetPwd&idUser=' + utilisateur.user_id + '" ' +
                     'onclick="return confirm(\'' + confirmPwd + '\');"> changer le mot de passe</a> ' +

@@ -6,7 +6,10 @@
         <form action="<?php echo $newURL; ?>" method="post" id="formProfil" enctype="multipart/form-data">
             <div class="infosPers">
                 <p>
-                        <span class="label">Mon nom :</span> <?php echo $data['login'];?>
+                    <span class="label">Mon Prenom :</span> <?php echo $data['prenom'];?>
+                </p>
+                <p>
+                        <span class="label">Mon Pseudo :</span> <?php echo $data['login'];?>
                 </p>
                 
                 <p >
@@ -32,9 +35,6 @@
                         </select>
 
                     </p>
-                    
-
-                    
                 </div>
 
             </div>

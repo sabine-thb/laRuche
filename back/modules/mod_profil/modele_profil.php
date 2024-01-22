@@ -25,7 +25,7 @@ class ModeleProfil extends Connexion {
     {
         try {
             $query = "
-            SELECT U.src_logo_user,U.login,c.nom as nom, U.description, U.age , U.Gender
+            SELECT U.prenom,U.login,c.nom as nom, U.description, U.age , U.Gender
             FROM LaRuche.users U
             NATURAL JOIN LaRuche.pronostiqueur
             INNER JOIN LaRuche.competition join LaRuche.competition c on pronostiqueur.competition_id = c.competition_id

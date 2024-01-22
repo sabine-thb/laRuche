@@ -38,11 +38,12 @@ class ModeleAdmin extends Connexion {
 
     public function recupereDemande() {
         try {
-            $stmt = Connexion::$bdd->prepare("SELECT user_id,login,mail,description FROM LaRuche.users WHERE est_verifier=false");
-            //  echo var_dump($resultat);
+            $query = "
+            SELECT prenom,user_id,login,mail,description FROM LaRuche.users WHERE est_verifier=false
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
-
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return $e;
