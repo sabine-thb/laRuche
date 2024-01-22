@@ -155,6 +155,12 @@ section{
     background-color:#007bff;
 }
 
+.gifContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 
 
@@ -162,7 +168,7 @@ section{
 
 @media(max-width:850px){
     body{
-        padding-top:206px;
+        padding-top:140px;
     }
 
     .cardCompet{
@@ -177,6 +183,12 @@ section{
     #navbar{
         flex-direction: column;
         align-items: flex-end;
+        gap: 10px !important;
+    }
+
+    .linkNavbar{
+        font-size:0.6rem;
+        padding:5px 10px 5px 10px !important;
     }
 }
 
@@ -202,6 +214,6 @@ section{
 
 @media(max-width:530px){
     .cardCompet{
-        width:fit-content;
+        width:300px;
     }
 }

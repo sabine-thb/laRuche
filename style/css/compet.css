@@ -135,7 +135,7 @@ h3{
      margin-right: 10px;
 }
 
-.logoEquipe{
+.logoEquipeUser{
     max-width: 130px;
     height: auto;
 }
@@ -256,7 +256,7 @@ h3{
 @media(max-width:1170px){
 
     body{
-        padding-top:310px !important; 
+        padding-top:202px !important; 
     }
     header{
         height: auto !important;
@@ -265,12 +265,20 @@ h3{
     #navbar{
         flex-direction:column;
         align-items:flex-end !important;
+        gap: 10px !important;
 
     }
+
+    .linkNavbar{
+        font-size:0.6rem !important;
+        padding:5px 10px 5px 10px !important;
+    }
+
+    
 }
 
 @media(max-width:500px){
-    .logoEquipe{
+    .logoEquipeUser{
         width:80px;
     }
 

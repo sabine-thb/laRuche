@@ -55,7 +55,7 @@ $affichageModule = $module->afficheModule();
         <div class="col-md-3 text-end">
             <button  type="button" class="btn btn-outline-primary me-2">
                 <a href="connexion.php?action=deconnexion" class="nav-link px-2">
-                    deconnexion
+                    Déconnexion
                 </a>
             </button>
         </div>

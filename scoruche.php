@@ -61,7 +61,7 @@ $affichageModule = $module->afficheModule();
                 Mes compétitions
             </a>
             <a href="scoruche.php?action=editProfil" class="linkNavbar linkDefaut" id="editProfil">
-                Modifier profil
+                Profil
             </a>
             <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
                 Déconnexion

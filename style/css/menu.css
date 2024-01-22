@@ -118,6 +118,8 @@ li,ul{
 
 
 
+
+
 @media(max-width:450px){
     .titreSite{
         font-size:1.4rem;
@@ -130,4 +132,6 @@ li,ul{
     .linkNavbar{
         font-size:0.6rem;
     }
+
+
 }
