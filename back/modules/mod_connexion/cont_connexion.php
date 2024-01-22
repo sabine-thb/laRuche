@@ -35,10 +35,10 @@ class ContConnexion {
     public function ajout() {
         
 
-        if ($this->checkAllInput() ) {
+        if ($this->checkAllInput()) {
             if ($this->checkForceMdp($_POST['mdp'])) {
                 
-                $resultat = $this->modele->ajoutDemandeUser($_POST['login'],$_POST['mail'],$_POST['mdp'],$_POST['description']);
+                $resultat = $this->modele->ajoutDemandeUser($_POST['prenom'],$_POST['login'],$_POST['mail'],$_POST['mdp'],$_POST['description']);
 
                 if ($resultat) {
                     echo "<p class=\"dmdOK\">Une demande a été envoyée à la ruche, vous recevrez un mail lorsque la demande sera acceptée.</p>";
@@ -64,7 +64,7 @@ class ContConnexion {
 
     private function checkAllInput(): bool
     {
-        return isset($_POST['login'],$_POST['mdp'],$_POST['mail']) && $_POST['login'] != "" && $_POST['mdp'] != "" && $_POST['mail'] != "" ;
+        return isset($_POST['login'],$_POST['mdp'],$_POST['mail'],$_POST['prenom']) && $_POST['login'] != "" && $_POST['mdp'] != "" && $_POST['mail'] != "" && $_POST['prenom'] != "" ;
     }
 
     public function afficheFormConnexion() {
