@@ -60,6 +60,9 @@
                     </div>
 
                     <div class="selectionFinale">
+                        <p>
+                            Vainqueur penalty :
+                        </p>
                         <label>
                             <input class="pristine toggle" type="checkbox" id="<?php echo $tuple['match_id']; ?>_toggle"
                                 name="<?php echo $tuple['match_id']; ?>_toggle" value="on">

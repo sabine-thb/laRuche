@@ -12,7 +12,7 @@
                         <span class="label">Mon Pseudo :</span> <?php echo $data['login'];?>
                 </p>
                 
-                <p >
+                <p>
                         <span class="label">Ma description :</span> <?php echo $data['description']; ?>
                 </p>
 
