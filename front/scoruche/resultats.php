@@ -31,7 +31,7 @@
                         <!-- Équipe 1 -->
                         <img src="<?php echo $tuple['src1']; ?>"
                             alt="image_equipe_gauche"
-                            class="logoEquipe right">
+                            class="logoEquipeUser right">
 
                         <h5 class="nomEquipe right <?php echo $equipe1Win; ?>">
                             <?php echo $tuple['nom1']; ?>
@@ -57,7 +57,7 @@
 
                         <img src="<?php echo $tuple['src2']; ?>"
                             alt="image_equipe_droite"
-                            class="logoEquipe left">
+                            class="logoEquipeUser left">
                     </div>
                 </div>
 

@@ -30,6 +30,10 @@
             
     <?php }else{ ?>
         <p>Il n'y a aucune compétition disponible pour le moment.</p>
-        <img src="./style/gif/pageVideHomer.gif" width="320" height="240" frameBorder="0" alt="gif de homer"/>
+        <div class="gifContainer">
+           <img src="./style/gif/pageVideHomer.gif" width="320" height="240" frameBorder="0" alt="gif de homer"/>
+
+        </div>
+        
     <?php } ?>
 </section>
