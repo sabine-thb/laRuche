@@ -215,6 +215,7 @@ h3{
     cursor: pointer;
     font-family: "montserratRegular", sans-serif;
     background-color: white;
+    color:#000000 !important;
     border:none;
     border-radius:25px;
     padding:5px 15px 5px 15px;
