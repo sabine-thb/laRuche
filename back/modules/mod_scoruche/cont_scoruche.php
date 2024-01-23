@@ -167,7 +167,7 @@ class ContScorcast {
         if (!isset($question) || $question == 404)
             echo "<p>Erreur lors de la recherche des questions</p>";
         else if (count($question) == 0)
-            echo "<p>il n'y a rien a voir ici actuelement</p>";
+            echo "<p>Il n'y a rien a voir ici actuellement.</p>";
         else
             $this->afficheQuestionEnFonctionType($type,$question);
     }

@@ -235,24 +235,66 @@ h3{
     align-items: center;
 }
 
-@media(max-width:850px){
-    
-    .centreCard {
-        position: initial;
-    }
-    .Carte{
-        padding:10px 2px;
-
-    }
-    .CorpCarte{
-        gap:6px;
-    }
-
-    .carteProno{
-        width:460px;
-    }
-
+/*Je stylise la page bonus*/
+.allQuestions{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+.oneQuestion{
+    background-color: white;
+    padding:20px 20px 50px 20px;
+    margin-bottom:25px;
+    border-radius:20px;
+    width:700px;
+    position:relative;
+    box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25);
+}
+
+.quest{
+    margin-bottom:30px;
+}
+
+.envoyerForm{
+    font-family: "montserratRegular", sans-serif;
+    padding:5px 15px 5px 15px;
+    background-color: #0B54CD;
+    color:#FFFFFF !important;
+    border-radius:25px;
+    border:none;
+    position:absolute;
+    left:50%;
+    bottom:20px;
+    transform: translate(-50%,0);
+    cursor: pointer;
+    transition:padding 0.3s ease-in-out;
+}
+
+.envoyerForm:hover{
+    padding:5px 20px 5px 20px;
+}
+
+.bonusContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lienBonus{
+    text-decoration: none;
+    color:black;
+    background-color: white;
+    padding:10px;
+    border-radius: 4px;
+    border:gray 2px solid;
+    transition:padding 0.3s ease-in-out;
+}
+
+.lienBonus:hover{
+    padding:10px 15px 10px 15px;
+}
+
 
 @media(max-width:1170px){
 
@@ -278,6 +320,29 @@ h3{
     
 }
 
+@media(max-width:850px){
+    
+    .centreCard {
+        position: initial;
+    }
+    .Carte{
+        padding:10px 2px;
+
+    }
+    .CorpCarte{
+        gap:6px;
+    }
+
+    .carteProno{
+        width:460px;
+    }
+
+    .oneQuestion{
+        width:450px;
+    }
+
+}
+
 @media(max-width:500px){
     .logoEquipeUser{
         width:80px;
@@ -296,6 +361,16 @@ h3{
         height:45px;
         font-size: 18px;
         border-radius:30px;
+    }
+
+    .oneQuestion{
+        width:300px;
+    }
+
+    .quest{
+        display:flex;
+        flex-direction: column;
+        gap:10px;
     }
 }
 
