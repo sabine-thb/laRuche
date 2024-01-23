@@ -72,4 +72,30 @@ class VueAdmin extends VueGenerique {
         require_once("./front/admin/QuestionBonus/formQuestionBonus.php");
     }
 
+    public function questionEnregister()
+    {
+        require_once("./front/admin/QuestionBonus/SuccesSave.html");
+    }
+
+    public function afficheButtonQuestion()
+    {
+        require_once("./front/admin/QuestionBonus/bouttonQuestions.html");
+    }
+
+    public function afficheQuestionAttente($questions)
+    {
+        require_once('./front/admin/QuestionBonus/listeQuestionsAttente.php');
+    }
+
+    public function afficheQuestionEnCours($questions,$equipes)
+    {
+        require_once('./front/admin/QuestionBonus/listeQuestionsEnCours.php');
+    }
+
+    public function afficheQuestionFini($questions)
+    {
+        require_once('./front/scoruche/QuestionBonus/listeQuestionsFini.php');
+    }
+
+
 }

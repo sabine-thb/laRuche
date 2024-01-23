@@ -33,15 +33,28 @@ function afficherResultats(resultats) {
 
             let confirmDelete = 'Est-tu sur de vouloir supprimer ' + utilisateur.login + ' ?';
 
+            let confirmDemande = 'Êtes-vous sûr de vouloir valider ' + utilisateur.login + ' ?';
+
+            let baliseValider;
+            if (verifier === ' non ') {
+                baliseValider = '<a class="p valid" href="admin.php?action=valider&id=' + utilisateur.user_id + '" ' +
+                                'onclick="return confirm(\'' + confirmDemande + '\');">Valider</a> ';
+            }else
+                baliseValider = "";
+
             // desolé c'est illisible
             resultatDiv.innerHTML +=
             '<div class="oneUser">' +
-                '<p>Nom : ' + utilisateur.login + '</p> <p> Mail : ' + utilisateur.mail + ' </p>' +
-                '<p>Description : ' + utilisateur.description + '</p><p> Validé : ' + verifier + '</p>' +
-                '<div class="gerer"> <a class="lienResetPwd" href="admin.php?action=resetPwd&idUser=' + utilisateur.user_id + '" ' +
-                'onclick="return confirm(\'' + confirmPwd + '\');"> changer le mot de passe</a> ' +
-                '<a class="lienDeleteUser" href="admin.php?action=supprimeUser&idUser=' + utilisateur.user_id + '" ' +
-                'onclick="return confirm(\'' + confirmDelete + '\');"> supprimer</a> </div>' +
+                '<p>Prenom : ' + utilisateur.prenom + '</p>' +
+                '<p>Pseudo : ' + utilisateur.login + '</p> <p> Mail : ' + utilisateur.mail + ' </p>' +
+                '<p>Description : ' + utilisateur.description + '</p> <p> Validé : ' + verifier + '</p>' +
+                '<div class="gerer"> ' +
+                    '<a class="lienResetPwd" href="admin.php?action=resetPwd&idUser=' + utilisateur.user_id + '" ' +
+                    'onclick="return confirm(\'' + confirmPwd + '\');"> changer le mot de passe</a> ' +
+                    '<a class="lienDeleteUser" href="admin.php?action=supprimeUser&idUser=' + utilisateur.user_id + '" ' +
+                    'onclick="return confirm(\'' + confirmDelete + '\');">supprimer</a> ' +
+                    baliseValider +
+                '</div>' +
             '</div>';
             });
     } else {

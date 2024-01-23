@@ -35,10 +35,10 @@ class ContConnexion {
     public function ajout() {
         
 
-        if ($this->checkAllInput() ) {
+        if ($this->checkAllInput()) {
             if ($this->checkForceMdp($_POST['mdp'])) {
                 
-                $resultat = $this->modele->ajoutDemandeUser($_POST['login'],$_POST['mail'],$_POST['mdp'],$_POST['description']);
+                $resultat = $this->modele->ajoutDemandeUser($_POST['prenom'],$_POST['login'],$_POST['mail'],$_POST['mdp'],$_POST['description']);
 
                 if ($resultat) {
                     echo "<p class=\"dmdOK\">Une demande a été envoyée à la ruche, vous recevrez un mail lorsque la demande sera acceptée.</p>";
@@ -64,7 +64,7 @@ class ContConnexion {
 
     private function checkAllInput(): bool
     {
-        return isset($_POST['login'],$_POST['mdp'],$_POST['mail']) && $_POST['login'] != "" && $_POST['mdp'] != "" && $_POST['mail'] != "" ;
+        return isset($_POST['login'],$_POST['mdp'],$_POST['mail'],$_POST['prenom']) && $_POST['login'] != "" && $_POST['mdp'] != "" && $_POST['mail'] != "" && $_POST['prenom'] != "" ;
     }
 
     public function afficheFormConnexion() {
@@ -133,13 +133,12 @@ class ContConnexion {
         $link = $_POST['nextPage'];
 
         if ($res) {
-            if ($link == "profil.php?action=editProfil"){ //pas beau du tout mais pas le temps de faire mieux
-                header("Location: $link");
-            }else {
+            if ($link == "connexion.php?action=connexion"){ //pas beau du tout mais pas le temps de faire mieux
                 echo "<p>Changement enregistrer avec succes</p>";
                 echo "<p>Cliquez <a href='$link'>ici</a> pour vous connecter si la redirection auto est fatigué</p>";
                 echo "<meta http-equiv='refresh' content='3;url=$link'/>";
-            }
+            }else
+                header("Location: $link");
         } else
             echo "<p>erreur</p>";
     }

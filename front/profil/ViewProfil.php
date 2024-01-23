@@ -2,7 +2,7 @@
 <div id="content">
     <div class="topLeft-form">
         <div class="logoInput">
-            <img src="<?php echo $data['src_logo_user']; ?>" class="imgProfil" alt="image profil" id="logo">
+            <img src="./style/img/logoBleu.png" class="imgProfil" alt="image profil" id="logo">
         </div>
 
         <div class="inputNom">

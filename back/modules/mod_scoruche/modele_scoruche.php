@@ -70,12 +70,29 @@ class ModeleScorcast extends Connexion {
             $this->executeQuery($stmt);
 
             return true;
-
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
+    }
 
+    public function updatePronoQuestionBonus(int $idPronostiqueur,$idQuestion, $prono): bool
+    {
+
+        try {
+            $query = "
+            UPDATE LaRuche.pronoQuestionBonus 
+            SET reponse = '$prono'
+            WHERE question_bonus_id = $idQuestion and pronostiqueur_id = $idPronostiqueur
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
+            return false;
+        }
     }
 
     public function recupereClassement(int $idCompet)
@@ -83,10 +100,10 @@ class ModeleScorcast extends Connexion {
 
         try {
             $query = "
-            SELECT login, LaRuche.totalPoint(pronostiqueur_id,$idCompet) as points,description,user_id as id
+            SELECT login, total_point as points,description,user_id as id,LaRuche.getClassement(pronostiqueur_id,$idCompet) as position
             FROM LaRuche.pronostiqueur NATURAL JOIN LaRuche.users
             WHERE competition_id = $idCompet
-            ORDER BY points DESC
+            ORDER BY position
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -165,7 +182,7 @@ class ModeleScorcast extends Connexion {
         try {
             $query = "
             SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,
-                   R.nb_but_equipe1 as resultat1, R.nb_but_equipe2 as resultat2, point_obtenu,heure
+                   R.nb_but_equipe1 as resultat1, R.nb_but_equipe2 as resultat2, P.point_obtenu,M.heure,R.resultat_peno
             FROM LaRuche.matchApronostiquer as M
             INNER JOIN LaRuche.equipe E ON M.equipe1_id = E.equipe_id
             INNER JOIN LaRuche.equipe E2 ON M.equipe2_id = E2.equipe_id
@@ -222,7 +239,7 @@ class ModeleScorcast extends Connexion {
     {
         try {
             $query = "
-            SELECT U.src_logo_user,U.login,c.nom as nom, U.description, U.age , U.Gender
+            SELECT U.prenom,U.login,c.nom as nom, U.description, U.age , U.Gender
             FROM LaRuche.users U
             NATURAL JOIN LaRuche.pronostiqueur
             INNER JOIN LaRuche.competition join LaRuche.competition c on pronostiqueur.competition_id = c.competition_id
@@ -251,6 +268,139 @@ class ModeleScorcast extends Connexion {
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function getQuestionAttente($id)
+    {
+        try{
+            $query = "
+            SELECT *
+            FROM LaRuche.questionBonus Q
+            INNER JOIN LaRuche.pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+            WHERE pari_ouvert = true and pronostiqueur_id = $id
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+
+            return $this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function getQuestionEnCours($id)
+    {
+        try{
+            $query = "
+            SELECT Q.*,P.*
+            FROM LaRuche.questionBonus Q
+            INNER JOIN LaRuche.pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+            WHERE pari_ouvert = false and pronostiqueur_id = $id
+            EXCEPT 
+            SELECT Q.*,P.*
+            FROM LaRuche.questionBonus Q
+            INNER JOIN LaRuche.pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+            INNER JOIN LaRuche.resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
+            WHERE pari_ouvert = false and pronostiqueur_id = $id
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+
+            return $this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function getQuestionFini($id)
+    {
+        try{
+            $query = "
+            SELECT *
+            FROM LaRuche.questionBonus Q
+            INNER JOIN LaRuche.pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+            INNER JOIN LaRuche.resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
+            WHERE pari_ouvert = false and pronostiqueur_id = $id
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+
+            return $this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function getEquipes($idCompet)
+    {
+        try{
+            $query = "
+            SELECT DISTINCT E.nom,E.equipe_id
+            FROM LaRuche.equipe E
+            NATURAL JOIN LaRuche.matchApronostiquer M
+            WHERE M.competition_id = $idCompet
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+
+            return $this->executeQuery($stmt);
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function editAge($age, $idUser): bool
+    {
+        try{
+            $query = "
+            UPDATE LaRuche.users 
+            SET age = $age
+            WHERE user_id = $idUser
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function editGenre($gender, $idUser): bool
+    {
+        try{
+            $query = "
+            UPDATE LaRuche.users 
+            SET Gender = '$gender'
+            WHERE user_id = $idUser
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
+        }catch (PDOException $e) {
+            var_dump($e);
+            return false;
+        }
+    }
+
+    public function changeLogo(string $dest,$idUser): bool
+    {
+        try{
+            $query = "
+            UPDATE LaRuche.users 
+            SET src_logo_user = '$dest'
+            WHERE user_id = $idUser
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $this->executeQuery($stmt);
+
+            return true;
         }catch (PDOException $e) {
             var_dump($e);
             return false;

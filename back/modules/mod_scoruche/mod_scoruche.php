@@ -49,6 +49,21 @@ class ModScorcast {
             case 'detailUser':
                 $this->controlleur->afficheInfoUser();
                 break;
+            case'questionsBonus':
+                $this->controlleur->questionsBonus();
+                break;
+            case 'editProfil':
+                $this->controlleur->editProfil();
+                break;
+            case 'edit':
+                $this->controlleur->recupFormEdit();
+                break;
+            case 'changePassword':
+                $this->controlleur->afficheFormMdp();
+                break;
+            case 'validationQuestionBonus':
+                $this->controlleur->valideQuestionBonus();
+                break;
         }
     }
 

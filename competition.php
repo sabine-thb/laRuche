@@ -43,6 +43,8 @@ $affichageModule = $module->afficheModule();
     <link rel="stylesheet" href="style/css/inputScore.css">
     <link rel="stylesheet" href="style/css/menu.css">
     <link rel="stylesheet" href="style/css/fonts.css">
+    <link rel="stylesheet" href="style/css/profil.css">
+    <link rel="stylesheet" href="style/css/styleAccAdmin.css">
     <link href="style/css/checkBox.css" rel="stylesheet">
     <script src="style/js/inputScore.js"></script>
     <script src="./style/js/competition.js"></script>
@@ -67,10 +69,13 @@ $affichageModule = $module->afficheModule();
                     Pronostics
             </a>
             <a href="competition.php?action=resultat&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="resultats">
-                    Résultats
+                Résultats
             </a>
-            <a href="profil.php?action=editProfil" class="linkNavbar linkDefaut" id="editProfil">
-                Edit profil
+            <a href="competition.php?action=questionsBonus&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="questions">
+                    Bonus
+            </a>
+            <a href="competition.php?action=editProfil&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="editProfil">
+                Profil
             </a>
             <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
                 Déconnexion

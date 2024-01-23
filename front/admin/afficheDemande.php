@@ -6,6 +6,10 @@
                     <div class="oneDemande">
 
                         <p class=" p login">
+                            <span class="underline">Prenom :</span> <?php echo $tuple['prenom']; ?>
+                        </p>
+
+                        <p class=" p login">
                             <span class="underline">Login :</span> <?php echo $tuple['login']; ?>
                         </p>
 

@@ -92,6 +92,7 @@ section{
     margin-bottom: 12px;
     display:flex;
     flex-direction: column;
+    box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25);
 }
 
 .cardTitle{
@@ -154,16 +155,20 @@ section{
     background-color:#007bff;
 }
 
+.gifContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
 
 
 
 @media(max-width:850px){
     body{
-        padding-top:150px;
-    }
-
-    .msgArv{
-        background-color: rgba(0, 0, 0, 0);
+        padding-top:140px;
     }
 
     .cardCompet{
@@ -178,6 +183,12 @@ section{
     #navbar{
         flex-direction: column;
         align-items: flex-end;
+        gap: 10px !important;
+    }
+
+    .linkNavbar{
+        font-size:0.6rem;
+        padding:5px 10px 5px 10px !important;
     }
 }
 
@@ -185,10 +196,24 @@ section{
     .logo{
         display:none;
     }
+
+    .msgArv{
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .oneCompet{
+        width:500px;
+    }
+}
+
+@media(max-width:600px){
+    .oneCompet{
+        width:300px;
+    }
 }
 
 @media(max-width:530px){
     .cardCompet{
-        width:fit-content;
+        width:300px;
     }
 }

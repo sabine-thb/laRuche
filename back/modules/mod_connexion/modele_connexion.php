@@ -27,12 +27,12 @@ class ModeleConnexion extends Connexion {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function ajoutDemandeUser($login,$mail,$mdp,$description) {
+    public function ajoutDemandeUser($prenom,$login,$mail,$mdp,$description) {
 
         //todo verifier que le nouveau utilisateur n'aille pas les meme identifiant que un admin
         if ($this->nouveau("login",$login)){
             if ($this->nouveau("mail",$mail)) {
-                return $this->ajoutFinal($login, $mail, $mdp,$description);
+                return $this->ajoutFinal($prenom,$login, $mail, $mdp,$description);
             } else {
                 $_SESSION['error'] =  "<p> Mail déja utilisé! </p><br>";
                 header('Location: index.php?module=mod_connexion&action=inscription'); 
@@ -42,16 +42,20 @@ class ModeleConnexion extends Connexion {
             $_SESSION['error'] =  "<p> Login déjà utilisé ! </p><br>";
             header('Location: index.php?module=mod_connexion&action=inscription'); 
         }
-
         return false;
-    
     }
 
-    private function ajoutFinal($login,$mail,$mdp,$description) {
+    private function ajoutFinal($prenom,$login,$mail,$mdp,$description) {
         try {
             $mdp = password_hash($mdp,PASSWORD_BCRYPT,$this->option);
-            $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.users (login,mail,description,password) VALUES ('".$login."', '".$mail."', '".$description."', '".$mdp."')");
-            return $stmt->execute();
+            $query = "
+            INSERT INTO LaRuche.users (prenom,login,mail,description,password) 
+            VALUES ('$prenom','$login','$mail','$description','$mdp')
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $stmt->execute();
+
+            return true;
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur:" . $e ."');</script>";

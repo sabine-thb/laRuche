@@ -12,9 +12,6 @@
                  <input type="file" name="logo" accept="image/*"/>
 
              </p>  
-            
-
-            
 
             <input type="hidden" name="token" value="<?php echo $token; ?>"/>
 

@@ -43,7 +43,7 @@ section{
     padding:30px;
     border-radius:25px;
     text-align: center;
-    box-shadow: inset 5px 0px 15px 5px rgba(0, 0, 0, 0.25);;
+    box-shadow: inset 5px 0px 15px 5px rgba(0, 0, 0, 0.25);
     /* box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25); */
     
 }
@@ -183,11 +183,23 @@ section{
     transition: 0.2s ease-in-out padding;
 }
 
+.btn{
+    color:white;
+    transform: translate(-50%,0);
+    background-color: #0B54CD;
+    border:none;
+    padding:5px 10px 5px 10px;
+    border-radius:25px;
+    cursor: pointer;
+    font-family: "montserratRegular", sans-serif;
+    transition: 0.2s ease-in-out padding;
+}
+
 .labelCompet{
     width:fit-content;
 }
 
-.creer:hover, .creerEquipe:hover{
+.creer:hover, .creerEquipe:hover, .btn{
     padding:5px 15px 5px 15px;
 }
 
@@ -233,9 +245,6 @@ section{
 }
 
 .oneEquipe{
-
-    
-
     background-color: white;
     border-radius:20px;
     display:flex;

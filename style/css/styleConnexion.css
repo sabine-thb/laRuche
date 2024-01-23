@@ -73,7 +73,7 @@ main{
     position: relative;
 }
 
-.formInscription, .formConnexion{
+.formInscription, .formConnexion, .formEquipe{
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -170,6 +170,12 @@ input{
     cursor: help;
 }
 
+.flexContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /* Styles spécifiques à Mozilla Firefox */
 @supports (-moz-appearance:none) {
     label {
@@ -248,7 +254,7 @@ input{
         width:120px;
     }
 
-    .flexContainer{
+    .flexContainer1{
         display: flex;
         flex-direction: row;
         gap:20px;
@@ -304,7 +310,7 @@ input{
         margin-bottom:25px;
     }
 
-    .flexContainer{
+    .flexContainer1{
         flex-direction: column;
         gap:0px;
     }
