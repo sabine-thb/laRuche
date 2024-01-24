@@ -286,6 +286,17 @@ section{
     background-color: #007bff;
 }
 
+/*Je stylise la page de gerer matchs*/
+
+.oneMatch{
+    display:flex;
+}
+
+.matchContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
 
 
 

@@ -1,35 +1,38 @@
 <link rel="stylesheet" href="./style/css/PageProfil.css">
-<div id="content">
-    <div class="topLeft-form">
-        <div class="logoInput">
-            <img src="./style/img/logoBleu.png" class="imgProfil" alt="image profil" id="logo">
-        </div>
-
-        <div class="inputNom">
-            <h2><?php echo $data['login'];?></h2>
-        </div>
-    </div>
-
-    <div id="description">
-        <p>
-            <?php echo $data['description']; ?>
-        </p>
-    </div>
-
-    <p>Age : <?php echo $data['age']; ?> </p>
-
-    <p>Genre : <?php echo $data["Gender"]; ?>
-
-    <div id="competActive">
-        <h4> Compétition Active :</h4>
-        <?php foreach ($competActive as $tuple) { ?>
-            <div class="oneCompet">
-                <h2>
-                    <?php echo $tuple['nom']; ?>
-                </h2>
-                <p> - <?php echo $tuple['classement']; ?> e</p>
+<section>
+    <a href="competition.php?action=classement&id=<?php echo $_GET['id']; ?>" class="retourClass">Retour au classement</a>
+</section>
+<section class="viewProfil">
+    <div class="flexContainerProfil">
+            <div class="inputNom">
+                <h2 class="quiEst">Mais qui est <span class="profilUserName"><?php echo $data['login'];?></span> ?</h2>
             </div>
-        <?php } ?>
-    </div>
-</div>
 
+
+
+             <p class="descrOtherUser">
+                <span class="labelEquipe">Description : </span>
+                <span><?php echo $data['description']; ?></span>
+            </p>
+        
+
+        <p><span class="labelEquipe">Âge : </span><?php echo $data['age']; ?> </p>
+
+        <p ><span class="labelEquipe">Genre : </span><?php echo $data["Gender"]; ?>
+
+        <div id="competActive">
+            <h4> Compétitions actives :</h4>
+            <?php foreach ($competActive as $tuple) { ?>
+                <div class="one-compet labelequipe" style="display: flex;text-align: center"> <!--attention 'oneCompet' est deja utilisé dans un css-->
+                        <h2 class="nameCompet">
+                            <?php echo $tuple['nom']; ?>
+                        </h2>
+                        <p class="classementCompet"> - <?php echo $tuple['classement']; ?>ème</p>
+                    </div>
+            <?php } ?>
+        </div>
+    </div>
+
+
+
+</section>

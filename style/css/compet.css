@@ -294,6 +294,12 @@ h3{
     padding:10px 15px 10px 15px;
 }
 
+.vainqueur{
+    margin-top:25px;
+    margin-bottom:25px;
+    font-family:"montserratExtraBold", sans-serif;
+}
+
 
 @media(max-width:1170px){
 
@@ -370,6 +376,13 @@ h3{
         display:flex;
         flex-direction: column;
         gap:10px;
+    }
+
+    .pointsGagne{
+        display:flex;
+        flex-direction: column;
+        text-align: center;
+        margin-bottom:35px;
     }
 }
 

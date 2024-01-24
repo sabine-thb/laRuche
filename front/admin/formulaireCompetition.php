@@ -1,5 +1,5 @@
 <section class="creerCompet">
-    <h1 class="titlePage">Créer une nouvelle compétition</h1>
+    <h1 class="titlePage">Créer une nouvelle compétition :</h1>
     <form action="admin.php?action=ajoutCompetition" method="post" class="formCompet">
         <p class="nomCompet">
             <label for="nom" class="labelCompet">Nom de la compétition : </label>

@@ -62,15 +62,16 @@
                     <div class="selectionFinale">
                        
                         <label>
-                                   <p>vainqueur aux tirs au buts</p>
+                                   <p class="vainqueur"> Qui sera vainqueur au tir au but ?</p>
                                     
                                    <div>
                                         <label for="equipe1"><?php echo $tuple['nom1']; ?></label>
                                         <input class="" type="radio" id="equipe1" name="<?php echo $tuple['match_id']; ?>_toggle" value="'equipe1'" checked />
                                     </div>
                                     <div>
-                                        <input class="" type="radio" id="equipe2" name="<?php echo $tuple['match_id']; ?>_toggle" value="'equipe2'" checked />
                                         <label for="equipe2"><?php echo $tuple['nom2']; ?></label>
+                                        <input class="" type="radio" id="equipe2" name="<?php echo $tuple['match_id']; ?>_toggle" value="'equipe2'" checked />
+                                        
                                     </div>
                         </label>
 
@@ -85,9 +86,21 @@
                     </div>
                 </div>
 
-                <p>
-                    Bon score : <?php echo $tuple['pts_Exact']; ?> points <br> Bon écart + bon vainqueur : <?php echo $tuple['pts_Ecart']; ?> points<br> Bon vainqueur : <?php echo $tuple['pts_Vainq']; ?> points
-                </p>
+                <div>
+                    <p class="pointsGagne">
+                        <span class="labelEquipe">Bon score :</span> 
+                        <span><?php echo $tuple['pts_Exact']; ?> points</span> 
+                    </p>
+
+                    <p class="pointsGagne">
+                        <span class="labelEquipe">Bon écart + bon vainqueur : </span>
+                        <span><?php echo $tuple['pts_Ecart']; ?> points</span>
+                </p> 
+
+                    <p class="pointsGagne">
+                        <span class="labelEquipe">Bon vainqueur : </span>
+                        <span><?php echo $tuple['pts_Vainq']; ?> points</span></p>
+                    </div>
 
             </div>
 

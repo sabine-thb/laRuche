@@ -1,5 +1,5 @@
 <section class="creaEquipe">
-
+    <h1 class="titlePage">Je créée un match : </h1>
     <form action="admin.php?action=ajoutMatch" method="post" class="formEquipe">
 
         <p class="pMatch">

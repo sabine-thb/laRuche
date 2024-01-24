@@ -1,13 +1,12 @@
-<div class="container mt-5">
+<section>
     <?php foreach ($match as $row) { ?>
-        <div class="card mb-3" style="background-color: rgba(11,94,215,0.6)">
-            <div class="card-body">
-
-                <div class="row">
+        <div class="" style="background-color: rgba(11,94,215,0.6)">
                     <p>
                         <?php echo $row['nomCompet']; ?> - <?php echo $row['date_match']; ?> - <?php echo $row['heure']; ?>H
                     </p>
-                    <div class="col-md-4 text-center mt-3">
+                <div class="matchContainer">
+                    
+                    <div class="equ1">
                         <!-- Équipe 1 -->
                         <h5>
                             <?php echo $row['nom1']; ?>
@@ -17,13 +16,13 @@
 
                     </div>
 
-                    <div class="col-md-4 d-flex justify-content-center align-items-center">
-                        <p class="fs-4">
+                    
+                    <p class="fs-4">
                             VS
-                        </p>
-                    </div>
+                    </p>
+                    
 
-                    <div class="col-md-4 text-center mt-3">
+                    <div class="equ2">
                         <!-- Équipe 2 -->
                         <h5>
                             <?php echo $row['nom2']; ?>
@@ -39,7 +38,7 @@
                        class="btn btn-danger"
                        onclick="return confirm('est-tu sur de vouloir supprimez ce match ?\n');"
                     >
-                        Supprimez
+                        Supprimer
                     </a>
 
 
@@ -47,13 +46,11 @@
                        class="btn btn-secondary"
                        onclick="return confirm('est-tu sur de vouloir mettre en attente ce match ?\nIl n\'y a pas de retour arrière possible pour l\'instant');"
                     >
-                        mettre en attente (fémer les parie)
+                        Fermer les paris
                     </a>
 
                 </div>
-
-            </div>
         </div>
     <?php } ?>
-</div>
+</section>
 

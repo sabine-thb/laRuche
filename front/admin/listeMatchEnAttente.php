@@ -1,10 +1,9 @@
-
-<div class="container mt-5">
+<div class="">
     <?php foreach ($match as $row) { ?>
         <form class="formPronostics" action="admin.php?action=ajouteResultatMatch&idMatch=<?php echo $row['match_id']; ?>" method="post">
             <div class="card mb-3 carteProno" style="background-color: rgba(108,117,125,0.6)">
-                <div class="card-body">
-                    <div class="row">
+                
+                    <div class="oneMatch">
                         <input type="hidden" name="match_id" value="<?php echo $row['match_id']; ?>" >
                         <p>
                             <?php echo $row['nomCompet']; ?> - <?php echo $row['date_match']; ?> - <?php echo $row['heure']; ?>H
@@ -56,7 +55,7 @@
                            class="btn btn-danger"
                            onclick="return confirm('est-tu sur de vouloir supprimez ce match ?\n');"
                         >
-                            Supprimez
+                            Supprimer
                         </a>
                         <input class="btn btn-success" type="submit" value="Enregistrer"
                                title="les points seront attribué automatiquement"
@@ -65,10 +64,9 @@
                         <a href="#"
                            class="btn btn-info"
                         >
-                            modifier
+                            Modifier
                         </a>
                     </div>
-                </div>
             </div>
         </form>
     <?php } ?>

@@ -1,4 +1,4 @@
-input[type=checkbox] {
+/* input[type=checkbox] {
     font: 80px/1.5 sans-serif;
 }
 input[type=checkbox]:before {
@@ -150,4 +150,4 @@ input[type=checkbox].pristine, input[type=checkbox].pristine:before {
         left: 0.5625em;
         width: 0.5em;
     }
-}
+} */

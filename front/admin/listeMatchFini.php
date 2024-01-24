@@ -3,7 +3,7 @@
     <?php foreach ($match as $row) { ?>
         <div class="card mb-3" style="background-color: rgba(25,135,84,0.6)">
             <div class="card-body">
-                <div class="row">
+                <div class="oneMatch">
                     <p>
                         <?php echo $row['nomCompet']; ?> - <?php echo $row['date_match']; ?> - <?php echo $row['heure']; ?>H
                     </p>
@@ -16,13 +16,13 @@
                         <img src="<?php echo $row['src1']; ?>" class="img-fluid" style="max-height: 250px; width: auto;"
                              alt="image gauche ">
 
-                        <p class="text-center fs-4 ">
+                        <p class=" fs-4 ">
                             <?php echo $row['resultat1']; ?>
                         </p>
 
                     </div>
 
-                    <div class="col-md-4 d-flex justify-content-center align-items-center">
+                    <div class="">
                         <p class="fs-4">
                             VS
                         </p>
