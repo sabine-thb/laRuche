@@ -23,10 +23,10 @@ class ModeleScorcast extends Connexion {
     {
         try {
             $query = "
-            SELECT * FROM LaRuche.LaRuche_competition 
+            SELECT * FROM LaRuche_competition 
             EXCEPT 
             SELECT competition_id,nom,description,date_creation 
-            FROM LaRuche.LaRuche_pronostiqueur NATURAL JOIN LaRuche.LaRuche_competition 
+            FROM LaRuche_pronostiqueur NATURAL JOIN LaRuche_competition 
             WHERE user_id = $idUser
             ";
 
@@ -45,7 +45,7 @@ class ModeleScorcast extends Connexion {
         try {
             $query = "
             SELECT competition_id,nom,description,date_creation 
-            FROM LaRuche.LaRuche_pronostiqueur NATURAL JOIN LaRuche.LaRuche_competition
+            FROM LaRuche_pronostiqueur NATURAL JOIN LaRuche_competition
             WHERE user_id = $idUser
             ";
 
@@ -63,7 +63,7 @@ class ModeleScorcast extends Connexion {
 
         try {
             $query = "
-            INSERT INTO LaRuche.LaRuche_pronostiqueur(user_id,competition_id) VALUES
+            INSERT INTO LaRuche_pronostiqueur(user_id,competition_id) VALUES
             ($idUser,$idCompet)
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -81,7 +81,7 @@ class ModeleScorcast extends Connexion {
 
         try {
             $query = "
-            UPDATE LaRuche.LaRuche_pronoQuestionBonus 
+            UPDATE LaRuche_pronoQuestionBonus 
             SET reponse = '$prono'
             WHERE question_bonus_id = $idQuestion and pronostiqueur_id = $idPronostiqueur
             ";
@@ -100,8 +100,8 @@ class ModeleScorcast extends Connexion {
 
         try {
             $query = "
-            SELECT login, total_point as points,description,user_id as id,LaRuche.LaRuche_getClassement(pronostiqueur_id,$idCompet) as position
-            FROM LaRuche.LaRuche_pronostiqueur NATURAL JOIN LaRuche.LaRuche_users
+            SELECT login, total_point as points,description,user_id as id,LaRuche_getClassement(pronostiqueur_id,$idCompet) as position
+            FROM LaRuche_pronostiqueur NATURAL JOIN LaRuche_users
             WHERE competition_id = $idCompet
             ORDER BY position
             ";
@@ -123,10 +123,10 @@ class ModeleScorcast extends Connexion {
             $query = "
             SELECT date_match,E.nom as nom1,E2.nom as nom2,P.prono_equipe1,P.prono_equipe2,P.vainqueur_prono,
                    E.srcLogo as src1,E2.srcLogo as src2,M.match_id,pts_Vainq,pts_Ecart,pts_Exact,heure
-            FROM LaRuche.LaRuche_matchApronostiquer as M
-            INNER JOIN LaRuche.LaRuche_equipe E ON M.equipe1_id=E.equipe_id
-            INNER JOIN LaRuche.LaRuche_equipe E2 ON M.equipe2_id=E2.equipe_id
-            INNER JOIN LaRuche.LaRuche_pronostique P ON P.match_id = M.match_id
+            FROM LaRuche_matchApronostiquer as M
+            INNER JOIN LaRuche_equipe E ON M.equipe1_id=E.equipe_id
+            INNER JOIN LaRuche_equipe E2 ON M.equipe2_id=E2.equipe_id
+            INNER JOIN LaRuche_pronostique P ON P.match_id = M.match_id
             WHERE competition_id = $idCompet  and pronostiqueur_id = $idPronostiqueur and pari_ouvert = true
             ";
 
@@ -144,7 +144,7 @@ class ModeleScorcast extends Connexion {
     {
         try {
             $query = "
-            UPDATE LaRuche.LaRuche_pronostique 
+            UPDATE LaRuche_pronostique 
             SET prono_equipe2 = $prono2 , prono_equipe1 = $prono1 , vainqueur_prono = $equipeGagnantePeno
             WHERE match_id = $idMatch and pronostiqueur_id = $idPronostiqueur
             ";
@@ -164,7 +164,7 @@ class ModeleScorcast extends Connexion {
         try {
             $query = "
                 SELECT pronostiqueur_id
-                FROM LaRuche.LaRuche_pronostiqueur
+                FROM LaRuche_pronostiqueur
                 WHERE user_id = $idUser and competition_id = $idCompet
             ";
 
@@ -183,11 +183,11 @@ class ModeleScorcast extends Connexion {
             $query = "
             SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,
                    R.nb_but_equipe1 as resultat1, R.nb_but_equipe2 as resultat2, P.point_obtenu,M.heure,R.resultat_peno
-            FROM LaRuche.LaRuche_matchApronostiquer as M
-            INNER JOIN LaRuche.LaRuche_equipe E ON M.equipe1_id = E.equipe_id
-            INNER JOIN LaRuche.LaRuche_equipe E2 ON M.equipe2_id = E2.equipe_id
-            INNER JOIN LaRuche.LaRuche_pronostique P ON M.match_id = P.match_id  
-            INNER JOIN LaRuche.LaRuche_resultatMatch R ON M.match_id = R.match_id
+            FROM LaRuche_matchApronostiquer as M
+            INNER JOIN LaRuche_equipe E ON M.equipe1_id = E.equipe_id
+            INNER JOIN LaRuche_equipe E2 ON M.equipe2_id = E2.equipe_id
+            INNER JOIN LaRuche_pronostique P ON M.match_id = P.match_id  
+            INNER JOIN LaRuche_resultatMatch R ON M.match_id = R.match_id
             WHERE pari_ouvert = false and competition_id = $idCompet and pronostiqueur_id = $idPronostiqueur
             ORDER BY date_match DESC
             ";
@@ -205,7 +205,7 @@ class ModeleScorcast extends Connexion {
     {
         try {
             $query = "
-            SELECT LaRuche.totalPoint($idPronostiqueur,$idCompet) as totalPoints
+            SELECT totalPoint($idPronostiqueur,$idCompet) as totalPoints
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -222,7 +222,7 @@ class ModeleScorcast extends Connexion {
         try {
             $query = "
                 SELECT src_logo_user
-                FROM LaRuche.LaRuche_users
+                FROM LaRuche_users
                 WHERE user_id = $id
             ";
 
@@ -240,9 +240,9 @@ class ModeleScorcast extends Connexion {
         try {
             $query = "
             SELECT U.prenom,U.login,c.nom as nom, U.description, U.age , U.Gender
-            FROM LaRuche.LaRuche_users U
-            NATURAL JOIN LaRuche.LaRuche_pronostiqueur
-            INNER JOIN LaRuche.LaRuche_competition join LaRuche.LaRuche_competition c on LaRuche_pronostiqueur.competition_id = c.competition_id
+            FROM LaRuche_users U
+            NATURAL JOIN LaRuche_pronostiqueur
+            INNER JOIN LaRuche_competition join LaRuche_competition c on LaRuche_pronostiqueur.competition_id = c.competition_id
             WHERE U.user_id = $idUser
             ";
 
@@ -259,10 +259,10 @@ class ModeleScorcast extends Connexion {
     {
         try{
             $query = "
-            SELECT c.nom,LaRuche.LaRuche_getClassement(p.pronostiqueur_id,c.competition_id) as classement
-            FROM LaRuche.LaRuche_users u
-            INNER JOIN LaRuche.LaRuche_pronostiqueur p on u.user_id = p.user_id
-            INNER JOIN LaRuche.LaRuche_competition c on p.competition_id = c.competition_id
+            SELECT c.nom,LaRuche_getClassement(p.pronostiqueur_id,c.competition_id) as classement
+            FROM LaRuche_users u
+            INNER JOIN LaRuche_pronostiqueur p on u.user_id = p.user_id
+            INNER JOIN LaRuche_competition c on p.competition_id = c.competition_id
             WHERE u.user_id = $idUser;
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -279,8 +279,8 @@ class ModeleScorcast extends Connexion {
         try{
             $query = "
             SELECT *
-            FROM LaRuche.LaRuche_questionBonus Q
-            INNER JOIN LaRuche.LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+            FROM LaRuche_questionBonus Q
+            INNER JOIN LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
             WHERE pari_ouvert = true and pronostiqueur_id = $id
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -297,14 +297,14 @@ class ModeleScorcast extends Connexion {
         try{
             $query = "
             SELECT Q.*,P.*
-            FROM LaRuche.LaRuche_questionBonus Q
-            INNER JOIN LaRuche.LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+            FROM LaRuche_questionBonus Q
+            INNER JOIN LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
             WHERE pari_ouvert = false and pronostiqueur_id = $id
             EXCEPT 
             SELECT Q.*,P.*
-            FROM LaRuche.LaRuche_questionBonus Q
-            INNER JOIN LaRuche.LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
-            INNER JOIN LaRuche.LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
+            FROM LaRuche_questionBonus Q
+            INNER JOIN LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+            INNER JOIN LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
             WHERE pari_ouvert = false and pronostiqueur_id = $id
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -321,9 +321,9 @@ class ModeleScorcast extends Connexion {
         try{
             $query = "
             SELECT *
-            FROM LaRuche.LaRuche_questionBonus Q
-            INNER JOIN LaRuche.LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
-            INNER JOIN LaRuche.LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
+            FROM LaRuche_questionBonus Q
+            INNER JOIN LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+            INNER JOIN LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
             WHERE pari_ouvert = false and pronostiqueur_id = $id
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -340,8 +340,8 @@ class ModeleScorcast extends Connexion {
         try{
             $query = "
             SELECT DISTINCT E.nom,E.equipe_id
-            FROM LaRuche.LaRuche_equipe E
-            NATURAL JOIN LaRuche.LaRuche_matchApronostiquer M
+            FROM LaRuche_equipe E
+            NATURAL JOIN LaRuche_matchApronostiquer M
             WHERE M.competition_id = $idCompet
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -357,7 +357,7 @@ class ModeleScorcast extends Connexion {
     {
         try{
             $query = "
-            UPDATE LaRuche.LaRuche_users 
+            UPDATE LaRuche_users 
             SET age = $age
             WHERE user_id = $idUser
             ";
@@ -375,7 +375,7 @@ class ModeleScorcast extends Connexion {
     {
         try{
             $query = "
-            UPDATE LaRuche.LaRuche_users 
+            UPDATE LaRuche_users 
             SET Gender = '$gender'
             WHERE user_id = $idUser
             ";
@@ -393,7 +393,7 @@ class ModeleScorcast extends Connexion {
     {
         try{
             $query = "
-            UPDATE LaRuche.LaRuche_users 
+            UPDATE LaRuche_users 
             SET src_logo_user = '$dest'
             WHERE user_id = $idUser
             ";
