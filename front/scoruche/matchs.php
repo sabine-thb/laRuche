@@ -60,9 +60,7 @@
                     </div>
 
                     <div class="selectionFinale">
-                        <p>
-                            Vainqueur penalty :
-                        </p>
+                       
                         <label>
                                    <p>vainqueur aux tirs au buts</p>
                                     
