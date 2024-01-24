@@ -3,7 +3,7 @@
     <div class="flexContainer1">
         <div>
             <p class="pForm">
-                <label for="prenom">Prenom :</label>
+                <label for="prenom">Prénom :</label>
                 <input type='text' name='prenom' id="prenom" inputmode="text" maxlength="24">
             </p>
 
