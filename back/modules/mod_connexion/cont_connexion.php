@@ -50,7 +50,7 @@ class ContConnexion {
                     $mailRuche="laruchelive@gmail.com";
 
                     $messageRuche="Nouvelle demande ! 
-                    Login: $_POST['login']
+                    Login: " . $_POST['login'] . "
                     Description : $_POST['description']
                     Veuillez accepter ou refuser cette demande.
                     ";  

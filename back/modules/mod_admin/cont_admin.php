@@ -40,7 +40,20 @@ class ContAdmin {
             $resultat=$this->modele->accepteDemande($_GET["id"]);
 
             if ($resultat) {
+                    $toUser=$mailUser;
+            
+                    $subjectUser="Compte scoruche accepté !";
+            
+                    $mailUser="$_POST['mail']";
+
+                    $messageUser="Ta demande a été acceptée ! 
+                    Tu peux désormais te connecter sur la-ruche.eu .
+                    ";  
+                                
+                    mail($toUser, $subjectUser, $messageUser);
+
                 header('Location: admin.php?action=afficherDemande');
+
             }
         }
     }
@@ -51,6 +64,19 @@ class ContAdmin {
             $resultat=$this->modele->refuseDemande($_GET["id"]);
 
             if ($resultat) {
+                
+                $toUserRefused=$mailUser;
+            
+                $subjectUserRefused="Compte scoruche refusé !";
+        
+                $mailUserRefused="$_POST['mail']";
+
+                $messageUserRefused="Ta demande a été refusée ! 
+                Si tu penses qu'elle aurait dûe être acceptée, améliore ta description ou contacte nous sur instagram.
+                ";  
+                            
+                mail($toUserRefused, $subjectUserRefused, $messageUserRefused);
+
                 header('Location: admin.php?action=afficherDemande');
             }
         }
