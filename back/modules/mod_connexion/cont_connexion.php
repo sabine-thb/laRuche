@@ -42,6 +42,22 @@ class ContConnexion {
                 if ($resultat) {
 
                     echo "<p class=\"dmdOK\">Une demande a été envoyée à la ruche, vous recevrez un mail lorsque la demande sera acceptée.</p>";
+                    
+                    
+                    $subjectRuche="Demande de compte Scoruche";
+            
+                    $mailRuche="laruchelive@gmail.com";
+
+                    $to = $mailRuche;
+
+                    $messageRuche="Nouvelle demande ! 
+                    Login:". $_POST['login'] . 
+                    "Description :". $_POST['description'] . "
+                    Veuillez accepter ou refuser cette demande.
+                    ";  
+                                
+                    mail($to, $subjectRuche, $messageRuche);
+            
                 } else {
                     echo "Erreur lors de la création de compte.";
                 }
