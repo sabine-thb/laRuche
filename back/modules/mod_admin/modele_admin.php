@@ -190,6 +190,25 @@ class ModeleAdmin extends Connexion {
     
     }
 
+    public function getMail($idUser){
+        try{
+            $query = "
+            SELECT mail
+            FROM LaRuche.LaRuche_users
+            WHERE user_id = $idUser
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            return $this->executeQuery($stmt)[0];
+        }catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e');</script>";
+            return $e;
+        }
+
+    }
+
+
+
     public function getMatchAttente()
     {
         try {

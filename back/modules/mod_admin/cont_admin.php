@@ -38,8 +38,10 @@ class ContAdmin {
     {
         if (isset($_GET["id"])) {
             $resultat=$this->modele->accepteDemande($_GET["id"]);
-
+            $mail = $this->modele->getMail($_GET["id"]);
+            $mail = $mail['mail'];
             if ($resultat) {
+
                 header('Location: admin.php?action=afficherDemande');
             }
         }
