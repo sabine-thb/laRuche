@@ -33,6 +33,7 @@ $affichageModule = $module->afficheModule();
     <link href="style/css/fonts.css" rel="stylesheet">
     <link href="style/css/styleAccAdmin.css" rel="stylesheet">
     <link href="style/css/menu.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="./style/img/logoBleu.ico"/>
     <script src="style/js/inputScore.js"></script>
 </head>
 

@@ -288,6 +288,20 @@ section{
 
 /*Je stylise la page de gerer matchs*/
 
+.sectionCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.allCardMatch{
+    background-color: white;
+    padding:20px;
+    border-radius:20px;
+    width:700px;
+    box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25);
+}
+
 .oneMatch{
     display:flex;
 }
@@ -295,7 +309,56 @@ section{
 .matchContainer{
     display: flex;
     justify-content: space-between;
+    margin-bottom:30px;
 }
+
+.vs{
+    margin:auto;
+    font-size:3rem;
+    font-family:"montserratExtraBold", sans-serif;
+}
+
+.nameEquipe{
+    font-size:1.5rem;
+    text-align: center;
+}
+
+.equ1, .equ2{
+    width:200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons{
+    display:flex;
+    justify-content: center;
+    gap:30px;
+}
+
+.oneButton{
+    text-decoration: none;
+    color: #FFFFFF !important;
+    padding:10px 15px 10px 15px;
+    border-radius:20px;
+    background-color: #007bff;
+    transition:background-color 0.3s ease-in-out;
+}
+
+.oneButton:hover{
+    background-color:#e1b217
+}
+
+.img-fluid{
+    width:200px;
+    height:200px;
+}
+
+.titleMatch{
+    margin-bottom:0;
+}
+
 
 
 
@@ -329,6 +392,24 @@ section{
         font-size:1rem;
     }
 
+    .allCardMatch{
+        width:400px;
+    }
+
+    .img-fluid{
+        width:120px;
+        height:120px;
+    }
+
+    .vs{
+        font-size:1.6rem;
+    }
+
+    .nameEquipe{
+        font-size:1.3rem;
+    }
+
+   
 }
 
 @media(max-width:900px){
@@ -399,6 +480,24 @@ section{
     .actions{
         grid-template-columns: repeat(1, 1fr);
 
+    }
+
+    .allCardMatch{
+        width:300px;
+    }
+
+    .equ1, .equ2{
+        width:100px;
+    }
+
+    .oneButton{
+        padding:5px 10px 5px 10px;
+        font-size:0.8rem;
+    }
+
+    .img-fluid{
+        width:80px;
+        height:80px;
     }
 
 }

@@ -45,6 +45,7 @@ $affichageModule = $module->afficheModule();
     <link rel="stylesheet" href="style/css/fonts.css">
     <link rel="stylesheet" href="style/css/profil.css">
     <link rel="stylesheet" href="style/css/styleAccAdmin.css">
+    <link rel="shortcut icon" type="image/png" href="./style/img/logoBleu.ico"/>
     <link href="style/css/checkBox.css" rel="stylesheet">
     <script src="style/js/inputScore.js"></script>
     <script src="./style/js/competition.js"></script>
