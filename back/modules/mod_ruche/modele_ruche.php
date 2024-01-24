@@ -23,6 +23,3 @@ class ModeleRuche extends Connexion {
         return $resultats;
     }
 }
-
-
-?>

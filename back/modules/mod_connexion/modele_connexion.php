@@ -49,7 +49,7 @@ class ModeleConnexion extends Connexion {
         try {
             $mdp = password_hash($mdp,PASSWORD_BCRYPT,$this->option);
             $query = "
-            INSERT INTO LaRuche.users (prenom,login,mail,description,password) 
+            INSERT INTO LaRuche.LaRuche_users (prenom,login,mail,description,password) 
             VALUES ('$prenom','$login','$mail','$description','$mdp')
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -88,7 +88,7 @@ class ModeleConnexion extends Connexion {
 
         try {
 
-            $stmt = Connexion::$bdd->prepare("SELECT password FROM LaRuche.admin WHERE login='" .$login. "' ");
+            $stmt = Connexion::$bdd->prepare("SELECT password FROM LaRuche.LaRuche_admin WHERE login='" .$login. "' ");
             $resultat = $this->executeQuery($stmt);
 
 
@@ -96,7 +96,7 @@ class ModeleConnexion extends Connexion {
                 return [3,$login];  //admin good
             }else{
 
-                $stmt = Connexion::$bdd->prepare("SELECT * FROM LaRuche.users WHERE login='" .$login. "' or mail='" . $login . "' ");
+                $stmt = Connexion::$bdd->prepare("SELECT * FROM LaRuche.LaRuche_users WHERE login='" .$login. "' or mail='" . $login . "' ");
                 $resultat = $this->executeQuery($stmt);
 
                 if ($resultat[0]["password"] == "reset"){
@@ -150,7 +150,7 @@ class ModeleConnexion extends Connexion {
         try {
             $mdp = password_hash($mdp,PASSWORD_BCRYPT,$this->option);
             $query = "
-            UPDATE LaRuche.users
+            UPDATE LaRuche.LaRuche_users
             SET password = '$mdp'
             WHERE user_id = $id
             ";
