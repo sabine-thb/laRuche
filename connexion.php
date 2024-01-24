@@ -29,6 +29,7 @@ $affichageModule = $module->afficheModule();
     <link href="style/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="style/css/fonts.css">
     <link rel="stylesheet" href="style/css/styleConnexion.css">
+    <link rel="shortcut icon" type="image/png" href="./style/img/logoBleu.ico"/>
     <script src="./style/js/connexion.js"></script>
 </head>
 
