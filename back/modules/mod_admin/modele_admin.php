@@ -223,7 +223,7 @@ class ModeleAdmin extends Connexion {
             EXCEPT 
             SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,
                    C.nom as nomCompet,heure
-            FROM LaRuche_matchApronostiquer as M
+            FROM LaRuche.LaRuche_matchApronostiquer as M
             INNER JOIN LaRuche.LaRuche_equipe E ON M.equipe1_id = E.equipe_id
             INNER JOIN LaRuche.LaRuche_equipe E2 ON M.equipe2_id = E2.equipe_id
             INNER JOIN LaRuche.LaRuche_competition C ON M.competition_id = C.competition_id
@@ -507,7 +507,6 @@ class ModeleAdmin extends Connexion {
             return true;
 
         } catch (PDOException $e) {
-//            var_dump($e);
             echo "<script>console.log(\"erreur: $e\");</script>"; //todo provoque une erreur car le $e n'est pas collé avec le );
             return false;
         }
@@ -517,7 +516,8 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
-            DELETE FROM LaRuche.LaRuche_matchApronostiquer WHERE match_id=$idMatch
+            DELETE FROM LaRuche.LaRuche_matchApronostiquer 
+                   WHERE match_id = $idMatch
             ";
             $stmt = Connexion::$bdd->prepare($query);
             $this->executeQuery($stmt);

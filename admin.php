@@ -49,7 +49,6 @@ $affichageModule = $module->afficheModule();
         </a>
 
         <div id="navbar">
-                
                 <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut">
                     Déconnexion
                 </a>
