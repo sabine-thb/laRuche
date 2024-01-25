@@ -23,11 +23,13 @@ class ModeleScorcast extends Connexion {
     {
         try {
             $query = "
-            SELECT * FROM laruchxsabine.LaRuche_competition 
-            EXCEPT 
-            SELECT competition_id,nom,description,date_creation 
-            FROM laruchxsabine.LaRuche_pronostiqueur NATURAL JOIN laruchxsabine.LaRuche_competition 
-            WHERE user_id = $idUser
+            SELECT * 
+            FROM laruchxsabine.LaRuche_competition 
+            WHERE competition_id NOT IN ( 
+                SELECT competition_id
+                FROM laruchxsabine.LaRuche_pronostiqueur NATURAL JOIN laruchxsabine.LaRuche_competition 
+                WHERE user_id = $idUser
+            )
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -45,7 +47,8 @@ class ModeleScorcast extends Connexion {
         try {
             $query = "
             SELECT competition_id,nom,description,date_creation 
-            FROM laruchxsabine.LaRuche_pronostiqueur NATURAL JOIN laruchxsabine.LaRuche_competition
+            FROM laruchxsabine.LaRuche_pronostiqueur 
+            NATURAL JOIN laruchxsabine.LaRuche_competition
             WHERE user_id = $idUser
             ";
 
@@ -63,8 +66,8 @@ class ModeleScorcast extends Connexion {
 
         try {
             $query = "
-            INSERT INTO laruchxsabine.LaRuche_pronostiqueur(user_id,competition_id) VALUES
-            ($idUser,$idCompet)
+            INSERT INTO laruchxsabine.LaRuche_pronostiqueur(user_id,competition_id) 
+            VALUES ($idUser,$idCompet)
             ";
             $stmt = Connexion::$bdd->prepare($query);
             $this->executeQuery($stmt);
@@ -220,10 +223,10 @@ class ModeleScorcast extends Connexion {
     public function getSrcLogo($id)
     {
         try {
-            $query = "
-                SELECT src_logo_user
-                FROM laruchxsabine.LaRuche_users
-                WHERE user_id = $id
+            $query="
+            SELECT src_logo_user
+            FROM laruchxsabine.LaRuche_users
+            WHERE user_id = $id
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -299,13 +302,13 @@ class ModeleScorcast extends Connexion {
             SELECT Q.*,P.*
             FROM laruchxsabine.LaRuche_questionBonus Q
             INNER JOIN laruchxsabine.LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
-            WHERE pari_ouvert = false and pronostiqueur_id = $id
-            EXCEPT 
-            SELECT Q.*,P.*
-            FROM laruchxsabine.LaRuche_questionBonus Q
-            INNER JOIN laruchxsabine.LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
-            INNER JOIN laruchxsabine.LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
-            WHERE pari_ouvert = false and pronostiqueur_id = $id
+            WHERE pari_ouvert = false and pronostiqueur_id = $id AND Q.question_bonus_id NOT IN(
+                SELECT Q.question_bonus_id
+                FROM laruchxsabine.LaRuche_questionBonus Q
+                INNER JOIN laruchxsabine.LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+                INNER JOIN laruchxsabine.LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
+                WHERE pari_ouvert = false and pronostiqueur_id = $id
+            )
             ";
             $stmt = Connexion::$bdd->prepare($query);
 

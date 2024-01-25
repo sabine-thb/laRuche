@@ -93,8 +93,13 @@ class ModeleConnexion extends Connexion {
             if(isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp)){
                 return [3,$login];  //admin good
             }else{
+                $query="
+                SELECT * 
+                FROM laruchxsabine.LaRuche_users 
+                WHERE login= '$login' OR mail= '$login'
+                ";
 
-                $stmt = Connexion::$bdd->prepare("SELECT * FROM laruchxsabine.LaRuche_users WHERE login='" .$login. "' or mail='" . $login . "' ");
+                $stmt = Connexion::$bdd->prepare($query);
                 $resultat = $this->executeQuery($stmt);
 
                 if ($resultat[0]["password"] == "reset"){
