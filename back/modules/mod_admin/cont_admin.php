@@ -38,19 +38,20 @@ class ContAdmin {
     {
         if (isset($_GET["id"])) {
             $resultat=$this->modele->accepteDemande($_GET["id"]);
-
+            $mail = $this->modele->getMail($_GET["id"]);
             if ($resultat) {
-                    
-            
+
+
                     $subjectUser="Compte scoruche accepté !";
-            
-                    $mailUser=$_POST['mail'];
+
+                    $mailUser=$mail['mail'];
                     $toUser=$mailUser;
                     $messageUser="Ta demande a été acceptée ! 
                     Tu peux désormais te connecter sur la-ruche.eu .
-                    ";  
-                                
+                    ";
+
                     mail($toUser, $subjectUser, $messageUser);
+
 
                 header('Location: admin.php?action=afficherDemande');
 
@@ -64,18 +65,18 @@ class ContAdmin {
             $resultat=$this->modele->refuseDemande($_GET["id"]);
 
             if ($resultat) {
-                
-            
+
+
                 $subjectUserRefused="Compte scoruche refusé !";
-        
+
                 $mailUserRefused=$_POST['mail'];
 
                 $toUserRefused=$mailUserRefused;
 
                 $messageUserRefused="Ta demande a été refusée ! 
                 Si tu penses qu'elle aurait dûe être acceptée, améliore ta description ou contacte nous sur instagram.
-                ";  
-                            
+                ";
+
                 mail($toUserRefused, $subjectUserRefused, $messageUserRefused);
 
                 header('Location: admin.php?action=afficherDemande');

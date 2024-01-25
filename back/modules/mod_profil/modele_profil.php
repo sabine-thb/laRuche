@@ -26,9 +26,9 @@ class ModeleProfil extends Connexion {
         try {
             $query = "
             SELECT U.prenom,U.login,c.nom as nom, U.description, U.age , U.Gender
-            FROM LaRuche.users U
-            NATURAL JOIN LaRuche.pronostiqueur
-            INNER JOIN LaRuche.competition join LaRuche.competition c on pronostiqueur.competition_id = c.competition_id
+            FROM LaRuche.LaRuche_users U
+            NATURAL JOIN LaRuche.LaRuche_pronostiqueur
+            INNER JOIN LaRuche.LaRuche_competition join LaRuche.LaRuche_competition c on LaRuche_pronostiqueur.competition_id = c.competition_id
             WHERE user_id = $id
             ";
 
@@ -45,7 +45,7 @@ class ModeleProfil extends Connexion {
     {
         try{
             $query = "
-            UPDATE LaRuche.users 
+            UPDATE LaRuche.LaRuche_users 
             SET src_logo_user = '$dest'
             WHERE user_id = $idUser
             ";
@@ -63,10 +63,10 @@ class ModeleProfil extends Connexion {
     {
         try{
             $query = "
-            SELECT c.nom,LaRuche.getClassement(p.pronostiqueur_id,c.competition_id) as classement
-            FROM LaRuche.users u
-            INNER JOIN LaRuche.pronostiqueur p on u.user_id = p.user_id
-            INNER JOIN LaRuche.competition c on p.competition_id = c.competition_id
+            SELECT c.nom,LaRuche.LaRuche_getClassement(p.pronostiqueur_id,c.competition_id) as classement
+            FROM LaRuche.LaRuche_users u
+            INNER JOIN LaRuche.LaRuche_pronostiqueur p on u.user_id = p.user_id
+            INNER JOIN LaRuche.LaRuche_competition c on p.competition_id = c.competition_id
             WHERE u.user_id = $idUser;
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -82,7 +82,7 @@ class ModeleProfil extends Connexion {
     {
         try{
             $query = "
-            UPDATE LaRuche.users 
+            UPDATE LaRuche.LaRuche_users 
             SET age = $age
             WHERE user_id = $idUser
             ";
@@ -100,7 +100,7 @@ class ModeleProfil extends Connexion {
     {
         try{
             $query = "
-            UPDATE LaRuche.users 
+            UPDATE LaRuche.LaRuche_users 
             SET Gender = '$gender'
             WHERE user_id = $idUser
             ";

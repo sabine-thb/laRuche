@@ -32,15 +32,15 @@ class ContConnexion {
         $this->vue->afficheFormulaireInsciption();
     }
 
-    public function ajout() {
-        
-
+    public function ajout()
+    {
         if ($this->checkAllInput()) {
             if ($this->checkForceMdp($_POST['mdp'])) {
                 
                 $resultat = $this->modele->ajoutDemandeUser($_POST['prenom'],$_POST['login'],$_POST['mail'],$_POST['mdp'],$_POST['description']);
 
                 if ($resultat) {
+
                     echo "<p class=\"dmdOK\">Une demande a été envoyée à la ruche, vous recevrez un mail lorsque la demande sera acceptée.</p>";
                     
                     

@@ -27,7 +27,7 @@
                         <h2 class="nameCompet">
                             <?php echo $tuple['nom']; ?>
                         </h2>
-                        <p class="classementCompet"> - <?php echo $tuple['classement']; ?>ème</p>
+                        <p class="classementCompet"><?php echo $tuple['classement']; ?>ème</p>
                     </div>
             <?php } ?>
         </div>
