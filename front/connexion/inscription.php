@@ -3,7 +3,7 @@
     <div class="flexContainer1">
         <div>
             <p class="pForm">
-                <label for="prenom">Prenom :</label>
+                <label for="prenom">Prénom :</label>
                 <input type='text' name='prenom' id="prenom" inputmode="text" maxlength="24">
             </p>
 
@@ -22,8 +22,8 @@
         </div>
         <div>
             <p class="pForm">
-                <label for="description"> Description : <span class="info" title="La description est envoyée à l'admin pour qu'il puisse valider votre inscription. Identifiez-vous en une seule phrase (ex: 'Je suis le fils de Donald Trump')" onclick="showTitle(this)"> i </span>  </label>
-                <input id="description" type='text' name='description'>
+                <label for="description" class="description"> Description : <span class="info" id="btn-info" title="La description est envoyée à l'admin pour qu'il puisse valider votre inscription. Identifiez-vous en une seule phrase (ex: 'Je suis le fils de Donald Trump')" onclick="showTitle(this)"> i </span>  </label>
+                <input id="description" type='text' name='description' onfocus="ajouteAnimationBouttonInfo()" autocomplete="off">
             </p>
             <p class="pForm">
                 <label for="mdp">Mot de passe :</label>
@@ -36,13 +36,6 @@
     
         
     <input class="submit" type="submit" value="Créer compte" onclick="return afficherErreurInscription();">
-
-    
-    
-
-    
-
-    
 
     <?php echo $_SESSION['error'] ?? ''; ?>
 

@@ -1,3 +1,12 @@
+
+document.addEventListener('DOMContentLoaded', function () {
+    const inputDescription = document.getElementById('description');
+    const label = document.querySelector('#btn-info');
+
+    inputDescription.addEventListener('blur', function () {
+        label.classList.remove('bouge');
+    });
+});
 function afficherErreurInscription() {
 
     function checkChampVide(a){
@@ -33,4 +42,9 @@ function showTitle(element) {
         const titleText = element.getAttribute('title');
         alert(titleText);
     }
+}
+
+function ajouteAnimationBouttonInfo() {
+    const info = document.querySelector('#btn-info');
+    info.classList.add('bouge');
 }
