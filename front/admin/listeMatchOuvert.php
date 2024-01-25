@@ -5,9 +5,9 @@
         // Convertir la date au format jj/mm/aaaa
         $dateFormatee = date("d/m/Y", strtotime($dateMatch));?>
         <div class="allCardMatch" >
-                    <p class="titleMatch">
+                <p class="titleMatch">
                         <?php echo $row['nomCompet']; ?> - <?php echo $dateFormatee ?> - <?php echo $row['heure']; ?>H
-                    </p>
+                </p>
                 <div class="matchContainer">
                     
                     <div class="equ1">

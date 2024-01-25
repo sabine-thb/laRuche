@@ -1,5 +1,4 @@
-<div class="">
-    <?php foreach ($match as $row) { ?>
+ <?php foreach ($match as $row) { ?>
         <form class="formPronostics" action="admin.php?action=ajouteResultatMatch&idMatch=<?php echo $row['match_id']; ?>" method="post">
             <div class="card mb-3 carteProno" style="background-color: rgba(108,117,125,0.6)">
                 
@@ -70,5 +69,5 @@
             </div>
         </form>
     <?php } ?>
-</div>
+
 
