@@ -13,6 +13,12 @@ document.addEventListener('DOMContentLoaded', function() {
         case 'validationProno':
             monElement = document.getElementById('prono');
             break;
+        case 'questionsBonus':
+            monElement = document.getElementById('questions');
+            break;
+        case 'editProfil':
+            monElement = document.getElementById('editProfil');
+            break;
         case 'resultat':
             monElement = document.getElementById('resultats');
             break;
