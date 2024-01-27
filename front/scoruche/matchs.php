@@ -61,23 +61,23 @@
 
                     <div class="selectionFinale">
                        
-                        <label>
-                                   <p class="vainqueur"> Qui sera vainqueur au tir au but ?</p>
-                                    
-                                   <div>
-                                        <label for="equipe1"><?php echo $tuple['nom1']; ?></label>
-                                        <input class="" type="radio" id="equipe1" name="<?php echo $tuple['match_id']; ?>_toggle" value="'equipe1'" checked />
-                                    </div>
-                                    <div>
-                                        <label for="equipe2"><?php echo $tuple['nom2']; ?></label>
-                                        <input class="" type="radio" id="equipe2" name="<?php echo $tuple['match_id']; ?>_toggle" value="'equipe2'" checked />
-                                        
-                                    </div>
-                        </label>
+
+                        <p class="vainqueur"> Qui sera vainqueur au tir au but ?</p>
+
+                        <div>
+                            <label for="<?php echo $tuple['match_id']; ?>_equipe1"><?php echo $tuple['nom1']; ?></label>
+                            <input class="" type="radio" id="<?php echo $tuple['match_id']; ?>_equipe1" name="<?php echo $tuple['match_id']; ?>_toggle" value="'equipe1'" checked />
+                        </div>
+
+                        <div>
+                            <label for="<?php echo $tuple['match_id']; ?>_equipe2"><?php echo $tuple['nom2']; ?></label>
+                            <input class="" type="radio" id="<?php echo $tuple['match_id']; ?>_equipe2" name="<?php echo $tuple['match_id']; ?>_toggle" value="'equipe2'" checked />
+                        </div>
+
 
                         <?php
-                        if($tuple['vainqueur_prono'] != null && $tuple['vainqueur_prono'] == "equipe2"){
-                            $idTemp = $tuple["match_id"] . "_toggle";
+                        if($tuple['vainqueur_prono'] != null && $tuple['vainqueur_prono'] == "equipe1"){
+                            $idTemp = $tuple["match_id"] . "_equipe1";
                             echo '<script>';
                             echo "document.getElementById('$idTemp').click();";
                             echo '</script>';
