@@ -50,7 +50,7 @@ class ModeleConnexion extends Connexion {
             $mdp = password_hash($mdp,PASSWORD_BCRYPT,$this->option);
             $query = "
             INSERT INTO laruchxsabine.LaRuche_users (prenom,login,mail,description,password) 
-            VALUES ('$prenom','$login','$mail','$description','$mdp')
+            VALUES ('$prenom',`$login`,'$mail','$description','$mdp')
             ";
             $stmt = Connexion::$bdd->prepare($query);
             $stmt->execute();
