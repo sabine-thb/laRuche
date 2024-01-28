@@ -128,14 +128,16 @@ class ModeleAdmin extends Connexion {
 
     }
 
-    public function ajoutCompet($nom,$detail): bool
+    public function ajoutCompet($inputNom, $inputDetail): bool
     {
         try {
             $query="
             INSERT INTO laruchxsabine.LaRuche_competition (nom,description,date_creation) 
-            VALUES ('$nom', '$detail',CURDATE())
+            VALUES (:nom, :detail,CURDATE())
             ";
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':nom', $inputNom, PDO::PARAM_STR);
+            $stmt->bindParam(':detail', $inputDetail, PDO::PARAM_STR);
             $stmt->execute();
 
             return true;
@@ -170,9 +172,11 @@ class ModeleAdmin extends Connexion {
             try{
                 $query = "
                 INSERT INTO laruchxsabine.LaRuche_equipe(nom, srcLogo)
-                VALUES ('$nomEquipe','$chemin')
+                VALUES (:nom,:chemin)
                 ";
                 $stmt = Connexion::$bdd->prepare($query);
+                $stmt->bindParam(':nom', $nomEquipe, PDO::PARAM_STR);
+                $stmt->bindParam(':chemin', $chemin, PDO::PARAM_STR);
                 $stmt->execute();
             }catch (PDOException $e) {
                 echo "<script>console.log('erreur: $e');</script>";
@@ -352,16 +356,17 @@ class ModeleAdmin extends Connexion {
         
     }
 
-    public function modifieNomEquipe($nom,$id)
+    public function modifieNomEquipe($inputNom, $id)
     {
         try {
             $query = "
             UPDATE laruchxsabine.LaRuche_equipe
-            SET nom = '$nom'
+            SET nom = :nom
             WHERE equipe_id = $id
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':nom', $inputNom, PDO::PARAM_STR);
             $this->executeQuery($stmt);
 
             return true;
@@ -393,11 +398,12 @@ class ModeleAdmin extends Connexion {
         try {
             $query = "
             UPDATE laruchxsabine.LaRuche_equipe
-            SET srcLogo = '$srcLogo'
+            SET srcLogo = :src
             WHERE equipe_id = $id
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':src', $srcLogo, PDO::PARAM_STR);
             $this->executeQuery($stmt);
 
             return true;
@@ -574,9 +580,11 @@ class ModeleAdmin extends Connexion {
         try {
             $query = "
             INSERT INTO laruchxsabine. LaRuche_questionBonus(titre, competition_id, objectif, type, point_bonne_reponse)
-            VALUES ('$titre',$compet_id,'$objectif','$type',$pts)
+            VALUES (:titre,$compet_id,:objectif,'$type',$pts)
             ";
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':titre', $titre, PDO::PARAM_STR);
+            $stmt->bindParam(':objectif', $objectif, PDO::PARAM_STR);
             $this->executeQuery($stmt);
 
             return -45;

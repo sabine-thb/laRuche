@@ -4,17 +4,17 @@
         <div>
             <p class="pForm">
                 <label for="prenom">Prénom :</label>
-                <input type='text' name='prenom' id="prenom" inputmode="text" maxlength="24">
+                <input type='text' name='prenom' id="prenom" inputmode="text" maxlength="24" required>
             </p>
 
             <p class="pForm">
                 <label for="login">Pseudo :</label>
-                <input type='text' name='login' id="login" inputmode="text">
+                <input type='text' name='login' maxlength="49" id="login" inputmode="text" required>
             </p>
         
             <p class="pForm">
                 <label for="mail">Mail :</label>
-                <input id="mail" type='email' name='mail' inputmode="email">
+                <input id="mail" type='email' name='mail' maxlength="49" inputmode="email" required>
 
             </p>
         
@@ -23,11 +23,13 @@
         <div>
             <p class="pForm">
                 <label for="description" class="description"> Description : <span class="info" id="btn-info" title="La description est envoyée à l'admin pour qu'il puisse valider votre inscription. Identifiez-vous en une seule phrase (ex: 'Je suis le fils de Donald Trump')" onclick="showTitle(this)"> i </span>  </label>
-                <input id="description" type='text' name='description' onfocus="ajouteAnimationBouttonInfo()" autocomplete="off">
+                <input id="description" type='text' name='description' maxlength="499"
+                       onfocus="ajouteAnimationBouttonInfo()" autocomplete="off" required>
             </p>
             <p class="pForm">
                 <label for="mdp">Mot de passe :</label>
-                <input id="mdp" type="password" name="mdp" minlength="6" autocomplete="new-password">
+                <input id="mdp" type="password" name="mdp" minlength="6" maxlength="25" autocomplete="new-password"
+                       required>
             
             </p>
         </div>

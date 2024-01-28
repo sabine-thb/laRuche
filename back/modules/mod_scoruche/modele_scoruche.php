@@ -79,16 +79,17 @@ class ModeleScorcast extends Connexion {
         }
     }
 
-    public function updatePronoQuestionBonus(int $idPronostiqueur,$idQuestion, $prono): bool
+    public function updatePronoQuestionBonus(int $idPronostiqueur, int $idQuestion, $inputProno): bool
     {
 
         try {
             $query = "
             UPDATE laruchxsabine.LaRuche_pronoQuestionBonus 
-            SET reponse = '$prono'
+            SET reponse = :prono
             WHERE question_bonus_id = $idQuestion and pronostiqueur_id = $idPronostiqueur
             ";
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':prono', $inputProno, PDO::PARAM_STR);
             $this->executeQuery($stmt);
 
             return true;

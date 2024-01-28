@@ -46,10 +46,11 @@ class ModeleProfil extends Connexion {
         try{
             $query = "
             UPDATE laruchxsabine.LaRuche_users 
-            SET src_logo_user = '$dest'
+            SET src_logo_user = :dest
             WHERE user_id = $idUser
             ";
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':dest', $dest, PDO::PARAM_STR);
             $this->executeQuery($stmt);
 
             return true;
