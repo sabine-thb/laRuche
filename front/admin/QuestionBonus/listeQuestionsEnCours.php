@@ -44,7 +44,7 @@
                 Bonne reponse = <?php echo $oneQuestion['point_bonne_reponse']; ?>pts
             </p>
 
-            <input type="submit" name="submit" class="submit" value="Valider" style="display: none;"
+            <input type="submit" name="submit" class="submit" value="Valider"
                    onclick="return confirm('confirme tu le resultat ?\nCela deplacera la question dans la section \'question fini\'\nIl n\'y a pas de retour arrière possible pour l\'instant');">
         </form>
     </div>
