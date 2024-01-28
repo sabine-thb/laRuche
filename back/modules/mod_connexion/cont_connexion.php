@@ -51,26 +51,25 @@ class ContConnexion {
                     $to = $mailRuche;
 
                     $messageRuche="Nouvelle demande ! 
-                    Login:". $_POST['login'] . 
-                    "Description :". $_POST['description'] . "
+                    Login: $_POST[login] 
+                    Description : $_POST[description]
                     Veuillez accepter ou refuser cette demande.
                     ";  
                                 
                     mail($to, $subjectRuche, $messageRuche);
             
                 } else {
-                    echo "Erreur lors de la création de compte.";
+                    $this->vue->erreur("lors de la creation de compte");
                 }
                 $_SESSION['error'] = null;
             }else{
-                $_SESSION['error'] = 'Veuillez saisir un mot de passe plus long.<br>';
+                $_SESSION['error'] = '<p>Veuillez saisir un mot de passe plus long.</p>';
                 header('Location: connexion.php?action=inscription');  
             }
         } else {
             $_SESSION['error'] = '<h3 class="ttChamps">Veuillez remplir tous les champs.</h3><br>';
             header('Location: connexion.php?action=inscription');
         }
-
     }
 
     private function checkForceMdp($mdp): bool
@@ -96,7 +95,7 @@ class ContConnexion {
 
         if (isset($_POST['login'],$_POST['mdp'])){
 
-            $resultat = $this->modele->verifUser($loginTemp,$mdpTemp);
+            $resultat = $this->modele->verifConnexion($loginTemp, $mdpTemp);
 
             if (isset($resultat[0])&&$resultat[0] == 1) {
                 $_SESSION["loginActif"] = $resultat[1];
@@ -106,7 +105,7 @@ class ContConnexion {
                 echo '<meta http-equiv="refresh" content="3;url=scoruche.php"/>';
             }else if(isset($resultat[0])&&$resultat[0] == 2){
                 echo "<p>Votre demande n'a pas encore été traitée par la ruche !</p>";
-                echo "Un peu de patience ;)";
+                echo "<p>Un peu de patience ;)</p>";
                 echo '<meta http-equiv="refresh" content="4;url=connexion.php"/>';
             }else if(isset($resultat[0])&&$resultat[0] == 3){
                 $_SESSION["loginActif"] = $resultat[1];
@@ -156,7 +155,7 @@ class ContConnexion {
             }else
                 header("Location: $link");
         } else
-            echo "<p>erreur</p>";
+            $this->vue->erreur("le serveur n'a pas su répondre, veuillez signaler l'erreur à la ruche.");
     }
 
 }
