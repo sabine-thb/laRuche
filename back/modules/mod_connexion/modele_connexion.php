@@ -50,7 +50,7 @@ class ModeleConnexion extends Connexion {
         try {
             $mdp = password_hash($mdp,PASSWORD_BCRYPT,$this->option);
             $query = "
-            INSERT INTO LaRuche.LaRuche_users (prenom,login,mail,description,password) 
+            INSERT INTO laruchxsabine.LaRuche_users (prenom,login,mail,description,password) 
             VALUES (:prenom,:login,:mail,:description,:mdp)
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -72,7 +72,9 @@ class ModeleConnexion extends Connexion {
     {
         try {
             $query = "
-            SELECT $champSql FROM LaRuche.LaRuche_users WHERE $champSql = :variable 
+            SELECT $champSql 
+            FROM laruchxsabine.LaRuche_users 
+            WHERE $champSql = :variable 
             ";
             $stmt = Connexion::$bdd->prepare($query);
             $stmt->bindParam(':variable', $var, PDO::PARAM_STR);
@@ -105,59 +107,12 @@ class ModeleConnexion extends Connexion {
         }
     }
 
-    /*public function verifConnexion($login, $mdp)
-    {
-
-        //ici le login peut etre sois le mail sois le pseudo
-
-        try {
-            $query="
-            SELECT password
-            FROM LaRuche.LaRuche_admin
-            WHERE login = :login
-            ";
-            $stmt = Connexion::$bdd->prepare($query);
-            $stmt->bindParam(':login', $login , PDO::PARAM_STR);
-            $resultat = $this->executeQuery($stmt);
-
-            if(isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp)){
-                return [3,$login];  //admin good
-            }else{
-
-                $stmt = Connexion::$bdd->prepare("SELECT * FROM LaRuche.LaRuche_users WHERE login='" .$login. "' or mail='" . $login . "' ");
-                $resultat = $this->executeQuery($stmt);
-
-                if ($resultat[0]["password"] == "reset"){
-                    $_SESSION['idUser'] = $resultat[0]["user_id"];
-                    return 45;
-                }
-
-                if( isset($resultat[0]["password"]) && $this->checkMdp($resultat,$mdp) ){
-
-                    if($resultat[0]["est_verifier"]){
-                        $_SESSION['idUser'] = $resultat[0]["user_id"];
-                        return [1,$resultat[0]["login"]];//user good
-                    }else{
-                        return [2,$resultat[0]["login"]];//user pas encore verifier
-                    }
-                }
-            }
-
-            return -1; //n'existe pas dans la bdd
-
-        } catch (PDOException $e) {
-
-            return -1;
-        }
-    
-    }*/
-
     private function estAdmin($inputlogin, $inputMdp): bool
     {
         try {
             $query = "
             SELECT password 
-            FROM LaRuche.LaRuche_admin 
+            FROM laruchxsabine.LaRuche_admin 
             WHERE login = :login 
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -176,7 +131,7 @@ class ModeleConnexion extends Connexion {
         try {
             $query = "
             SELECT * 
-            FROM LaRuche.LaRuche_users 
+            FROM laruchxsabine.LaRuche_users 
             WHERE login = :login or mail = :mail  
             ";
 
@@ -229,7 +184,7 @@ class ModeleConnexion extends Connexion {
         try {
             $mdp = password_hash($mdp,PASSWORD_BCRYPT,$this->option);
             $query = "
-            UPDATE LaRuche.LaRuche_users
+            UPDATE laruchxsabine.LaRuche_users
             SET password = :newMdp
             WHERE user_id = $id
             ";
