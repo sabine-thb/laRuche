@@ -37,14 +37,7 @@
         
     <input class="submit" type="submit" value="Créer compte" onclick="return afficherErreurInscription();">
 
-    
-    
-
-    
-
-    
-
-    <?php echo $_SESSION['error'] ?? ''; ?>
+    <?php echo $_SESSION['error'] ?? null ; ?>
 
 </form>
 

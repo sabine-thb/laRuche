@@ -30,4 +30,9 @@ class VueConnexion extends VueGenerique {
         require_once('./front/connexion/nouveauPassword.php');
     }
 
+    public function erreur($message)
+    {
+        echo "<p>Erreur : $message</p>";
+    }
+
 }
