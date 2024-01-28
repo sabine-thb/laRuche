@@ -2,7 +2,7 @@
 <?php foreach ($questions as $oneQuestion) { ?>
 
     <div class="oneQuestion"> <!--la class 'oneQuestion' est utilisé par le js-->
-        <form action="#" method="post">
+        <form action="admin.php?action=ajouteResultatQuestion" method="post">
             <input type="hidden" name="idQuestion" value="<?php echo $oneQuestion['question_bonus_id']; ?>">
 
             <h2>
