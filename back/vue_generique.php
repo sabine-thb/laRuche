@@ -10,5 +10,10 @@ class VueGenerique {
         return ob_get_clean();
     }
 
+    public function erreur($message)
+    {
+        echo "<p>Erreur : $message</p>";
+    }
+
+
 }
-?>

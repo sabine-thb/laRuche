@@ -87,12 +87,17 @@ class ModAdmin {
             case 'miseEnAttenteMatch':
                 $this->controlleur->miseEnAttenteMatch();
                 break;
+
             case 'miseEnAttenteQuestion':
                 $this->controlleur->miseEnAttenteQuestion();
                 break;
 
             case 'ajouteResultatMatch':
                 $this->controlleur->ajouteResultatMatch();
+                break;
+
+            case 'ajouteResultatQuestion':
+                $this->controlleur->ajouteResultatQuestion();
                 break;
 
             case 'modifierEquipe':

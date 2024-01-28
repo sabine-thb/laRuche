@@ -674,4 +674,22 @@ class ModeleAdmin extends Connexion {
             return false;
         }
     }
+
+    public function insertResultatQuestion($idQuestion, $reponse): bool
+    {
+        try {
+            $query = "
+            INSERT INTO laruchxsabine.LaRuche_resultatQuestionBonus(question_bonus_id, bonne_reponse)
+            VALUE ($idQuestion, :resultat)
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':resultat', $reponse, PDO::PARAM_STR);
+            $this->executeQuery($stmt);
+
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }

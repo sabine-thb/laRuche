@@ -446,7 +446,22 @@ class ContAdmin {
         if ($res)
             header('Location: admin.php?action=gererQuestionBonus&type=attente');
         else
-            echo "<p> Une erreur est survenu.</p>";
+            $this->vue->erreur("un problème inattendu est arrivé, veuillez contacter la ruche au plus vite");
+    }
+
+    public function ajouteResultatQuestion()
+    {
+        if (isset($_POST['reponse']) && isset($_POST['idQuestion'])) {
+            $reponse = $_POST['reponse'];
+            $idQuestion = $_POST['idQuestion'];
+
+            $res = $this->modele->insertResultatQuestion($idQuestion, $reponse);
+            if ($res)
+                header('Location: admin.php?action=gererQuestionBonus&type=attente');
+            else
+                $this->vue->erreur("un problème inattendu est arrivé, veuillez contacter la ruche au plus vite");
+        } else
+            $this->vue->erreur("impossible de realisé cette action");
     }
 
 
