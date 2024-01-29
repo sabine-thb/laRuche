@@ -543,7 +543,7 @@ class ModeleAdmin extends Connexion {
             return -45;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e');</script>";
+            var_dump($e);
             return $e->getCode();
         }
     }
@@ -632,7 +632,7 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
-            INSERT INTO laruchxsabine.LaRuche_resultatQuestionBonus(question_bonus_id, bonne_reponse)
+            INSERT INTO LaRuche.LaRuche_resultatQuestionBonus(question_bonus_id, bonne_reponse)
             VALUE ($idQuestion, :resultat)
             ";
 
@@ -642,6 +642,7 @@ class ModeleAdmin extends Connexion {
 
             return true;
         } catch (PDOException $e) {
+            var_dump($e);
             return false;
         }
     }
