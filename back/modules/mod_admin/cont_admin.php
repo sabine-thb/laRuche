@@ -38,20 +38,17 @@ class ContAdmin {
     {
         if (isset($_GET["id"])) {
             $resultat=$this->modele->accepteDemande($_GET["id"]);
-            $mail = $this->modele->getMail($_GET["id"]);
             if ($resultat) {
-
-
                     $subjectUser="Compte scoruche accepté !";
 
-                    $mailUser=$mail['mail'];
+                    $mail = $this->modele->getMail($_GET["id"]);
+                    $mailUser = $mail['mail'];
                     $toUser=$mailUser;
                     $messageUser="Ta demande a été acceptée ! 
                     Tu peux désormais te connecter sur la-ruche.eu .
                     ";
 
                     mail($toUser, $subjectUser, $messageUser);
-
 
                 header('Location: admin.php?action=afficherDemande');
 
@@ -159,6 +156,7 @@ class ContAdmin {
                     if ($_POST['equipe1']!=='default' && $_POST['equipe2']!=='default' && $_POST['compet']!=='default' ) {
                         if ($this->modele->insererMatch($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch'],$_POST['heure'])){
                             echo " Match bien enregistrée ✌️"."<br>";
+//                            echo '<meta http-equiv="refresh" content="3;url=admin.php?action=afficheFormMatch"/>';
                         }else{
                             echo "erreur lors de l'insertion de l'equipe";
                         }

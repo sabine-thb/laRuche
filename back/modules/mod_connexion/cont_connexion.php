@@ -11,24 +11,26 @@ class ContConnexion {
 
     private $vue;
     private $modele;
-    
-    public function __construct(){
 
+    public function __construct()
+    {
         $this->vue = new VueConnexion();
         $this->modele = new ModeleConnexion();
-
     }
 
-    public function affichage() {
+    public function affichage()
+    {
         return $this->vue->getAffichage();
     }
 
-    public function bienvenue(){
+    public function bienvenue()
+    {
         $_SESSION['error'] = null;
         $this->vue->afficheBienvenue();
     }
 
-    public function afficheFormInsciption(){
+    public function afficheFormInsciption()
+    {
         $this->vue->afficheFormulaireInsciption();
     }
 
@@ -82,12 +84,13 @@ class ContConnexion {
         return isset($_POST['login'],$_POST['mdp'],$_POST['mail'],$_POST['prenom']) && $_POST['login'] != "" && $_POST['mdp'] != "" && $_POST['mail'] != "" && $_POST['prenom'] != "" ;
     }
 
-    public function afficheFormConnexion() {
+    public function afficheFormConnexion()
+    {
         $this->vue->afficheFormulaireConnexion();
     }
 
-    public function connexion() {
-        
+    public function connexion()
+    {
         $_SESSION['error'] = null;
 
         $loginTemp = $_POST['login'];
@@ -95,7 +98,7 @@ class ContConnexion {
 
         if (isset($_POST['login'],$_POST['mdp'])){
 
-            $resultat = $this->modele->verifConnexion($loginTemp,$mdpTemp);
+            $resultat = $this->modele->verifConnexion($loginTemp, $mdpTemp);
 
             if (isset($resultat[0])&&$resultat[0] == 1) {
                 $_SESSION["loginActif"] = $resultat[1];
@@ -113,7 +116,7 @@ class ContConnexion {
                 echo "<h3 class=\"coAdmin\">Connecté en tant qu'admin !</h3>";
                 echo '<meta http-equiv="refresh" content="2;url=admin.php"/>';
             } else if ($resultat == -1){
-                $_SESSION['error'] = "Login ou mot de passe incorrect.";
+                $_SESSION['error'] = "<p>Login ou mot de passe incorrect.</p>";
                 $_SESSION["tempLogin"] = $loginTemp;
                 $_SESSION["tempPawword"] = $mdpTemp;
                 header('Location: connexion.php?action=connexion');
@@ -122,16 +125,16 @@ class ContConnexion {
             }
             
         } else {
-            die("Veuillez remplir tous les champs.");
+            $_SESSION['error'] = "<p>Veuillez remplir tous les champs.</p>";
+            header('Location: connexion.php?action=connexion');
         }
 
     }
 
-    public function deconnexion() {
-
+    public function deconnexion()
+    {
         session_destroy();
         header('Location: connexion.php?action=bienvenue');
-
     }
 
     public function nouveauPassword()
