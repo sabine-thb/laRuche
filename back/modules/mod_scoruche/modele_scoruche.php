@@ -104,7 +104,7 @@ class ModeleScorcast extends Connexion {
 
         try {
             $query = "
-            SELECT login, total_point as points,description,user_id as id,LaRuche_getClassement(pronostiqueur_id,$idCompet) as position
+            SELECT login, total_point as points,description,user_id as id,laruchxsabine.LaRuche_getClassement(pronostiqueur_id,$idCompet) as position
             FROM laruchxsabine.LaRuche_pronostiqueur NATURAL JOIN laruchxsabine.LaRuche_users
             WHERE competition_id = $idCompet
             ORDER BY position
@@ -254,7 +254,6 @@ class ModeleScorcast extends Connexion {
 
             return $this->executeQuery($stmt)[0];
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
             return 404;
         }
     }
@@ -263,7 +262,7 @@ class ModeleScorcast extends Connexion {
     {
         try{
             $query = "
-            SELECT c.nom,LaRuche_getClassement(p.pronostiqueur_id,c.competition_id) as classement
+            SELECT c.nom,laruchxsabine.LaRuche_getClassement(p.pronostiqueur_id,c.competition_id) as classement
             FROM laruchxsabine.LaRuche_users u
             INNER JOIN laruchxsabine.LaRuche_pronostiqueur p on u.user_id = p.user_id
             INNER JOIN laruchxsabine.LaRuche_competition c on p.competition_id = c.competition_id
