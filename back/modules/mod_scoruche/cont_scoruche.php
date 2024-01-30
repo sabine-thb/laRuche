@@ -28,6 +28,7 @@ class ContScorcast {
     public function recupereCompetitionDisponible(){
 
         $compets = $this->modele->recupereComp($_SESSION['idUser']);
+
         $this->vue->afficheCompetitionDispo($compets);
 
     }

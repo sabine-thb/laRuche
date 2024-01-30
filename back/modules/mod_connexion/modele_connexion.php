@@ -27,30 +27,50 @@ class ModeleConnexion extends Connexion {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+<<<<<<< HEAD
     public function ajoutDemandeUser($prenom,$login,$mail,$mdp,$description): bool
+=======
+    public function ajoutDemandeUser($prenom, $login, $mail, $mdp, $description): bool
+>>>>>>> Prod
     {
 
         if ($this->nouveau("login",$login)){
             if ($this->nouveau("mail",$mail)) {
                 return $this->ajoutFinal($prenom,$login, $mail, $mdp,$description);
             } else {
+<<<<<<< HEAD
                 $_SESSION['error'] =  "<p> Mail déja utilisé ! </p><br>";
+=======
+                $_SESSION['error'] = "<p> Mail déja utilisé ! </p><br>";
+>>>>>>> Prod
                 header('Location: connexion.php?action=inscription');
             }
         }
         else {
+<<<<<<< HEAD
             $_SESSION['error'] =  "<p> Login déjà utilisé ! </p><br>";
+=======
+            $_SESSION['error'] = "<p> Login déjà utilisé ! </p><br>";
+>>>>>>> Prod
             header('Location: connexion.php?action=inscription');
         }
         return false;
     }
 
+<<<<<<< HEAD
     private function ajoutFinal($prenom,$login,$mail,$mdp,$description): bool
+=======
+    private function ajoutFinal($prenom, $login, $mail, $mdp, $description): bool
+>>>>>>> Prod
     {
         try {
             $mdp = password_hash($mdp,PASSWORD_BCRYPT,$this->option);
             $query = "
+<<<<<<< HEAD
             INSERT INTO LaRuche.LaRuche_users (prenom,login,mail,description,password) 
+=======
+            INSERT INTO laruchxsabine.LaRuche_users (prenom,login,mail,description,password) 
+>>>>>>> Prod
             VALUES (:prenom,:login,:mail,:description,:mdp)
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -71,8 +91,15 @@ class ModeleConnexion extends Connexion {
     private function nouveau($champSql, $var): bool
     {
         try {
+<<<<<<< HEAD
             $query="
             SELECT $champSql FROM LaRuche.LaRuche_users WHERE $champSql = :variable 
+=======
+            $query = "
+            SELECT $champSql 
+            FROM laruchxsabine.LaRuche_users 
+            WHERE $champSql = :variable 
+>>>>>>> Prod
             ";
             $stmt = Connexion::$bdd->prepare($query);
             $stmt->bindParam(':variable', $var, PDO::PARAM_STR);
@@ -93,8 +120,13 @@ class ModeleConnexion extends Connexion {
 
     public function verifConnexion($inputLogin, $inputMdp)
     {
+<<<<<<< HEAD
         if ($this->estAdmin($inputLogin,$inputMdp))
             return [3,$inputLogin];  //admin good
+=======
+        if ($this->estAdmin($inputLogin, $inputMdp))
+            return [3, $inputLogin];  //admin good
+>>>>>>> Prod
         else {
             $res = $this->estUser($inputLogin, $inputMdp);
 
@@ -104,13 +136,19 @@ class ModeleConnexion extends Connexion {
                 return [$res, $inputLogin];
         }
     }
+<<<<<<< HEAD
 
     /*public function verifConnexion($login, $mdp)
     {
 
         //ici le login peut etre sois le mail sois le pseudo
+=======
+>>>>>>> Prod
 
+    private function estAdmin($inputlogin, $inputMdp): bool
+    {
         try {
+<<<<<<< HEAD
             $query="
             SELECT password
             FROM LaRuche.LaRuche_admin
@@ -203,6 +241,56 @@ class ModeleConnexion extends Connexion {
         } catch (PDOException $e) {
             return -404;
         }
+=======
+            $query = "
+            SELECT password 
+            FROM laruchxsabine.LaRuche_admin 
+            WHERE login = :login 
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':login', $inputlogin, PDO::PARAM_STR);
+            $resultat = $this->executeQuery($stmt);
+
+            return isset($resultat[0]["password"]) && $this->checkMdp($resultat, $inputMdp);
+
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    private function estUser($input, $inputMdp): int
+    {
+        try {
+            $query = "
+            SELECT * 
+            FROM laruchxsabine.LaRuche_users 
+            WHERE login = :login or mail = :mail  
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':login', $input, PDO::PARAM_STR);
+            $stmt->bindParam(':mail', $input, PDO::PARAM_STR);
+            $resultat = $this->executeQuery($stmt);
+
+            if ($resultat[0]["password"] == "reset") {
+                $_SESSION['idUser'] = $resultat[0]["user_id"];
+                return 45;
+            }
+
+            if (isset($resultat[0]["password"]) && $this->checkMdp($resultat, $inputMdp)) {
+                if ($resultat[0]["est_verifier"]) {
+                    $_SESSION['idUser'] = $resultat[0]["user_id"];
+                    return 1;
+                } else {
+                    return 2;
+                }
+            } else
+                return -1;
+
+        } catch (PDOException $e) {
+            return -404;
+        }
+>>>>>>> Prod
     }
 
     private function checkMdp($resultat, $mdp): bool
@@ -224,18 +312,30 @@ class ModeleConnexion extends Connexion {
         return false;
     }
 
+<<<<<<< HEAD
     public function setPassword($mdp,$id): bool
+=======
+    public function setPassword($mdp, $id): bool
+>>>>>>> Prod
     {
         try {
             $mdp = password_hash($mdp,PASSWORD_BCRYPT,$this->option);
             $query = "
+<<<<<<< HEAD
             UPDATE LaRuche.LaRuche_users
+=======
+            UPDATE laruchxsabine.LaRuche_users
+>>>>>>> Prod
             SET password = :newMdp
             WHERE user_id = $id
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+<<<<<<< HEAD
             $stmt->bindParam(':newMdp', $mdp , PDO::PARAM_STR);
+=======
+            $stmt->bindParam(':newMdp', $mdp, PDO::PARAM_STR);
+>>>>>>> Prod
             $this->executeQuery($stmt);
 
             return true;

@@ -39,12 +39,20 @@ class ContAdmin {
         if (isset($_GET["id"])) {
             $resultat=$this->modele->accepteDemande($_GET["id"]);
             $mail = $this->modele->getMail($_GET["id"]);
+<<<<<<< HEAD
             if ($resultat) {
 
 
                     $subjectUser="Compte scoruche accepté !";
 
                     $mailUser=$mail['mail'];
+=======
+            $mailUser = $mail['mail'];
+            if ($resultat) {
+                    $subjectUser="Compte scoruche accepté !";
+
+//                    $mailUser=$_POST['mail'];
+>>>>>>> Prod
                     $toUser=$mailUser;
                     $messageUser="Ta demande a été acceptée ! 
                     Tu peux désormais te connecter sur la-ruche.eu .

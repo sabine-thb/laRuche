@@ -26,9 +26,15 @@ class ModeleProfil extends Connexion {
         try {
             $query = "
             SELECT U.prenom,U.login,c.nom as nom, U.description, U.age , U.Gender
+<<<<<<< HEAD
             FROM LaRuche.LaRuche_users U
             NATURAL JOIN LaRuche.LaRuche_pronostiqueur
             INNER JOIN LaRuche.LaRuche_competition join LaRuche.LaRuche_competition c on LaRuche_pronostiqueur.competition_id = c.competition_id
+=======
+            FROM laruchxsabine.LaRuche_users U
+            NATURAL JOIN laruchxsabine.LaRuche_pronostiqueur
+            INNER JOIN laruchxsabine.LaRuche_competition join laruchxsabine.LaRuche_competition c on LaRuche_pronostiqueur.competition_id = c.competition_id
+>>>>>>> Prod
             WHERE user_id = $id
             ";
 
@@ -45,11 +51,17 @@ class ModeleProfil extends Connexion {
     {
         try{
             $query = "
+<<<<<<< HEAD
             UPDATE LaRuche.LaRuche_users 
             SET src_logo_user = '$dest'
+=======
+            UPDATE laruchxsabine.LaRuche_users 
+            SET src_logo_user = :dest
+>>>>>>> Prod
             WHERE user_id = $idUser
             ";
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':dest', $dest, PDO::PARAM_STR);
             $this->executeQuery($stmt);
 
             return true;
@@ -63,10 +75,17 @@ class ModeleProfil extends Connexion {
     {
         try{
             $query = "
+<<<<<<< HEAD
             SELECT c.nom,LaRuche.LaRuche_getClassement(p.pronostiqueur_id,c.competition_id) as classement
             FROM LaRuche.LaRuche_users u
             INNER JOIN LaRuche.LaRuche_pronostiqueur p on u.user_id = p.user_id
             INNER JOIN LaRuche.LaRuche_competition c on p.competition_id = c.competition_id
+=======
+            SELECT c.nom,LaRuche_getClassement(p.pronostiqueur_id,c.competition_id) as classement
+            FROM laruchxsabine.LaRuche_users u
+            INNER JOIN laruchxsabine.LaRuche_pronostiqueur p on u.user_id = p.user_id
+            INNER JOIN laruchxsabine.LaRuche_competition c on p.competition_id = c.competition_id
+>>>>>>> Prod
             WHERE u.user_id = $idUser;
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -82,7 +101,11 @@ class ModeleProfil extends Connexion {
     {
         try{
             $query = "
+<<<<<<< HEAD
             UPDATE LaRuche.LaRuche_users 
+=======
+            UPDATE laruchxsabine.LaRuche_users 
+>>>>>>> Prod
             SET age = $age
             WHERE user_id = $idUser
             ";
@@ -100,7 +123,11 @@ class ModeleProfil extends Connexion {
     {
         try{
             $query = "
+<<<<<<< HEAD
             UPDATE LaRuche.LaRuche_users 
+=======
+            UPDATE laruchxsabine.LaRuche_users 
+>>>>>>> Prod
             SET Gender = '$gender'
             WHERE user_id = $idUser
             ";

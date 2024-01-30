@@ -1,6 +1,10 @@
 body{
     margin:0;
+<<<<<<< HEAD
     /* min-height: 100vh; */
+=======
+    min-height: 100vh;
+>>>>>>> Prod
     font-family: "montserratExtraBold", sans-serif;
     background-image: url(../img/fond.png);
     background-size: cover;
@@ -217,10 +221,6 @@ input{
         top:-104px;
     }
 
-    
-    /* .formInscription, .formConnexion{
-        margin-top:36px;
-    } */
 }
 
 @media(min-width: 1350px){
@@ -302,8 +302,7 @@ input{
 
 @media(max-width:400px){
     body{
-        /* min-height: 100vh; */
-        gap:0px;
+        gap: 0;
         justify-content: flex-start;
     }
 
@@ -317,6 +316,6 @@ input{
 
     .flexContainer1{
         flex-direction: column;
-        gap:0px;
+        gap: 0;
     }
 }

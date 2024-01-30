@@ -39,7 +39,13 @@ class ModeleAdmin extends Connexion {
     public function recupereDemande() {
         try {
             $query = "
+<<<<<<< HEAD
             SELECT prenom,user_id,login,mail,description FROM LaRuche.LaRuche_users WHERE est_verifier=false
+=======
+            SELECT prenom,user_id,login,mail,description 
+            FROM laruchxsabine.LaRuche_users 
+            WHERE est_verifier = false
+>>>>>>> Prod
             ";
             $stmt = Connexion::$bdd->prepare($query);
 
@@ -51,8 +57,17 @@ class ModeleAdmin extends Connexion {
     }
 
     public function recupereComp() {
+
         try {
+<<<<<<< HEAD
             $stmt = Connexion::$bdd->prepare("SELECT * FROM LaRuche.LaRuche_competition");
+=======
+            $query="
+            SELECT * 
+            FROM laruchxsabine.LaRuche_competition
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+>>>>>>> Prod
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
@@ -64,7 +79,15 @@ class ModeleAdmin extends Connexion {
     public function deleteCompetition($id)
     {
         try {
+<<<<<<< HEAD
             $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.LaRuche_competition WHERE competition_id=$id");
+=======
+            $query = "
+            DELETE FROM laruchxsabine.LaRuche_competition 
+            WHERE competition_id = $id
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+>>>>>>> Prod
             $this->executeQuery($stmt);
 
             return -45; //pour etre sur que l'erreur n'existe pas dans mySQL
@@ -81,7 +104,16 @@ class ModeleAdmin extends Connexion {
     {
 
         try {
+<<<<<<< HEAD
             $stmt = Connexion::$bdd->prepare("UPDATE LaRuche.LaRuche_users SET est_verifier=true WHERE user_id=$id");
+=======
+            $query="
+            UPDATE laruchxsabine.LaRuche_users 
+            SET est_verifier = true 
+            WHERE user_id = $id
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+>>>>>>> Prod
             $this->executeQuery($stmt);
 
             return true;
@@ -96,7 +128,15 @@ class ModeleAdmin extends Connexion {
     {
 
         try {
+<<<<<<< HEAD
             $stmt = Connexion::$bdd->prepare("DELETE FROM LaRuche.LaRuche_users WHERE user_id=$id");
+=======
+            $query ="
+            DELETE FROM laruchxsabine.LaRuche_users 
+            WHERE user_id= $id
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+>>>>>>> Prod
             $this->executeQuery($stmt);
 
             return true;
@@ -108,10 +148,20 @@ class ModeleAdmin extends Connexion {
 
     }
 
-    public function ajoutCompet($nom,$detail): bool
+    public function ajoutCompet($inputNom, $inputDetail): bool
     {
         try {
+<<<<<<< HEAD
             $stmt = Connexion::$bdd->prepare("INSERT INTO LaRuche.LaRuche_competition (nom,description,date_creation) VALUES ('$nom', '$detail',CURDATE())");
+=======
+            $query="
+            INSERT INTO laruchxsabine.LaRuche_competition (nom,description,date_creation) 
+            VALUES (:nom, :detail,CURDATE())
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':nom', $inputNom, PDO::PARAM_STR);
+            $stmt->bindParam(':detail', $inputDetail, PDO::PARAM_STR);
+>>>>>>> Prod
             $stmt->execute();
 
             return true;
@@ -130,7 +180,16 @@ class ModeleAdmin extends Connexion {
         }
 
         try{
+<<<<<<< HEAD
             $stmt = Connexion::$bdd->prepare("SELECT nom FROM LaRuche.LaRuche_equipe WHERE nom = '" . $nomEquipe . "'");
+=======
+            $query="
+            SELECT nom 
+            FROM laruchxsabine.LaRuche_equipe 
+            WHERE nom = '$nomEquipe'
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+>>>>>>> Prod
             $res=$this->executeQuery($stmt);
         }catch (PDOException $e) {
             var_dump($e);
@@ -140,10 +199,17 @@ class ModeleAdmin extends Connexion {
         if(count($res)==0){
             try{
                 $query = "
+<<<<<<< HEAD
                 INSERT INTO LaRuche.LaRuche_equipe(nom, srcLogo)
                 VALUES ('$nomEquipe','$chemin')
+=======
+                INSERT INTO laruchxsabine.LaRuche_equipe(nom, srcLogo)
+                VALUES (:nom,:chemin)
+>>>>>>> Prod
                 ";
                 $stmt = Connexion::$bdd->prepare($query);
+                $stmt->bindParam(':nom', $nomEquipe, PDO::PARAM_STR);
+                $stmt->bindParam(':chemin', $chemin, PDO::PARAM_STR);
                 $stmt->execute();
             }catch (PDOException $e) {
                 echo "<script>console.log('erreur: $e');</script>";
@@ -165,7 +231,11 @@ class ModeleAdmin extends Connexion {
 
         try{
             $query = "
+<<<<<<< HEAD
             INSERT INTO LaRuche.LaRuche_matchApronostiquer(equipe1_id,equipe2_id,competition_id,pts_Exact,pts_Ecart,pts_Vainq,date_match,heure) 
+=======
+            INSERT INTO laruchxsabine.LaRuche_matchApronostiquer(equipe1_id,equipe2_id,competition_id,pts_Exact,pts_Ecart,pts_Vainq,date_match,heure) 
+>>>>>>> Prod
             VALUES ($eq1,$eq2,$compet,$ptsExa,$ptsEcart,$ptsVainq,'$dateMatch',$heure);
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -179,9 +249,18 @@ class ModeleAdmin extends Connexion {
 
     }
 
-    public function getMatch(){
+    public function getMatch()
+    {
         try{
+<<<<<<< HEAD
             $stmt = Connexion::$bdd->prepare("SELECT * from LaRuche.LaRuche_matchApronostiquer;");
+=======
+            $query="
+            SELECT * 
+            FROM laruchxsabine.LaRuche_matchApronostiquer;
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+>>>>>>> Prod
             return $this->executeQuery($stmt);
         }catch (PDOException $e) {
             echo "<script>console.log('erreur: $e');</script>";
@@ -190,11 +269,20 @@ class ModeleAdmin extends Connexion {
     
     }
 
+<<<<<<< HEAD
     public function getMail($idUser){
         try{
             $query = "
             SELECT mail
             FROM LaRuche.LaRuche_users
+=======
+    public function getMail($idUser)
+    {
+        try{
+            $query = "
+            SELECT mail
+            FROM laruchxsabine.LaRuche_users
+>>>>>>> Prod
             WHERE user_id = $idUser
             ";
 
@@ -215,6 +303,7 @@ class ModeleAdmin extends Connexion {
             $query = "
             SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,
                    C.nom as nomCompet, heure
+<<<<<<< HEAD
             FROM LaRuche.LaRuche_matchApronostiquer as M
             INNER JOIN LaRuche.LaRuche_equipe E ON M.equipe1_id=E.equipe_id
             INNER JOIN LaRuche.LaRuche_equipe E2 ON M.equipe2_id=E2.equipe_id
@@ -229,6 +318,21 @@ class ModeleAdmin extends Connexion {
             INNER JOIN LaRuche.LaRuche_competition C ON M.competition_id = C.competition_id
             NATURAL JOIN LaRuche.LaRuche_resultatMatch
             WHERE pari_ouvert = false
+=======
+            FROM laruchxsabine.LaRuche_matchApronostiquer as M
+            INNER JOIN laruchxsabine.LaRuche_equipe E ON M.equipe1_id=E.equipe_id
+            INNER JOIN laruchxsabine.LaRuche_equipe E2 ON M.equipe2_id=E2.equipe_id
+            INNER JOIN laruchxsabine.LaRuche_competition C ON M.competition_id = C.competition_id
+            WHERE pari_ouvert = false AND M.match_id NOT IN (
+                SELECT M.match_id
+                FROM laruchxsabine.LaRuche_matchApronostiquer as M
+                INNER JOIN laruchxsabine.LaRuche_equipe E ON M.equipe1_id = E.equipe_id
+                INNER JOIN laruchxsabine.LaRuche_equipe E2 ON M.equipe2_id = E2.equipe_id
+                INNER JOIN laruchxsabine.LaRuche_competition C ON M.competition_id = C.competition_id
+                INNER JOIN laruchxsabine.LaRuche_resultatMatch R ON R.match_id = M.match_id
+                WHERE pari_ouvert = false
+            )
+>>>>>>> Prod
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -246,11 +350,19 @@ class ModeleAdmin extends Connexion {
             $query = "
             SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,
                    C.nom as nomCompet, R.nb_but_equipe1 as resultat1, R.nb_but_equipe2 as resultat2,heure
+<<<<<<< HEAD
             FROM LaRuche.LaRuche_matchApronostiquer as M
             INNER JOIN LaRuche.LaRuche_equipe E ON M.equipe1_id = E.equipe_id
             INNER JOIN LaRuche.LaRuche_equipe E2 ON M.equipe2_id = E2.equipe_id
             INNER JOIN LaRuche.LaRuche_competition C ON M.competition_id = C.competition_id
             NATURAL JOIN LaRuche.LaRuche_resultatMatch R
+=======
+            FROM laruchxsabine.LaRuche_matchApronostiquer as M
+            INNER JOIN laruchxsabine.LaRuche_equipe E ON M.equipe1_id = E.equipe_id
+            INNER JOIN laruchxsabine.LaRuche_equipe E2 ON M.equipe2_id = E2.equipe_id
+            INNER JOIN laruchxsabine.LaRuche_competition C ON M.competition_id = C.competition_id
+            NATURAL JOIN laruchxsabine.LaRuche_resultatMatch R
+>>>>>>> Prod
             WHERE pari_ouvert = false
             ";
 
@@ -269,10 +381,17 @@ class ModeleAdmin extends Connexion {
             $query = "
             SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,
                    C.nom as nomCompet, heure
+<<<<<<< HEAD
             FROM LaRuche.LaRuche_matchApronostiquer as M
             INNER JOIN LaRuche.LaRuche_equipe E ON M.equipe1_id=E.equipe_id
             INNER JOIN LaRuche.LaRuche_equipe E2 ON M.equipe2_id=E2.equipe_id
             INNER JOIN LaRuche.LaRuche_competition C ON M.competition_id = C.competition_id
+=======
+            FROM laruchxsabine.LaRuche_matchApronostiquer as M
+            INNER JOIN laruchxsabine.LaRuche_equipe E ON M.equipe1_id=E.equipe_id
+            INNER JOIN laruchxsabine.LaRuche_equipe E2 ON M.equipe2_id=E2.equipe_id
+            INNER JOIN laruchxsabine.LaRuche_competition C ON M.competition_id = C.competition_id
+>>>>>>> Prod
             WHERE pari_ouvert = true
             ";
 
@@ -289,7 +408,11 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
+<<<<<<< HEAD
             SELECT * FROM LaRuche.LaRuche_equipe WHERE equipe_id = $idEquipe
+=======
+            SELECT * FROM laruchxsabine.LaRuche_equipe WHERE equipe_id = $idEquipe
+>>>>>>> Prod
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -305,7 +428,11 @@ class ModeleAdmin extends Connexion {
         try{
             $query = "
             SELECT * 
+<<<<<<< HEAD
             FROM LaRuche.LaRuche_equipe
+=======
+            FROM laruchxsabine.LaRuche_equipe
+>>>>>>> Prod
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -318,16 +445,22 @@ class ModeleAdmin extends Connexion {
         
     }
 
-    public function modifieNomEquipe($nom,$id)
+    public function modifieNomEquipe($inputNom, $id)
     {
         try {
             $query = "
+<<<<<<< HEAD
             UPDATE LaRuche.LaRuche_equipe
             SET nom = '$nom'
+=======
+            UPDATE laruchxsabine.LaRuche_equipe
+            SET nom = :nom
+>>>>>>> Prod
             WHERE equipe_id = $id
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':nom', $inputNom, PDO::PARAM_STR);
             $this->executeQuery($stmt);
 
             return true;
@@ -341,7 +474,11 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
+<<<<<<< HEAD
             SELECT * FROM LaRuche.LaRuche_users
+=======
+            SELECT * FROM laruchxsabine.LaRuche_users
+>>>>>>> Prod
             WHERE LOWER(login) LIKE '%$name%'
             ";
 
@@ -358,12 +495,18 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
+<<<<<<< HEAD
             UPDATE LaRuche.LaRuche_equipe
             SET srcLogo = '$srcLogo'
+=======
+            UPDATE laruchxsabine.LaRuche_equipe
+            SET srcLogo = :src
+>>>>>>> Prod
             WHERE equipe_id = $id
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':src', $srcLogo, PDO::PARAM_STR);
             $this->executeQuery($stmt);
 
             return true;
@@ -377,7 +520,11 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
+<<<<<<< HEAD
             UPDATE LaRuche.LaRuche_users
+=======
+            UPDATE laruchxsabine.LaRuche_users
+>>>>>>> Prod
             SET password = 'reset'
             WHERE user_id = $id
             ";
@@ -396,7 +543,11 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
+<<<<<<< HEAD
             SELECT srcLogo FROM LaRuche.LaRuche_equipe WHERE equipe_id = $id
+=======
+            SELECT srcLogo FROM laruchxsabine.LaRuche_equipe WHERE equipe_id = $id
+>>>>>>> Prod
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -407,9 +558,18 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    public function getCompet(){
+    public function getCompet()
+    {
         try{
+<<<<<<< HEAD
             $stmt = Connexion::$bdd->prepare("SELECT * from LaRuche.LaRuche_competition;");
+=======
+            $query="
+            SELECT * 
+            FROM laruchxsabine.LaRuche_competition
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+>>>>>>> Prod
             return $this->executeQuery($stmt);
         }catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
@@ -421,7 +581,12 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
+<<<<<<< HEAD
             DELETE FROM LaRuche.LaRuche_equipe WHERE equipe_id=$id
+=======
+            DELETE FROM laruchxsabine.LaRuche_equipe 
+                   WHERE equipe_id= $id
+>>>>>>> Prod
             ";
             $stmt = Connexion::$bdd->prepare($query);
             $this->executeQuery($stmt);
@@ -438,7 +603,12 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
+<<<<<<< HEAD
             DELETE FROM LaRuche.LaRuche_users WHERE user_id=$id
+=======
+            DELETE FROM laruchxsabine.LaRuche_users 
+                   WHERE user_id= $id
+>>>>>>> Prod
             ";
             $stmt = Connexion::$bdd->prepare($query);
             $this->executeQuery($stmt);
@@ -475,7 +645,11 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
+<<<<<<< HEAD
             UPDATE LaRuche.LaRuche_matchApronostiquer 
+=======
+            UPDATE laruchxsabine.LaRuche_matchApronostiquer 
+>>>>>>> Prod
             SET pari_ouvert = false 
             WHERE match_id = $match_id
             ";
@@ -495,11 +669,13 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
+<<<<<<< HEAD
             INSERT INTO LaRuche.LaRuche_resultatMatch(match_id, nb_but_equipe1, nb_but_equipe2,resultat_peno)
+=======
+            INSERT INTO laruchxsabine.LaRuche_resultatMatch(match_id, nb_but_equipe1, nb_but_equipe2,resultat_peno)
+>>>>>>> Prod
             VALUE ($match_id,$resultatEquipe1,$resultatEquipe2,$resultatPeno)
             ";
-
-            var_dump($query);
 
             $stmt = Connexion::$bdd->prepare($query);
             $this->executeQuery($stmt);
@@ -507,7 +683,11 @@ class ModeleAdmin extends Connexion {
             return true;
 
         } catch (PDOException $e) {
+<<<<<<< HEAD
             echo "<script>console.log(\"erreur: $e\");</script>"; //todo provoque une erreur car le $e n'est pas collé avec le );
+=======
+            echo "<script>console.log(\"erreur: $e\");</script>";
+>>>>>>> Prod
             return false;
         }
     }
@@ -516,8 +696,13 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
+<<<<<<< HEAD
             DELETE FROM LaRuche.LaRuche_matchApronostiquer 
                    WHERE match_id = $idMatch
+=======
+            DELETE FROM laruchxsabine.LaRuche_matchApronostiquer 
+                   WHERE match_id=$idMatch
+>>>>>>> Prod
             ";
             $stmt = Connexion::$bdd->prepare($query);
             $this->executeQuery($stmt);
@@ -534,10 +719,17 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
+<<<<<<< HEAD
             INSERT INTO LaRuche.LaRuche_questionBonus(titre, competition_id, objectif, type, point_bonne_reponse)
             VALUES ('$titre',$compet_id,'$objectif','$type',$pts)
+=======
+            INSERT INTO laruchxsabine. LaRuche_questionBonus(titre, competition_id, objectif, type, point_bonne_reponse)
+            VALUES (:titre,$compet_id,:objectif,'$type',$pts)
+>>>>>>> Prod
             ";
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':titre', $titre, PDO::PARAM_STR);
+            $stmt->bindParam(':objectif', $objectif, PDO::PARAM_STR);
             $this->executeQuery($stmt);
 
             return -45;
@@ -553,8 +745,13 @@ class ModeleAdmin extends Connexion {
         try{
             $query = "
             SELECT Q.question_bonus_id,titre,objectif,type,point_bonne_reponse,C.nom
+<<<<<<< HEAD
             FROM LaRuche.LaRuche_questionBonus Q
             INNER JOIN LaRuche.LaRuche_competition C on Q.competition_id = C.competition_id
+=======
+            FROM laruchxsabine.LaRuche_questionBonus Q
+            INNER JOIN laruchxsabine.LaRuche_competition C on Q.competition_id = C.competition_id
+>>>>>>> Prod
             WHERE pari_ouvert = true
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -571,6 +768,7 @@ class ModeleAdmin extends Connexion {
         try{
             $query = "
             SELECT Q.*,C.nom
+<<<<<<< HEAD
             FROM LaRuche.LaRuche_questionBonus Q
             INNER JOIN LaRuche.LaRuche_competition C ON Q.competition_id = C.competition_id
             WHERE pari_ouvert = false 
@@ -580,6 +778,17 @@ class ModeleAdmin extends Connexion {
             INNER JOIN LaRuche.LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
             INNER JOIN LaRuche.LaRuche_competition C ON Q.competition_id = C.competition_id
             WHERE pari_ouvert = false
+=======
+            FROM laruchxsabine.LaRuche_questionBonus Q
+            INNER JOIN laruchxsabine.LaRuche_competition C ON Q.competition_id = C.competition_id
+            WHERE pari_ouvert = false and Q.question_bonus_id NOT IN(
+                SELECT Q.question_bonus_id
+                FROM laruchxsabine.LaRuche_questionBonus Q
+                INNER JOIN laruchxsabine.LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
+                INNER JOIN laruchxsabine.LaRuche_competition C ON Q.competition_id = C.competition_id
+                WHERE pari_ouvert = false
+            )
+>>>>>>> Prod
             ";
             $stmt = Connexion::$bdd->prepare($query);
 
@@ -595,8 +804,13 @@ class ModeleAdmin extends Connexion {
         try{
             $query = "
             SELECT *
+<<<<<<< HEAD
             FROM LaRuche.LaRuche_questionBonus Q
             INNER JOIN LaRuche.LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
+=======
+            FROM laruchxsabine.LaRuche_questionBonus Q
+            INNER JOIN laruchxsabine.LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
+>>>>>>> Prod
             WHERE pari_ouvert = false
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -612,7 +826,11 @@ class ModeleAdmin extends Connexion {
     {
         try {
             $query = "
+<<<<<<< HEAD
             UPDATE LaRuche.LaRuche_questionBonus 
+=======
+            UPDATE laruchxsabine.LaRuche_questionBonus 
+>>>>>>> Prod
             SET pari_ouvert = false 
             WHERE question_bonus_id = $idQuestion
             ";
