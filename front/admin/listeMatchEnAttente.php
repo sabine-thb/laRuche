@@ -1,73 +1,84 @@
- <?php foreach ($match as $row) { ?>
-        <form class="formPronostics" action="admin.php?action=ajouteResultatMatch&idMatch=<?php echo $row['match_id']; ?>" method="post">
-            <div class="card mb-3 carteProno" style="background-color: rgba(108,117,125,0.6)">
-                
-                    <div class="oneMatch">
-                        <input type="hidden" name="match_id" value="<?php echo $row['match_id']; ?>" >
-                        <p>
-                            <?php echo $row['nomCompet']; ?> - <?php echo $row['date_match']; ?> - <?php echo $row['heure']; ?>H
-                        </p>
-                        <div class="col-md-4 text-center mt-3">
-                            <!-- Équipe 1 -->
-                            <h5>
-                                <?php echo $row['nom1']; ?>
-                            </h5>
+ <section class="sectionCard">
+    <?php foreach ($match as $row) { 
+        $dateMatch = $row['date_match'];
 
-                            <img src="<?php echo $row['src1']; ?>" class="img-fluid" style="max-height: 250px; width: auto;"
-                                 alt="image gauche">
+        // Convertir la date au format jj/mm/aaaa
+        $dateFormatee = date("d/m/Y", strtotime($dateMatch));?>
+            <form class="formPronostics" action="admin.php?action=ajouteResultatMatch&idMatch=<?php echo $row['match_id']; ?>" method="post">
+                <div class="allCardMatch">
 
-                            <label>
+                <p class="titleMatch">
+                        <?php echo $row['nomCompet']; ?> - <?php echo $dateFormatee ?> - <?php echo $row['heure']; ?>H
+                </p>
+                    
+                        <div class="matchContainer">
+                            <input type="hidden" name="match_id" value="<?php echo $row['match_id']; ?>" >
+                            
+                            <div class="equ1">
+                                <!-- Équipe 1 -->
+                                <h5 class="nameEquipe">
+                                    <?php echo $row['nom1']; ?>
+                                </h5>
+
+                                <img src="<?php echo $row['src1']; ?>" class="img-fluid"
+                                    alt="image gauche">
+
+                                <label for="prono1">Score :</label>
                                 <input type="number" class="form-control" name="resultatEquipe1" min="0" id="prono1" inputmode="numeric">
-                            </label>
-                        </div>
+                                
+                            </div>
 
-                        <div class="col-md-4 d-flex justify-content-center align-items-center">
-                            <p class="fs-4">
-                                VS
+                            <p class="vs">
+                            VS
                             </p>
-                        </div>
 
-                        <div class="col-md-4 text-center mt-3">
-                            <!-- Équipe 2 -->
-                            <h5>
-                                <?php echo $row['nom2']; ?>
-                            </h5>
+                            <div class="equ2">
+                                <!-- Équipe 2 -->
+                                <h5 class="nameEquipe">
+                                    <?php echo $row['nom2']; ?>
+                                </h5>
 
-                            <img src="<?php echo $row['src2']; ?>" class="img-fluid" style="max-height: 250px; width: auto;"
-                                 alt="image droite">
+                                <img src="<?php echo $row['src2']; ?>" class="img-fluid" 
+                                    alt="image droite">
 
-                            <label>
+                                <label for="prono2">Score : </label>
                                 <input type="number" class="form-control" name="resultatEquipe2" min="0" id="prono2" inputmode="numeric">
-                            </label>
-                        </div>
+                                
+                            </div>
 
-                        <div class="container text-center mt-1 selectionFinale">
-                            <label>
+                            <!-- <div class="container text-center mt-1 selectionFinale">
+                                <label></label>
                                 <input class="pristine toggle" type="checkbox" name="toggle" value="on">
-                            </label>
+                                
+                            </div> -->
+
                         </div>
 
-                    </div>
+                        <div class="buttons">
+                            <a href="admin.php?action=supprimerMatch&idMatch=<?php echo $row['match_id']; ?>"
+                            class="oneButton"
+                            onclick="return confirm('est-tu sur de vouloir supprimez ce match ?\n');"
+                            >
+                                Supprimer
+                            </a>
 
-                    <div class="container text-center mt-5">
-                        <a href="admin.php?action=supprimerMatch&idMatch=<?php echo $row['match_id']; ?>"
-                           class="btn btn-danger"
-                           onclick="return confirm('est-tu sur de vouloir supprimez ce match ?\n');"
-                        >
-                            Supprimer
-                        </a>
-                        <input class="btn btn-success" type="submit" value="Enregistrer"
-                               title="les points seront attribué automatiquement"
-                               onclick="return confirm('confirme tu le resultat ?\nIl n\'y a pas de retour arrière possible pour l\'instant');"
-                        >
-                        <a href="#"
-                           class="btn btn-info"
-                        >
-                            Modifier
-                        </a>
-                    </div>
-            </div>
-        </form>
-    <?php } ?>
+                            <input class="oneButton" type="submit" value="Enregistrer"
+                                title="les points seront attribué automatiquement"
+                                onclick="return confirm('confirme tu le résultat ?\nIl n\'y a pas de retour arrière possible pour l\'instant');"
+                            >
+                            <!-- <a href="#"
+                            class="btn btn-info"
+                            >
+                                Modifier
+                            </a> -->
+                        </div>
+                </div>
+            </form>
+        <?php } ?>
 
 
+
+
+ </section>
+ 
+ 

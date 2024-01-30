@@ -122,7 +122,7 @@ class ContAdmin {
             }
 
         }else{
-            $this->vue->afficheFormulaireCompet("veullez remplir tout les champ !");
+            $this->vue->afficheFormulaireCompet("veuillez remplir tout les champs !");
         }
     }
 
@@ -138,7 +138,7 @@ class ContAdmin {
                     echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
                 }
             }else{
-                echo " Délai atteint, veuillez réessayer "."<br>";
+                echo " Délais atteint, veuillez réessayer "."<br>";
                 echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
             }
         }else {
@@ -158,7 +158,7 @@ class ContAdmin {
                             echo " Match bien enregistrée ✌️"."<br>";
 //                            echo '<meta http-equiv="refresh" content="3;url=admin.php?action=afficheFormMatch"/>';
                         }else{
-                            echo "erreur lors de l'insertion de l'equipe";
+                            echo "Erreur lors de l'insertion de l'equipe";
                         }
                         // echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormMatch"/>';
                     }else{
@@ -219,7 +219,7 @@ class ContAdmin {
         if (!isset($match) || $match == 404)
             echo "<p>Erreur lors de la recherche de matchs</p>";
         else if (count($match) == 0)
-            echo "<p>il n'y a aucun match ici actuelement</p>";
+            echo "<section><p>Il n'y a aucun match ici actuellement.</p></section>";
         else
             $this->afficheMatchEnFonctionType($typeMatch,$match);
     }
@@ -246,7 +246,7 @@ class ContAdmin {
         if ($res)
             header('Location: admin.php?action=gererMatch&type=ouvert');
         else
-            echo "<p> Une erreur est survenu.</p>";
+            echo "<p> Une erreur est survenue.</p>";
     }
 
     public function ajouteResultatMatch()
@@ -262,9 +262,9 @@ class ContAdmin {
             if ($res)
                 header('Location: admin.php?action=gererMatch&type=fermer');
             else
-                echo "<p> Une erreur est survenu. </p>";
+                echo "<p> Une erreur est survenue. </p>";
         }else
-            echo "<p> il manque des inputs </p>";
+            echo "<p> Il manque des inputs </p>";
     }
 
     /*methode private */
@@ -303,7 +303,7 @@ class ContAdmin {
         $equipe = $this->modele->getEquipe($_GET['idEquipe']);
 
         if ($equipe == 404)
-            echo "erreur equipe introuvable";
+            echo "erreur équipe introuvable";
         else
             $this->vue->afficheModifieEquipe($equipe[0]);
 
@@ -349,7 +349,7 @@ class ContAdmin {
         $rep = $this->modele->resetPasswordUser($idUser);
 
         if ($rep)
-            echo "<p>Changement enregistrer avec succes</p>";
+            echo "<section><p>Changement enregistrer avec succès.</p></section>";
         else
             echo "<p>erreur</p>";
 
@@ -402,7 +402,7 @@ class ContAdmin {
         if (!isset($question) || $question == 404)
             echo "<p>Erreur lors de la recherche des questions</p>";
         else if (count($question) == 0)
-            echo "<p>il n'y a rien a voir ici actuelement</p>";
+            echo "<section><p>Il n'y a rien a voir ici actuellement.</p></section>";
         else
             $this->afficheQuestionEnFonctionType($type,$question);
     }
@@ -460,7 +460,7 @@ class ContAdmin {
             else
                 $this->vue->erreur("un problème inattendu est arrivé, veuillez contacter la ruche au plus vite");
         } else
-            $this->vue->erreur("impossible de realisé cette action");
+            $this->vue->erreur("impossible de realiser cette action");
     }
 
 

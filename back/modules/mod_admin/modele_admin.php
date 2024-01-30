@@ -595,7 +595,7 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    public function getQuestionAttente()
+    public function getQuestionEnCours()
     {
         try{
             $query = "
@@ -613,7 +613,7 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    public function getQuestionEnCours()
+    public function getQuestionAttente()
     {
         try{
             $query = "
