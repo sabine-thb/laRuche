@@ -296,7 +296,7 @@ input{
 
 @media (max-height: 600px) {
     body {
-        height: 700px;
+        min-height: 600px;
     }
 }
 
