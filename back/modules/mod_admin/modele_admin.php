@@ -641,8 +641,9 @@ class ModeleAdmin extends Connexion {
     {
         try{
             $query = "
-            SELECT *
+            SELECT *,C.nom
             FROM laruchxsabine.LaRuche_questionBonus Q
+            INNER JOIN laruchxsabine.LaRuche_competition C ON Q.competition_id = C.competition_id
             INNER JOIN laruchxsabine.LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
             WHERE pari_ouvert = false
             ";

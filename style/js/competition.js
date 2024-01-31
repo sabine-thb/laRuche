@@ -22,6 +22,12 @@ document.addEventListener('DOMContentLoaded', function() {
         case 'resultat':
             monElement = document.getElementById('resultats');
             break;
+        case 'competitionDisponible':
+            monElement = document.getElementById('competDispo');
+            break;
+        case 'afficheMesCompet':
+            monElement = document.getElementById('competActive');
+            break;
     }
 
     // Ajoutez une classe speciale pour savoir sur quelle page on se trouve

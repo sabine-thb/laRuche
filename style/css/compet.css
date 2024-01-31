@@ -121,6 +121,15 @@ h3{
     justify-content: center;
 }
 
+.custom-pts-question {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
 .nbPoints{
      color: #fff;
      background-color: grey;
@@ -147,9 +156,8 @@ h3{
 
 .jaune{
     padding:5px;
-    background-color: #f3db8b;
+    background-color: #8bf3db;
     border-radius: 5px;
-    margin-right:10px;
 }
 
 .selectionFinale{
