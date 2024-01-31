@@ -38,7 +38,7 @@
                     </p>
 
                     <p class="pBonus">
-                        <span class="labelEquipe">Point bonne réponse = </span>
+                        <span class="labelEquipe">Point bonne réponse : </span>
                         <span><?php echo $oneQuestion['point_bonne_reponse']; ?>pts<span>
                     </p>
 

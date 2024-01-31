@@ -47,7 +47,7 @@
             
             
             <p clas="pBonus">
-                <span class="labelEquipe">Bonne réponse = </span><?php echo $oneQuestion['point_bonne_reponse']; ?>pts
+                <span class="labelEquipe">Bonne réponse : </span><?php echo $oneQuestion['point_bonne_reponse']; ?>pts
             </p>
 
             <div class="buttonContainer">

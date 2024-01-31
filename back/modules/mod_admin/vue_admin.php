@@ -94,7 +94,7 @@ class VueAdmin extends VueGenerique {
 
     public function afficheQuestionFini($questions)
     {
-        require_once('./front/scoruche/QuestionBonus/listeQuestionsFini.php');
+        require_once('./front/admin/QuestionBonus/listeQuestionsFini.php');
     }
 
 

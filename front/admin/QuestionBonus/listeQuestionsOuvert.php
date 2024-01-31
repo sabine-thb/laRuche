@@ -19,7 +19,7 @@
             </p>
 
             <p class="pBonus">
-                <span class="labelEquipe">Bonne réponse = </span> 
+                <span class="labelEquipe">Bonne réponse : </span>
                 <span><?php echo $oneQuestion['point_bonne_reponse']; ?>pts<span>
             </p>
 

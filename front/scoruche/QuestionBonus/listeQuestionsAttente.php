@@ -47,7 +47,8 @@
                 </p>
                 
                 <p>
-                    <span class="labelEquipe">Bonne réponse = </span> <?php echo $oneQuestion['point_bonne_reponse']; ?>pts
+                    <span class="labelEquipe">Bonne réponse : </span> <?php echo $oneQuestion['point_bonne_reponse']; ?>
+                    pts
                 </p>
 
                 <input type="submit" name="submit" class="envoyerForm submit" value="Enregistrer">
