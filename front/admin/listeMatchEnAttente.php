@@ -52,8 +52,30 @@
                                 
                             </div> -->
 
+
+
+
+
                         </div>
 
+                        <!--  -->
+                        <div class="selectionFinale">
+                            
+
+                            <p class="vainqueur"> Qui gagne au tir au but ?</p>
+
+                            <div>
+                                <label for="<?php echo $row['match_id']; ?>_equipe1"><?php echo $row['nom1']; ?></label>
+                                <input class="" type="radio" id="<?php echo $row['match_id']; ?>_equipe1" name="<?php echo $row['match_id']; ?>_toggle" value="'equipe1'" checked />
+                            </div>
+
+                            <div>
+                                <label for="<?php echo $row['match_id']; ?>_equipe2"><?php echo $row['nom2']; ?></label>
+                                <input class="" type="radio" id="<?php echo $row['match_id']; ?>_equipe2" name="<?php echo $row['match_id']; ?>_toggle" value="'equipe2'" checked />
+                            </div>
+                        </div>
+                        <!--  -->
+                        
                         <div class="buttons">
                             <a href="admin.php?action=supprimerMatch&idMatch=<?php echo $row['match_id']; ?>"
                             class="oneButton"

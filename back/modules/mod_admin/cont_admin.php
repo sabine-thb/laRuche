@@ -253,12 +253,14 @@ class ContAdmin {
     {
         if ($_POST['resultatEquipe1'] != "" && $_POST['resultatEquipe2'] != "" ) {
 
-            if ($_POST['resultatEquipe1'] == $_POST['resultatEquipe2'])
-                $equipe_gagnate_peno = array_key_exists("toggle", $_POST) ? "'equipe2'" : "'equipe1'";
+            if ($_POST['resultatEquipe1'] == $_POST['resultatEquipe2']){
+                // $equipe_gagnate_peno = array_key_exists("toggle", $_POST) ? "'equipe2'" : "'equipe1'";      ANCIENNE VERSION
+                $str_toggle = $_POST['match_id'] . "_toggle";
+                array_key_exists($str_toggle, $_POST) ? $equipe_gagnante_peno = $_POST[$str_toggle] : $res = false;}
             else
-                $equipe_gagnate_peno = "null";
+                $equipe_gagnante_peno = "null";
 
-            $res = $this->modele->miseEnFiniMatch($_POST['match_id'], $_POST['resultatEquipe1'], $_POST['resultatEquipe2'],$equipe_gagnate_peno);
+            $res = $this->modele->miseEnFiniMatch($_POST['match_id'], $_POST['resultatEquipe1'], $_POST['resultatEquipe2'],$equipe_gagnante_peno);
             if ($res)
                 header('Location: admin.php?action=gererMatch&type=fermer');
             else
