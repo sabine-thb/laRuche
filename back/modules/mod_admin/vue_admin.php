@@ -82,14 +82,14 @@ class VueAdmin extends VueGenerique {
         require_once("./front/admin/QuestionBonus/bouttonQuestions.html");
     }
 
-    public function afficheQuestionAttente($questions)
+    public function getQuestionOuvert($questions)
     {
-        require_once('./front/admin/QuestionBonus/listeQuestionsAttente.php');
+        require_once('./front/admin/QuestionBonus/listeQuestionsOuvert.php');
     }
 
-    public function afficheQuestionEnCours($questions,$equipes)
+    public function afficheQuestionEnAttente($questions, $equipes)
     {
-        require_once('./front/admin/QuestionBonus/listeQuestionsEnCours.php');
+        require_once('./front/admin/QuestionBonus/listeQuestionsAttente.php');
     }
 
     public function afficheQuestionFini($questions)
