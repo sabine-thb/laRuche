@@ -212,7 +212,7 @@ class ContAdmin {
     }
     public function gererMatch()
     {
-        $typeMatch = $_GET['type'] ?? 'attente';
+        $typeMatch = $_GET['type'] ?? 'ouvert';
         $this->vue->afficheButtonMatch();
         $match = $this->recupereMatchEnFonctionType($typeMatch);
 
@@ -272,11 +272,11 @@ class ContAdmin {
     private function recupereMatchEnFonctionType($type)
     {
         switch ($type){
-            case 'attente':
+            case 'en_attente':
                 return $this->modele->getMatchAttente();
             case 'ouvert':
                 return $this->modele->getMatchOuvert();
-            case 'fermer':
+            case 'fini':
                 return $this->modele->getMatchfermer();
         }
 
@@ -286,13 +286,13 @@ class ContAdmin {
     private function afficheMatchEnFonctionType($type,$match)
     {
         switch ($type){
-            case 'attente':
+            case 'en_attente':
                 $this->vue->afficheMatchEnAttente($match);
                 break;
             case 'ouvert':
                 $this->vue->afficheMatchOuvert($match);
                 break;
-            case 'fermer':
+            case 'fini':
                 $this->vue->afficheMatchFermer($match);
                 break;
         }

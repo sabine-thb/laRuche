@@ -391,6 +391,10 @@ section{
     background-color: #e1b217;
 }
 
+.buttonMatchActive {
+    background-color: #cf9e00;
+}
+
 .allQuestions{
     display: flex;
     flex-direction: column;

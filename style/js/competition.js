@@ -23,7 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
             monElement = document.getElementById('resultats');
             break;
     }
-    // Ajoutez une classe à l'élément
+
+    // Ajoutez une classe speciale pour savoir sur quelle page on se trouve
     monElement.classList.remove('linkDefaut');
     monElement.classList.add('linkActive');
 });

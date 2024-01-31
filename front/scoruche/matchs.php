@@ -60,8 +60,6 @@
                     </div>
 
                     <div class="selectionFinale">
-                       
-
                         <p class="vainqueur"> Qui sera vainqueur au tir au but ?</p>
 
                         <div>
