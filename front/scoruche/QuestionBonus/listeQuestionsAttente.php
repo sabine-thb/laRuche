@@ -60,7 +60,6 @@
         <a href="competition.php?action=questionsBonus&id=<?php echo $_GET['id']; ?>&type=fini" class="lienBonus">
                 Voir les bonus terminés
         </a>
-
     </div>
     
 </section>

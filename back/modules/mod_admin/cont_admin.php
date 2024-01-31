@@ -447,7 +447,7 @@ class ContAdmin {
         $res = $this->modele->miseEnAttenteQuestion($idQuestion);
 
         if ($res)
-            header('Location: admin.php?action=gererQuestionBonus&type=attente');
+            header('Location: admin.php?action=gererQuestionBonus&type=en_attente');
         else
             $this->vue->erreur("un problème inattendu est arrivé, veuillez contacter la ruche au plus vite");
     }
@@ -460,7 +460,7 @@ class ContAdmin {
 
             $res = $this->modele->insertResultatQuestion($idQuestion, $reponse);
             if ($res)
-                header('Location: admin.php?action=gererQuestionBonus&type=attente');
+                header('Location: admin.php?action=gererQuestionBonus&type=fini');
             else
                 $this->vue->erreur("un problème inattendu est arrivé, veuillez contacter la ruche au plus vite");
         } else

@@ -410,6 +410,10 @@ section{
     border-radius:20px;
 }
 
+.oneQuestion h2 {
+    max-width: 510px;
+}
+
 .descrBonus{
     margin-bottom:25px;
 }
