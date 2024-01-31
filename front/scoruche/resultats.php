@@ -77,6 +77,20 @@
                             ?>
                         </span>
                     </p>
+
+                    <p class="pointsGagne">
+                        <span class="labelEquipe">Bon score :</span>
+                        <span><?php echo $tuple['pts_Exact']; ?> points</span>
+                    </p>
+
+                    <p class="pointsGagne">
+                        <span class="labelEquipe">Bon écart + bon vainqueur : </span>
+                        <span><?php echo $tuple['pts_Ecart']; ?> points</span>
+                    </p>
+
+                    <p class="pointsGagne">
+                        <span class="labelEquipe">Bon vainqueur : </span>
+                        <span><?php echo $tuple['pts_Vainq']; ?> points</span></p>
                 </div>
 
             </div>

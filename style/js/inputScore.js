@@ -49,14 +49,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 const heightReduit = window.innerWidth < 850 ? "3.3em" : "5em";
                 const paddingReduit = window.innerWidth < 850 ? "0.3em" : "0.8em";
 
-                const heightDefaut = window.innerWidth < 850 ? "5em" : "7em";
+                const heightDefaut = window.innerWidth < 850 ? "100px" : "120px";
 
                 if(value === max) {
                     num.style.paddingTop = paddingReduit;
                     num.style.height = heightReduit;
                     arrUp.style.display = "none";
 
-                    num.style.paddingBottom = "0";
+                    num.style.paddingBottom = "8px";
                     arrDown.style.display = "block";
                 }else if ( value === min) {
                     num.style.paddingBottom = paddingReduit;
@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     arrUp.style.display = "block";
                 }else {
                     num.style.padding = "0";
+                    num.style.paddingBottom = "8px";
                     num.style.height = heightDefaut;
                     arrUp.style.display = "block";
                     arrDown.style.display = "block";
