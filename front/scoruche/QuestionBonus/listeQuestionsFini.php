@@ -28,7 +28,17 @@
                     </p>
 
                     <p class="pBonus">
-                        <span class="labelEquipe">Bonne réponse = </span>
+                        <span class="labelEquipe">Ma reponse :</span>
+                        <span><?php echo $oneQuestion['reponse'] ?? "pas de pronostic fait pour cette question"; ?></span>
+                    </p>
+
+                    <p class="pBonus">
+                        <span class="labelEquipe">Bonne réponse :</span>
+                        <span><?php echo $oneQuestion['bonne_reponse']; ?></span>
+                    </p>
+
+                    <p class="pBonus">
+                        <span class="labelEquipe">Point bonne réponse = </span>
                         <span><?php echo $oneQuestion['point_bonne_reponse']; ?>pts<span>
                     </p>
 

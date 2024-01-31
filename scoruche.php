@@ -52,10 +52,10 @@ $affichageModule = $module->afficheModule();
     </a>
 
     <div id="navbar">
-            <a href="scoruche.php?action=competitionDisponible" class="linkNavbar linkDefaut">
+        <a href="scoruche.php?action=competitionDisponible" class="linkNavbar linkDefaut" id="competDispo">
                 Rejoindre une compétition
             </a>
-            <a href="scoruche.php?action=afficheMesCompet" class="linkNavbar linkDefaut">
+        <a href="scoruche.php?action=afficheMesCompet" class="linkNavbar linkDefaut" id="competActive">
                 Mes compétitions
             </a>
             <a href="scoruche.php?action=editProfil" class="linkNavbar linkDefaut" id="editProfil">

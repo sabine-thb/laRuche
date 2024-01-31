@@ -61,6 +61,24 @@
                     </div>
                 </div>
 
+                <div>
+                    <p class="pointsGagne">
+                        <span class="labelEquipe">mon prono :</span>
+                        <span>
+                            <?php if ($tuple['prono_equipe1'] == NULL)
+                                echo "aucun pari fait pour ce match.";
+                            elseif ($tuple['prono_equipe1'] == $tuple['prono_equipe2']) {
+                                if ($tuple['resultat_peno'] == 'equipe1')
+                                    echo "<span class='jaune'>$tuple[prono_equipe1]</span> - $tuple[prono_equipe2]";
+                                else
+                                    echo "$tuple[prono_equipe1] - <span class='jaune'>$tuple[prono_equipe2]</span>";
+                            } else
+                                echo "$tuple[prono_equipe1] - $tuple[prono_equipe2]";
+                            ?>
+                        </span>
+                    </p>
+                </div>
+
             </div>
         <?php } ?>
 
