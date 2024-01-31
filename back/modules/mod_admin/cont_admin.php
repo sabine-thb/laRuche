@@ -395,7 +395,7 @@ class ContAdmin {
 
     public function gererQuestion()
     {
-        $type = $_GET['type'] ?? 'attente'; // attente - en_cours - fini
+        $type = $_GET['type'] ?? 'ouvert'; // attente - en_cours - fini
         $this->vue->afficheButtonQuestion();
         $question = $this->recupereQuestionEnFonctionType($type);
 
@@ -410,30 +410,34 @@ class ContAdmin {
     private function recupereQuestionEnFonctionType($type)
     {
         switch ($type){
-            case 'attente':
-                return $this->modele->getQuestionAttente();
-            case 'en_cours':
-                return $this->modele->getQuestionEnCours();
+            case 'ouvert':
+                return $this->modele->getQuestionOuvert();
+            case 'en_attente':
+                return $this->modele->getQuestionEnAttente();
             case 'fini':
                 return $this->modele->getQuestionFini();
+            default:
+                return 404; //erreur
         }
 
-        return 404; //erreur
+
     }
 
     private function afficheQuestionEnFonctionType($type, $question)
     {
         switch ($type){
-            case 'attente':
-                $this->vue->afficheQuestionAttente($question);
+            case 'ouvert':
+                $this->vue->getQuestionOuvert($question);
                 break;
-            case 'en_cours':
+            case 'en_attente':
                 $equipes = $this->modele->getEquipes();
-                $this->vue->afficheQuestionEnCours($question,$equipes);
+                $this->vue->afficheQuestionEnAttente($question, $equipes);
                 break;
             case 'fini':
                 $this->vue->afficheQuestionFini($question);
                 break;
+            default:
+                echo "erreur debug";
         }
     }
 

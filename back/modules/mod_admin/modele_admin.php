@@ -595,7 +595,7 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    public function getQuestionEnCours()
+    public function getQuestionOuvert()
     {
         try{
             $query = "
@@ -608,12 +608,11 @@ class ModeleAdmin extends Connexion {
 
             return $this->executeQuery($stmt);
         }catch (PDOException $e) {
-            var_dump($e);
             return false;
         }
     }
 
-    public function getQuestionAttente()
+    public function getQuestionEnAttente()
     {
         try{
             $query = "
