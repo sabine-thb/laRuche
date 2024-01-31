@@ -71,7 +71,9 @@ class ContAdmin {
                 $toUserRefused=$mailUserRefused;
 
                 $messageUserRefused="Ta demande a été refusée ! 
-                Si tu penses qu'elle aurait dûe être acceptée, améliore ta description ou contacte nous sur instagram.
+                Si tu penses qu'elle aurait dû être acceptée, améliore ta description ou contacte nous sur instagram.
+
+                PS: ta desciption sera affichée sur ton profil, donc précise bien qui tu es de facon à ce que tout le monde puisse te reconnaitre 😉
                 ";
 
                 mail($toUserRefused, $subjectUserRefused, $messageUserRefused);
@@ -91,7 +93,7 @@ class ContAdmin {
             else if($resultat = 22000)
                 echo "impossible de supprimer la competition car il y a encore des matchs qui en dépendent";
             else
-                echo "erreur inconnu - CODE = " . $resultat;
+                echo "erreur inconnue - CODE = " . $resultat;
 
         }
     }
@@ -114,21 +116,20 @@ class ContAdmin {
             $result = $this->modele->ajoutCompet($_POST['name'],$_POST['description']);
 
             if ($result){
-                echo 'la competition ' . $_POST['name'] . ' a bien été ajouté !<br>';
-                echo "allez dans l'onglet 'gerer comp' pour ajouter des nouveau matchs";
+                echo 'la competition ' . $_POST['name'] . ' a bien été ajoutée !<br>';
+                echo "allez dans l'onglet 'gerer comp' pour ajouter de nouveaux matchs";
                 echo '<meta http-equiv="refresh" content="4;url=admin.php"/>';
             }else{
                 $this->vue->afficheFormulaireCompet("erreur serveur veuillez contacter le support ");
             }
 
         }else{
-            $this->vue->afficheFormulaireCompet("veuillez remplir tout les champs !");
+            $this->vue->afficheFormulaireCompet("veuillez remplir tous les champs !");
         }
     }
 
     public function ajoutEquipe()
     {
-        // echo  var_dump($_POST);
         if(isset($_SESSION['token'],$_POST['token'])){
             if(null!==($_SESSION['creationToken']&& time()-$_SESSION['creationToken']<60 )){
                 if(isset($_POST['name'],$_FILES['logo']['tmp_name'])){
@@ -138,7 +139,7 @@ class ContAdmin {
                     echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
                 }
             }else{
-                echo " Délais atteint, veuillez réessayer "."<br>";
+                echo " Délai atteint, veuillez réessayer "."<br>";
                 echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
             }
         }else {
@@ -155,7 +156,7 @@ class ContAdmin {
                 if(isset($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch'],$_POST['heure'])){
                     if ($_POST['equipe1']!=='default' && $_POST['equipe2']!=='default' && $_POST['compet']!=='default' ) {
                         if ($this->modele->insererMatch($_POST['equipe1'],$_POST['equipe2'],$_POST['ptsExact'],$_POST['ptsEcart'],$_POST['ptsVainq'],$_POST['compet'],$_POST['dateMatch'],$_POST['heure'])){
-                            echo " Match bien enregistrée ✌️"."<br>";
+                            echo " Match bien enregistré ✌️"."<br>";
 //                            echo '<meta http-equiv="refresh" content="3;url=admin.php?action=afficheFormMatch"/>';
                         }else{
                             echo "Erreur lors de l'insertion de l'equipe";
@@ -305,7 +306,7 @@ class ContAdmin {
         $equipe = $this->modele->getEquipe($_GET['idEquipe']);
 
         if ($equipe == 404)
-            echo "erreur équipe introuvable";
+            echo "erreur: équipe introuvable";
         else
             $this->vue->afficheModifieEquipe($equipe[0]);
 
@@ -351,7 +352,7 @@ class ContAdmin {
         $rep = $this->modele->resetPasswordUser($idUser);
 
         if ($rep)
-            echo "<section><p>Changement enregistrer avec succès.</p></section>";
+            echo "<section><p>Changement enregistré avec succès.</p></section>";
         else
             echo "<p>erreur</p>";
 
@@ -367,7 +368,7 @@ class ContAdmin {
             else if($resultat = 22000)
                 echo "impossible de supprimer le match";
             else
-                echo "erreur inconnu - CODE = " . $resultat;
+                echo "erreur inconnue - CODE = " . $resultat;
 
         }
     }

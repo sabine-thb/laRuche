@@ -55,7 +55,7 @@ class ModeleProfil extends Connexion {
 
             return true;
         }catch (PDOException $e) {
-            var_dump($e);
+            echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
     }
@@ -74,7 +74,7 @@ class ModeleProfil extends Connexion {
 
             return $this->executeQuery($stmt);
         }catch (PDOException $e) {
-            var_dump($e);
+            echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
     }
@@ -92,7 +92,7 @@ class ModeleProfil extends Connexion {
 
             return true;
         }catch (PDOException $e) {
-            var_dump($e);
+            echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
     }
@@ -110,7 +110,7 @@ class ModeleProfil extends Connexion {
 
             return true;
         }catch (PDOException $e) {
-            var_dump($e);
+            echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
     }

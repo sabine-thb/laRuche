@@ -34,12 +34,12 @@ class ModeleConnexion extends Connexion {
             if ($this->nouveau("mail",$mail)) {
                 return $this->ajoutFinal($prenom,$login, $mail, $mdp,$description);
             } else {
-                $_SESSION['error'] = "<p> Mail déja utilisé ! </p><br>";
+                $_SESSION['error'] = "<p> Mail déja utilisé ! </p><br>";
                 header('Location: connexion.php?action=inscription');
             }
         }
         else {
-            $_SESSION['error'] = "<p> Login déjà utilisé ! </p><br>";
+            $_SESSION['error'] = "<p> Login déjà utilisé ! </p><br>";
             header('Location: connexion.php?action=inscription');
         }
         return false;
@@ -64,6 +64,7 @@ class ModeleConnexion extends Connexion {
             return true;
 
         } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
     }
@@ -88,6 +89,7 @@ class ModeleConnexion extends Connexion {
             }
 
         } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
 
@@ -122,6 +124,7 @@ class ModeleConnexion extends Connexion {
             return isset($resultat[0]["password"]) && $this->checkMdp($resultat, $inputMdp);
 
         } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
     }
@@ -156,6 +159,7 @@ class ModeleConnexion extends Connexion {
                 return -1;
 
         } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
             return -404;
         }
     }
@@ -195,6 +199,7 @@ class ModeleConnexion extends Connexion {
 
             return true;
         } catch (PDOException $e) {
+            echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
     }

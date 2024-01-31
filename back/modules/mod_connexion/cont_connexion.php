@@ -76,7 +76,7 @@ class ContConnexion {
 
     private function checkForceMdp($mdp): bool
     {
-        return strlen($mdp) > 5;
+        return strlen($mdp) > 7;
     }
 
     private function checkAllInput(): bool
@@ -152,7 +152,7 @@ class ContConnexion {
 
         if ($res) {
             if ($link == "connexion.php?action=connexion"){ //pas beau du tout mais pas le temps de faire mieux
-                echo "<p>Changement enregistrer avec succes</p>";
+                echo "<p>Changement enregistré avec succes</p>";
                 echo "<p>Cliquez <a href='$link'>ici</a> pour vous connecter si la redirection auto est fatigué</p>";
                 echo "<meta http-equiv='refresh' content='3;url=$link'/>";
             }else

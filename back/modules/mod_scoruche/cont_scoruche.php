@@ -142,7 +142,7 @@ class ContScorcast {
         $matchs = $this->modele->recupereMatchFini($_GET['id'],$_SESSION['idPronostiqueur']);
 
         if ($matchs == 404)
-            echo "<p> Erreur lors de la recup des resultats </p>";
+            echo "<p> Erreur lors de la recupération des résultats </p>";
         else{
             $totalPoints = $this->modele->totalPoint($_SESSION['idPronostiqueur'],$_GET['id']);
             $this->vue->afficheResultat($matchs,$totalPoints);
