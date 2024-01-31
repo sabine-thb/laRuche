@@ -272,7 +272,7 @@ class ContScorcast {
     {
         switch ($type){
             case 'attente':
-                $equipes = $this->modele->getEquipes($_GET['id']);
+                $equipes = $this->modele->getEquipes();
                 $this->vue->afficheQuestionAttente($question,$equipes);
                 break;
             case 'en_cours':

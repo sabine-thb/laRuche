@@ -339,14 +339,12 @@ class ModeleScorcast extends Connexion {
         }
     }
 
-    public function getEquipes($idCompet)
+    public function getEquipes()
     {
         try{
             $query = "
-            SELECT DISTINCT E.nom,E.equipe_id
-            FROM laruchxsabine.LaRuche_equipe E
-            NATURAL JOIN laruchxsabine.LaRuche_matchApronostiquer M
-            WHERE M.competition_id = $idCompet
+            SELECT * 
+            FROM laruchxsabine.LaRuche_equipe
             ";
             $stmt = Connexion::$bdd->prepare($query);
 
