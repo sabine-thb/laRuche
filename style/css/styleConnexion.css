@@ -279,21 +279,25 @@ input{
     }
 }
 
-@media(max-width:610px){
+@media (max-width: 610px) {
 
-    .logoLeague{
+    .logoLeague {
         margin: auto;
     }
 
-    .bienvenue{
-        font-size:2.5rem;
+    .bienvenue {
+        font-size: 2.5rem;
     }
 
-    .logoLeague{
-        width:230px;
+    .logoLeague {
+        width: 230px;
     }
+}
 
-
+@media (max-height: 600px) {
+    body {
+        height: 700px;
+    }
 }
 
 @media(max-width:400px){
