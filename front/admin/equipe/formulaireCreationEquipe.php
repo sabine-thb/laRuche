@@ -9,7 +9,7 @@
         <p class="p equipe">
             <label for="logo" class="labelEquipe">Logo (max 2 Mo) :</label>
             <input type="hidden" name="MAX_FILE_SIZE" value="2000000" id="logo">
-            <input type="file" name="logo" accept="image/*"/>
+            <input type="file" name="logo" accept="image/*" required/>
 
         </p>
 

@@ -21,92 +21,92 @@ class VueAdmin extends VueGenerique
 
     public function afficheDemande($tableau)
     {
-        require_once("./front/admin/afficheDemande.php");
+        require_once("./front/admin/userGestion/afficheDemande.php");
     }
 
     public function afficheListCompet($tableau)
     {
-        require_once("./front/admin/listCompetition.php");
+        require_once("./front/admin/competition/listCompetition.php");
     }
 
     public function afficheFormulaireCompet($erreur)
     {
-        require_once("./front/admin/formulaireCompetition.php");
+        require_once("./front/admin/competition/formulaireCompetition.php");
     }
 
     public function afficheFormCreationMatch($token, $eq, $comp)
     {
-        require_once("./front/admin/formulaireCreationMatch.php");
+        require_once("./front/admin/match/formulaireCreationMatch.php");
     }
 
     public function afficheFormCreationEquipe($token)
     {
-        require_once("./front/admin/formulaireCreationEquipe.php");
+        require_once("./front/admin/equipe/formulaireCreationEquipe.php");
     }
 
     public function afficheEquipes($eq)
     {
-        require_once("./front/admin/listeEquipes.php");
+        require_once("./front/admin/equipe/listeEquipes.php");
     }
 
     public function afficheGereUser()
     {
-        require_once("./front/admin/gererUsers.php");
+        require_once("./front/admin/userGestion/gererUsers.php");
     }
 
     public function afficheModifieEquipe($equipe)
     {
-        require_once("./front/admin/modifieEquipe.php");
+        require_once("./front/admin/equipe/modifieEquipe.php");
     }
 
     public function afficheButtonMatch()
     {
-        require_once("./front/admin/bouttonMatch.html");
+        require_once("./front/admin/match/bouttonMatch.html");
     }
 
     public function afficheMatchOuvert($match)
     {
-        require_once("./front/admin/listeMatchOuvert.php");
+        require_once("./front/admin/match/listeMatchOuvert.php");
     }
 
     public function afficheMatchEnAttente($match)
     {
-        require_once("./front/admin/listeMatchEnAttente.php");
+        require_once("./front/admin/match/listeMatchEnAttente.php");
     }
 
     public function afficheMatchFermer($match)
     {
-        require_once("./front/admin/listeMatchFini.php");
+        require_once("./front/admin/match/listeMatchFini.php");
     }
 
     public function afficheFormQuestionBonus($comp)
     {
-        require_once("./front/admin/QuestionBonus/formQuestionBonus.php");
+        require_once("./front/admin/questionBonus/formQuestionBonus.php");
     }
 
     public function questionEnregister()
     {
-        require_once("./front/admin/QuestionBonus/SuccesSave.html");
+        require_once("./front/admin/questionBonus/SuccesSave.html");
     }
 
     public function afficheButtonQuestion()
     {
-        require_once("./front/admin/QuestionBonus/bouttonQuestions.html");
+        require_once("./front/admin/questionBonus/bouttonQuestions.html");
     }
 
     public function getQuestionOuvert($questions)
     {
-        require_once('./front/admin/QuestionBonus/listeQuestionsOuvert.php');
+        require_once('./front/admin/questionBonus/listeQuestionsOuvert.php');
     }
 
     public function afficheQuestionEnAttente($questions, $equipes)
     {
-        require_once('./front/admin/QuestionBonus/listeQuestionsAttente.php');
+        require_once('./front/admin/questionBonus/listeQuestionsAttente.php');
     }
 
     public function afficheQuestionFini($questions)
     {
-        require_once('./front/admin/QuestionBonus/listeQuestionsFini.php');
+        require_once('./front/admin/questionBonus/listeQuestionsFini.php');
     }
 
 
