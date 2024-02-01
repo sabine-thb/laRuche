@@ -8,12 +8,12 @@
 
         <p class="nomCompet">
             <label for="selectCompet" class="labelCompet">Compétition :</label>
-                <select name="compet" id="selectCompet" required>
-                    <nom>Compétition</nom>
-                    <?php foreach($comp as $row){
-                        echo '<option value="' .$row['competition_id'].'">' .$row['nom'].'</option>';
-                    }?>
-                </select>
+            <select name="compet" id="selectCompet" required>
+                <nom>Compétition</nom>
+                <?php foreach ($comp as $row) {
+                    echo '<option value="' . $row['competition_id'] . '">' . $row['nom'] . '</option>';
+                } ?>
+            </select>
         </p>
 
         <p class="descrCompet">
@@ -32,7 +32,6 @@
 
         </p>
 
-        
 
         <p class="nomCompet">
             <label for="nbPoint" class="labelCompet">Points bonne réponse : </label>

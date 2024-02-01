@@ -1,24 +1,26 @@
-.flexContainer{
+.flexContainer {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-@media(max-width:550px){
+@media (max-width: 550px) {
 
-    .pForm{
+    .pForm {
         display: flex;
         flex-direction: column;
-        gap:6px;
+        gap: 6px;
     }
-    header{
-        height:auto;
+
+    header {
+        height: auto;
     }
-    #navbar{
+
+    #navbar {
         flex-direction: column;
     }
 
-    body{
-        padding-top:170px;
+    body {
+        padding-top: 170px;
     }
 }

@@ -4,14 +4,16 @@ if (!defined("BASE_URL")) {
     die("il faut passer par l'index");
 }
 
-require_once "cont_ruche.php" ;
+require_once "cont_ruche.php";
 
-class ModRuche {
+class ModRuche
+{
 
     private $action;
     private $controlleur;
 
-    public function __construct(){
+    public function __construct()
+    {
 
         $this->controlleur = new ContRuche();
         $this->action = isset($_GET['action']) ? $_GET['action'] : 'bienvenue';
@@ -20,9 +22,10 @@ class ModRuche {
 
     }
 
-    private function start(){
+    private function start()
+    {
 
-        switch($this->action){
+        switch ($this->action) {
 
             case 'bienvenue':
                 $this->controlleur->bienvenue();
@@ -30,7 +33,8 @@ class ModRuche {
         }
     }
 
-    public function afficheModule(){
+    public function afficheModule()
+    {
         return $this->controlleur->affichage();
     }
 

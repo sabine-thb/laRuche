@@ -8,13 +8,12 @@
         <input type="text" id="search" name="search" oninput="rechercherUtilisateur()">
 
     </div>
-        
 
-        <div id="resultats">
 
-        </div>
+    <div id="resultats">
 
-    
+    </div>
+
 
 </section>
 

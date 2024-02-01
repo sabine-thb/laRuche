@@ -20,11 +20,11 @@ $affichageModule = $module->afficheModule();
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    
+
     <title>LaRuche - connexion</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/css/style.css" >
+    <link rel="stylesheet" href="style/css/style.css">
     <link rel="stylesheet" href="style/css/fonts.css">
     <link rel="stylesheet" href="style/css/styleConnexion.css">
     <link rel="shortcut icon" type="image/png" href="./style/img/logoBleu.ico"/>
@@ -33,23 +33,23 @@ $affichageModule = $module->afficheModule();
 
 <body>
 
-    <!-- En-tête -->
-    <div class="blockContainer">
-        <img src="./style/img/logo.svg" class="logoLeague" alt="logo champion cup">
-        <div class="line"></div>
-    </div>
+<!-- En-tête -->
+<div class="blockContainer">
+    <img src="./style/img/logo.svg" class="logoLeague" alt="logo champion cup">
+    <div class="line"></div>
+</div>
 
-    <main>
-        <a href="connexion.php">
-            <img src="./style/img/abeille.png" class="abeille" alt="logo abeille">
-        </a>
-        <?php echo $affichageModule; // le code html pour cette endroit est dans le dossier front/connexion ?>
-    </main>
+<main>
+    <a href="connexion.php">
+        <img src="./style/img/abeille.png" class="abeille" alt="logo abeille">
+    </a>
+    <?php echo $affichageModule; // le code html pour cette endroit est dans le dossier front/connexion ?>
+</main>
 
 
-    <p class="credits">Ruche corp. written by Sab / Arsène / BenJ</p>
+<p class="credits">Ruche corp. written by Sab / Arsène / BenJ</p>
 
-    
+
 </body>
 </html>
 

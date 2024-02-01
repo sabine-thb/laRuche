@@ -1,14 +1,17 @@
 <?php
 
-class Connexion {
+class Connexion
+{
 
     protected static $bdd;
 
-    public function __construct() {
+    public function __construct()
+    {
 
     }
 
-    public static function initConnexion() {
+    public static function initConnexion()
+    {
 
         $host = 'laruche2.cah82lrh4zyj.eu-west-3.rds.amazonaws.com';
 

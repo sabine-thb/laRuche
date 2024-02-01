@@ -6,17 +6,12 @@ if (!defined("BASE_URL")) {
 
 require_once './back/modules/Connexion.php';
 
-class ModeleScorcast extends Connexion {
+class ModeleScorcast extends Connexion
+{
 
-    public function __construct() {
-        parent::__construct();
-    }
-
-    private function executeQuery($stmt)
+    public function __construct()
     {
-        $stmt->execute();
-        // Récupérez les résultats sous forme d'un tableau associatif
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        parent::__construct();
     }
 
     public function recupereComp($idUser)
@@ -39,6 +34,13 @@ class ModeleScorcast extends Connexion {
             echo "<script>console.log('erreur: $e');</script>";
             return $e;
         }
+    }
+
+    private function executeQuery($stmt)
+    {
+        $stmt->execute();
+        // Récupérez les résultats sous forme d'un tableau associatif
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function recupereCompActive($idUser)
@@ -120,7 +122,7 @@ class ModeleScorcast extends Connexion {
 
     }
 
-    public function recupereMatch(int $idCompet,int $idPronostiqueur)
+    public function recupereMatch(int $idCompet, int $idPronostiqueur)
     {
 
         try {
@@ -144,7 +146,7 @@ class ModeleScorcast extends Connexion {
 
     }
 
-    public function modifProno($idMatch,$prono1,$prono2,$equipeGagnantePeno,$idPronostiqueur): bool
+    public function modifProno($idMatch, $prono1, $prono2, $equipeGagnantePeno, $idPronostiqueur): bool
     {
         try {
             $query = "
@@ -163,7 +165,7 @@ class ModeleScorcast extends Connexion {
         }
     }
 
-    public function PronostiqueurIdActuelle($idUser,$idCompet)
+    public function PronostiqueurIdActuelle($idUser, $idCompet)
     {
         try {
             $query = "
@@ -181,7 +183,7 @@ class ModeleScorcast extends Connexion {
         }
     }
 
-    public function recupereMatchFini(int $idCompet,int $idPronostiqueur)
+    public function recupereMatchFini(int $idCompet, int $idPronostiqueur)
     {
         try {
             $query = "
@@ -205,7 +207,7 @@ class ModeleScorcast extends Connexion {
         }
     }
 
-    public function totalPoint(int $idPronostiqueur,int $idCompet)
+    public function totalPoint(int $idPronostiqueur, int $idCompet)
     {
         try {
             $query = "
@@ -224,7 +226,7 @@ class ModeleScorcast extends Connexion {
     public function getSrcLogo($id)
     {
         try {
-            $query="
+            $query = "
             SELECT src_logo_user
             FROM laruchxsabine.LaRuche_users
             WHERE user_id = $id
@@ -260,7 +262,7 @@ class ModeleScorcast extends Connexion {
 
     public function getCompetAndClassement($idUser)
     {
-        try{
+        try {
             $query = "
             SELECT c.nom,laruchxsabine.LaRuche_getClassement(p.pronostiqueur_id,c.competition_id) as classement
             FROM laruchxsabine.LaRuche_users u
@@ -271,7 +273,7 @@ class ModeleScorcast extends Connexion {
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
@@ -279,7 +281,7 @@ class ModeleScorcast extends Connexion {
 
     public function getQuestionAttente($id)
     {
-        try{
+        try {
             $query = "
             SELECT *
             FROM laruchxsabine.LaRuche_questionBonus Q
@@ -289,7 +291,7 @@ class ModeleScorcast extends Connexion {
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
@@ -297,7 +299,7 @@ class ModeleScorcast extends Connexion {
 
     public function getQuestionEnCours($id)
     {
-        try{
+        try {
             $query = "
             SELECT Q.*,P.*
             FROM laruchxsabine.LaRuche_questionBonus Q
@@ -313,7 +315,7 @@ class ModeleScorcast extends Connexion {
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
@@ -321,7 +323,7 @@ class ModeleScorcast extends Connexion {
 
     public function getQuestionFini($id)
     {
-        try{
+        try {
             $query = "
             SELECT *
             FROM laruchxsabine.LaRuche_questionBonus Q
@@ -333,7 +335,7 @@ class ModeleScorcast extends Connexion {
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
@@ -341,7 +343,7 @@ class ModeleScorcast extends Connexion {
 
     public function getEquipes()
     {
-        try{
+        try {
             $query = "
             SELECT * 
             FROM laruchxsabine.LaRuche_equipe
@@ -349,7 +351,7 @@ class ModeleScorcast extends Connexion {
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
@@ -357,7 +359,7 @@ class ModeleScorcast extends Connexion {
 
     public function editAge($age, $idUser): bool
     {
-        try{
+        try {
             $query = "
             UPDATE laruchxsabine.LaRuche_users 
             SET age = $age
@@ -367,7 +369,7 @@ class ModeleScorcast extends Connexion {
             $this->executeQuery($stmt);
 
             return true;
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
@@ -375,7 +377,7 @@ class ModeleScorcast extends Connexion {
 
     public function editGenre($gender, $idUser): bool
     {
-        try{
+        try {
             $query = "
             UPDATE laruchxsabine.LaRuche_users 
             SET Gender = '$gender'
@@ -385,15 +387,15 @@ class ModeleScorcast extends Connexion {
             $this->executeQuery($stmt);
 
             return true;
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
     }
 
-    public function changeLogo(string $dest,$idUser): bool
+    public function changeLogo(string $dest, $idUser): bool
     {
-        try{
+        try {
             $query = "
             UPDATE laruchxsabine.LaRuche_users 
             SET src_logo_user = '$dest'
@@ -403,7 +405,7 @@ class ModeleScorcast extends Connexion {
             $this->executeQuery($stmt);
 
             return true;
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }

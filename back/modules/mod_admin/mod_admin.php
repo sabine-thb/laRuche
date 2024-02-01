@@ -4,14 +4,16 @@ if (!defined("BASE_URL")) {
     die("il faut passer par l'index");
 }
 
-require_once "cont_admin.php" ;
+require_once "cont_admin.php";
 
-class ModAdmin {
+class ModAdmin
+{
 
     private $action;
     private $controlleur;
 
-    public function __construct(){
+    public function __construct()
+    {
 
         $this->controlleur = new ContAdmin();
         $this->action = $_GET['action'] ?? 'bienvenue';
@@ -20,9 +22,10 @@ class ModAdmin {
 
     }
 
-    private function start(){
+    private function start()
+    {
 
-        switch($this->action){
+        switch ($this->action) {
 
             case 'bienvenue':
                 $this->controlleur->bienvenue();
@@ -35,7 +38,7 @@ class ModAdmin {
             case 'valider':
                 $this->controlleur->validerDemande();
                 break;
-                
+
             case 'refuser':
                 $this->controlleur->refuserDemande();
                 break;
@@ -46,7 +49,7 @@ class ModAdmin {
 
             case 'ajoutCompetition':
                 $this->controlleur->ajoutCompet();
-                break;    
+                break;
 
             case 'gererCompetition':
                 $this->controlleur->gererComp();
@@ -151,7 +154,8 @@ class ModAdmin {
         }
     }
 
-    public function afficheModule(){
+    public function afficheModule()
+    {
         return $this->controlleur->affichage();
     }
 

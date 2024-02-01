@@ -20,27 +20,27 @@ $classement = [
 
 <body>
 
-    <div class="container mt-5">
-        <h2>Classement</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Points</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($classement as $joueur) : ?>
-                    <tr>
-                        <th scope="row"><?php echo $joueur['position']; ?></th>
-                        <td><?php echo $joueur['nom']; ?></td>
-                        <td><?php echo $joueur['points']; ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
+<div class="container mt-5">
+    <h2>Classement</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Points</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($classement as $joueur) : ?>
+            <tr>
+                <th scope="row"><?php echo $joueur['position']; ?></th>
+                <td><?php echo $joueur['nom']; ?></td>
+                <td><?php echo $joueur['points']; ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 
 </body>
 

@@ -4,23 +4,26 @@ if (!defined("BASE_URL")) {
     die("il faut passer par l'index");
 }
 
-require_once "cont_scoruche.php" ;
+require_once "cont_scoruche.php";
 
-class ModScorcast {
+class ModScorcast
+{
 
     private $action;
     private $controlleur;
 
-    public function __construct(){
+    public function __construct()
+    {
 
         $this->controlleur = new ContScorcast();
         $this->action = $_GET['action'] ?? 'bienvenue';
 
     }
 
-    public function start(){
+    public function start()
+    {
 
-        switch($this->action){
+        switch ($this->action) {
 
             case 'bienvenue':
                 $this->controlleur->bienvenue();

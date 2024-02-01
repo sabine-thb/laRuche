@@ -1,16 +1,16 @@
 <section>
-        <h1 class="titlePage">Résultats :</h1>
+    <h1 class="titlePage">Résultats :</h1>
 
-        <p>
-            Total points : <?php echo $totalPoints; ?>
-        </p>
+    <p>
+        Total points : <?php echo $totalPoints; ?>
+    </p>
 
     <div class="resultPronos">
         <?php foreach ($matchs as $tuple) {
             $timestamp = strtotime($tuple["date_match"]);
             $date_formattee = date("d/m/Y", $timestamp);
             $equipe1Win = $tuple['resultat_peno'] == 'equipe1' ? "jaune" : "";
-            $equipe2Win = $tuple['resultat_peno'] == 'equipe2' ? "jaune" : "";?>
+            $equipe2Win = $tuple['resultat_peno'] == 'equipe2' ? "jaune" : ""; ?>
 
             <div class="carteProno element">
                 <div class="hautCarte">
@@ -30,8 +30,8 @@
                     <div class="CorpCarte">
                         <!-- Équipe 1 -->
                         <img src="<?php echo $tuple['src1']; ?>"
-                            alt="image_equipe_gauche"
-                            class="logoEquipeUser right">
+                             alt="image_equipe_gauche"
+                             class="logoEquipeUser right">
 
                         <h5 class="nomEquipe right <?php echo $equipe1Win; ?>">
                             <?php echo $tuple['nom1']; ?>
@@ -56,8 +56,8 @@
                         </h5>
 
                         <img src="<?php echo $tuple['src2']; ?>"
-                            alt="image_equipe_droite"
-                            class="logoEquipeUser left">
+                             alt="image_equipe_droite"
+                             class="logoEquipeUser left">
                     </div>
                 </div>
 
@@ -97,7 +97,7 @@
         <?php } ?>
 
     </div>
-    
+
 </section>
 
 

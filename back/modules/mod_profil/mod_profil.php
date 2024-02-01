@@ -4,14 +4,16 @@ if (!defined("BASE_URL")) {
     die("il faut passer par l'index");
 }
 
-require_once "cont_profil.php" ;
+require_once "cont_profil.php";
 
-class ModProfil {
+class ModProfil
+{
 
     private $action;
     private $controlleur;
 
-    public function __construct(){
+    public function __construct()
+    {
 
         $this->controlleur = new ContProfil();
         $this->action = $_GET['action'] ?? 'bienvenue';
@@ -20,9 +22,10 @@ class ModProfil {
 
     }
 
-    private function start(){
+    private function start()
+    {
 
-        switch($this->action){
+        switch ($this->action) {
 
             case 'editProfil':
                 $this->controlleur->editProfil();
@@ -36,7 +39,8 @@ class ModProfil {
         }
     }
 
-    public function afficheModule(){
+    public function afficheModule()
+    {
         return $this->controlleur->affichage();
     }
 

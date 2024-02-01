@@ -6,21 +6,26 @@ if (!defined("BASE_URL")) {
 
 require_once './back/vue_generique.php';
 
-class VueConnexion extends VueGenerique {
+class VueConnexion extends VueGenerique
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function afficheBienvenue() {
+    public function afficheBienvenue()
+    {
         require_once("./front/connexion/bienvenue.php");
     }
 
-    public function afficheFormulaireInsciption(){
+    public function afficheFormulaireInsciption()
+    {
         require_once('./front/connexion/inscription.php');
     }
 
-    public function afficheFormulaireConnexion(){
+    public function afficheFormulaireConnexion()
+    {
         require_once('./front/connexion/connexion.php');
     }
 

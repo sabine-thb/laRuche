@@ -1,18 +1,17 @@
-
 <section class="sectionCard">
-    <?php foreach ($match as $row) { 
+    <?php foreach ($match as $row) {
         $dateMatch = $row['date_match'];
 
         // Convertir la date au format jj/mm/aaaa
-        $dateFormatee = date("d/m/Y", strtotime($dateMatch));?>
-        <div class="allCardMatch" >
+        $dateFormatee = date("d/m/Y", strtotime($dateMatch)); ?>
+        <div class="allCardMatch">
             <div class="card-body">
                 <p class="titleMatch">
                     <?php echo $row['nomCompet']; ?> - <?php echo $dateFormatee; ?> - <?php echo $row['heure']; ?>H
                 </p>
-                    
-                        <!-- Équipe 1 -->
-                
+
+                <!-- Équipe 1 -->
+
                 <div class="matchContainer">
                     <div class="equ1">
                         <h5 class="nameEquipe">
@@ -26,8 +25,6 @@
                         </p>
 
                     </div>
-
-                        
 
 
                     <div class="vs">
@@ -60,5 +57,5 @@
             </div>
         </div>
     <?php } ?>
-<section>
+    <section>
 

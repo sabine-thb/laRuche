@@ -2,7 +2,7 @@
 
 const BASE_URL = "securité";
 
-require_once ("./back/modules/mod_admin/modele_admin.php");
+require_once("./back/modules/mod_admin/modele_admin.php");
 
 Connexion::initConnexion();
 

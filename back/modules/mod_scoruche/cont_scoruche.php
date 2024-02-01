@@ -4,28 +4,33 @@ if (!defined("BASE_URL")) {
     die("il faut passer par l'index");
 }
 
-require_once "modele_scoruche.php" ;
-require_once "vue_scoruche.php" ;
+require_once "modele_scoruche.php";
+require_once "vue_scoruche.php";
 
-class ContScorcast {
+class ContScorcast
+{
 
     private $vue;
     private $modele;
-    
-    public function __construct(){
+
+    public function __construct()
+    {
         $this->vue = new VueScorcast();
         $this->modele = new ModeleScorcast();
     }
 
-    public function affichage() {
+    public function affichage()
+    {
         return $this->vue->getAffichage();
     }
 
-    public function bienvenue(){
+    public function bienvenue()
+    {
         $this->vue->afficheBienvenue();
     }
 
-    public function recupereCompetitionDisponible(){
+    public function recupereCompetitionDisponible()
+    {
 
         $compets = $this->modele->recupereComp($_SESSION['idUser']);
 
@@ -33,14 +38,15 @@ class ContScorcast {
 
     }
 
-    public function rejoindreCompetition(){
+    public function rejoindreCompetition()
+    {
 
-        if(isset($_GET['idCompet'])){
-            $result = $this->modele->rejoindreCompet($_GET['idCompet'],$_SESSION['idUser']);
+        if (isset($_GET['idCompet'])) {
+            $result = $this->modele->rejoindreCompet($_GET['idCompet'], $_SESSION['idUser']);
 
-            if($result){
+            if ($result) {
                 echo "<section>Vous avez rejoint la competiton avec succès.</section>";
-            }else{
+            } else {
                 echo "<section>Erreur, impossible de rejoindre la compétition.</section>";
             }
 
@@ -48,12 +54,14 @@ class ContScorcast {
 
     }
 
-    public function afficheCompetActive(){
+    public function afficheCompetActive()
+    {
         $compets = $this->modele->recupereCompActive($_SESSION['idUser']);
         $this->vue->afficheCompetitionActive($compets);
     }
 
-    public function afficheClassement(){
+    public function afficheClassement()
+    {
         //le 'id' dans le get correspond a l'id de la competition
         $classement = $this->modele->recupereClassement($_GET['id']);
 
@@ -63,12 +71,14 @@ class ContScorcast {
             $this->vue->afficheClassement($classement);
     }
 
-    public function afficheMatchApronostique(){
-        $matchs = $this->modele->recupereMatch($_GET['id'],$_SESSION['idPronostiqueur']);
+    public function afficheMatchApronostique()
+    {
+        $matchs = $this->modele->recupereMatch($_GET['id'], $_SESSION['idPronostiqueur']);
         $this->vue->afficheMatchs($matchs);
     }
 
-    public function valideProno(){
+    public function valideProno()
+    {
 
         $totalBool = true;
 
@@ -109,7 +119,7 @@ class ContScorcast {
             $idQuestion = $_POST['idQuestion'];
             $idPronostiqueur = $_SESSION['idPronostiqueur'];
 
-            $res = $this->modele->updatePronoQuestionBonus($idPronostiqueur,$idQuestion,$prono);
+            $res = $this->modele->updatePronoQuestionBonus($idPronostiqueur, $idQuestion, $prono);
 
             if (!$res)
                 echo "<p>Erreur !</p>";
@@ -129,7 +139,7 @@ class ContScorcast {
 
     public function recupIdPronostiqueur()
     {
-        $id = $this->modele->PronostiqueurIdActuelle($_SESSION['idUser'],$_GET['id']);
+        $id = $this->modele->PronostiqueurIdActuelle($_SESSION['idUser'], $_GET['id']);
 
         if ($id)
             $_SESSION['idPronostiqueur'] = $id;
@@ -139,13 +149,13 @@ class ContScorcast {
 
     public function afficheResultat()
     {
-        $matchs = $this->modele->recupereMatchFini($_GET['id'],$_SESSION['idPronostiqueur']);
+        $matchs = $this->modele->recupereMatchFini($_GET['id'], $_SESSION['idPronostiqueur']);
 
         if ($matchs == 404)
             echo "<p> Erreur lors de la recupération des résultats </p>";
-        else{
-            $totalPoints = $this->modele->totalPoint($_SESSION['idPronostiqueur'],$_GET['id']);
-            $this->vue->afficheResultat($matchs,$totalPoints);
+        else {
+            $totalPoints = $this->modele->totalPoint($_SESSION['idPronostiqueur'], $_GET['id']);
+            $this->vue->afficheResultat($matchs, $totalPoints);
         }
 
     }
@@ -156,7 +166,7 @@ class ContScorcast {
 
         $data = $this->modele->getInfo($idUser);
         $competActive = $this->modele->getCompetAndClassement($idUser);
-        $this->vue->afficheInfoUser($data,$competActive);
+        $this->vue->afficheInfoUser($data, $competActive);
     }
 
     public function questionsBonus()
@@ -168,7 +178,38 @@ class ContScorcast {
         if (!isset($question) || $question == 404)
             echo "<p>Erreur lors de la recherche des questions</p>";
         else
-            $this->afficheQuestionEnFonctionType($type,$question);
+            $this->afficheQuestionEnFonctionType($type, $question);
+    }
+
+    private function recupereQuestionEnFonctionType($type)
+    {
+        $id = $_SESSION['idPronostiqueur'];
+        switch ($type) {
+            case 'attente':
+                return $this->modele->getQuestionAttente($id);
+            case 'en_cours':
+                return $this->modele->getQuestionEnCours($id);
+            case 'fini':
+                return $this->modele->getQuestionFini($id);
+        }
+
+        return 404; //erreur
+    }
+
+    private function afficheQuestionEnFonctionType($type, $question)
+    {
+        switch ($type) {
+            case 'attente':
+                $equipes = $this->modele->getEquipes();
+                $this->vue->afficheQuestionAttente($question, $equipes);
+                break;
+            case 'en_cours':
+                $this->vue->afficheQuestionEnCours($question);
+                break;
+            case 'fini':
+                $this->vue->afficheQuestionFini($question);
+                break;
+        }
     }
 
     public function editProfil()
@@ -177,7 +218,7 @@ class ContScorcast {
 
         $data = $this->modele->getInfo($isUser);
         $competActive = $this->modele->getCompetAndClassement($isUser);
-        switch ($data['Gender']){
+        switch ($data['Gender']) {
             case 'homme':
                 $data["optionGender"] = "Homme";
                 break;
@@ -195,31 +236,33 @@ class ContScorcast {
                 break;
         }
 
-        $this->vue->afficheFormEdit($data,$competActive);
+        $this->vue->afficheFormEdit($data, $competActive);
     }
 
     public function recupFormEdit()
     {
         $idUser = $_SESSION['idUser'];
 
-        if (isset($_FILES['new_logo']['tmp_name'])){
+        if (isset($_FILES['new_logo']['tmp_name'])) {
             $dest = $this->gererLogo();
             if ($dest == null) {
                 echo "erreur";
-            }else {
-                $res = $this->modele->changeLogo($dest,$idUser);
+            } else {
+                $res = $this->modele->changeLogo($dest, $idUser);
                 if (!$res)
                     echo "<p>Erreur changement logo</p>";
                 else {
                     $_SESSION['srcLogoUser'] = $dest;
                 }
             }
-        }if (isset($_POST['age'])){
-            $this->modele->editAge($_POST['age'],$idUser);
-        }if (isset($_POST['gender'])){
-            $this->modele->editGenre($_POST['gender'],$idUser);
         }
-        $newUrl = $this->vue->changeUrl('action','editProfil');
+        if (isset($_POST['age'])) {
+            $this->modele->editAge($_POST['age'], $idUser);
+        }
+        if (isset($_POST['gender'])) {
+            $this->modele->editGenre($_POST['gender'], $idUser);
+        }
+        $newUrl = $this->vue->changeUrl('action', 'editProfil');
         header("Location: $newUrl");
     }
 
@@ -227,7 +270,7 @@ class ContScorcast {
     {
         $taille = strlen(basename($_FILES["new_logo"]["name"]));
 
-        $taille> 20 ?
+        $taille > 20 ?
             $nom = substr(basename($_FILES["new_logo"]["name"]), -20) :
             $nom = basename($_FILES["new_logo"]["name"]);
 
@@ -241,47 +284,16 @@ class ContScorcast {
         $destination = "./style/img/imageProfil/$_SESSION[loginActif]/$nom";
 
         // Déplacer le fichier téléchargé vers un répertoire sur le serveur
-        if (!move_uploaded_file($temp_name, $destination)){
+        if (!move_uploaded_file($temp_name, $destination)) {
             echo "Une erreur s'est produite lors du téléchargement de l'image.<br>";
             return null;
-        }else
+        } else
             return $destination;
     }
 
     public function afficheFormMdp()
     {
         $this->vue->afficheFormNouveauMDP();
-    }
-
-    private function recupereQuestionEnFonctionType($type)
-    {
-        $id = $_SESSION['idPronostiqueur'];
-        switch ($type){
-            case 'attente':
-                return $this->modele->getQuestionAttente($id);
-            case 'en_cours':
-                return $this->modele->getQuestionEnCours($id);
-            case 'fini':
-                return $this->modele->getQuestionFini($id);
-        }
-
-        return 404; //erreur
-    }
-
-    private function afficheQuestionEnFonctionType($type, $question)
-    {
-        switch ($type){
-            case 'attente':
-                $equipes = $this->modele->getEquipes();
-                $this->vue->afficheQuestionAttente($question,$equipes);
-                break;
-            case 'en_cours':
-                $this->vue->afficheQuestionEnCours($question);
-                break;
-            case 'fini':
-                $this->vue->afficheQuestionFini($question);
-                break;
-        }
     }
 
 }

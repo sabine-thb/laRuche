@@ -1,75 +1,72 @@
-.flexContainer{
-    display:flex;
+.flexContainer {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#formProfil, .flexContainerProfil{
+#formProfil, .flexContainerProfil {
     background-color: white;
-    padding:25px 25px 70px 25px;
-    border-radius:20px;
+    padding: 25px 25px 70px 25px;
+    border-radius: 20px;
     width: fit-content;
     box-shadow: 20px 20px 19px 1px rgba(0, 0, 0, 0.25);
     position: relative;
 }
 
-.infosPers{
-    margin-bottom:50px;
+.infosPers {
+    margin-bottom: 50px;
 }
 
-.label{
-    width:fit-content;
-    padding:5px;
+.label {
+    width: fit-content;
+    padding: 5px;
     background-color: #f3db8b;
     border-radius: 5px;
-    margin-right:10px;
+    margin-right: 10px;
 }
 
 
-.mdp{
-    width:300px;
+.mdp {
+    width: 300px;
     cursor: pointer;
     font-family: "montserratRegular", sans-serif;
-    color:white;
+    color: white;
     background-color: gray;
-    border:none;
-    border-radius:5px;
-    padding:5px 15px 5px 15px;
-    transition:padding 0.3s ease-in-out;
-    margin-top:30px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px 5px 15px;
+    transition: padding 0.3s ease-in-out;
+    margin-top: 30px;
     text-decoration: none;
-    border:black solid 2px;
-    margin:auto;
-    position:absolute;
-    left:50%;
-    bottom:20px;
-    transform: translate(-50%,0);
+    border: black solid 2px;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translate(-50%, 0);
     text-align: center;
 }
 
-.mdp:hover{
-    padding:5px 20px 5px 20px;
+.mdp:hover {
+    padding: 5px 20px 5px 20px;
 }
 
 
-#content{
+#content {
     flex-direction: initial;
     justify-content: normal;
     align-items: normal;
 }
 
-.one-compet{
-    background-color:rgb(197, 206, 234);
+.one-compet {
+    background-color: rgb(197, 206, 234);
     margin-bottom: 20px;
-    border-radius:5px;
-    padding:0 15px 0 15px;
+    border-radius: 5px;
+    padding: 0 15px 0 15px;
 }
-    
 
 
-
-
-input[type=file]{
+input[type=file] {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -80,15 +77,15 @@ input[type=file]{
     padding: 7px 60px;
     cursor: pointer;
     transition: 0.5s;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     opacity: 0;
 }
 
-input[type=file]::-webkit-file-upload-button{
+input[type=file]::-webkit-file-upload-button {
     visibility: hidden;
 }
 
-input[type=file]::before{
+input[type=file]::before {
     content: '\f030';
     font-family: fontAwesome, serif;
     font-size: 25px;
@@ -97,7 +94,7 @@ input[type=file]::before{
     -webkit-user-select: none;
 }
 
-input[type=file]::after{
+input[type=file]::after {
     content: 'Update';
     font-family: 'arial', serif;
     font-weight: bold;
@@ -107,91 +104,91 @@ input[type=file]::after{
     font-size: 11px;
 }
 
-input[type=file]:hover{
+input[type=file]:hover {
     opacity: 1;
 }
 
-.topLeft-form{
+.topLeft-form {
     display: flex;
     align-items: center;
 }
 
-.btn-save{
+.btn-save {
     margin-top: 10px;
     text-align: center;
 }
 
-.Nom{
+.Nom {
     margin-left: 10px;
 }
 
-#center{
+#center {
     margin-top: 25px;
 }
 
 /*Je stylise la page de visibilité des autre user*/
 
-.viewProfil{
-    display:flex;
+.viewProfil {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.profilUserName{
+.profilUserName {
     font-family: "montserratExtraBold", sans-serif;
 }
 
-.retourClass{
+.retourClass {
     text-decoration: none;
-    color:white;
+    color: white;
     background-color: gray;
     padding: 5px 10px 5px 10px;
-    border-radius:5px;
+    border-radius: 5px;
     transition: padding 0.3s ease-in-out;
 }
 
-.retourClass:hover{
+.retourClass:hover {
     padding: 5px 15px 5px 15px;
 }
 
-.descrOtherUser{
+.descrOtherUser {
     display: flex;
     flex-direction: column;
-    gap:10px;
+    gap: 10px;
     text-align: center;
-    margin-bottom:40px;
+    margin-bottom: 40px;
 }
 
 
-@media(max-width:450px){
-    .pForm{
+@media (max-width: 450px) {
+    .pForm {
         display: flex;
         flex-direction: column;
     }
 
-    .nameCompet{
-        font-size:1.2rem;
+    .nameCompet {
+        font-size: 1.2rem;
     }
 
-    .mdp{
-        font-size:0.8rem;
-        width:230px;
+    .mdp {
+        font-size: 0.8rem;
+        width: 230px;
     }
 
-    .one-compet{
-        display:flex;
+    .one-compet {
+        display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    .nameCompet{
-        margin-bottom:0;
+    .nameCompet {
+        margin-bottom: 0;
     }
 
-    .quiEst{
+    .quiEst {
         font-size: 1.2rem;
     }
 
-    
+
 }
 

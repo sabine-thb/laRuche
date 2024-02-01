@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     const inputDescription = document.getElementById('description');
     const label = document.querySelector('#btn-info');
@@ -7,9 +6,10 @@ document.addEventListener('DOMContentLoaded', function () {
         label.classList.remove('bouge');
     });
 });
+
 function afficherErreurInscription() {
 
-    function checkChampVide(a){
+    function checkChampVide(a) {
         a.classList.remove('erreurInputVide');
 
         if (a.value.trim() === "") {
@@ -28,7 +28,7 @@ function afficherErreurInscription() {
 
     let erreur = true;
 
-    champs.forEach( e => {
+    champs.forEach(e => {
         if (checkChampVide(e))
             erreur = false;
     });

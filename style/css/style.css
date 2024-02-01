@@ -1,10 +1,9 @@
-
 /* img {
     width: 220px;
     height: 220px;
 } */
 
-#liste_equipe{
+#liste_equipe {
     padding: 10px 20px;;
     color: #007bff; /* Couleur du texte */
     background-color: transparent; /* Couleur de fond transparente */
@@ -26,7 +25,7 @@
     height: 25px;
 }
 
-#modif_equipe{
+#modif_equipe {
     background-color: rgb(229, 229, 172);
     padding: 15px;
     text-align: center;

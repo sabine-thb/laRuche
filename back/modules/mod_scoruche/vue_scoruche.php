@@ -6,35 +6,42 @@ if (!defined("BASE_URL")) {
 
 require_once './back/vue_generique.php';
 
-class VueScorcast extends VueGenerique {
+class VueScorcast extends VueGenerique
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function afficheBienvenue() {
+    public function afficheBienvenue()
+    {
         require_once('./front/scoruche/bienvenue.php');
     }
 
-    public function afficheCompetitionDispo($tableau) {
+    public function afficheCompetitionDispo($tableau)
+    {
         require_once('./front/scoruche/listeCompetitionDispo.php');
     }
 
-    public function afficheCompetitionActive($tableau) {
+    public function afficheCompetitionActive($tableau)
+    {
         require_once('./front/scoruche/listeCompetitionActive.php');
     }
 
-    public function afficheClassement($classement) {
+    public function afficheClassement($classement)
+    {
         require_once('./front/scoruche/Classement.php');
     }
 
-    public function afficheMatchs($matchs) {
+    public function afficheMatchs($matchs)
+    {
         require_once('./front/scoruche/matchs.php');
     }
 
     public function afficheResultat($matchs, $totalPoints)
     {
-        require_once ('./front/scoruche/resultats.php');
+        require_once('./front/scoruche/resultats.php');
     }
 
     public function afficheInfoUser($data, $competActive)
@@ -47,7 +54,7 @@ class VueScorcast extends VueGenerique {
         require_once('./front/scoruche/QuestionBonus/boutons.php');
     }
 
-    public function afficheQuestionAttente($questions,$equipes)
+    public function afficheQuestionAttente($questions, $equipes)
     {
         require_once('./front/scoruche/QuestionBonus/listeQuestionsAttente.php');
     }
@@ -62,17 +69,11 @@ class VueScorcast extends VueGenerique {
         require_once('./front/scoruche/QuestionBonus/listeQuestionsFini.php');
     }
 
-    public function afficheFormEdit($data,$competActive)
+    public function afficheFormEdit($data, $competActive)
     {
-        $newURL = $this->changeUrl('action','edit');
-        $newUrlEditPassword = $this->changeUrl('action','changePassword');
+        $newURL = $this->changeUrl('action', 'edit');
+        $newUrlEditPassword = $this->changeUrl('action', 'changePassword');
         require_once("./front/profil/EditProfil.php");
-    }
-
-    public function afficheFormNouveauMDP()
-    {
-        $nextPage = $this->changeUrl('action','editProfil');
-        require_once('./front/connexion/nouveauPassword.php');
     }
 
     public function changeUrl($queryParam, $value): string
@@ -82,6 +83,12 @@ class VueScorcast extends VueGenerique {
         $queryParams[$queryParam] = $value;
         $newQueryString = http_build_query($queryParams);
         return strtok($currentURL, '?') . '?' . $newQueryString;
+    }
+
+    public function afficheFormNouveauMDP()
+    {
+        $nextPage = $this->changeUrl('action', 'editProfil');
+        require_once('./front/connexion/nouveauPassword.php');
     }
 
 }

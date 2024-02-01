@@ -12,10 +12,10 @@ $nom_instance_rds = 'laruche2';
 
 try {
     $rdsClient = new RdsClient([
-        'version'     => 'latest',
-        'region'      => $region,
+        'version' => 'latest',
+        'region' => $region,
         'credentials' => [
-            'key'    => $key,
+            'key' => $key,
             'secret' => $secret,
         ],
     ]);

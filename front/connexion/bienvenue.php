@@ -1,4 +1,3 @@
-
 <p class="bienvenue">
     Bienvenue !
 </p>

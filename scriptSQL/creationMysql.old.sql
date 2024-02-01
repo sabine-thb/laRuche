@@ -1,4 +1,3 @@
-
 # write by Arsene Maitre
 # Projet : Site LaRuche
 # script for init database 'LaRuche'
@@ -11,101 +10,112 @@ CREATE DATABASE LaRuche;
 USE LaRuche;
 
 
-CREATE TABLE users(
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
-    login VARCHAR(50) NOT NULL,
-    mail VARCHAR(50) NOT NULL,
-    description VARCHAR(500),
-    password VARCHAR(255) NOT NULL,
-    est_verifier BOOLEAN NOT NULL DEFAULT false
+CREATE TABLE users
+(
+    user_id      INT AUTO_INCREMENT PRIMARY KEY,
+    login        VARCHAR(50)  NOT NULL,
+    mail         VARCHAR(50)  NOT NULL,
+    description  VARCHAR(500),
+    password     VARCHAR(255) NOT NULL,
+    est_verifier BOOLEAN      NOT NULL DEFAULT false
 );
 
-CREATE TABLE admin(
-	admin_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-	login VARCHAR(50) NOT NULL,
-    password VARCHAR(255) NOT NULL
+CREATE TABLE admin
+(
+    admin_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    login    VARCHAR(50)        NOT NULL,
+    password VARCHAR(255)       NOT NULL
 );
 
-CREATE TABLE competition(
+CREATE TABLE competition
+(
     competition_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    nom VARCHAR(50) NOT NULL,
-    description VARCHAR(1024),
+    nom           VARCHAR(50) NOT NULL,
+    description   VARCHAR(1024),
     date_creation DATE
 );
 
-CREATE TABLE pronostiqueur(
+CREATE TABLE pronostiqueur
+(
     pronostiqueur_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    user_id INT NOT NULL,
+    user_id        INT NOT NULL,
     competition_id INT NOT NULL,
 #     points INT DEFAULT 0,
-    CONSTRAINT fk_pronostiqueur_users FOREIGN KEY(user_id) REFERENCES LaRuche_users (user_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT fk_pronostiqueur_competition FOREIGN KEY(competition_id) REFERENCES LaRuche_competition (competition_id) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT fk_pronostiqueur_users FOREIGN KEY (user_id) REFERENCES LaRuche_users (user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_pronostiqueur_competition FOREIGN KEY (competition_id) REFERENCES LaRuche_competition (competition_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE equipe(
+CREATE TABLE equipe
+(
     equipe_id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(50) NOT NULL,
+    nom     VARCHAR(50) NOT NULL,
     srcLogo VARCHAR(50)
 );
 
-CREATE TABLE matchApronostiquer(
-    match_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    equipe1_id INT NOT NULL,
-    equipe2_id INT NOT NULL,
-    competition_id INT NOT NULL,
-    pts_Exact INT NOT NULL DEFAULT 0,
-    pts_Ecart INT NOT NULL DEFAULT 0,
-    pts_Vainq INT NOT NULL DEFAULT 0,
-    date_match DATE NOT NULL,
-    pari_ouvert BOOLEAN NOT NULL DEFAULT true,
-    CONSTRAINT fk_match_equipe1 FOREIGN KEY(equipe1_id) REFERENCES LaRuche_equipe (equipe_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT fk_match_equipe2 FOREIGN KEY(equipe2_id) REFERENCES LaRuche_equipe (equipe_id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT fk_match_competition FOREIGN KEY(competition_id) REFERENCES LaRuche_competition (competition_id) ON DELETE RESTRICT ON UPDATE CASCADE
+CREATE TABLE matchApronostiquer
+(
+    match_id       INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    equipe1_id     INT                NOT NULL,
+    equipe2_id     INT                NOT NULL,
+    competition_id INT                NOT NULL,
+    pts_Exact      INT                NOT NULL DEFAULT 0,
+    pts_Ecart      INT                NOT NULL DEFAULT 0,
+    pts_Vainq      INT                NOT NULL DEFAULT 0,
+    date_match     DATE               NOT NULL,
+    pari_ouvert    BOOLEAN            NOT NULL DEFAULT true,
+    CONSTRAINT fk_match_equipe1 FOREIGN KEY (equipe1_id) REFERENCES LaRuche_equipe (equipe_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT fk_match_equipe2 FOREIGN KEY (equipe2_id) REFERENCES LaRuche_equipe (equipe_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT fk_match_competition FOREIGN KEY (competition_id) REFERENCES LaRuche_competition (competition_id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-CREATE TABLE resultatMatch(
-    match_id INT NOT NULL PRIMARY KEY,
+CREATE TABLE resultatMatch
+(
+    match_id      INT NOT NULL PRIMARY KEY,
     nb_but_equipe1 INT,
     nb_but_equipe2 INT,
-    resultat_peno ENUM('equipe1','equipe2'),
-    CONSTRAINT fk_resultatMatch_match FOREIGN KEY(match_id) REFERENCES LaRuche_matchApronostiquer (match_id) ON DELETE CASCADE ON UPDATE CASCADE
+    resultat_peno ENUM ('equipe1','equipe2'),
+    CONSTRAINT fk_resultatMatch_match FOREIGN KEY (match_id) REFERENCES LaRuche_matchApronostiquer (match_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE pronostique(
-    match_id INT NOT NULL,
+CREATE TABLE pronostique
+(
+    match_id        INT NOT NULL,
     pronostiqueur_id INT NOT NULL,
-    prono_equipe1 INT,
-    prono_equipe2 INT,
-    point_obtenu INT DEFAULT 0,
-    vainqueur_prono ENUM('equipe1','equipe2'),
-    CONSTRAINT fk_pronostique_pronostiqueur FOREIGN KEY(pronostiqueur_id) REFERENCES LaRuche_pronostiqueur (pronostiqueur_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT fk_pronostique_match FOREIGN KEY(match_id) REFERENCES LaRuche_matchApronostiquer (match_id) ON DELETE CASCADE ON UPDATE CASCADE
+    prono_equipe1   INT,
+    prono_equipe2   INT,
+    point_obtenu    INT DEFAULT 0,
+    vainqueur_prono ENUM ('equipe1','equipe2'),
+    CONSTRAINT fk_pronostique_pronostiqueur FOREIGN KEY (pronostiqueur_id) REFERENCES LaRuche_pronostiqueur (pronostiqueur_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_pronostique_match FOREIGN KEY (match_id) REFERENCES LaRuche_matchApronostiquer (match_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE LaRuche.questionBonus(
+CREATE TABLE LaRuche.questionBonus
+(
     question_bonus_id INT AUTO_INCREMENT PRIMARY KEY,
-    titre VARCHAR(50) NOT NULL,
-    competition_id INT NOT NULL,
-    objectif VARCHAR(150),
-    type ENUM('nombre','string','equipe','bool') NOT NULL,
+    titre             VARCHAR(50)                              NOT NULL,
+    competition_id    INT                                      NOT NULL,
+    objectif          VARCHAR(150),
+    type              ENUM ('nombre','string','equipe','bool') NOT NULL,
     point_bonne_reponse INT,
-    pari_ouvert BOOLEAN NOT NULL DEFAULT true,
-    CONSTRAINT fk_questionBonus_competition FOREIGN KEY(competition_id) REFERENCES LaRuche.LaRuche_competition (competition_id) ON DELETE CASCADE ON UPDATE CASCADE
+    pari_ouvert       BOOLEAN                                  NOT NULL DEFAULT true,
+    CONSTRAINT fk_questionBonus_competition FOREIGN KEY (competition_id) REFERENCES LaRuche.LaRuche_competition (competition_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE LaRuche.pronoQuestionBonus(
+CREATE TABLE LaRuche.pronoQuestionBonus
+(
     question_bonus_id INT NOT NULL,
     pronostiqueur_id INT NOT NULL,
-    reponse VARCHAR(20),
-    point_obtenu INT DEFAULT 0,
-    CONSTRAINT fk_pronoQuestionBonus_pronostiqueur FOREIGN KEY(pronostiqueur_id) REFERENCES LaRuche_pronostiqueur (pronostiqueur_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT fk_pronoQuestionBonus_match FOREIGN KEY(question_bonus_id) REFERENCES LaRuche_questionBonus (question_bonus_id) ON DELETE CASCADE ON UPDATE CASCADE
+    reponse          VARCHAR(20),
+    point_obtenu     INT DEFAULT 0,
+    CONSTRAINT fk_pronoQuestionBonus_pronostiqueur FOREIGN KEY (pronostiqueur_id) REFERENCES LaRuche_pronostiqueur (pronostiqueur_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_pronoQuestionBonus_match FOREIGN KEY (question_bonus_id) REFERENCES LaRuche_questionBonus (question_bonus_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE LaRuche.resultatQuestionBonus(
+CREATE TABLE LaRuche.resultatQuestionBonus
+(
     question_bonus_id INT NOT NULL PRIMARY KEY,
     bonne_reponse VARCHAR(20),
-    CONSTRAINT fk_resultatQuestionBonus_questionBonus FOREIGN KEY(question_bonus_id) REFERENCES LaRuche_questionBonus (question_bonus_id) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT fk_resultatQuestionBonus_questionBonus FOREIGN KEY (question_bonus_id) REFERENCES LaRuche_questionBonus (question_bonus_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Fonction
@@ -114,8 +124,8 @@ delimiter $$
 
 DROP FUNCTION IF EXISTS LaRuche.bonVaiqueur $$
 CREATE FUNCTION LaRuche.bonVaiqueur(
-    prono1 INT, prono2 INT, pronoVainqueurPeno ENUM('equipe1','equipe2'),
-    resultat1 INT, resultat2 INT, pesultatVainqueurPeno ENUM('equipe1','equipe2')
+    prono1 INT, prono2 INT, pronoVainqueurPeno ENUM ('equipe1','equipe2'),
+    resultat1 INT, resultat2 INT, pesultatVainqueurPeno ENUM ('equipe1','equipe2')
 ) RETURNS BOOLEAN
 BEGIN
     DECLARE result BOOLEAN;
@@ -146,19 +156,23 @@ BEGIN
     DECLARE t INT;
     DECLARE t2 INT;
 
-    SELECT SUM(point_obtenu) INTO t
-                             FROM LaRuche.LaRuche_pronostique
-                             NATURAL JOIN LaRuche.LaRuche_matchApronostiquer
-                             WHERE pronostiqueur_id = id_pronostiqueur and competition_id = id_compet;
+    SELECT SUM(point_obtenu)
+    INTO t
+    FROM LaRuche.LaRuche_pronostique
+             NATURAL JOIN LaRuche.LaRuche_matchApronostiquer
+    WHERE pronostiqueur_id = id_pronostiqueur
+      and competition_id = id_compet;
 
     IF t IS NULL THEN
         SET t = 0;
     END IF;
 
-    SELECT SUM(point_obtenu) INTO t2
-                            FROM LaRuche.LaRuche_pronoQuestionBonus
-                            NATURAL JOIN LaRuche.LaRuche_questionBonus
-                            WHERE pronostiqueur_id = id_pronostiqueur and competition_id = id_compet;
+    SELECT SUM(point_obtenu)
+    INTO t2
+    FROM LaRuche.LaRuche_pronoQuestionBonus
+             NATURAL JOIN LaRuche.LaRuche_questionBonus
+    WHERE pronostiqueur_id = id_pronostiqueur
+      and competition_id = id_compet;
 
     IF t2 IS NULL THEN
         SET t2 = 0;
@@ -173,9 +187,11 @@ BEGIN
 
     DECLARE t INT;
 
-    SELECT COUNT(*) + 1 INTO t
+    SELECT COUNT(*) + 1
+    INTO t
     FROM LaRuche_pronostiqueur
-    WHERE competition_id = id_compet and totalPoint(pronostiqueur_id,competition_id) > totalPoint(id_pronostiqueur,id_compet);
+    WHERE competition_id = id_compet
+      and totalPoint(pronostiqueur_id, competition_id) > totalPoint(id_pronostiqueur, id_compet);
 
     IF t IS NULL THEN
         SET t = -1;
@@ -189,27 +205,32 @@ END $$
 -- ajoute automatiquement des tuples de pronostique pour chaque personne d'une competition lorsqu'un match est crée
 
 DROP TRIGGER IF EXISTS LaRuche.ajoutAutoPronoDefaut $$
-CREATE TRIGGER LaRuche.ajoutAutoPronoDefaut AFTER INSERT ON LaRuche.LaRuche_matchApronostiquer
+CREATE TRIGGER LaRuche.ajoutAutoPronoDefaut
+    AFTER INSERT
+    ON LaRuche.LaRuche_matchApronostiquer
     FOR EACH ROW
-BEGIN 
+BEGIN
 
     DECLARE is_done INTEGER DEFAULT 0;
 
     DECLARE idTemp INT;
-    DECLARE myCursor CURSOR FOR SELECT pronostiqueur_id FROM LaRuche.LaRuche_pronostiqueur WHERE LaRuche_pronostiqueur.competition_id = NEW.competition_id;
-    
+    DECLARE myCursor CURSOR FOR SELECT pronostiqueur_id
+                                FROM LaRuche.LaRuche_pronostiqueur
+                                WHERE LaRuche_pronostiqueur.competition_id = NEW.competition_id;
+
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
 
     OPEN myCursor;
 
-    read_loop: LOOP
+    read_loop:
+    LOOP
         FETCH myCursor INTO idTemp;
-        
+
         IF is_done = 1 THEN
             LEAVE read_loop;
         END IF;
 
-        INSERT INTO LaRuche.LaRuche_pronostique(match_id,pronostiqueur_id) VALUES (NEW.match_id, idTemp);
+        INSERT INTO LaRuche.LaRuche_pronostique(match_id, pronostiqueur_id) VALUES (NEW.match_id, idTemp);
     END LOOP;
 
     CLOSE myCursor;
@@ -218,27 +239,33 @@ END $$
 -- ajoute automatiquement des tuples de prono pour chaque personne d'une competition lorsqu'une question bonus est crée
 
 DROP TRIGGER IF EXISTS LaRuche.ajoutAutoPronoQuestionDefaut $$
-CREATE TRIGGER LaRuche.ajoutAutoPronoQuestionDefaut AFTER INSERT ON LaRuche.LaRuche_questionBonus
+CREATE TRIGGER LaRuche.ajoutAutoPronoQuestionDefaut
+    AFTER INSERT
+    ON LaRuche.LaRuche_questionBonus
     FOR EACH ROW
 BEGIN
 
     DECLARE is_done INTEGER DEFAULT 0;
 
     DECLARE idTemp INT;
-    DECLARE myCursor CURSOR FOR SELECT pronostiqueur_id FROM LaRuche.LaRuche_pronostiqueur WHERE LaRuche_pronostiqueur.competition_id = NEW.competition_id;
+    DECLARE myCursor CURSOR FOR SELECT pronostiqueur_id
+                                FROM LaRuche.LaRuche_pronostiqueur
+                                WHERE LaRuche_pronostiqueur.competition_id = NEW.competition_id;
 
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
 
     OPEN myCursor;
 
-    read_loop: LOOP
+    read_loop:
+    LOOP
         FETCH myCursor INTO idTemp;
 
         IF is_done = 1 THEN
             LEAVE read_loop;
         END IF;
 
-        INSERT INTO LaRuche.LaRuche_pronoQuestionBonus(question_bonus_id,pronostiqueur_id)VALUES (NEW.question_bonus_id, idTemp);
+        INSERT INTO LaRuche.LaRuche_pronoQuestionBonus(question_bonus_id, pronostiqueur_id)
+        VALUES (NEW.question_bonus_id, idTemp);
     END LOOP;
 
     CLOSE myCursor;
@@ -247,28 +274,35 @@ END $$
 -- ajoute automatiquement des prono au matchs + question bonus créé précédemment si un user rejoint une competition en cours de route
 
 DROP TRIGGER IF EXISTS LaRuche.ajoutAutoPronoBefore $$
-CREATE TRIGGER LaRuche.ajoutAutoPronoBefore AFTER INSERT ON LaRuche.LaRuche_pronostiqueur
+CREATE TRIGGER LaRuche.ajoutAutoPronoBefore
+    AFTER INSERT
+    ON LaRuche.LaRuche_pronostiqueur
     FOR EACH ROW
 BEGIN
 
     DECLARE is_done INTEGER DEFAULT 0;
 
     DECLARE idTemp INT;
-    DECLARE myCursor CURSOR FOR SELECT match_id FROM LaRuche.LaRuche_matchApronostiquer WHERE competition_id = NEW.competition_id;
-    DECLARE myCursor2 CURSOR FOR SELECT question_bonus_id FROM LaRuche.LaRuche_questionBonus WHERE competition_id = NEW.competition_id;
+    DECLARE myCursor CURSOR FOR SELECT match_id
+                                FROM LaRuche.LaRuche_matchApronostiquer
+                                WHERE competition_id = NEW.competition_id;
+    DECLARE myCursor2 CURSOR FOR SELECT question_bonus_id
+                                 FROM LaRuche.LaRuche_questionBonus
+                                 WHERE competition_id = NEW.competition_id;
 
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
 
     OPEN myCursor;
 
-    read_loop: LOOP
+    read_loop:
+    LOOP
         FETCH myCursor INTO idTemp;
 
         IF is_done = 1 THEN
             LEAVE read_loop;
         END IF;
 
-        INSERT INTO LaRuche.LaRuche_pronostique(match_id,pronostiqueur_id) VALUES (idTemp, NEW.pronostiqueur_id);
+        INSERT INTO LaRuche.LaRuche_pronostique(match_id, pronostiqueur_id) VALUES (idTemp, NEW.pronostiqueur_id);
     END LOOP;
 
     CLOSE myCursor;
@@ -277,14 +311,16 @@ BEGIN
 
     OPEN myCursor2;
 
-    read_loop: LOOP
+    read_loop:
+    LOOP
         FETCH myCursor2 INTO idTemp;
 
         IF is_done = 1 THEN
             LEAVE read_loop;
         END IF;
 
-        INSERT INTO LaRuche.LaRuche_pronoQuestionBonus(question_bonus_id,pronostiqueur_id)VALUES (idTemp, NEW.pronostiqueur_id);
+        INSERT INTO LaRuche.LaRuche_pronoQuestionBonus(question_bonus_id, pronostiqueur_id)
+        VALUES (idTemp, NEW.pronostiqueur_id);
     END LOOP;
 
     CLOSE myCursor2;
@@ -294,7 +330,9 @@ END $$
 -- permet d'ajouter les points au pronostiqueurs lors qu'un resultat est enregistrer
 
 DROP TRIGGER IF EXISTS LaRuche.calculsPoints $$
-CREATE TRIGGER LaRuche.calculsPoints AFTER INSERT ON LaRuche.LaRuche_resultatMatch
+CREATE TRIGGER LaRuche.calculsPoints
+    AFTER INSERT
+    ON LaRuche.LaRuche_resultatMatch
     FOR EACH ROW
 BEGIN
 
@@ -303,51 +341,58 @@ BEGIN
     DECLARE idTemp INT;
     DECLARE prono1 INT;
     DECLARE prono2 INT;
-    DECLARE pronoResultatPeno ENUM('equipe1','equipe2');
+    DECLARE pronoResultatPeno ENUM ('equipe1','equipe2');
     DECLARE ptTemp INT;
     DECLARE myCursor CURSOR FOR
         SELECT pronostiqueur_id
         FROM LaRuche.LaRuche_pronostiqueur
         WHERE competition_id = (SELECT competition_id
                                 FROM LaRuche.LaRuche_resultatMatch
-                                NATURAL JOIN LaRuche.LaRuche_matchApronostiquer
-                                WHERE match_id = NEW.match_id
-                                )
-    ;
+                                         NATURAL JOIN LaRuche.LaRuche_matchApronostiquer
+                                WHERE match_id = NEW.match_id);
 
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
 
     OPEN myCursor;
 
-    read_loop: LOOP
+    read_loop:
+    LOOP
         FETCH myCursor INTO idTemp;
 
         IF is_done = 1 THEN
             LEAVE read_loop;
         END IF;
 
-        SELECT prono_equipe1,prono_equipe2,vainqueur_prono
+        SELECT prono_equipe1, prono_equipe2, vainqueur_prono
         INTO prono1, prono2,pronoResultatPeno
         FROM LaRuche.LaRuche_pronostique
-        WHERE pronostiqueur_id = idTemp and LaRuche_pronostique.match_id = NEW.match_id;
+        WHERE pronostiqueur_id = idTemp
+          and LaRuche_pronostique.match_id = NEW.match_id;
 
         IF prono1 = prono2 and NEW.nb_but_equipe1 = NEW.nb_but_equipe2 THEN
             IF prono1 = NEW.nb_but_equipe1 THEN
                 IF pronoResultatPeno = NEW.resultat_peno THEN
-                    SET ptTemp = (SELECT pts_Exact FROM LaRuche.LaRuche_matchApronostiquer WHERE match_id = NEW.match_id);
+                    SET ptTemp =
+                            (SELECT pts_Exact FROM LaRuche.LaRuche_matchApronostiquer WHERE match_id = NEW.match_id);
                 ELSE
-                    SET ptTemp = (SELECT (pts_Exact - pts_Vainq) FROM LaRuche.LaRuche_matchApronostiquer WHERE match_id = NEW.match_id);
+                    SET ptTemp = (SELECT (pts_Exact - pts_Vainq)
+                                  FROM LaRuche.LaRuche_matchApronostiquer
+                                  WHERE match_id = NEW.match_id);
                 END IF;
             ELSE
                 IF pronoResultatPeno = NEW.resultat_peno THEN
-                    SET ptTemp = (SELECT pts_Ecart FROM LaRuche.LaRuche_matchApronostiquer WHERE match_id = NEW.match_id);
+                    SET ptTemp =
+                            (SELECT pts_Ecart FROM LaRuche.LaRuche_matchApronostiquer WHERE match_id = NEW.match_id);
                 ELSE
-                    SET ptTemp = (SELECT (pts_Ecart - pts_Vainq) FROM LaRuche.LaRuche_matchApronostiquer WHERE match_id = NEW.match_id);
+                    SET ptTemp = (SELECT (pts_Ecart - pts_Vainq)
+                                  FROM LaRuche.LaRuche_matchApronostiquer
+                                  WHERE match_id = NEW.match_id);
                 END IF;
             END IF;
         ELSEIF prono1 = NEW.nb_but_equipe1 and prono2 = NEW.nb_but_equipe2 THEN
             SET ptTemp = (SELECT pts_Exact FROM LaRuche.LaRuche_matchApronostiquer WHERE match_id = NEW.match_id);
-        ELSEIF bonVaiqueur(prono1,prono2,pronoResultatPeno,NEW.nb_but_equipe1,NEW.nb_but_equipe2,NEW.resultat_peno) THEN
+        ELSEIF bonVaiqueur(prono1, prono2, pronoResultatPeno, NEW.nb_but_equipe1, NEW.nb_but_equipe2,
+                           NEW.resultat_peno) THEN
             IF ABS(prono1 - prono2) = ABS(NEW.nb_but_equipe1 - NEW.nb_but_equipe2) THEN
                 SET ptTemp = (SELECT pts_Ecart FROM LaRuche.LaRuche_matchApronostiquer WHERE match_id = NEW.match_id);
             ELSE
@@ -357,7 +402,10 @@ BEGIN
             SET ptTemp = 0;
         END IF;
 
-        UPDATE LaRuche.LaRuche_pronostique SET point_obtenu = ptTemp WHERE pronostiqueur_id = idTemp and LaRuche_pronostique.match_id = NEW.match_id;
+        UPDATE LaRuche.LaRuche_pronostique
+        SET point_obtenu = ptTemp
+        WHERE pronostiqueur_id = idTemp
+          and LaRuche_pronostique.match_id = NEW.match_id;
 
     END LOOP;
 
@@ -369,8 +417,9 @@ delimiter ;
 
 -- INSERTION DEFAUT
 
-INSERT INTO LaRuche_admin(login,password)VALUES ('admin', '$2y$10$NgQgoczV30jYL290isx3pOSP3eUfJaVsWpjQW8xz1ruhazMEVN7WO');
+INSERT INTO LaRuche_admin(login, password)
+VALUES ('admin', '$2y$10$NgQgoczV30jYL290isx3pOSP3eUfJaVsWpjQW8xz1ruhazMEVN7WO');
 
-INSERT INTO LaRuche_competition(nom,description,date_creation)VALUES
-('test','supprime moi en cliquant sur la corbeille',CURRENT_DATE()),
-('champions league','championnat des meilleurs club d europe',CURRENT_DATE());
+INSERT INTO LaRuche_competition(nom, description, date_creation)
+VALUES ('test', 'supprime moi en cliquant sur la corbeille', CURRENT_DATE()),
+       ('champions league', 'championnat des meilleurs club d europe', CURRENT_DATE());

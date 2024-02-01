@@ -1,27 +1,25 @@
-
-
 /*Je stylise ce qui apparait sur la page lorsque l'on se connecte*/
 
-.msgArv{
+.msgArv {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    color:white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
     background-color: rgba(0, 0, 0, 0.156);
-    padding:20px;
+    padding: 20px;
 }
 
-.descr,.bienvenue{
-    margin:0;
+.descr, .bienvenue {
+    margin: 0;
     text-align: center;
 }
 
 
-.videoContainer{
+.videoContainer {
     position: fixed;
     top: 0;
     left: 0;
@@ -43,105 +41,105 @@
     filter: blur(5px);
 }
 
-.bienvenue{
-    font-family:"montserratExtraBold", sans-serif !important;
+.bienvenue {
+    font-family: "montserratExtraBold", sans-serif !important;
     text-transform: uppercase;
-    font-size:3rem;
+    font-size: 3rem;
 }
 
-.descr{
-    font-size:1.3rem;
+.descr {
+    font-size: 1.3rem;
     /* background-color:#080e50;
     padding:5px;
     border-radius:5px;
     text-align: center; */
 }
 
-.logo{
-    position:absolute;
-    width:200px;
-    z-index:100;
-    top:-120px;
-    right:-120px;
+.logo {
+    position: absolute;
+    width: 200px;
+    z-index: 100;
+    top: -120px;
+    right: -120px;
     transform: rotate(20deg);
 }
 
 /*Je stylise ce qui apparait sur la page des compétitions actives*/
 
-.titleCompet{
-    font-family:"montserratExtraBold", sans-serif;
+.titleCompet {
+    font-family: "montserratExtraBold", sans-serif;
 }
 
-section{
-    padding:25px;
+section {
+    padding: 25px;
 }
 
-.cardContainer{
+.cardContainer {
     text-align: center;
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.cardCompet{
-    width:800px;
-    background-color:white;
-    padding:20px;
-    border-radius:20px;
+.cardCompet {
+    width: 800px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
     margin-bottom: 12px;
-    display:flex;
+    display: flex;
     flex-direction: column;
     box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25);
 }
 
-.cardTitle{
-    margin:25px 0px 0px 0px;
+.cardTitle {
+    margin: 25px 0px 0px 0px;
 }
 
-.cardDescr{
-    margin-top:5px;
+.cardDescr {
+    margin-top: 5px;
 }
 
-.lienPari{
-    color:white;
-    text-decoration:none;
+.lienPari {
+    color: white;
+    text-decoration: none;
     background-color: gray;
-    padding:5px 10px 5px 10px;
-    border-radius:5px;
-    transition:padding 0.3s ease-in-out;
-    align-self:flex-end;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    transition: padding 0.3s ease-in-out;
+    align-self: flex-end;
 }
 
-.lienPari:hover{
-    padding:5px 15px 5px 15px;
+.lienPari:hover {
+    padding: 5px 15px 5px 15px;
 }
 
 /*Je stylise la page des compétitions dispo*/
 
-.allCompet{
+.allCompet {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.oneCompet{
+.oneCompet {
     background-color: white;
-    border-radius:10px;
-    padding:20px;
+    border-radius: 10px;
+    padding: 20px;
     width: 700px;
     box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25);
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
-.competTitle{
+.competTitle {
     font-size: 1.4rem;
     font-weight: 600;
     margin: 0;
 }
 
-.rejoindre{
-    float:right;
+.rejoindre {
+    float: right;
     font-family: "montserratRegular", sans-serif;
     color: white;
     background-color: #0B54CD;
@@ -151,69 +149,65 @@ section{
     transition: 0.2s ease-in-out background-color;
 }
 
-.rejoindre:hover{
-    background-color:#007bff;
+.rejoindre:hover {
+    background-color: #007bff;
 }
 
-.gifContainer{
-    display:flex;
+.gifContainer {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
 
-
-
-
-
-@media(max-width:850px){
-    body{
-        padding-top:140px;
+@media (max-width: 850px) {
+    body {
+        padding-top: 140px;
     }
 
-    .cardCompet{
-        width:500px;
+    .cardCompet {
+        width: 500px;
 
     }
 
-    header{
-        height:auto;
+    header {
+        height: auto;
     }
 
-    #navbar{
+    #navbar {
         flex-direction: column;
         align-items: flex-end;
         gap: 10px !important;
     }
 
-    .linkNavbar{
-        font-size:0.6rem;
-        padding:5px 10px 5px 10px !important;
+    .linkNavbar {
+        font-size: 0.6rem;
+        padding: 5px 10px 5px 10px !important;
     }
 }
 
-@media(max-width:790px){
-    .logo{
-        display:none;
+@media (max-width: 790px) {
+    .logo {
+        display: none;
     }
 
-    .msgArv{
+    .msgArv {
         background-color: rgba(0, 0, 0, 0);
     }
 
-    .oneCompet{
-        width:500px;
+    .oneCompet {
+        width: 500px;
     }
 }
 
-@media(max-width:600px){
-    .oneCompet{
-        width:300px;
+@media (max-width: 600px) {
+    .oneCompet {
+        width: 300px;
     }
 }
 
-@media(max-width:530px){
-    .cardCompet{
-        width:300px;
+@media (max-width: 530px) {
+    .cardCompet {
+        width: 300px;
     }
 }

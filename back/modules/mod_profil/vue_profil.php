@@ -6,17 +6,20 @@ if (!defined("BASE_URL")) {
 
 require_once './back/vue_generique.php';
 
-class VueProfil extends VueGenerique {
+class VueProfil extends VueGenerique
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function afficheBienvenue() {
+    public function afficheBienvenue()
+    {
         require_once("./front/ruche/bienvenue.php");
     }
 
-    public function afficheFormEdit($data,$competActive)
+    public function afficheFormEdit($data, $competActive)
     {
         require_once("./front/profil/EditProfil.php");
     }

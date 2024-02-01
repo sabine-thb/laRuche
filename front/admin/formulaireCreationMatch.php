@@ -5,29 +5,29 @@
         <p class="pMatch">
             <label for="equipe1" class="labelEquipe">Équipe 1 :</label>
             <select name="equipe1" id="equipe1">
-                        <option value="default">...</option>
-                        <?php foreach($eq as $row){
-                            echo  '<option value="' .$row['equipe_id'].'">' .$row['nom'].'</option>';
-                        }?>
+                <option value="default">...</option>
+                <?php foreach ($eq as $row) {
+                    echo '<option value="' . $row['equipe_id'] . '">' . $row['nom'] . '</option>';
+                } ?>
             </select>
         </p>
         <p class="pMatch">
             <label for="equipe2" class="labelEquipe">Équipe 2 :</label>
             <select name="equipe2" id="equipe2">
-                    <option value="default">...</option>
-                        <?php foreach($eq as $row){
-                            echo  '<option value="' .$row['equipe_id'].'">' .$row['nom'].'</option>';
-                        }?>
+                <option value="default">...</option>
+                <?php foreach ($eq as $row) {
+                    echo '<option value="' . $row['equipe_id'] . '">' . $row['nom'] . '</option>';
+                } ?>
             </select>
         </p>
         <p class="pMatch">
             <label for="compet" class="labelEquipe">Compétition :</label>
             <select name="compet" id="compet">
-                    <nom>Compétition</nom>
-                    <option value="default">...</option>
-                    <?php foreach($comp as $row){
-                        echo  '<option value="' .$row['competition_id'].'">' .$row['nom'].'</option>';
-                    }?>
+                <nom>Compétition</nom>
+                <option value="default">...</option>
+                <?php foreach ($comp as $row) {
+                    echo '<option value="' . $row['competition_id'] . '">' . $row['nom'] . '</option>';
+                } ?>
             </select>
         </p>
         <p class="pMatch">

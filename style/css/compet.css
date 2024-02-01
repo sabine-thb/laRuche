@@ -1,121 +1,118 @@
-section{
-    padding:25px;
+section {
+    padding: 25px;
 }
 
-.titlePage{
-    font-family:"montserratExtraBold", sans-serif;
-    font-size:1.2rem;
+.titlePage {
+    font-family: "montserratExtraBold", sans-serif;
+    font-size: 1.2rem;
 }
 
 
-body{
+body {
     padding-bottom: 60px;
 }
 
-.classementContainer{
-    display:flex;
-    flex-direction:column;
+.classementContainer {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top:20px;
-    gap:10px;
+    margin-top: 20px;
+    gap: 10px;
 }
 
-h3{
+h3 {
     float: right;
     font-family: Andale Mono, monospace;
     color: aliceblue;
 }
 
-#profile{
+#profile {
     margin-left: auto;
 }
 
-#profile button{
+#profile button {
     border: none;
     border-radius: 30px;
     background-color: #080e50;
 }
 
 
-.classement-titre{
+.classement-titre {
     text-align: center;
     min-width: 370px;
 }
 
-#topClassement h2{
+#topClassement h2 {
     margin: auto;
     font-family: Georgia, serif;
     font-style: italic;
 }
 
-.classement{
-    width:350px;
+.classement {
+    width: 350px;
     height: 55px;
     background-color: white;
     border-radius: 40px;
 }
 
-.case-classement{
-    height:100%;
+.case-classement {
+    height: 100%;
     display: flex;
-    gap:20px;
+    gap: 20px;
     align-items: center;
 }
 
-.logo-classement{
+.logo-classement {
     width: 50px;
     height: 50px;
     border-radius: 10px;
     cursor: pointer;
 }
 
-.bleu{
+.bleu {
     border: #0B54CD solid 3px;
     color: #007bff;
-    border-radius:40px;
+    border-radius: 40px;
 }
 
-.bleu .numero{
+.bleu .numero {
     color: white;
     background-color: #0B54CD;;
 }
 
-.classic{
+.classic {
     color: #151515;
 }
 
-.classement h2{
+.classement h2 {
     font-family: Trebuchet MS, sans-serif;
     font-size: 18px;
 
 }
 
-.numero{
+.numero {
     font-family: "montserratExtraBold", sans-serif;
-    height:100%;
+    height: 100%;
     background-color: #e7c147;
-    color:white;
-    width:55px;
-    border-radius:40px;
+    color: white;
+    width: 55px;
+    border-radius: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    position:relative;
-    left:-3px;
+    position: relative;
+    left: -3px;
 }
 
 
-
-
-
-.hautCarte{
+.hautCarte {
     display: flex;
     width: 90%;
     justify-content: space-between;
 }
 
-.custom-pts{
+.custom-pts {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -130,282 +127,286 @@ h3{
     justify-content: right;
 }
 
-.nbPoints{
-     color: #fff;
-     background-color: grey;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     border-radius: 14px;
-     width: 40px;
-     height: 40px;
-     text-align: center;
-     font-size: 19px;
-     margin-right: 10px;
+.nbPoints {
+    color: #fff;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 19px;
+    margin-right: 10px;
 }
 
-.logoEquipeUser{
+.logoEquipeUser {
     max-width: 130px;
     height: auto;
 }
 
-.Carte{
+.Carte {
     padding: 5px;
     border: rgba(98, 98, 98, 0.3) solid 0.08mm;
 }
 
-.jaune{
-    padding:5px;
+.jaune {
+    padding: 5px;
     background-color: #8bf3db;
     border-radius: 5px;
 }
 
-.selectionFinale{
+.selectionFinale {
     width: 100%;
     display: flex;
     text-align: center;
 }
 
-.selectionFinale label{
+.selectionFinale label {
     z-index: 0;
 }
 
-.CorpCarte{
+.CorpCarte {
     display: flex;
-    gap:12px;
+    gap: 12px;
 }
 
-.CorpCarte *{
+.CorpCarte * {
     margin-top: auto;
     margin-bottom: auto;
 }
 
-.left{
+.left {
     margin-left: auto;
 }
 
-.right{
+.right {
     margin-right: auto;
 }
 
-.point{
+.point {
     margin-left: auto;
     font-size: 19px;
     font-family: Trebuchet MS, sans-serif;
     color: grey;
-    margin:0px 20px 0px auto;
+    margin: 0px 20px 0px auto;
 
 }
 
-.loginUser{
-    margin:0;
+.loginUser {
+    margin: 0;
 }
 
 /*Je mets en place la page des pronos*/
 
-.formPronostics{
-    display:flex;
+.formPronostics {
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.carteProno{
+.carteProno {
     background-color: white;
     border-radius: 20px;
-    width:750px;
+    width: 750px;
     box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25);
-    padding:10px;
+    padding: 10px;
     margin-bottom: 10px;
 }
 
-.submit{
+.submit {
     cursor: pointer;
     font-family: "montserratRegular", sans-serif;
     background-color: white;
-    color:#000000 !important;
-    border:none;
-    border-radius:25px;
-    padding:5px 15px 5px 15px;
-    transition:padding 0.3s ease-in-out;
-    margin-top:30px;
+    color: #000000 !important;
+    border: none;
+    border-radius: 25px;
+    padding: 5px 15px 5px 15px;
+    transition: padding 0.3s ease-in-out;
+    margin-top: 30px;
 }
 
-.submit:hover{
-    padding:5px 20px 5px 20px;
+.submit:hover {
+    padding: 5px 20px 5px 20px;
 }
 
 /*Je mets en place la section des résultats*/
 
-.resultPronos{
+.resultPronos {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 /*Je stylise la page bonus*/
-.allQuestions{
+.allQuestions {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.oneQuestion{
+
+.oneQuestion {
     background-color: white;
-    padding:20px 20px 50px 20px;
-    margin-bottom:25px;
-    border-radius:20px;
-    width:700px;
-    position:relative;
+    padding: 20px 20px 50px 20px;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    width: 700px;
+    position: relative;
     box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25);
 }
 
-.quest{
-    margin-bottom:30px;
+.quest {
+    margin-bottom: 30px;
 }
 
-.envoyerForm{
+.envoyerForm {
     font-family: "montserratRegular", sans-serif;
-    padding:5px 15px 5px 15px;
+    padding: 5px 15px 5px 15px;
     background-color: #0B54CD;
-    color:#FFFFFF !important;
-    border-radius:25px;
-    border:none;
-    position:absolute;
-    left:50%;
-    bottom:20px;
-    transform: translate(-50%,0);
+    color: #FFFFFF !important;
+    border-radius: 25px;
+    border: none;
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translate(-50%, 0);
     cursor: pointer;
-    transition:padding 0.3s ease-in-out;
+    transition: padding 0.3s ease-in-out;
 }
 
-.envoyerForm:hover{
-    padding:5px 20px 5px 20px;
+.envoyerForm:hover {
+    padding: 5px 20px 5px 20px;
 }
 
-.bonusContainer{
+.bonusContainer {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.lienBonus{
+.lienBonus {
     text-decoration: none;
-    color:black;
+    color: black;
     background-color: white;
-    padding:10px;
+    padding: 10px;
     border-radius: 4px;
-    border:gray 2px solid;
-    transition:padding 0.3s ease-in-out;
+    border: gray 2px solid;
+    transition: padding 0.3s ease-in-out;
 }
 
-.lienBonus:hover{
-    padding:10px 15px 10px 15px;
+.lienBonus:hover {
+    padding: 10px 15px 10px 15px;
 }
 
-.vainqueur{
-    margin-top:25px;
-    margin-bottom:25px;
-    font-family:"montserratExtraBold", sans-serif;
+.vainqueur {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-family: "montserratExtraBold", sans-serif;
 }
 
 
-@media(max-width:1170px){
+@media (max-width: 1170px) {
 
-    body{
-        padding-top:202px !important; 
+    body {
+        padding-top: 202px !important;
     }
-    header{
+
+    header {
         height: auto !important;
     }
 
-    #navbar{
-        flex-direction:column;
-        align-items:flex-end !important;
+    #navbar {
+        flex-direction: column;
+        align-items: flex-end !important;
         gap: 10px !important;
 
     }
 
-    .linkNavbar{
-        font-size:0.6rem !important;
-        padding:5px 10px 5px 10px !important;
+    .linkNavbar {
+        font-size: 0.6rem !important;
+        padding: 5px 10px 5px 10px !important;
     }
 
-    
+
 }
 
-@media(max-width:850px){
-    
+@media (max-width: 850px) {
+
     .centreCard {
         position: initial;
     }
-    .Carte{
-        padding:10px 2px;
+
+    .Carte {
+        padding: 10px 2px;
 
     }
-    .CorpCarte{
-        gap:6px;
+
+    .CorpCarte {
+        gap: 6px;
     }
 
-    .carteProno{
-        width:460px;
+    .carteProno {
+        width: 460px;
     }
 
-    .oneQuestion{
-        width:450px;
+    .oneQuestion {
+        width: 450px;
     }
 
 }
 
-@media(max-width:500px){
-    .logoEquipeUser{
-        width:80px;
+@media (max-width: 500px) {
+    .logoEquipeUser {
+        width: 80px;
     }
 
-    .carteProno{
-        width:320px;
+    .carteProno {
+        width: 320px;
     }
 
-    .nomEquipe{
-        display:none;
+    .nomEquipe {
+        display: none;
     }
 
-    .submit{
-        width:140px;
-        height:45px;
+    .submit {
+        width: 140px;
+        height: 45px;
         font-size: 18px;
-        border-radius:30px;
+        border-radius: 30px;
     }
 
-    .oneQuestion{
-        width:300px;
+    .oneQuestion {
+        width: 300px;
     }
 
-    .quest{
-        display:flex;
+    .quest {
+        display: flex;
         flex-direction: column;
-        gap:10px;
+        gap: 10px;
     }
 
-    .pointsGagne{
-        display:flex;
+    .pointsGagne {
+        display: flex;
         flex-direction: column;
         text-align: center;
-        margin-bottom:35px;
+        margin-bottom: 35px;
     }
 }
 
-@media(max-width:450px){
-    .classement{
-        width:260px;
-        height:30px;
+@media (max-width: 450px) {
+    .classement {
+        width: 260px;
+        height: 30px;
     }
 
-    .loginUser{
-        font-size:0.8rem;
+    .loginUser {
+        font-size: 0.8rem;
     }
 
-    .numero{
-        width:30px;
+    .numero {
+        width: 30px;
     }
 }
 

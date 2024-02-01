@@ -1,181 +1,183 @@
-body{
-    margin:0;
+body {
+    margin: 0;
     min-height: 100vh;
     font-family: "montserratExtraBold", sans-serif;
     background-image: url(../img/fond.png);
     background-size: cover;
     background-repeat: no-repeat;
-    color:white;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    position:relative;
+    position: relative;
 }
 
-.logoLeague{
-    width:500px;
-    height:350px;
+.logoLeague {
+    width: 500px;
+    height: 350px;
 }
 
-.line{
-    width:5px;
-    height:400px;
+.line {
+    width: 5px;
+    height: 400px;
     background-color: white;
-    margin-right:100px;
-    margin-left:85px;
+    margin-right: 100px;
+    margin-left: 85px;
 }
 
-.blockContainer{
-    display:flex;
+.blockContainer {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.bouton{
-    border:0; 
-    padding:10px 20px 10px 20px;
+.bouton {
+    border: 0;
+    padding: 10px 20px 10px 20px;
     background-color: #020849;
-    border-radius:25px;
-    transition:background-color 0.3s ease-in-out;
+    border-radius: 25px;
+    transition: background-color 0.3s ease-in-out;
 }
 
-.bouton:hover{
+.bouton:hover {
     background-color: #FFC000;
 }
 
-a{
+a {
     font-family: "montserratExtraBold", sans-serif;
-    color:#e1b217;
+    color: #e1b217;
     text-decoration: none;
 }
 
-.bouton a{
+.bouton a {
     color: white;
 }
 
-.bienvenue{
+.bienvenue {
     position: relative;
-    font-family:"montserratBlack", sans-serif;
-    font-size:4rem;
-    margin:0px 0px 50px 0px;
-    z-index:200;
+    font-family: "montserratBlack", sans-serif;
+    font-size: 4rem;
+    margin: 0px 0px 50px 0px;
+    z-index: 200;
     text-shadow: 1px 3px 0 #000000;
 }
 
-main{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.form{
-    position: relative;
-}
-
-.formInscription, .formConnexion, .formEquipe{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index:1000;
-    max-width: 300px;
-    position:relative;
-    margin-top:10px;
-}
-
-.pForm{
+main {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-label{
-    margin-bottom:5px;
+.form {
+    position: relative;
 }
 
-input{
-    border:none;
+.formInscription, .formConnexion, .formEquipe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    max-width: 300px;
+    position: relative;
+    margin-top: 10px;
+}
+
+.pForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input {
+    border: none;
     border-radius: 15px;
     padding: 3px 3px 3px 6px;
     margin-top: 2px;
 }
 
-.erreurInputVide{
+.erreurInputVide {
     border: 2px solid transparent;
 }
 
 @keyframes click {
     0% {
-        transform: scale(1,1);
+        transform: scale(1, 1);
     }
     50% {
-        transform: scale(1.3,1.3);
+        transform: scale(1.3, 1.3);
     }
     100% {
-        transform: scale(1,1);
+        transform: scale(1, 1);
     }
 }
 
-.bouge{
+.bouge {
     animation: click 1s ease-in infinite;
 }
 
-.description{
+.description {
     display: flex;
     justify-content: center;
 }
 
-.submit{
+.submit {
     font-family: "montserratExtraBold", sans-serif;
-    background-color:#020849;
-    color:white;
-    padding:10px 20px 10px 20px;
-    border-radius:20px;
-    width:150px;
+    background-color: #020849;
+    color: white;
+    padding: 10px 20px 10px 20px;
+    border-radius: 20px;
+    width: 150px;
     margin-top: 10px;
 }
 
-.submit:hover{
+.submit:hover {
     background-color: #FFC000;
 }
-.abeille{
-    width:200px;
-    height:auto;
+
+.abeille {
+    width: 200px;
+    height: auto;
     /*position: absolute;*/
     /*left:-20px;*/
     /*top:-180px;*/
 
 }
-.option{
-    margin-top:20px;
-    margin-bottom:50px;
-    font-size:0.8rem;
+
+.option {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font-size: 0.8rem;
 }
 
-.nav-link{
-    font-size:1.2rem;
+.nav-link {
+    font-size: 1.2rem;
 }
 
-.linkOption{
+.linkOption {
     text-decoration: underline;
 }
 
-.credits{
+.credits {
     font-family: "montserratRegular";
-    font-size:0.8rem;
+    font-size: 0.8rem;
     position: absolute;
-    right:15px;
-    bottom:0;
+    right: 15px;
+    bottom: 0;
 }
 
-.info{
+.info {
     padding: 4px 10px 4px 10px;
     border-radius: 50%;
     background-color: #007bff;
     cursor: help;
 }
 
-.flexContainer{
+.flexContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -186,7 +188,8 @@ input{
     label {
         margin-top: 15px;
     }
-    .submit{
+
+    .submit {
         margin-top: 15px;
     }
 }
@@ -195,87 +198,88 @@ input{
 
 /*Par exmeple pour le "connecté en temps qu'admin !"*/
 
-.ttChamps{
-    margin-top:20px;
+.ttChamps {
+    margin-top: 20px;
     margin-bottom: 0;
 }
-.coAdmin{
-    margin-top:100px;
+
+.coAdmin {
+    margin-top: 100px;
 }
 
-@media(max-width:1200px){
-    .bienvenue{
-        font-size:3rem;
+@media (max-width: 1200px) {
+    .bienvenue {
+        font-size: 3rem;
     }
 
-    .logoLeague{
-        width:300px;
+    .logoLeague {
+        width: 300px;
     }
 
-    .abeille{
-        width:150px;
-        top:-104px;
+    .abeille {
+        width: 150px;
+        top: -104px;
     }
 
 }
 
-@media(min-width: 1350px){
+@media (min-width: 1350px) {
 
-    .submit{
+    .submit {
         min-width: auto;
         max-width: 150px;
     }
 
-    .option{
+    .option {
         font-size: 19px;
     }
 
-    .logoLeague{
+    .logoLeague {
         margin-left: 120px;
     }
 
-    main{
+    main {
         margin-right: auto;
         margin-left: auto;
     }
 }
 
-@media(max-width:880px){
-    body{
+@media (max-width: 880px) {
+    body {
         flex-direction: column;
-        gap:20px;
+        gap: 20px;
     }
 
-    .logoLeague{
-        height:250px;
+    .logoLeague {
+        height: 250px;
     }
 
-    .abeille{
-        height:120px;
-        width:120px;
+    .abeille {
+        height: 120px;
+        width: 120px;
     }
 
-    .flexContainer1{
+    .flexContainer1 {
         display: flex;
         flex-direction: row;
-        gap:20px;
+        gap: 20px;
     }
 
-    main{
+    main {
         margin-right: auto;
         margin-left: auto;
     }
-    
-    .line{
+
+    .line {
         display: none;
     }
 
-    .bouton,.submit{
-        background-color:#0B54CD;
+    .bouton, .submit {
+        background-color: #0B54CD;
     }
 
-    .nav-link{
-        font-size:1rem;
+    .nav-link {
+        font-size: 1rem;
     }
 }
 
@@ -300,21 +304,21 @@ input{
     }
 }
 
-@media(max-width:400px){
-    body{
+@media (max-width: 400px) {
+    body {
         gap: 0;
         justify-content: flex-start;
     }
 
-    .logoLeague{
-        width:190px;
+    .logoLeague {
+        width: 190px;
     }
 
-    .bienvenue{
-        margin-bottom:25px;
+    .bienvenue {
+        margin-bottom: 25px;
     }
 
-    .flexContainer1{
+    .flexContainer1 {
         flex-direction: column;
         gap: 0;
     }

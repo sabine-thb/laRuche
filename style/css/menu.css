@@ -2,20 +2,20 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-body{
+body {
     font-family: "montserratRegular", sans-serif;
     min-height: 100vh;
     background-color: #D5E8FB;
     margin: 0;
-    padding-top:110px;
-    
+    padding-top: 110px;
+
 }
 
-header{
-    height:110px;
+header {
+    height: 110px;
     display: flex;
     justify-content: space-between;
     top: 0;
@@ -28,109 +28,106 @@ header{
     z-index: 100;
 }
 
-header img{
+header img {
     height: 60px;
     width: auto;
 }
 
-#logoUser{
+#logoUser {
     height: 70px;
     width: 70px;
     border-radius: 50%;
     overflow: hidden;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.linkTitreSite{
+.linkTitreSite {
     text-decoration: none;
     display: flex;
     align-items: center;
-    margin-right:25px;
+    margin-right: 25px;
 }
 
-.titreSite{
-    margin:0;
-    font-family:"montserratExtraBold", sans-serif;
-    font-size:1.7rem;
-    color:white;
-    position:relative;
-    left:-16px;
-    bottom:-9px;
+.titreSite {
+    margin: 0;
+    font-family: "montserratExtraBold", sans-serif;
+    font-size: 1.7rem;
+    color: white;
+    position: relative;
+    left: -16px;
+    bottom: -9px;
 }
 
 /*mise en place de la barre de nav*/
 
-#navbar{
+#navbar {
     display: flex;
-    gap:20px;
+    gap: 20px;
     align-items: center;
     justify-content: center;
 }
 
-li,ul{
+li, ul {
     list-style: none;
 }
 
-.profilDetails{
+.profilDetails {
     display: none;
     flex-direction: column;
     position: absolute;
     right: 3%;
     padding: 20px;
-    background-color:#1423c1;
+    background-color: #1423c1;
 }
 
-.profilDetails *{
+.profilDetails * {
     margin-bottom: 10px;
 }
 
-.linkNavbar{
+.linkNavbar {
     text-decoration: none;
     color: white;
     font-family: "montserratExtraBold", sans-serif;
-    font-size:0.8rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
     background-color: #080e50;
-    padding:8px 15px 8px 15px;
+    padding: 8px 15px 8px 15px;
     border-radius: 20px;
     transition: background-color 0.3s ease-in-out;
     text-align: center;
 }
 
 
-.linkNavbar:hover{
+.linkNavbar:hover {
     background-color: #cf9e00;
 }
 
-.linkActive{
+.linkActive {
     /*je n'ai pas trouvé de propriéte pour faire ca automatiquement
     cela est peut-etre du au rechargement de page*/
     background-color: #cf9e00;
 }
 
-.linkDefaut{
+.linkDefaut {
     background-color: #080e50;
 }
 
-.drop-menu{
-    height:70px;
+.drop-menu {
+    height: 70px;
 }
 
 
-
-
-
-@media(max-width:450px){
-    .titreSite{
-        font-size:1.4rem;
+@media (max-width: 450px) {
+    .titreSite {
+        font-size: 1.4rem;
     }
 
-    .linkTitreSite{
-        margin-right:0px;
+    .linkTitreSite {
+        margin-right: 0px;
     }
 
-    .linkNavbar{
-        font-size:0.6rem;
+    .linkNavbar {
+        font-size: 0.6rem;
     }
 
 

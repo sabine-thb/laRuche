@@ -1,5 +1,4 @@
-
-document.addEventListener("click",e => {
+document.addEventListener("click", e => {
     let tar = e.target;
     if (tar.classList.contains("toggle"))
         tar.removeAttribute("class");
@@ -29,19 +28,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (value1 > value2) {
                     input1.style.color = "#21d99b";
                     input2.style.color = "#ff1717";
-                }else if (value2 > value1) {
+                } else if (value2 > value1) {
                     input2.style.color = "#21d99b";
                     input1.style.color = "#ff1717";
                 }
             }
         }
 
-        customNum.forEach( num => {
+        customNum.forEach(num => {
             const numInput = num.querySelector('.inputScore');
             const arrUp = num.querySelector('.arr-up');
             const arrDown = num.querySelector('.arr-down');
 
-            function checkMinMax(){
+            function checkMinMax() {
                 const value = parseInt(numInput.value);
                 const max = parseInt(numInput.max);
                 const min = parseInt(numInput.min);
@@ -51,21 +50,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const heightDefaut = window.innerWidth < 850 ? "100px" : "120px";
 
-                if(value === max) {
+                if (value === max) {
                     num.style.paddingTop = paddingReduit;
                     num.style.height = heightReduit;
                     arrUp.style.display = "none";
 
                     num.style.paddingBottom = "8px";
                     arrDown.style.display = "block";
-                }else if ( value === min) {
+                } else if (value === min) {
                     num.style.paddingBottom = paddingReduit;
                     num.style.height = heightReduit;
                     arrDown.style.display = "none";
 
                     num.style.paddingTop = "0";
                     arrUp.style.display = "block";
-                }else {
+                } else {
                     num.style.padding = "0";
                     num.style.paddingBottom = "8px";
                     num.style.height = heightDefaut;
@@ -74,13 +73,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            arrUp.addEventListener('click', () =>{
+            arrUp.addEventListener('click', () => {
                 numInput.stepUp();
                 checkMinMax();
                 checkEquality();
             });
 
-            arrDown.addEventListener('click', () =>{
+            arrDown.addEventListener('click', () => {
                 numInput.stepDown();
                 checkMinMax();
                 checkEquality();

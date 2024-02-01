@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["loginActif"]) ) {
+if (!isset($_SESSION["loginActif"])) {
     header('Location: connexion.php?action=deconnexion');
 }
 
@@ -39,31 +39,31 @@ $affichageModule = $module->afficheModule();
 <body>
 
 <!-- En-tête -->
-    <header>
-        <a href="scoruche.php" class="linkTitreSite">
-            <img src="style/img/abeille.png" alt="logo scoruche" title="retour à mes competitions">
-            <h2 class="titreSite">
-                scoruche
-            </h2>
+<header>
+    <a href="scoruche.php" class="linkTitreSite">
+        <img src="style/img/abeille.png" alt="logo scoruche" title="retour à mes competitions">
+        <h2 class="titreSite">
+            scoruche
+        </h2>
+    </a>
+
+    <div id="navbar">
+        <a href="scoruche.php" class="linkNavbar linkDefaut" id="competition">
+            Accueil
         </a>
-
-        <div id="navbar">
-            <a href="scoruche.php" class="linkNavbar linkDefaut" id="competition">
-                Accueil
-            </a>
-            <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
-                Déconnexion
-            </a>
-        </div>
-    </header>
+        <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
+            Déconnexion
+        </a>
+    </div>
+</header>
 
 
-    <main>
-        <?php
-        // le code html dynamique, il faut regarder les fichier situé dans front/scoruche pour voir les possibilité d'affichage
-        echo $affichageModule;
-        ?>
-    </main>
+<main>
+    <?php
+    // le code html dynamique, il faut regarder les fichier situé dans front/scoruche pour voir les possibilité d'affichage
+    echo $affichageModule;
+    ?>
+</main>
 
 </body>
 </html>

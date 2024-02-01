@@ -4,14 +4,16 @@ if (!defined("BASE_URL")) {
     die("il faut passer par l'index");
 }
 
-require_once "cont_connexion.php" ;
+require_once "cont_connexion.php";
 
-class ModConnexion {
+class ModConnexion
+{
 
     private $action;
     private $controlleur;
 
-    public function __construct(){
+    public function __construct()
+    {
 
         $this->controlleur = new ContConnexion();
         $this->action = $_GET['action'] ?? 'bienvenue';
@@ -20,14 +22,15 @@ class ModConnexion {
 
     }
 
-    private function start(){
+    private function start()
+    {
 
-        switch($this->action){
+        switch ($this->action) {
 
             case 'bienvenue':
                 $this->controlleur->bienvenue();
                 break;
-            
+
             case 'inscription':
                 $this->controlleur->afficheFormInsciption();
                 break;
@@ -42,7 +45,7 @@ class ModConnexion {
 
             case 'verificationConnexion':
                 $this->controlleur->connexion();
-                break;    
+                break;
 
             case 'deconnexion':
                 $this->controlleur->deconnexion();
@@ -58,7 +61,8 @@ class ModConnexion {
         }
     }
 
-    public function afficheModule(){
+    public function afficheModule()
+    {
         return $this->controlleur->affichage();
     }
 

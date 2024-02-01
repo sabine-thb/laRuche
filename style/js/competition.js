@@ -1,11 +1,11 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     // Obtenez les paramètres de requête de l'URL actuelle
     const urlParams = new URLSearchParams(window.location.search);
     const action = urlParams.get('action');
     let monElement;
 
-    switch (action){
+    switch (action) {
         case 'classement':
             monElement = document.getElementById('classement');
             break;
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     monElement.classList.add('linkActive');
 });
 
-function afficherMenuProfil(){
+function afficherMenuProfil() {
     const menu = document.querySelector('.profilDetails');
     menu.style.display = menu.style.display === "flex" ? "none" : "flex";
 }

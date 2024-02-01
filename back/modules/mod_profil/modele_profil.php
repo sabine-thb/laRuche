@@ -6,19 +6,13 @@ if (!defined("BASE_URL")) {
 
 require_once './back/modules/Connexion.php';
 
-class ModeleProfil extends Connexion {
+class ModeleProfil extends Connexion
+{
 
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
-    }
-
-
-    private function executeQuery($stmt) {
-
-        $stmt->execute();
-        // Récupérez les résultats sous forme d'un tableau associatif
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getInfo($id)
@@ -41,9 +35,17 @@ class ModeleProfil extends Connexion {
         }
     }
 
-    public function changeLogo(string $dest,$idUser): bool
+    private function executeQuery($stmt)
     {
-        try{
+
+        $stmt->execute();
+        // Récupérez les résultats sous forme d'un tableau associatif
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function changeLogo(string $dest, $idUser): bool
+    {
+        try {
             $query = "
             UPDATE laruchxsabine.LaRuche_users 
             SET src_logo_user = :dest
@@ -54,7 +56,7 @@ class ModeleProfil extends Connexion {
             $this->executeQuery($stmt);
 
             return true;
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
@@ -62,7 +64,7 @@ class ModeleProfil extends Connexion {
 
     public function getCompetAndClassement($idUser)
     {
-        try{
+        try {
             $query = "
             SELECT c.nom,LaRuche_getClassement(p.pronostiqueur_id,c.competition_id) as classement
             FROM laruchxsabine.LaRuche_users u
@@ -73,7 +75,7 @@ class ModeleProfil extends Connexion {
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
@@ -81,7 +83,7 @@ class ModeleProfil extends Connexion {
 
     public function editAge($age, $idUser): bool
     {
-        try{
+        try {
             $query = "
             UPDATE laruchxsabine.LaRuche_users 
             SET age = $age
@@ -91,7 +93,7 @@ class ModeleProfil extends Connexion {
             $this->executeQuery($stmt);
 
             return true;
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
@@ -99,7 +101,7 @@ class ModeleProfil extends Connexion {
 
     public function editGenre($gender, $idUser): bool
     {
-        try{
+        try {
             $query = "
             UPDATE laruchxsabine.LaRuche_users 
             SET Gender = '$gender'
@@ -109,7 +111,7 @@ class ModeleProfil extends Connexion {
             $this->executeQuery($stmt);
 
             return true;
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }

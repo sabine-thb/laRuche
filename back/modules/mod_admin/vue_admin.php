@@ -6,45 +6,56 @@ if (!defined("BASE_URL")) {
 
 require_once './back/vue_generique.php';
 
-class VueAdmin extends VueGenerique {
+class VueAdmin extends VueGenerique
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function afficheBienvenue() {
+    public function afficheBienvenue()
+    {
         require_once("./front/admin/bienvenue.php");
     }
 
-    public function afficheDemande($tableau) {
+    public function afficheDemande($tableau)
+    {
         require_once("./front/admin/afficheDemande.php");
     }
 
-    public function afficheListCompet($tableau){
+    public function afficheListCompet($tableau)
+    {
         require_once("./front/admin/listCompetition.php");
     }
 
-    public function afficheFormulaireCompet($erreur){
+    public function afficheFormulaireCompet($erreur)
+    {
         require_once("./front/admin/formulaireCompetition.php");
     }
 
-    public function afficheFormCreationMatch($token,$eq,$comp){
+    public function afficheFormCreationMatch($token, $eq, $comp)
+    {
         require_once("./front/admin/formulaireCreationMatch.php");
     }
 
-    public function afficheFormCreationEquipe($token){
+    public function afficheFormCreationEquipe($token)
+    {
         require_once("./front/admin/formulaireCreationEquipe.php");
     }
 
-    public function afficheEquipes($eq){
+    public function afficheEquipes($eq)
+    {
         require_once("./front/admin/listeEquipes.php");
     }
 
-    public function afficheGereUser(){
+    public function afficheGereUser()
+    {
         require_once("./front/admin/gererUsers.php");
     }
 
-    public function afficheModifieEquipe($equipe){
+    public function afficheModifieEquipe($equipe)
+    {
         require_once("./front/admin/modifieEquipe.php");
     }
 
@@ -53,7 +64,8 @@ class VueAdmin extends VueGenerique {
         require_once("./front/admin/bouttonMatch.html");
     }
 
-    public function afficheMatchOuvert($match){
+    public function afficheMatchOuvert($match)
+    {
         require_once("./front/admin/listeMatchOuvert.php");
     }
 

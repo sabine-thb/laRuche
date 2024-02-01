@@ -13,7 +13,7 @@ function rechercherUtilisateur() {
         };
         xhr.open("GET", "recherche_utilisateur.php?pseudo=" + encodeURIComponent(pseudo), true);
         xhr.send();
-    }else{
+    } else {
         const resultatDiv = document.getElementById('resultats');
         resultatDiv.innerHTML = '';
     }
@@ -38,25 +38,25 @@ function afficherResultats(resultats) {
             let baliseValider;
             if (verifier === ' non ') {
                 baliseValider = '<a class="p valid" href="admin.php?action=valider&id=' + utilisateur.user_id + '" ' +
-                                'onclick="return confirm(\'' + confirmDemande + '\');">Valider</a> ';
-            }else
+                    'onclick="return confirm(\'' + confirmDemande + '\');">Valider</a> ';
+            } else
                 baliseValider = "";
 
             // desolé c'est illisible
             resultatDiv.innerHTML +=
-            '<div class="oneUser">' +
+                '<div class="oneUser">' +
                 '<p>Prenom : ' + utilisateur.prenom + '</p>' +
                 '<p>Pseudo : ' + utilisateur.login + '</p> <p> Mail : ' + utilisateur.mail + ' </p>' +
                 '<p>Description : ' + utilisateur.description + '</p> <p> Validé : ' + verifier + '</p>' +
                 '<div class="gerer"> ' +
-                    '<a class="lienResetPwd" href="admin.php?action=resetPwd&idUser=' + utilisateur.user_id + '" ' +
-                    'onclick="return confirm(\'' + confirmPwd + '\');"> changer le mot de passe</a> ' +
-                    '<a class="lienDeleteUser" href="admin.php?action=supprimeUser&idUser=' + utilisateur.user_id + '" ' +
-                    'onclick="return confirm(\'' + confirmDelete + '\');">supprimer</a> ' +
-                    baliseValider +
+                '<a class="lienResetPwd" href="admin.php?action=resetPwd&idUser=' + utilisateur.user_id + '" ' +
+                'onclick="return confirm(\'' + confirmPwd + '\');"> changer le mot de passe</a> ' +
+                '<a class="lienDeleteUser" href="admin.php?action=supprimeUser&idUser=' + utilisateur.user_id + '" ' +
+                'onclick="return confirm(\'' + confirmDelete + '\');">supprimer</a> ' +
+                baliseValider +
                 '</div>' +
-            '</div>';
-            });
+                '</div>';
+        });
     } else {
         resultatDiv.innerHTML = '<p>Aucun utilisateur trouvé.</p>';
     }

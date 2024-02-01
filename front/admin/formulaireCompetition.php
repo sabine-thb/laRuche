@@ -6,13 +6,13 @@
             <input class='' type='text' name='name' id="nom">
 
         </p>
-        
+
         <p class="descrCompet">
             <label for="descr" class="labelCompet">Courte description : </label>
             <textarea class="areaDescr" name="description" id="descr"></textarea>
 
         </p>
-        
+
 
         <p>
             <?php echo $erreur; ?>

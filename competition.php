@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["loginActif"]) ) {
+if (!isset($_SESSION["loginActif"])) {
     header('Location: connexion.php?action=deconnexion');
 }
 
 //ici on parle de l'id de la competition
 //si elle n'est pas presente dans l'url il faut rediriger l'utilisateur
 //car il y aura des erreurs par la suite
-if (!isset($_GET["id"]) ) {
+if (!isset($_GET["id"])) {
     header('Location: scoruche.php');
 }
 
@@ -52,55 +52,59 @@ $affichageModule = $module->afficheModule();
 
 <body>
 
-    <!-- En-tête -->
-    <header>
-        <a href="scoruche.php" class="linkTitreSite">
-            <img src="style/img/abeille.png" alt="logo scoruche" title="retour à mes competitions">
-            <h2 class="titreSite">
-                    scoruche
-            </h2>
+<!-- En-tête -->
+<header>
+    <a href="scoruche.php" class="linkTitreSite">
+        <img src="style/img/abeille.png" alt="logo scoruche" title="retour à mes competitions">
+        <h2 class="titreSite">
+            scoruche
+        </h2>
+    </a>
+
+    <div id="navbar">
+        <a href="competition.php?action=classement&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut"
+           id="classement">
+            Classement
+        </a>
+        <a href="competition.php?action=affichePronostic&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut"
+           id="prono">
+            Pronostics
+        </a>
+        <a href="competition.php?action=resultat&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut"
+           id="resultats">
+            Résultats
+        </a>
+        <a href="competition.php?action=questionsBonus&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut"
+           id="questions">
+            Bonus
+        </a>
+        <a href="competition.php?action=editProfil&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut"
+           id="editProfil">
+            Profil
+        </a>
+        <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
+            Déconnexion
         </a>
 
-        <div id="navbar">
-            <a href="competition.php?action=classement&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut"  id="classement">
-                    Classement
-            </a>
-            <a href="competition.php?action=affichePronostic&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="prono">
-                    Pronostics
-            </a>
-            <a href="competition.php?action=resultat&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="resultats">
-                Résultats
-            </a>
-            <a href="competition.php?action=questionsBonus&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="questions">
-                    Bonus
-            </a>
-            <a href="competition.php?action=editProfil&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut" id="editProfil">
-                Profil
-            </a>
-            <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
-                Déconnexion
-            </a>
+    </div>
 
-        </div>
 
-        
+</header>
 
-    </header>
 
-    
-    <main>
-        <?php 
-            // le code html dynamique, il faut regarder les fichier situé dans front/scoruche pour voir les possibilité d'affichage
-            echo $affichageModule;
-        ?>
-    </main>
-    
+<main>
+    <?php
+    // le code html dynamique, il faut regarder les fichier situé dans front/scoruche pour voir les possibilité d'affichage
+    echo $affichageModule;
+    ?>
+</main>
 
-    <!-- Pied de page -->
-    <!-- <footer class="bg-dark text-white text-center py-3 fixed-bottom">
-        <p>Coordonnées de contact / Informations légales</p>
-    </footer> -->
 
-    
+<!-- Pied de page -->
+<!-- <footer class="bg-dark text-white text-center py-3 fixed-bottom">
+    <p>Coordonnées de contact / Informations légales</p>
+</footer> -->
+
+
 </body>
 </html>

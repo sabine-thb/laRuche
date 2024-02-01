@@ -1,4 +1,4 @@
-.custom-input{
+.custom-input {
     display: flex;
     margin-right: auto;
     margin-left: auto;
@@ -19,7 +19,7 @@
     margin: 0;
 }
 
-.inputScore{
+.inputScore {
     font-size: 1.8em;
     text-align: center;
     background: none;
@@ -41,23 +41,24 @@
     color: #000000 !important;
 }
 
-@media(max-width:850px){
-    .custom-input{
+@media (max-width: 850px) {
+    .custom-input {
         width: 60px;
         height: 85px;
         border-radius: 2.2em;
     }
 
-    .inputScore{
+    .inputScore {
         font-size: 1.3em;
     }
+
     .custom-input i {
         font-size: 1em;
     }
 }
 
-@media(max-width:500px){
-    .custom-input{
-        width:35px;
+@media (max-width: 500px) {
+    .custom-input {
+        width: 35px;
     }
 }

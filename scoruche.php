@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["loginActif"]) ) {
+if (!isset($_SESSION["loginActif"])) {
     header('Location: connexion.php?action=deconnexion');
 }
 
@@ -26,7 +26,7 @@ $affichageModule = $module->afficheModule();
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    
+
     <title>LaRuche - scoruche</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,52 +42,51 @@ $affichageModule = $module->afficheModule();
 
 <body>
 
-    <!-- En-tête -->
-    <header>
+<!-- En-tête -->
+<header>
     <a href="scoruche.php" class="linkTitreSite">
-            <img src="style/img/abeille.png" alt="logo scoruche" title="retour à mes competitions">
-            <h2 class="titreSite">
-                    scoruche
-            </h2>
+        <img src="style/img/abeille.png" alt="logo scoruche" title="retour à mes competitions">
+        <h2 class="titreSite">
+            scoruche
+        </h2>
     </a>
 
     <div id="navbar">
         <a href="scoruche.php?action=competitionDisponible" class="linkNavbar linkDefaut" id="competDispo">
-                Rejoindre une compétition
-            </a>
+            Rejoindre une compétition
+        </a>
         <a href="scoruche.php?action=afficheMesCompet" class="linkNavbar linkDefaut" id="competActive">
-                Mes compétitions
-            </a>
-            <a href="scoruche.php?action=editProfil" class="linkNavbar linkDefaut" id="editProfil">
-                Profil
-            </a>
-            <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
-                Déconnexion
-            </a>
-           
+            Mes compétitions
+        </a>
+        <a href="scoruche.php?action=editProfil" class="linkNavbar linkDefaut" id="editProfil">
+            Profil
+        </a>
+        <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
+            Déconnexion
+        </a>
+
     </div>
 
-    
-        
-    </header>
-    <main>
-        <div class="videoContainer">
-            <video autoplay muted loop id="video-background">
-                <source src="./style/video/footBlackWhite.mp4" type="video/mp4">
-            </video>
-        </div>
-        <?php 
-                // le code html dynamique, il faut regarder les fichier situé dans front/scoruche pour voir les possibilité d'affichage
-                echo $affichageModule;
-        ?>
-    </main>
+
+</header>
+<main>
+    <div class="videoContainer">
+        <video autoplay muted loop id="video-background">
+            <source src="./style/video/footBlackWhite.mp4" type="video/mp4">
+        </video>
+    </div>
+    <?php
+    // le code html dynamique, il faut regarder les fichier situé dans front/scoruche pour voir les possibilité d'affichage
+    echo $affichageModule;
+    ?>
+</main>
 
 
-    <!-- Pied de page -->
-    <!-- <footer class="bg-dark text-white text-center py-3 fixed-bottom">
-        <p>Coordonnées de contact / Informations légales</p>
-    </footer> -->
+<!-- Pied de page -->
+<!-- <footer class="bg-dark text-white text-center py-3 fixed-bottom">
+    <p>Coordonnées de contact / Informations légales</p>
+</footer> -->
 
-<script src="./style/js/scoruche.js"></script> 
+<script src="./style/js/scoruche.js"></script>
 </body>
 </html>

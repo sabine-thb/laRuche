@@ -6,37 +6,29 @@ if (!defined("BASE_URL")) {
 
 require_once './back/modules/Connexion.php';
 
-class ModeleAdmin extends Connexion {
+class ModeleAdmin extends Connexion
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
-
-    private function executeQuery($stmt) {
-
-        $stmt->execute();
-
-        // Récupérez les résultats sous forme d'un tableau associatif
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    
     public function genereToken($var): string
     {
         $string = "";
         $chaine = "a0b1c2d3e4f5g6h7i8j9klmnpqrstuvwxy123456789";
-        srand((double)microtime()*1000000);
-        for($i=0; $i<$var; $i++){
-            $string .= $chaine[rand()%strlen($chaine)];
+        srand((double)microtime() * 1000000);
+        for ($i = 0; $i < $var; $i++) {
+            $string .= $chaine[rand() % strlen($chaine)];
         }
-        $_SESSION['token']=$string;
-        $_SESSION['creationToken']= time();
+        $_SESSION['token'] = $string;
+        $_SESSION['creationToken'] = time();
         return $string;
     }
 
-
-    public function recupereDemande() {
+    public function recupereDemande()
+    {
         try {
             $query = "
             SELECT prenom,user_id,login,mail,description 
@@ -52,10 +44,20 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    public function recupereComp() {
+    private function executeQuery($stmt)
+    {
+
+        $stmt->execute();
+
+        // Récupérez les résultats sous forme d'un tableau associatif
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function recupereComp()
+    {
 
         try {
-            $query="
+            $query = "
             SELECT * 
             FROM laruchxsabine.LaRuche_competition
             ";
@@ -86,13 +88,12 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    
 
     public function accepteDemande($id): bool
     {
 
         try {
-            $query="
+            $query = "
             UPDATE laruchxsabine.LaRuche_users 
             SET est_verifier = true 
             WHERE user_id = $id
@@ -108,11 +109,12 @@ class ModeleAdmin extends Connexion {
         }
 
     }
+
     public function refuseDemande($id): bool
     {
 
         try {
-            $query ="
+            $query = "
             DELETE FROM laruchxsabine.LaRuche_users 
             WHERE user_id= $id
             ";
@@ -131,7 +133,7 @@ class ModeleAdmin extends Connexion {
     public function ajoutCompet($inputNom, $inputDetail): bool
     {
         try {
-            $query="
+            $query = "
             INSERT INTO laruchxsabine.LaRuche_competition (nom,description,date_creation) 
             VALUES (:nom, :detail,CURDATE())
             ";
@@ -143,33 +145,34 @@ class ModeleAdmin extends Connexion {
             return true;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur:" . $e ."');</script>";
+            echo "<script>console.log('erreur:" . $e . "');</script>";
             return false;
         }
     }
 
-    public function insererEquipe($nomEquipe){
-        $chemin= $this->gererLogo();
-        if ($chemin == null){
+    public function insererEquipe($nomEquipe)
+    {
+        $chemin = $this->gererLogo();
+        if ($chemin == null) {
             echo "erreur";
             return false;
         }
 
-        try{
-            $query="
+        try {
+            $query = "
             SELECT nom 
             FROM laruchxsabine.LaRuche_equipe 
             WHERE nom = '$nomEquipe'
             ";
             $stmt = Connexion::$bdd->prepare($query);
-            $res=$this->executeQuery($stmt);
-        }catch (PDOException $e) {
+            $res = $this->executeQuery($stmt);
+        } catch (PDOException $e) {
             var_dump($e);
             return false;
-        }   
+        }
 
-        if(count($res)==0){
-            try{
+        if (count($res) == 0) {
+            try {
                 $query = "
                 INSERT INTO laruchxsabine.LaRuche_equipe(nom, srcLogo)
                 VALUES (:nom,:chemin)
@@ -178,14 +181,14 @@ class ModeleAdmin extends Connexion {
                 $stmt->bindParam(':nom', $nomEquipe, PDO::PARAM_STR);
                 $stmt->bindParam(':chemin', $chemin, PDO::PARAM_STR);
                 $stmt->execute();
-            }catch (PDOException $e) {
+            } catch (PDOException $e) {
                 echo "<script>console.log('erreur: $e');</script>";
                 return false;
-            }      
+            }
             echo " Equipe bien enregistrée ✌️ <br>";
 
-        }else{
-            echo" Une equipe porte déja ce nom.. <br>";
+        } else {
+            echo " Une equipe porte déja ce nom.. <br>";
             echo '<meta http-equiv="refresh" content="1;url=admin.php?action=afficheFormEquipe"/>';
 
 
@@ -193,10 +196,29 @@ class ModeleAdmin extends Connexion {
 
     }
 
-    public function insererMatch($eq1,$eq2,$ptsExa,$ptsEcart,$ptsVainq,$compet,$dateMatch,$heure): bool
+    public function gererLogo()
+    {
+        $taille = strlen(basename($_FILES["logo"]["name"]));
+
+        $taille > 20 ?
+            $nom = substr(basename($_FILES["logo"]["name"]), -20) :
+            $nom = basename($_FILES["logo"]["name"]);
+
+        $temp_name = $_FILES["logo"]["tmp_name"];
+        $destination = "./style/img/logo/$nom";
+
+        // Déplacer le fichier téléchargé vers un répertoire sur le serveur
+        if (!move_uploaded_file($temp_name, $destination)) {
+            echo "Une erreur s'est produite lors du téléchargement de l'image.<br>";
+            return null;
+        } else
+            return $destination;
+    }
+
+    public function insererMatch($eq1, $eq2, $ptsExa, $ptsEcart, $ptsVainq, $compet, $dateMatch, $heure): bool
     {
 
-        try{
+        try {
             $query = "
             INSERT INTO laruchxsabine.LaRuche_matchApronostiquer(equipe1_id,equipe2_id,competition_id,pts_Exact,pts_Ecart,pts_Vainq,date_match,heure) 
             VALUES ($eq1,$eq2,$compet,$ptsExa,$ptsEcart,$ptsVainq,'$dateMatch',$heure);
@@ -205,7 +227,7 @@ class ModeleAdmin extends Connexion {
             $stmt->execute();
 
             return true;
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e');</script>";
             return false;
         }
@@ -214,23 +236,23 @@ class ModeleAdmin extends Connexion {
 
     public function getMatch()
     {
-        try{
-            $query="
+        try {
+            $query = "
             SELECT * 
             FROM laruchxsabine.LaRuche_matchApronostiquer;
             ";
             $stmt = Connexion::$bdd->prepare($query);
             return $this->executeQuery($stmt);
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e');</script>";
             return $e;
         }
-    
+
     }
 
     public function getMail($idUser)
     {
-        try{
+        try {
             $query = "
             SELECT mail
             FROM laruchxsabine.LaRuche_users
@@ -239,14 +261,12 @@ class ModeleAdmin extends Connexion {
 
             $stmt = Connexion::$bdd->prepare($query);
             return $this->executeQuery($stmt)[0];
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e');</script>";
             return $e;
         }
 
     }
-
-
 
     public function getMatchAttente()
     {
@@ -339,8 +359,9 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    public function getEquipes(){
-        try{
+    public function getEquipes()
+    {
+        try {
             $query = "
             SELECT * 
             FROM laruchxsabine.LaRuche_equipe
@@ -349,11 +370,11 @@ class ModeleAdmin extends Connexion {
             $stmt = Connexion::$bdd->prepare($query);
             return $this->executeQuery($stmt);
 
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return $e;
         }
-        
+
     }
 
     public function modifieNomEquipe($inputNom, $id)
@@ -393,7 +414,7 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    public function modifielogoEquipe($srcLogo,$id)
+    public function modifielogoEquipe($srcLogo, $id)
     {
         try {
             $query = "
@@ -449,19 +470,20 @@ class ModeleAdmin extends Connexion {
 
     public function getCompet()
     {
-        try{
-            $query="
+        try {
+            $query = "
             SELECT * 
             FROM laruchxsabine.LaRuche_competition
             ";
             $stmt = Connexion::$bdd->prepare($query);
             return $this->executeQuery($stmt);
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return $e;
         }
-        
+
     }
+
     public function deleteEquipe($id): bool
     {
         try {
@@ -496,26 +518,7 @@ class ModeleAdmin extends Connexion {
             echo "<script>console.log('erreur: $e');</script>";
             return false;
         }
-        
-    }
-    
-    public function gererLogo()
-    {
-        $taille = strlen(basename($_FILES["logo"]["name"]));
 
-        $taille> 20 ?
-            $nom = substr(basename($_FILES["logo"]["name"]), -20) :
-            $nom = basename($_FILES["logo"]["name"]);
-
-        $temp_name = $_FILES["logo"]["tmp_name"];
-        $destination = "./style/img/logo/$nom";
-
-        // Déplacer le fichier téléchargé vers un répertoire sur le serveur
-        if (!move_uploaded_file($temp_name, $destination)){
-            echo "Une erreur s'est produite lors du téléchargement de l'image.<br>";
-            return null;
-        }else
-            return $destination;
     }
 
     public function miseEnAttenteMatch($match_id): bool
@@ -538,7 +541,7 @@ class ModeleAdmin extends Connexion {
         }
     }
 
-    public function miseEnFiniMatch($match_id, $resultatEquipe1, $resultatEquipe2,$resultatPeno): bool
+    public function miseEnFiniMatch($match_id, $resultatEquipe1, $resultatEquipe2, $resultatPeno): bool
     {
         try {
             $query = "
@@ -597,7 +600,7 @@ class ModeleAdmin extends Connexion {
 
     public function getQuestionOuvert()
     {
-        try{
+        try {
             $query = "
             SELECT Q.question_bonus_id,titre,objectif,type,point_bonne_reponse,C.nom
             FROM laruchxsabine.LaRuche_questionBonus Q
@@ -607,7 +610,7 @@ class ModeleAdmin extends Connexion {
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
@@ -615,7 +618,7 @@ class ModeleAdmin extends Connexion {
 
     public function getQuestionEnAttente()
     {
-        try{
+        try {
             $query = "
             SELECT Q.*,C.nom
             FROM laruchxsabine.LaRuche_questionBonus Q
@@ -631,7 +634,7 @@ class ModeleAdmin extends Connexion {
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }
@@ -639,7 +642,7 @@ class ModeleAdmin extends Connexion {
 
     public function getQuestionFini()
     {
-        try{
+        try {
             $query = "
             SELECT *,C.nom
             FROM laruchxsabine.LaRuche_questionBonus Q
@@ -650,7 +653,7 @@ class ModeleAdmin extends Connexion {
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
             return false;
         }

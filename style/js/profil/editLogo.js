@@ -7,7 +7,7 @@ function changeLogo() {
     if (file) {
         const reader = new FileReader();
 
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             image.src = e.target.result;
 
         };

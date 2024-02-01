@@ -4,26 +4,30 @@ if (!defined("BASE_URL")) {
     die("il faut passer par l'index");
 }
 
-require_once "modele_ruche.php" ;
-require_once "vue_ruche.php" ;
+require_once "modele_ruche.php";
+require_once "vue_ruche.php";
 
-class ContRuche {
+class ContRuche
+{
 
     private $vue;
     private $modele;
-    
-    public function __construct(){
+
+    public function __construct()
+    {
 
         $this->vue = new VueRuche();
         $this->modele = new ModeleRuche();
 
     }
 
-    public function affichage() {
+    public function affichage()
+    {
         return $this->vue->getAffichage();
     }
 
-    public function bienvenue(){
+    public function bienvenue()
+    {
         $this->vue->afficheBienvenue();
     }
 

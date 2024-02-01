@@ -13,15 +13,16 @@
                     <input id="mdp" type="password" name="mdp" minlength="6" autocomplete="new-password" required></p>
                 <p class="pForm">
                     <label for="mdp2" class="labelEquipe">Confirmez votre mot de passe :</label>
-                    <input id="mdp2" type="password" name="mdp2" minlength="6" autocomplete="new-password" onchange="" required>
+                    <input id="mdp2" type="password" name="mdp2" minlength="6" autocomplete="new-password" onchange=""
+                           required>
                 </p>
 
 
-            </div><input class="creerEquipe submit" type="submit" value="Valider">
+            </div>
+            <input class="creerEquipe submit" type="submit" value="Valider">
         </form>
 
     </div>
-    
 
 
 </section>
