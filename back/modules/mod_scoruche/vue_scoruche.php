@@ -36,12 +36,12 @@ class VueScorcast extends VueGenerique
 
     public function afficheMatchs($matchs)
     {
-        require_once('./front/scoruche/matchs.php');
+        require_once('./front/scoruche/match/matchs.php');
     }
 
     public function afficheResultat($matchs, $totalPoints)
     {
-        require_once('./front/scoruche/resultats.php');
+        require_once('./front/scoruche/match/resultats.php');
     }
 
     public function afficheInfoUser($data, $competActive)
@@ -51,22 +51,22 @@ class VueScorcast extends VueGenerique
 
     public function afficheButton()
     {
-        require_once('./front/scoruche/QuestionBonus/boutons.php');
+        require_once('./front/scoruche/questionBonus/boutons.php');
     }
 
     public function afficheQuestionAttente($questions, $equipes)
     {
-        require_once('./front/scoruche/QuestionBonus/listeQuestionsAttente.php');
+        require_once('./front/scoruche/questionBonus/listeQuestionsAttente.php');
     }
 
     public function afficheQuestionEnCours($questions)
     {
-        require_once('./front/scoruche/QuestionBonus/listeQuestionsEnCours.php');
+        require_once('./front/scoruche/questionBonus/listeQuestionsEnCours.php');
     }
 
     public function afficheQuestionFini($questions)
     {
-        require_once('./front/scoruche/QuestionBonus/listeQuestionsFini.php');
+        require_once('./front/scoruche/questionBonus/listeQuestionsFini.php');
     }
 
     public function afficheFormEdit($data, $competActive)
