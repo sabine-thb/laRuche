@@ -3,7 +3,7 @@
     <div class="allQuestions">
         <?php foreach ($questions as $oneQuestion) { ?>
 
-            <div class="oneQuestion">
+            <div class="oneQuestionBonus">
 
                 <div class="custom-pts-question">
                     <p class="nbPoints">

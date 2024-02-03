@@ -4,7 +4,7 @@
     <div class="allQuestions">
         <?php foreach ($questions as $oneQuestion) { ?>
 
-            <div class="oneQuestion"> <!--la class 'oneQuestion' est utilisé par le js-->
+            <div class="oneQuestionBonus"> <!--la class 'oneQuestion' est utilisé par le js-->
                 <form action="competition.php?action=validationQuestionBonus&id=<?php echo $_GET['id']; ?>"
                       method="post">
                     <input type="hidden" name="idQuestion" value="<?php echo $oneQuestion['question_bonus_id']; ?>">
@@ -52,7 +52,7 @@
                         pts
                     </p>
 
-                    <input type="submit" name="submit" class="envoyerForm submit" value="Enregistrer">
+                    <input type="submit" name="submit" class="envoyerForm " value="Enregistrer">
                 </form>
             </div>
 
