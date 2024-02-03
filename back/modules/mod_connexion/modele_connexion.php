@@ -204,4 +204,9 @@ class ModeleConnexion extends Connexion
         }
     }
 
+    public function deconnexion()
+    {
+        Connexion::$bdd = null;
+    }
+
 }

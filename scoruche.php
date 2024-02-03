@@ -90,3 +90,7 @@ $affichageModule = $module->afficheModule();
 <script src="./style/js/scoruche.js"></script>
 </body>
 </html>
+
+<?php
+Connexion::deconnexionBDD();
+?>

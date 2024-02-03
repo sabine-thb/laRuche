@@ -10,7 +10,12 @@ class Connexion
 
     }
 
-    public static function initConnexion()
+    public static function deconnexionBDD()
+    {
+        Connexion::$bdd = null;
+    }
+
+    /*public static function initConnexion()
     {
 
         $host = 'laruche2.cah82lrh4zyj.eu-west-3.rds.amazonaws.com';
@@ -33,9 +38,10 @@ class Connexion
             die("Il y a une erreur de connexion avec la base de données : appel arsene wala \n");
 
         }
-    }
+    }*/
 
-    /*public static function initConnexion() {
+    public static function initConnexion()
+    {
 
         try {
             Connexion::$bdd = new PDO ('mysql:host=laruchxsabine.mysql.db; dbname=laruchxsabine;port=3306;charset=utf8', 'laruchxsabine','Sabosh2004');
@@ -48,6 +54,6 @@ class Connexion
             die("Erreur connection a la base de donné \n");
 
         }
-    }*/
+    }
 
 }

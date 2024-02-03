@@ -135,6 +135,7 @@ class ContConnexion
     public function deconnexion()
     {
         session_destroy();
+        $this->modele->deconnexion();
         header('Location: connexion.php?action=bienvenue');
     }
 

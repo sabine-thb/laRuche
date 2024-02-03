@@ -53,4 +53,6 @@ $affichageModule = $module->afficheModule();
 </body>
 </html>
 
-
+<?php
+Connexion::deconnexionBDD();
+?>

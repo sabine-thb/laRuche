@@ -80,8 +80,9 @@ $affichageModule = $module->afficheModule();
     <p>Coordonnées de contact / Informations légales</p>
 </footer> -->
 
-
 </body>
 </html>
 
-
+<?php
+Connexion::deconnexionBDD();
+?>

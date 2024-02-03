@@ -43,4 +43,3 @@ switch ($module) {
     default:
         die("Module inconnu");
 }
-
