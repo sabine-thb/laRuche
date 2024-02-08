@@ -109,7 +109,7 @@ class ContScorcast
         if (!$totalBool)
             echo "Erreur pendant au moins une modification";
         else
-            header("Location: competition.php?action=affichePronostic&id=$_GET[id]");
+            header("Location: competition.php?action=affichePronostic&id=$_GET[id]&save");
     }
 
     public function valideQuestionBonus()

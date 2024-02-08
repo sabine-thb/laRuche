@@ -109,6 +109,9 @@
             echo "<p>Aucun match disponible pour le moment</p>";
         else
             echo "<input class='submit' type='submit' value='Enregistrer'>";
+
+        if (isset($_GET["save"]))
+                        echo "<br> modifications enregistrées !";
         ?>
 
     </form>
