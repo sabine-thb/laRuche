@@ -1,0 +1,6 @@
+SELECT E.nom as nom_equipe1, ROUND(AVG(P.prono_equipe1), 2) as moyenne_equipe1,  S.nom as nom_equipe2, ROUND(AVG(P.prono_equipe2), 2) as moyenne_equipe2 
+FROM `LaRuche_pronostique` P
+NATURAL JOIN `LaRuche_matchApronostiquer` M
+INNER JOIN `LaRuche_equipe` E ON M.equipe1_id = E.equipe_id
+INNER JOIN `LaRuche_equipe` S ON M.equipe2_id = S.equipe_id
+GROUP BY M.match_id

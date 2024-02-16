@@ -8,16 +8,13 @@ require_once "cont_scoruche.php";
 
 class ModScorcast
 {
-
     private $action;
     private $controlleur;
 
     public function __construct()
     {
-
         $this->controlleur = new ContScorcast();
         $this->action = $_GET['action'] ?? 'bienvenue';
-
     }
 
     public function start()
@@ -49,6 +46,9 @@ class ModScorcast
             case 'resultat':
                 $this->controlleur->afficheResultat();
                 break;
+            case 'stats':
+                $this->controlleur->afficheStats();
+                break;
             case 'detailUser':
                 $this->controlleur->afficheInfoUser();
                 break;
@@ -70,18 +70,21 @@ class ModScorcast
         }
     }
 
-    public function afficheModule()
+    public
+    function afficheModule()
     {
         return $this->controlleur->affichage();
     }
 
-    public function updateSession()
+    public
+    function updateSession()
     {
         $this->controlleur->recupIdPronostiqueur();
         $this->controlleur->recupLogoUser();
     }
 
-    public function updateLogoUser()
+    public
+    function updateLogoUser()
     {
         $this->controlleur->recupLogoUser();
     }

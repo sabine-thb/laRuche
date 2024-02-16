@@ -28,10 +28,12 @@ class ModeleScorcast extends Connexion
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e');</script>";
+
             return $e;
         }
     }
@@ -39,6 +41,7 @@ class ModeleScorcast extends Connexion
     private function executeQuery($stmt)
     {
         $stmt->execute();
+
         // Récupérez les résultats sous forme d'un tableau associatif
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -55,10 +58,12 @@ class ModeleScorcast extends Connexion
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e');</script>";
+
             return $e;
         }
     }
@@ -77,6 +82,7 @@ class ModeleScorcast extends Connexion
             return true;
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
+
             return false;
         }
     }
@@ -97,6 +103,7 @@ class ModeleScorcast extends Connexion
             return true;
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
+
             return false;
         }
     }
@@ -113,10 +120,12 @@ class ModeleScorcast extends Connexion
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e');</script>";
+
             return 404;
         }
 
@@ -137,10 +146,12 @@ class ModeleScorcast extends Connexion
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
+
             return false;
         }
 
@@ -157,10 +168,12 @@ class ModeleScorcast extends Connexion
 
             $stmt = Connexion::$bdd->prepare($query);
             $this->executeQuery($stmt);
+
             return true;
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
+
             return false;
         }
     }
@@ -175,10 +188,12 @@ class ModeleScorcast extends Connexion
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+
             return $this->executeQuery($stmt)[0]['pronostiqueur_id'];
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
+
             return false;
         }
     }
@@ -187,7 +202,7 @@ class ModeleScorcast extends Connexion
     {
         try {
             $query = "
-            SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,
+            SELECT M.match_id,date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,
                    R.nb_but_equipe1 as resultat1, R.nb_but_equipe2 as resultat2, P.point_obtenu,M.*,R.resultat_peno,
                    P.prono_equipe1,P.prono_equipe2,P.vainqueur_prono
             FROM laruchxsabine.LaRuche_matchApronostiquer as M
@@ -200,6 +215,7 @@ class ModeleScorcast extends Connexion
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
@@ -215,10 +231,12 @@ class ModeleScorcast extends Connexion
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+
             return $this->executeQuery($stmt)[0]['totalPoints'];
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
+
             return false;
         }
     }
@@ -233,10 +251,12 @@ class ModeleScorcast extends Connexion
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+
             return $this->executeQuery($stmt)[0]['src_logo_user'];
 
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
+
             return false;
         }
     }
@@ -275,6 +295,7 @@ class ModeleScorcast extends Connexion
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
+
             return false;
         }
     }
@@ -293,6 +314,7 @@ class ModeleScorcast extends Connexion
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
+
             return false;
         }
     }
@@ -317,6 +339,7 @@ class ModeleScorcast extends Connexion
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
+
             return false;
         }
     }
@@ -337,6 +360,7 @@ class ModeleScorcast extends Connexion
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
+
             return false;
         }
     }
@@ -353,6 +377,7 @@ class ModeleScorcast extends Connexion
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
+
             return false;
         }
     }
@@ -371,6 +396,7 @@ class ModeleScorcast extends Connexion
             return true;
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
+
             return false;
         }
     }
@@ -389,6 +415,7 @@ class ModeleScorcast extends Connexion
             return true;
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
+
             return false;
         }
     }
@@ -407,6 +434,51 @@ class ModeleScorcast extends Connexion
             return true;
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
+
+            return false;
+        }
+    }
+
+    public function getProno($matchId)
+    {
+        try {
+            $query = "
+            SELECT DISTINCT P.*, U.login
+            FROM laruchxsabine.LaRuche_matchApronostiquer M
+            INNER JOIN laruchxsabine.LaRuche_pronostique P
+            INNER JOIN laruchxsabine.LaRuche_pronostiqueur PP ON P.pronostiqueur_id = PP.pronostiqueur_id
+            INNER JOIN laruchxsabine.LaRuche_users U ON PP.user_id = U.user_id
+            WHERE P.match_id = $matchId and M.match_id = $matchId
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+
+            return $this->executeQuery($stmt);
+
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public function getMoyene($matchId)
+    {
+        try {
+            $query = "
+            SELECT E.nom as nom1, EE.nom as nom2, R.nb_but_equipe1 as resultat1, R.nb_but_equipe2 as resultat2,
+                   ROUND(AVG(P.prono_equipe1), 2) as moyenne_equipe1, EE.srcLogo as src2,
+                   ROUND(AVG(P.prono_equipe2), 2) as moyenne_equipe2, E.srcLogo as src1, M.date_match,
+                   R.resultat_peno
+            FROM laruchxsabine.LaRuche_pronostique P
+            NATURAL JOIN laruchxsabine.LaRuche_matchApronostiquer M
+            INNER JOIN laruchxsabine.LaRuche_equipe E ON M.equipe1_id = E.equipe_id
+            INNER JOIN laruchxsabine.LaRuche_equipe EE ON M.equipe2_id = EE.equipe_id
+            INNER JOIN laruchxsabine.LaRuche_resultatMatch R ON M.match_id = R.match_id
+            WHERE M.match_id = $matchId
+            ";
+            $stmt = Connexion::$bdd->prepare($query);
+
+            return $this->executeQuery($stmt)[0];
+
+        } catch (PDOException $e) {
             return false;
         }
     }

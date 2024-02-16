@@ -296,8 +296,13 @@ h3 {
     transition: padding 0.3s ease-in-out;
 }
 
+.special {
+    background-color: rgba(135, 192, 255, 0.83);
+}
+
 .lienBonus:hover {
     padding: 10px 15px 10px 15px;
+    cursor: pointer;
 }
 
 .vainqueur {
@@ -306,6 +311,11 @@ h3 {
     font-family: "montserratExtraBold", sans-serif;
 }
 
+.center {
+    margin: 38px 0 25px;
+    display: flex;
+    justify-content: center;
+}
 
 @media (max-width: 1170px) {
 

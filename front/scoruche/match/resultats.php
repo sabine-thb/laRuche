@@ -65,15 +65,17 @@
                     <p class="pointsGagne">
                         <span class="labelEquipe">mon prono :</span>
                         <span>
-                            <?php if ($tuple['prono_equipe1'] == NULL)
+                            <?php if ($tuple['prono_equipe1'] == null) {
                                 echo "aucun pari fait pour ce match.";
-                            elseif ($tuple['prono_equipe1'] == $tuple['prono_equipe2']) {
-                                if ($tuple['resultat_peno'] == 'equipe1')
+                            } elseif ($tuple['prono_equipe1'] == $tuple['prono_equipe2']) {
+                                if ($tuple['resultat_peno'] == 'equipe1') {
                                     echo "<span class='jaune'>$tuple[prono_equipe1]</span> - $tuple[prono_equipe2]";
-                                else
+                                } else {
                                     echo "$tuple[prono_equipe1] - <span class='jaune'>$tuple[prono_equipe2]</span>";
-                            } else
+                                }
+                            } else {
                                 echo "$tuple[prono_equipe1] - $tuple[prono_equipe2]";
+                            }
                             ?>
                         </span>
                     </p>
@@ -90,14 +92,18 @@
 
                     <p class="pointsGagne">
                         <span class="labelEquipe">Bon vainqueur : </span>
-                        <span><?php echo $tuple['pts_Vainq']; ?> points</span></p>
+                        <span><?php echo $tuple['pts_Vainq']; ?> points</span>
+                    </p>
                 </div>
-
+                <div class="center">
+                    <a class="lienBonus special"
+                       href="competition.php?id=<?php echo $_GET['id']; ?>&action=stats&idMatch=<?php echo $tuple['match_id']; ?>">
+                        voir les stats
+                    </a>
+                </div>
             </div>
         <?php } ?>
-
     </div>
-
 </section>
 
 

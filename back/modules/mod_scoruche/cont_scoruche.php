@@ -296,4 +296,12 @@ class ContScorcast
         $this->vue->afficheFormNouveauMDP();
     }
 
+    public function afficheStats()
+    {
+        $matchId = $_GET['idMatch'];
+        $prono = $this->modele->getProno($matchId);
+        $moyene = $this->modele->getMoyene($matchId);
+        $this->vue->afficheStats($prono, $moyene);
+    }
+
 }

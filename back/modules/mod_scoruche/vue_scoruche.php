@@ -91,4 +91,11 @@ class VueScorcast extends VueGenerique
         require_once('./front/connexion/nouveauPassword.php');
     }
 
+    public function afficheStats($prono, $moyene)
+    {
+        $timestamp = strtotime($moyene["date_match"]);
+        $date_formattee = date("d/m/Y", $timestamp);
+        require_once("./front/scoruche/match/statsResultats.php");
+    }
+
 }
