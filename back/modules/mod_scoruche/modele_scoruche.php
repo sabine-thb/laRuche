@@ -449,6 +449,7 @@ class ModeleScorcast extends Connexion
             INNER JOIN laruchxsabine.LaRuche_pronostiqueur PP ON P.pronostiqueur_id = PP.pronostiqueur_id
             INNER JOIN laruchxsabine.LaRuche_users U ON PP.user_id = U.user_id
             WHERE P.match_id = $matchId and M.match_id = $matchId
+            ORDER BY P.point_obtenu DESC
             ";
             $stmt = Connexion::$bdd->prepare($query);
 

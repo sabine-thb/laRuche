@@ -4,7 +4,7 @@
     <div class="resultPronos">
 
         <div class="carteProno element">
-            <p>
+            <p style="text-align: center; font-size: 19px; font-weight: 800">
                 Moyenne :
             </p>
             <div class="Carte">
@@ -65,7 +65,7 @@
                     </p>
                     <p class="pointsGagne">
                         <span class="labelEquipe">Points gagnés :</span>
-                        <span>
+                        <span <?php echo $tuple['point_obtenu'] > 0 ? "class='vert'" : "class='rouge'" ?> >
                             <?php echo $tuple['point_obtenu']; ?>
                         </span>
                     </p>
@@ -74,6 +74,3 @@
         <?php } ?>
     </div>
 </section>
-
-
-

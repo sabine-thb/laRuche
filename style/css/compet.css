@@ -7,6 +7,12 @@ section {
     font-size: 1.2rem;
 }
 
+#image-fond-bonus {
+    margin-right: auto;
+    margin-left: auto;
+    height: 400px;
+    width: auto;
+}
 
 body {
     padding-bottom: 60px;
@@ -155,6 +161,18 @@ h3 {
     padding: 5px;
     background-color: #8bf3db;
     border-radius: 5px;
+}
+
+.vert {
+    font-size: 19px;
+    font-weight: 800;
+    color: #78d280;
+}
+
+.rouge {
+    font-size: 19px;
+    font-weight: 800;
+    color: #F00020;
 }
 
 .selectionFinale {

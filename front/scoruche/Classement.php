@@ -1,4 +1,8 @@
 <section>
+    <div class="classementContainer">
+        <img src="style/img/bonus/victoire%201%20sur%204%201664.JPG" alt="image fond" id="image-fond-bonus"/>
+    </div>
+
     <h1 class="titlePage">
         Classement général :
     </h1>
