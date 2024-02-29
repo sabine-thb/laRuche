@@ -40,9 +40,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     //retirer le lien mini-jeu s'il n'y a pas de clavier
-    console.log("coucou");
     if (window.matchMedia('(pointer: fine)').matches) {
-        document.getElementById('mini-jeu').classList.remove('hiddenOnMobile');
+        const e = document.getElementById('mini-jeu');
+        if (e) e.classList.remove('hiddenOnMobile');
     }
 });
 
