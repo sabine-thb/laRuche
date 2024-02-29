@@ -78,6 +78,11 @@ $affichageModule = $module->afficheModule();
            id="questions">
             Bonus
         </a>
+        <a href="competition.php?action=mini-jeu&id=<?php echo $_GET['id']; ?>"
+           class="linkNavbar linkDefaut hiddenOnMobile"
+           id="mini-jeu">
+            Mini-jeu
+        </a>
         <a href="competition.php?action=editProfil&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut"
            id="editProfil">
             Profil
@@ -85,12 +90,9 @@ $affichageModule = $module->afficheModule();
         <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
             Déconnexion
         </a>
-
     </div>
 
-
 </header>
-
 
 <main>
     <?php
@@ -98,13 +100,6 @@ $affichageModule = $module->afficheModule();
     echo $affichageModule;
     ?>
 </main>
-
-
-<!-- Pied de page -->
-<!-- <footer class="bg-dark text-white text-center py-3 fixed-bottom">
-    <p>Coordonnées de contact / Informations légales</p>
-</footer> -->
-
 
 </body>
 </html>

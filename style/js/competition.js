@@ -28,11 +28,22 @@ document.addEventListener('DOMContentLoaded', function () {
         case 'afficheMesCompet':
             monElement = document.getElementById('competActive');
             break;
+        case 'mini-jeu':
+            monElement = document.getElementById('mini-jeu');
+            break;
     }
 
     // Ajoutez une classe speciale pour savoir sur quelle page on se trouve
-    monElement.classList.remove('linkDefaut');
-    monElement.classList.add('linkActive');
+    if (monElement) {
+        monElement.classList.remove('linkDefaut');
+        monElement.classList.add('linkActive');
+    }
+
+    //retirer le lien mini-jeu s'il n'y a pas de clavier
+    console.log("coucou");
+    if (window.matchMedia('(pointer: fine)').matches) {
+        document.getElementById('mini-jeu').classList.remove('hiddenOnMobile');
+    }
 });
 
 function afficherMenuProfil() {

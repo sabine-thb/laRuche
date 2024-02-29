@@ -98,4 +98,9 @@ class VueScorcast extends VueGenerique
         require_once("./front/scoruche/match/statsResultats.php");
     }
 
+    public function afficheMiniJeu()
+    {
+        require_once('./front/scoruche/mini_jeu/babSnake.php');
+    }
+
 }

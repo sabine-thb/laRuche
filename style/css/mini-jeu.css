@@ -1,0 +1,76 @@
+.game-container {
+    filter: drop-shadow(18px 10px 5px #4cadad);
+}
+
+h3 {
+    color: #9b9b9b;
+}
+
+h5 {
+    font-weight: 900;
+    font-size: 25px;
+    align-self: flex-start;
+    color: black;
+    font-family: "montserratExtraBold", sans-serif;
+    background-color: #cf9e00;
+    padding: 5px 10px;
+}
+
+canvas {
+    border-radius: 25px;
+    filter: drop-shadow(1px 1px 1px dodgerblue);
+}
+
+.container-center {
+    text-align: center;
+}
+
+.btn-fin {
+    text-decoration: none;
+    color: white;
+    font-family: "montserratExtraBold", sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    padding: 8px 15px 8px 15px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#div-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#div-container > h4 {
+    margin-right: 60px;
+}
+
+#quitter {
+    background-color: red;
+}
+
+#rejouez {
+    background-color: dodgerblue;
+}
+
+.btn-fin:hover {
+    cursor: pointer;
+    background-color: rgba(207, 158, 0, 0.68) !important;
+}
+
+#fenetre-fin-cacher {
+    display: none;
+}
+
+#fenetre-fin-display {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    background-color: beige;
+    border: solid 4px black;
+    border-radius: 15px;
+}

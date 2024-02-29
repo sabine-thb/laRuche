@@ -304,4 +304,9 @@ class ContScorcast
         $this->vue->afficheStats($prono, $moyene);
     }
 
+    public function afficheMiniJeu()
+    {
+        $this->vue->afficheMiniJeu();
+    }
+
 }

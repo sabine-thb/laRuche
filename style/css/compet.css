@@ -335,6 +335,10 @@ h3 {
     justify-content: center;
 }
 
+.hiddenOnMobile {
+    display: none
+}
+
 @media (max-width: 1170px) {
 
     body {
@@ -356,8 +360,6 @@ h3 {
         font-size: 0.6rem !important;
         padding: 5px 10px 5px 10px !important;
     }
-
-
 }
 
 @media (max-width: 850px) {
@@ -382,6 +384,10 @@ h3 {
     .oneQuestionBonus {
         width: 450px;
     }
+
+    /*#mini-jeu {*/
+    /*    display: none;*/
+    /*}*/
 
 }
 

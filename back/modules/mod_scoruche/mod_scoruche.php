@@ -61,6 +61,9 @@ class ModScorcast
             case 'edit':
                 $this->controlleur->recupFormEdit();
                 break;
+            case 'mini-jeu':
+                $this->controlleur->afficheMiniJeu();
+                break;
             case 'changePassword':
                 $this->controlleur->afficheFormMdp();
                 break;
