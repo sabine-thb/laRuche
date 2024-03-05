@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <script src="./style/js/mini_jeu/mini-jeu.js"></script>
-    <link rel="stylesheet" href="./style/css/mini-jeu.css">
+    <script src="./style/js/mini_jeu/babSnake.js"></script>
+    <link rel="stylesheet" href="./style/css/babSnake.css">
 </section>
 

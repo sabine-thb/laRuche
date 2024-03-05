@@ -79,7 +79,7 @@ $affichageModule = $module->afficheModule();
             Bonus
         </a>
         <a href="competition.php?action=mini-jeu&id=<?php echo $_GET['id']; ?>"
-           class="linkNavbar linkDefaut hiddenOnMobile"
+           class="linkNavbar linkDefaut"
            id="mini-jeu">
             Mini-jeu
         </a>

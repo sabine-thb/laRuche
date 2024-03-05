@@ -45,7 +45,6 @@ section {
     text-align: center;
     box-shadow: inset 5px 0px 15px 5px rgba(0, 0, 0, 0.25);
     /* box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25); */
-
 }
 
 
@@ -139,7 +138,6 @@ section {
 
 .oneAction:hover {
     background-color: #e1b217;
-
 }
 
 /*Je stylise la page de creation de compétition*/

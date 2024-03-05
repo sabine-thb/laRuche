@@ -100,7 +100,17 @@ class VueScorcast extends VueGenerique
 
     public function afficheMiniJeu()
     {
+        require_once('./front/scoruche/mini_jeu/acceuil.php');
+    }
+
+    public function afficheBabSnake()
+    {
         require_once('./front/scoruche/mini_jeu/babSnake.php');
+    }
+
+    public function afficheHulkV45()
+    {
+        require_once('./front/scoruche/mini_jeu/les45FoudroientLesHulks.html');
     }
 
 }

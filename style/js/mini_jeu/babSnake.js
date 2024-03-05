@@ -2,7 +2,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const backgroundImage = new Image();
-backgroundImage.src = './style/img/terrain.jpg';
+backgroundImage.src = './style/img/mini-jeu/babSnake/terrain.jpg';
 
 // general
 let isPaused = true;
@@ -39,21 +39,21 @@ async function loadImagesFromDirectory() {
         tab.push(img);
     }
 
-    await loadOneImg("./style/img/apple/ayme.png", tableauImgApple);
-    await loadOneImg("./style/img/apple/charlito.png", tableauImgApple);
-    await loadOneImg("./style/img/apple/daniel.png", tableauImgApple);
+    await loadOneImg("./style/img/mini-jeu/babSnake/apple/ayme.png", tableauImgApple);
+    await loadOneImg("./style/img/mini-jeu/babSnake/apple/charlito.png", tableauImgApple);
+    await loadOneImg("./style/img/mini-jeu/babSnake/apple/daniel.png", tableauImgApple);
     // await loadOneImg("img/apple/gabi.png", tableauImgApple);
-    await loadOneImg("./style/img/apple/justin.png", tableauImgApple);
-    await loadOneImg("./style/img/apple/gabii.png", tableauImgApple);
-    await loadOneImg("./style/img/apple/theo.png", tableauImgApple);
-    await loadOneImg("./style/img/apple/arno.png", tableauImgApple);
-    await loadOneImg("./style/img/apple/jonas.png", tableauImgApple);
+    await loadOneImg("./style/img/mini-jeu/babSnake/apple/justin.png", tableauImgApple);
+    await loadOneImg("./style/img/mini-jeu/babSnake/apple/gabii.png", tableauImgApple);
+    await loadOneImg("./style/img/mini-jeu/babSnake/apple/theo.png", tableauImgApple);
+    await loadOneImg("./style/img/mini-jeu/babSnake/apple/arno.png", tableauImgApple);
+    await loadOneImg("./style/img/mini-jeu/babSnake/apple/jonas.png", tableauImgApple);
 
-    await loadOneImg("./style/img/snake/zlatan.png", tableauImgSnake);
-    await loadOneImg("./style/img/snake/zlatan 1.png", tableauImgSnake);
-    await loadOneImg("./style/img/snake/zlatan 2.png", tableauImgSnake);
-    await loadOneImg("./style/img/snake/zlatan 3.png", tableauImgSnake);
-    await loadOneImg("./style/img/snake/zlatan 4.png", tableauImgSnake);
+    await loadOneImg("./style/img/mini-jeu/babSnake/snake/zlatan.png", tableauImgSnake);
+    await loadOneImg("./style/img/mini-jeu/babSnake/snake/zlatan 1.png", tableauImgSnake);
+    await loadOneImg("./style/img/mini-jeu/babSnake/snake/zlatan 2.png", tableauImgSnake);
+    await loadOneImg("./style/img/mini-jeu/babSnake/snake/zlatan 3.png", tableauImgSnake);
+    await loadOneImg("./style/img/mini-jeu/babSnake/snake/zlatan 4.png", tableauImgSnake);
 }
 
 function drawSnake() {

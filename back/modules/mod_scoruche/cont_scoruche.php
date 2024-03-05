@@ -309,4 +309,14 @@ class ContScorcast
         $this->vue->afficheMiniJeu();
     }
 
+    public function afficheBabSnake()
+    {
+        $this->vue->afficheBabSnake();
+    }
+
+    public function afficheHulkV45()
+    {
+        $this->vue->afficheHulkV45();
+    }
+
 }

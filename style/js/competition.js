@@ -39,11 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
         monElement.classList.add('linkActive');
     }
 
-    //retirer le lien mini-jeu s'il n'y a pas de clavier
-    if (window.matchMedia('(pointer: fine)').matches) {
-        const e = document.getElementById('mini-jeu');
-        if (e) e.classList.remove('hiddenOnMobile');
-    }
 });
 
 function afficherMenuProfil() {

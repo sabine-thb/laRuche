@@ -64,6 +64,12 @@ class ModScorcast
             case 'mini-jeu':
                 $this->controlleur->afficheMiniJeu();
                 break;
+            case 'babSnake':
+                $this->controlleur->afficheBabSnake();
+                break;
+            case 'hulkV45':
+                $this->controlleur->afficheHulkV45();
+                break;
             case 'changePassword':
                 $this->controlleur->afficheFormMdp();
                 break;
