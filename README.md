@@ -18,7 +18,9 @@ docker compose up -d --build
 
 lien : **http://localhost:8080**
 
-La bdd est initialisée automatiquement au premier démarrage.
+Compte admin :
+- pseudo : **admin**
+- mot de passe : **admin**
 
 ### Commandes utiles
 
