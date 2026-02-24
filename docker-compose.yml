@@ -26,7 +26,8 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - db_data:/var/lib/mysql
-      - ./scriptSQL/LaRuche_creationPROD.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./scriptSQL/LaRuche_creationPROD.sql:/docker-entrypoint-initdb.d/01_init.sql
+      - ./scriptSQL/LaRuche_dev_seed.sql:/docker-entrypoint-initdb.d/02_dev_seed.sql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "laruche", "-plaruche"]
       interval: 5s
