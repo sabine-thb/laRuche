@@ -6,3 +6,6 @@
 *.xml
 
 ./composer.json
+/config.php
+.env
+.DS_Store

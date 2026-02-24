@@ -31,8 +31,8 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            SELECT prenom,user_id,login,mail,description 
-            FROM laruchxsabine.LaRuche_users 
+            SELECT prenom,user_id,login,mail,description
+            FROM laruchxsabine.LaRuche_users
             WHERE est_verifier = false
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -58,7 +58,7 @@ class ModeleAdmin extends Connexion
 
         try {
             $query = "
-            SELECT * 
+            SELECT *
             FROM laruchxsabine.LaRuche_competition
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -74,10 +74,11 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            DELETE FROM laruchxsabine.LaRuche_competition 
-            WHERE competition_id = $id
+            DELETE FROM laruchxsabine.LaRuche_competition
+            WHERE competition_id = :id
             ";
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $this->executeQuery($stmt);
 
             return -45; //pour etre sur que l'erreur n'existe pas dans mySQL
@@ -94,11 +95,12 @@ class ModeleAdmin extends Connexion
 
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_users 
-            SET est_verifier = true 
-            WHERE user_id = $id
+            UPDATE laruchxsabine.LaRuche_users
+            SET est_verifier = true
+            WHERE user_id = :id
             ";
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $this->executeQuery($stmt);
 
             return true;
@@ -115,10 +117,11 @@ class ModeleAdmin extends Connexion
 
         try {
             $query = "
-            DELETE FROM laruchxsabine.LaRuche_users 
-            WHERE user_id= $id
+            DELETE FROM laruchxsabine.LaRuche_users
+            WHERE user_id= :id
             ";
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $this->executeQuery($stmt);
 
             return true;
@@ -134,7 +137,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            INSERT INTO laruchxsabine.LaRuche_competition (nom,description,date_creation) 
+            INSERT INTO laruchxsabine.LaRuche_competition (nom,description,date_creation)
             VALUES (:nom, :detail,CURDATE())
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -160,11 +163,12 @@ class ModeleAdmin extends Connexion
 
         try {
             $query = "
-            SELECT nom 
-            FROM laruchxsabine.LaRuche_equipe 
-            WHERE nom = '$nomEquipe'
+            SELECT nom
+            FROM laruchxsabine.LaRuche_equipe
+            WHERE nom = :nom
             ";
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':nom', $nomEquipe, PDO::PARAM_STR);
             $res = $this->executeQuery($stmt);
         } catch (PDOException $e) {
             var_dump($e);
@@ -220,10 +224,18 @@ class ModeleAdmin extends Connexion
 
         try {
             $query = "
-            INSERT INTO laruchxsabine.LaRuche_matchApronostiquer(equipe1_id,equipe2_id,competition_id,pts_Exact,pts_Ecart,pts_Vainq,date_match,heure) 
-            VALUES ($eq1,$eq2,$compet,$ptsExa,$ptsEcart,$ptsVainq,'$dateMatch',$heure);
+            INSERT INTO laruchxsabine.LaRuche_matchApronostiquer(equipe1_id,equipe2_id,competition_id,pts_Exact,pts_Ecart,pts_Vainq,date_match,heure)
+            VALUES (:eq1,:eq2,:compet,:ptsExa,:ptsEcart,:ptsVainq,:dateMatch,:heure);
             ";
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':eq1', $eq1, PDO::PARAM_INT);
+            $stmt->bindParam(':eq2', $eq2, PDO::PARAM_INT);
+            $stmt->bindParam(':compet', $compet, PDO::PARAM_INT);
+            $stmt->bindParam(':ptsExa', $ptsExa, PDO::PARAM_INT);
+            $stmt->bindParam(':ptsEcart', $ptsEcart, PDO::PARAM_INT);
+            $stmt->bindParam(':ptsVainq', $ptsVainq, PDO::PARAM_INT);
+            $stmt->bindParam(':dateMatch', $dateMatch, PDO::PARAM_STR);
+            $stmt->bindParam(':heure', $heure, PDO::PARAM_STR);
             $stmt->execute();
 
             return true;
@@ -238,7 +250,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            SELECT * 
+            SELECT *
             FROM laruchxsabine.LaRuche_matchApronostiquer;
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -256,10 +268,11 @@ class ModeleAdmin extends Connexion
             $query = "
             SELECT mail
             FROM laruchxsabine.LaRuche_users
-            WHERE user_id = $idUser
+            WHERE user_id = :id
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':id', $idUser, PDO::PARAM_INT);
             return $this->executeQuery($stmt)[0];
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e');</script>";
@@ -347,10 +360,11 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            SELECT * FROM laruchxsabine.LaRuche_equipe WHERE equipe_id = $idEquipe
+            SELECT * FROM laruchxsabine.LaRuche_equipe WHERE equipe_id = :id
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':id', $idEquipe, PDO::PARAM_INT);
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
@@ -363,7 +377,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            SELECT * 
+            SELECT *
             FROM laruchxsabine.LaRuche_equipe
             ";
 
@@ -383,11 +397,12 @@ class ModeleAdmin extends Connexion
             $query = "
             UPDATE laruchxsabine.LaRuche_equipe
             SET nom = :nom
-            WHERE equipe_id = $id
+            WHERE equipe_id = :id
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
             $stmt->bindParam(':nom', $inputNom, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $this->executeQuery($stmt);
 
             return true;
@@ -400,12 +415,14 @@ class ModeleAdmin extends Connexion
     public function rechercheUser($name)
     {
         try {
+            $search = '%' . $name . '%';
             $query = "
             SELECT * FROM laruchxsabine.LaRuche_users
-            WHERE LOWER(login) LIKE '%$name%'
+            WHERE LOWER(login) LIKE :search
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':search', $search, PDO::PARAM_STR);
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
@@ -420,11 +437,12 @@ class ModeleAdmin extends Connexion
             $query = "
             UPDATE laruchxsabine.LaRuche_equipe
             SET srcLogo = :src
-            WHERE equipe_id = $id
+            WHERE equipe_id = :id
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
             $stmt->bindParam(':src', $srcLogo, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $this->executeQuery($stmt);
 
             return true;
@@ -440,10 +458,11 @@ class ModeleAdmin extends Connexion
             $query = "
             UPDATE laruchxsabine.LaRuche_users
             SET password = 'reset'
-            WHERE user_id = $id
+            WHERE user_id = :id
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $this->executeQuery($stmt);
 
             return true;
@@ -457,10 +476,11 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            SELECT srcLogo FROM laruchxsabine.LaRuche_equipe WHERE equipe_id = $id
+            SELECT srcLogo FROM laruchxsabine.LaRuche_equipe WHERE equipe_id = :id
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             return $this->executeQuery($stmt)[0]['srcLogo'];
         } catch (PDOException $e) {
             echo "<script>console.log('erreur: $e ');</script>";
@@ -472,7 +492,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            SELECT * 
+            SELECT *
             FROM laruchxsabine.LaRuche_competition
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -488,10 +508,11 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            DELETE FROM laruchxsabine.LaRuche_equipe 
-                   WHERE equipe_id= $id
+            DELETE FROM laruchxsabine.LaRuche_equipe
+                   WHERE equipe_id= :id
             ";
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $this->executeQuery($stmt);
 
             return true;
@@ -506,10 +527,11 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            DELETE FROM laruchxsabine.LaRuche_users 
-                   WHERE user_id= $id
+            DELETE FROM laruchxsabine.LaRuche_users
+                   WHERE user_id= :id
             ";
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $this->executeQuery($stmt);
 
             return true;
@@ -525,12 +547,13 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_matchApronostiquer 
-            SET pari_ouvert = false 
-            WHERE match_id = $match_id
+            UPDATE laruchxsabine.LaRuche_matchApronostiquer
+            SET pari_ouvert = false
+            WHERE match_id = :match_id
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':match_id', $match_id, PDO::PARAM_INT);
             $this->executeQuery($stmt);
 
             return true;
@@ -546,10 +569,14 @@ class ModeleAdmin extends Connexion
         try {
             $query = "
             INSERT INTO laruchxsabine.LaRuche_resultatMatch(match_id, nb_but_equipe1, nb_but_equipe2,resultat_peno)
-            VALUE ($match_id,$resultatEquipe1,$resultatEquipe2,$resultatPeno)
+            VALUE (:match_id,:resultat1,:resultat2,:peno)
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':match_id', $match_id, PDO::PARAM_INT);
+            $stmt->bindParam(':resultat1', $resultatEquipe1, PDO::PARAM_INT);
+            $stmt->bindParam(':resultat2', $resultatEquipe2, PDO::PARAM_INT);
+            $stmt->bindParam(':peno', $resultatPeno, PDO::PARAM_INT);
             $this->executeQuery($stmt);
 
             return true;
@@ -564,10 +591,11 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            DELETE FROM laruchxsabine.LaRuche_matchApronostiquer 
-                   WHERE match_id=$idMatch
+            DELETE FROM laruchxsabine.LaRuche_matchApronostiquer
+                   WHERE match_id= :id
             ";
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':id', $idMatch, PDO::PARAM_INT);
             $this->executeQuery($stmt);
 
             return -45; //pour etre sur que l'erreur n'existe pas dans mySQL
@@ -583,11 +611,14 @@ class ModeleAdmin extends Connexion
         try {
             $query = "
             INSERT INTO laruchxsabine. LaRuche_questionBonus(titre, competition_id, objectif, type, point_bonne_reponse)
-            VALUES (:titre,$compet_id,:objectif,'$type',$pts)
+            VALUES (:titre,:compet_id,:objectif,:type,:pts)
             ";
             $stmt = Connexion::$bdd->prepare($query);
             $stmt->bindParam(':titre', $titre, PDO::PARAM_STR);
+            $stmt->bindParam(':compet_id', $compet_id, PDO::PARAM_INT);
             $stmt->bindParam(':objectif', $objectif, PDO::PARAM_STR);
+            $stmt->bindParam(':type', $type, PDO::PARAM_STR);
+            $stmt->bindParam(':pts', $pts, PDO::PARAM_INT);
             $this->executeQuery($stmt);
 
             return -45;
@@ -663,12 +694,13 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_questionBonus 
-            SET pari_ouvert = false 
-            WHERE question_bonus_id = $idQuestion
+            UPDATE laruchxsabine.LaRuche_questionBonus
+            SET pari_ouvert = false
+            WHERE question_bonus_id = :id
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':id', $idQuestion, PDO::PARAM_INT);
             $this->executeQuery($stmt);
 
             return true;
@@ -684,10 +716,11 @@ class ModeleAdmin extends Connexion
         try {
             $query = "
             INSERT INTO laruchxsabine.LaRuche_resultatQuestionBonus(question_bonus_id, bonne_reponse)
-            VALUE ($idQuestion, :resultat)
+            VALUE (:id, :resultat)
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
+            $stmt->bindParam(':id', $idQuestion, PDO::PARAM_INT);
             $stmt->bindParam(':resultat', $reponse, PDO::PARAM_STR);
             $this->executeQuery($stmt);
 

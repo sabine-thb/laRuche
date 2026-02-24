@@ -335,6 +335,7 @@ BEGIN
 END//
 
 create function LaRuche_getClassement(id_pronostiqueur int, id_compet int) returns int
+READS SQL DATA
 BEGIN
 
     DECLARE t INT;
@@ -361,6 +362,7 @@ END//
 
 create function bonVaiqueur(prono1 int, prono2 int, pronoVainqueurPeno enum ('equipe1', 'equipe2'), resultat1 int,
                             resultat2 int, resultatVainqueurPeno enum ('equipe1', 'equipe2')) returns tinyint(1)
+DETERMINISTIC
 BEGIN
     DECLARE result BOOLEAN;
 
@@ -384,6 +386,7 @@ BEGIN
 END//
 
 create function totalPoint(id_pronostiqueur int, id_compet int) returns int
+READS SQL DATA
 BEGIN
 
     DECLARE t INT;
