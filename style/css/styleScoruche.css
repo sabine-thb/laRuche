@@ -49,10 +49,6 @@
 
 .descr {
     font-size: 1.3rem;
-    /* background-color:#080e50;
-    padding:5px;
-    border-radius:5px;
-    text-align: center; */
 }
 
 .logo {
@@ -104,15 +100,15 @@ section {
 .lienPari {
     color: white;
     text-decoration: none;
-    background-color: gray;
-    padding: 5px 10px 5px 10px;
-    border-radius: 5px;
-    transition: padding 0.3s ease-in-out;
+    background-color: #0B54CD;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease-in-out;
     align-self: flex-end;
 }
 
 .lienPari:hover {
-    padding: 5px 15px 5px 15px;
+    background-color: #cf9e00;
 }
 
 /*Je stylise la page des compétitions dispo*/
@@ -150,7 +146,7 @@ section {
 }
 
 .rejoindre:hover {
-    background-color: #007bff;
+    background-color: #cf9e00;
 }
 
 .gifContainer {

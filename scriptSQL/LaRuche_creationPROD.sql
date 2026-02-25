@@ -1,3 +1,5 @@
+USE ruche_scoruche;
+
 SET FOREIGN_KEY_CHECKS = 0;
 
 DROP PROCEDURE IF EXISTS Insert150Rows;
@@ -206,10 +208,10 @@ BEGIN
 
     DECLARE idTemp INT;
     DECLARE myCursor CURSOR FOR SELECT match_id
-                                FROM laruchxsabine.LaRuche_matchApronostiquer
+                                FROM LaRuche_matchApronostiquer
                                 WHERE competition_id = NEW.competition_id;
     DECLARE myCursor2 CURSOR FOR SELECT question_bonus_id
-                                 FROM laruchxsabine.LaRuche_questionBonus
+                                 FROM LaRuche_questionBonus
                                  WHERE competition_id = NEW.competition_id;
 
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
@@ -224,7 +226,7 @@ BEGIN
             LEAVE read_loop;
         END IF;
 
-        INSERT INTO laruchxsabine.LaRuche_pronostique(match_id, pronostiqueur_id) VALUES (idTemp, NEW.pronostiqueur_id);
+        INSERT INTO LaRuche_pronostique(match_id, pronostiqueur_id) VALUES (idTemp, NEW.pronostiqueur_id);
     END LOOP;
 
     CLOSE myCursor;
@@ -241,7 +243,7 @@ BEGIN
             LEAVE read_loop;
         END IF;
 
-        INSERT INTO laruchxsabine.LaRuche_pronoQuestionBonus(question_bonus_id, pronostiqueur_id)
+        INSERT INTO LaRuche_pronoQuestionBonus(question_bonus_id, pronostiqueur_id)
         VALUES (idTemp, NEW.pronostiqueur_id);
     END LOOP;
 
@@ -263,8 +265,8 @@ BEGIN
     DECLARE idCompet INT;
     DECLARE pointBonneReponse INT;
     DECLARE myCursor CURSOR FOR SELECT P.pronostiqueur_id
-                                FROM laruchxsabine.LaRuche_pronostiqueur P
-                                         INNER JOIN laruchxsabine.LaRuche_pronoQuestionBonus LRpQB
+                                FROM LaRuche_pronostiqueur P
+                                         INNER JOIN LaRuche_pronoQuestionBonus LRpQB
                                                     ON P.pronostiqueur_id = LRpQB.pronostiqueur_id
                                 WHERE LRpQB.question_bonus_id = NEW.question_bonus_id;
 
@@ -272,12 +274,12 @@ BEGIN
 
     SELECT point_bonne_reponse
     INTO pointBonneReponse
-    FROM laruchxsabine.LaRuche_questionBonus
+    FROM LaRuche_questionBonus
     WHERE question_bonus_id = NEW.question_bonus_id;
 
     SELECT competition_id
     INTO idCompet
-    FROM laruchxsabine.LaRuche_questionBonus Q
+    FROM LaRuche_questionBonus Q
     WHERE Q.question_bonus_id = NEW.question_bonus_id;
 
     OPEN myCursor;
@@ -292,7 +294,7 @@ BEGIN
 
         SELECT reponse
         INTO pronoReponse
-        FROM laruchxsabine.LaRuche_pronoQuestionBonus
+        FROM LaRuche_pronoQuestionBonus
         WHERE pronostiqueur_id = idTemp
           and question_bonus_id = NEW.question_bonus_id;
 
@@ -302,7 +304,7 @@ BEGIN
             SET pointTemp = 0;
         END IF;
 
-        UPDATE laruchxsabine.LaRuche_pronoQuestionBonus
+        UPDATE LaRuche_pronoQuestionBonus
         SET point_obtenu = pointTemp
         WHERE pronostiqueur_id = idTemp
           and question_bonus_id = NEW.question_bonus_id;
@@ -310,7 +312,7 @@ BEGIN
 
     CLOSE myCursor;
 
-    CALL laruchxsabine.updatePoint(idCompet);
+    CALL updatePoint(idCompet);
 END//
 
 create procedure Insert150Rows()
@@ -323,12 +325,12 @@ BEGIN
         DO
 
             -- Insertion dans la table
-            INSERT INTO laruchxsabine.LaRuche_users (login, mail, description, password, age)
+            INSERT INTO LaRuche_users (login, mail, description, password, age)
                 VALUE ('clone', 'clone@clone.com', 'on est tous les meme', 'nike les clones', 50);
 
-            SELECT max(user_id) INTO idTemp FROM laruchxsabine.LaRuche_users;
+            SELECT max(user_id) INTO idTemp FROM LaRuche_users;
 
-            INSERT INTO laruchxsabine.LaRuche_pronostiqueur (user_id, competition_id)
+            INSERT INTO LaRuche_pronostiqueur (user_id, competition_id)
                 VALUE (idTemp, 12);
             SET i = i + 1;
         END WHILE;
@@ -343,13 +345,13 @@ BEGIN
 
     SELECT total_point
     INTO pointUser
-    FROM laruchxsabine.LaRuche_pronostiqueur
+    FROM LaRuche_pronostiqueur
     WHERE pronostiqueur_id = id_pronostiqueur
       and competition_id = id_compet;
 
     SELECT COUNT(*) + 1
     INTO t
-    FROM laruchxsabine.LaRuche_pronostiqueur
+    FROM LaRuche_pronostiqueur
     WHERE competition_id = id_compet
       and total_point > pointUser;
 
@@ -394,8 +396,8 @@ BEGIN
 
     SELECT SUM(point_obtenu)
     INTO t
-    FROM laruchxsabine.LaRuche_pronostique
-             NATURAL JOIN laruchxsabine.LaRuche_matchApronostiquer
+    FROM LaRuche_pronostique
+             NATURAL JOIN LaRuche_matchApronostiquer
     WHERE pronostiqueur_id = id_pronostiqueur
       and competition_id = id_compet;
 
@@ -405,8 +407,8 @@ BEGIN
 
     SELECT SUM(point_obtenu)
     INTO t2
-    FROM laruchxsabine.LaRuche_pronoQuestionBonus
-             NATURAL JOIN laruchxsabine.LaRuche_questionBonus
+    FROM LaRuche_pronoQuestionBonus
+             NATURAL JOIN LaRuche_questionBonus
     WHERE pronostiqueur_id = id_pronostiqueur
       and competition_id = id_compet;
 
@@ -423,7 +425,7 @@ BEGIN
 
     DECLARE idTemp INT;
     DECLARE mycursor CURSOR FOR SELECT pronostiqueur_id
-                                FROM laruchxsabine.LaRuche_pronostiqueur
+                                FROM LaRuche_pronostiqueur
                                 WHERE competition_id = idCompet;
 
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
@@ -438,8 +440,8 @@ BEGIN
             LEAVE read_loop;
         END IF;
 
-        UPDATE laruchxsabine.LaRuche_pronostiqueur
-        SET total_point = laruchxsabine.totalPoint(idTemp, idCompet)
+        UPDATE LaRuche_pronostiqueur
+        SET total_point = totalPoint(idTemp, idCompet)
         WHERE pronostiqueur_id = idTemp;
 
     END LOOP;
@@ -458,7 +460,7 @@ BEGIN
 
     DECLARE idTemp INT;
     DECLARE myCursor CURSOR FOR SELECT pronostiqueur_id
-                                FROM laruchxsabine.LaRuche_pronostiqueur P
+                                FROM LaRuche_pronostiqueur P
                                 WHERE P.competition_id = NEW.competition_id;
 
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
@@ -473,7 +475,7 @@ BEGIN
             LEAVE read_loop;
         END IF;
 
-        INSERT INTO laruchxsabine.LaRuche_pronostique(match_id, pronostiqueur_id)
+        INSERT INTO LaRuche_pronostique(match_id, pronostiqueur_id)
         VALUES (NEW.match_id, idTemp);
     END LOOP;
 
@@ -490,7 +492,7 @@ BEGIN
 
     DECLARE idTemp INT;
     DECLARE myCursor CURSOR FOR SELECT pronostiqueur_id
-                                FROM laruchxsabine.LaRuche_pronostiqueur P
+                                FROM LaRuche_pronostiqueur P
                                 WHERE P.competition_id = NEW.competition_id;
 
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
@@ -505,7 +507,7 @@ BEGIN
             LEAVE read_loop;
         END IF;
 
-        INSERT INTO laruchxsabine.LaRuche_pronoQuestionBonus(question_bonus_id, pronostiqueur_id)
+        INSERT INTO LaRuche_pronoQuestionBonus(question_bonus_id, pronostiqueur_id)
         VALUES (NEW.question_bonus_id, idTemp);
     END LOOP;
 
@@ -530,15 +532,15 @@ BEGIN
         SELECT pronostiqueur_id
         FROM LaRuche_pronostiqueur
         WHERE competition_id = (SELECT competition_id
-                                FROM laruchxsabine.LaRuche_resultatMatch
-                                         NATURAL JOIN laruchxsabine.LaRuche_matchApronostiquer
+                                FROM LaRuche_resultatMatch
+                                         NATURAL JOIN LaRuche_matchApronostiquer
                                 WHERE match_id = NEW.match_id);
 
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
 
     SELECT M.competition_id
     INTO idCompet
-    FROM laruchxsabine.LaRuche_matchApronostiquer M
+    FROM LaRuche_matchApronostiquer M
     WHERE M.match_id = NEW.match_id;
 
     OPEN myCursor;
@@ -553,7 +555,7 @@ BEGIN
 
         SELECT prono_equipe1, prono_equipe2, vainqueur_prono
         INTO prono1, prono2,pronoResultatPeno
-        FROM laruchxsabine.LaRuche_pronostique P
+        FROM LaRuche_pronostique P
         WHERE pronostiqueur_id = idTemp
           and P.match_id = NEW.match_id;
 
@@ -561,40 +563,40 @@ BEGIN
             IF prono1 = NEW.nb_but_equipe1 THEN
                 IF pronoResultatPeno = NEW.resultat_peno THEN
                     SET ptTemp = (SELECT pts_Exact
-                                  FROM laruchxsabine.LaRuche_matchApronostiquer
+                                  FROM LaRuche_matchApronostiquer
                                   WHERE match_id = NEW.match_id);
                 ELSE
                     SET ptTemp = (SELECT (pts_Exact - pts_Vainq)
-                                  FROM laruchxsabine.LaRuche_matchApronostiquer
+                                  FROM LaRuche_matchApronostiquer
                                   WHERE match_id = NEW.match_id);
                 END IF;
             ELSE
                 IF pronoResultatPeno = NEW.resultat_peno THEN
                     SET ptTemp = (SELECT pts_Ecart
-                                  FROM laruchxsabine.LaRuche_matchApronostiquer
+                                  FROM LaRuche_matchApronostiquer
                                   WHERE match_id = NEW.match_id);
                 ELSE
                     SET ptTemp = (SELECT (pts_Ecart - pts_Vainq)
-                                  FROM laruchxsabine.LaRuche_matchApronostiquer
+                                  FROM LaRuche_matchApronostiquer
                                   WHERE match_id = NEW.match_id);
                 END IF;
             END IF;
         ELSEIF prono1 = NEW.nb_but_equipe1 and prono2 = NEW.nb_but_equipe2 THEN
-            SET ptTemp = (SELECT pts_Exact FROM laruchxsabine.LaRuche_matchApronostiquer WHERE match_id = NEW.match_id);
-        ELSEIF laruchxsabine.bonVaiqueur(prono1, prono2, pronoResultatPeno, NEW.nb_but_equipe1, NEW.nb_but_equipe2,
+            SET ptTemp = (SELECT pts_Exact FROM LaRuche_matchApronostiquer WHERE match_id = NEW.match_id);
+        ELSEIF bonVaiqueur(prono1, prono2, pronoResultatPeno, NEW.nb_but_equipe1, NEW.nb_but_equipe2,
                                          NEW.resultat_peno) THEN
             IF ABS(prono1 - prono2) = ABS(NEW.nb_but_equipe1 - NEW.nb_but_equipe2) THEN
                 SET ptTemp =
-                        (SELECT pts_Ecart FROM laruchxsabine.LaRuche_matchApronostiquer WHERE match_id = NEW.match_id);
+                        (SELECT pts_Ecart FROM LaRuche_matchApronostiquer WHERE match_id = NEW.match_id);
             ELSE
                 SET ptTemp =
-                        (SELECT pts_Vainq FROM laruchxsabine.LaRuche_matchApronostiquer WHERE match_id = NEW.match_id);
+                        (SELECT pts_Vainq FROM LaRuche_matchApronostiquer WHERE match_id = NEW.match_id);
             END IF;
         ELSE
             SET ptTemp = 0;
         END IF;
 
-        UPDATE laruchxsabine.LaRuche_pronostique P
+        UPDATE LaRuche_pronostique P
         SET point_obtenu = ptTemp
         WHERE pronostiqueur_id = idTemp
           and P.match_id = NEW.match_id;
@@ -603,5 +605,5 @@ BEGIN
 
     CLOSE myCursor;
 
-    CALL laruchxsabine.updatePoint(idCompet);
+    CALL updatePoint(idCompet);
 END//

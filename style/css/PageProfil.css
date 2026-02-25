@@ -31,15 +31,12 @@
     cursor: pointer;
     font-family: "montserratRegular", sans-serif;
     color: white;
-    background-color: gray;
+    background-color: #0B54CD;
     border: none;
-    border-radius: 5px;
-    padding: 5px 15px 5px 15px;
-    transition: padding 0.3s ease-in-out;
-    margin-top: 30px;
+    border-radius: 20px;
+    padding: 5px 15px;
+    transition: background-color 0.3s ease-in-out;
     text-decoration: none;
-    border: black solid 2px;
-    margin: auto;
     position: absolute;
     left: 50%;
     bottom: 20px;
@@ -48,7 +45,7 @@
 }
 
 .mdp:hover {
-    padding: 5px 20px 5px 20px;
+    background-color: #cf9e00;
 }
 
 
@@ -141,14 +138,14 @@ input[type=file]:hover {
 .retourClass {
     text-decoration: none;
     color: white;
-    background-color: gray;
-    padding: 5px 10px 5px 10px;
-    border-radius: 5px;
-    transition: padding 0.3s ease-in-out;
+    background-color: #0B54CD;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .retourClass:hover {
-    padding: 5px 15px 5px 15px;
+    background-color: #cf9e00;
 }
 
 .descrOtherUser {

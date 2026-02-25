@@ -29,8 +29,8 @@ body {
 
 h3 {
     float: right;
-    font-family: Andale Mono, monospace;
-    color: aliceblue;
+    font-family: "montserratRegular", sans-serif;
+    color: white;
 }
 
 #profile {
@@ -51,8 +51,7 @@ h3 {
 
 #topClassement h2 {
     margin: auto;
-    font-family: Georgia, serif;
-    font-style: italic;
+    font-family: "montserratExtraBold", sans-serif;
 }
 
 .classement {
@@ -78,13 +77,13 @@ h3 {
 
 .bleu {
     border: #0B54CD solid 3px;
-    color: #007bff;
+    color: #0B54CD;
     border-radius: 40px;
 }
 
 .bleu .numero {
     color: white;
-    background-color: #0B54CD;;
+    background-color: #0B54CD;
 }
 
 .classic {
@@ -92,9 +91,8 @@ h3 {
 }
 
 .classement h2 {
-    font-family: Trebuchet MS, sans-serif;
+    font-family: "montserratRegular", sans-serif;
     font-size: 18px;
-
 }
 
 .numero {
@@ -135,7 +133,7 @@ h3 {
 
 .nbPoints {
     color: #fff;
-    background-color: grey;
+    background-color: #080e50;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -204,12 +202,10 @@ h3 {
 }
 
 .point {
-    margin-left: auto;
     font-size: 19px;
-    font-family: Trebuchet MS, sans-serif;
-    color: grey;
-    margin: 0px 20px 0px auto;
-
+    font-family: "montserratRegular", sans-serif;
+    color: #555;
+    margin: 0 20px 0 auto;
 }
 
 .loginUser {
@@ -433,6 +429,10 @@ h3 {
     .classement {
         width: 260px;
         height: 30px;
+    }
+
+    .classement-titre {
+        min-width: 260px;
     }
 
     .loginUser {

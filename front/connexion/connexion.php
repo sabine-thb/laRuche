@@ -1,11 +1,17 @@
 <form action="connexion.php?action=verificationConnexion" method="post" class="formConnexion">
 
-    <label for="login/mail">Pseudo / mail</label>
-    <input id="login/mail" type='text' name='login' value="<?php echo $_SESSION['tempLogin'] ?? ''; ?>" required><br>
+    <div class="pForm">
+        <label for="login-mail">Pseudo / mail</label>
+        <input id="login-mail" type='text' name='login' placeholder="Ton pseudo ou ton adresse mail"
+               value="<?php echo $_SESSION['tempLogin'] ?? ''; ?>" required>
+    </div>
 
-    <label for="mdp">Mot de passe :</label>
-    <input id="mdp" type="password" name="mdp" autocomplete="current-password"
-           value="<?php echo $_SESSION['tempPawword'] ?? ''; ?>" required><br>
+    <div class="pForm">
+        <label for="mdp">Mot de passe</label>
+        <input id="mdp" type="password" name="mdp" placeholder="••••••••"
+               autocomplete="current-password"
+               value="<?php echo $_SESSION['tempPawword'] ?? ''; ?>" required>
+    </div>
 
     <?php echo $_SESSION['error'] ?? null; ?>
 
