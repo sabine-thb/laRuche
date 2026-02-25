@@ -3,14 +3,14 @@
     <div class="pForm">
         <label for="login-mail">Pseudo / mail</label>
         <input id="login-mail" type='text' name='login' placeholder="Ton pseudo ou ton adresse mail"
-               value="<?php echo $_SESSION['tempLogin'] ?? ''; ?>" required>
+               value="<?php echo htmlspecialchars($_SESSION['tempLogin'] ?? ''); ?>" required>
     </div>
 
     <div class="pForm">
         <label for="mdp">Mot de passe</label>
         <input id="mdp" type="password" name="mdp" placeholder="••••••••"
                autocomplete="current-password"
-               value="<?php echo $_SESSION['tempPawword'] ?? ''; ?>" required>
+               value="<?php echo htmlspecialchars($_SESSION['tempPawword'] ?? ''); ?>" required>
     </div>
 
     <?php echo $_SESSION['error'] ?? null; ?>

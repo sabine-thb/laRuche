@@ -2,9 +2,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const inputDescription = document.getElementById('description');
     const label = document.querySelector('#btn-info');
 
-    inputDescription.addEventListener('blur', function () {
-        label.classList.remove('bouge');
-    });
+    if (inputDescription && label) {
+        inputDescription.addEventListener('blur', function () {
+            label.classList.remove('bouge');
+        });
+    }
 });
 
 function afficherErreurInscription() {

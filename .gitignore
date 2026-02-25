@@ -9,3 +9,5 @@
 /config.php
 .env
 .DS_Store
+
+doc/
