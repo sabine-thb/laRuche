@@ -20,9 +20,9 @@ class ModeleProfil extends Connexion
         try {
             $query = "
             SELECT U.prenom,U.login,c.nom as nom, U.description, U.age , U.Gender
-            FROM laruchxsabine.LaRuche_users U
-            NATURAL JOIN laruchxsabine.LaRuche_pronostiqueur
-            INNER JOIN laruchxsabine.LaRuche_competition join laruchxsabine.LaRuche_competition c on LaRuche_pronostiqueur.competition_id = c.competition_id
+            FROM LaRuche_users U
+            NATURAL JOIN LaRuche_pronostiqueur
+            INNER JOIN LaRuche_competition join LaRuche_competition c on LaRuche_pronostiqueur.competition_id = c.competition_id
             WHERE user_id = $id
             ";
 
@@ -30,7 +30,7 @@ class ModeleProfil extends Connexion
 
             return $this->executeQuery($stmt)[0];
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return 404;
         }
     }
@@ -47,7 +47,7 @@ class ModeleProfil extends Connexion
     {
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_users 
+            UPDATE LaRuche_users 
             SET src_logo_user = :dest
             WHERE user_id = $idUser
             ";
@@ -57,7 +57,7 @@ class ModeleProfil extends Connexion
 
             return true;
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }
@@ -67,16 +67,16 @@ class ModeleProfil extends Connexion
         try {
             $query = "
             SELECT c.nom,LaRuche_getClassement(p.pronostiqueur_id,c.competition_id) as classement
-            FROM laruchxsabine.LaRuche_users u
-            INNER JOIN laruchxsabine.LaRuche_pronostiqueur p on u.user_id = p.user_id
-            INNER JOIN laruchxsabine.LaRuche_competition c on p.competition_id = c.competition_id
+            FROM LaRuche_users u
+            INNER JOIN LaRuche_pronostiqueur p on u.user_id = p.user_id
+            INNER JOIN LaRuche_competition c on p.competition_id = c.competition_id
             WHERE u.user_id = $idUser;
             ";
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }
@@ -85,7 +85,7 @@ class ModeleProfil extends Connexion
     {
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_users 
+            UPDATE LaRuche_users 
             SET age = $age
             WHERE user_id = $idUser
             ";
@@ -94,7 +94,7 @@ class ModeleProfil extends Connexion
 
             return true;
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }
@@ -103,7 +103,7 @@ class ModeleProfil extends Connexion
     {
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_users 
+            UPDATE LaRuche_users 
             SET Gender = '$gender'
             WHERE user_id = $idUser
             ";
@@ -112,7 +112,7 @@ class ModeleProfil extends Connexion
 
             return true;
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }

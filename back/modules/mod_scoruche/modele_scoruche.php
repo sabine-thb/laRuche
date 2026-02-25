@@ -19,10 +19,10 @@ class ModeleScorcast extends Connexion
         try {
             $query = "
             SELECT * 
-            FROM laruchxsabine.LaRuche_competition 
+            FROM LaRuche_competition 
             WHERE competition_id NOT IN ( 
                 SELECT competition_id
-                FROM laruchxsabine.LaRuche_pronostiqueur NATURAL JOIN laruchxsabine.LaRuche_competition 
+                FROM LaRuche_pronostiqueur NATURAL JOIN LaRuche_competition 
                 WHERE user_id = $idUser
             )
             ";
@@ -32,7 +32,7 @@ class ModeleScorcast extends Connexion
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return $e;
         }
@@ -52,8 +52,8 @@ class ModeleScorcast extends Connexion
         try {
             $query = "
             SELECT competition_id,nom,description,date_creation 
-            FROM laruchxsabine.LaRuche_pronostiqueur 
-            NATURAL JOIN laruchxsabine.LaRuche_competition
+            FROM LaRuche_pronostiqueur 
+            NATURAL JOIN LaRuche_competition
             WHERE user_id = $idUser
             ";
 
@@ -62,7 +62,7 @@ class ModeleScorcast extends Connexion
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return $e;
         }
@@ -73,7 +73,7 @@ class ModeleScorcast extends Connexion
 
         try {
             $query = "
-            INSERT INTO laruchxsabine.LaRuche_pronostiqueur(user_id,competition_id) 
+            INSERT INTO LaRuche_pronostiqueur(user_id,competition_id) 
             VALUES ($idUser,$idCompet)
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -81,7 +81,7 @@ class ModeleScorcast extends Connexion
 
             return true;
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return false;
         }
@@ -92,7 +92,7 @@ class ModeleScorcast extends Connexion
 
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_pronoQuestionBonus 
+            UPDATE LaRuche_pronoQuestionBonus 
             SET reponse = :prono
             WHERE question_bonus_id = $idQuestion and pronostiqueur_id = $idPronostiqueur
             ";
@@ -102,7 +102,7 @@ class ModeleScorcast extends Connexion
 
             return true;
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return false;
         }
@@ -113,8 +113,8 @@ class ModeleScorcast extends Connexion
 
         try {
             $query = "
-            SELECT login, total_point as points,description,user_id as id,laruchxsabine.LaRuche_getClassement(pronostiqueur_id,$idCompet) as position
-            FROM laruchxsabine.LaRuche_pronostiqueur NATURAL JOIN laruchxsabine.LaRuche_users
+            SELECT login, total_point as points,description,user_id as id,LaRuche_getClassement(pronostiqueur_id,$idCompet) as position
+            FROM LaRuche_pronostiqueur NATURAL JOIN LaRuche_users
             WHERE competition_id = $idCompet
             ORDER BY position
             ";
@@ -124,7 +124,7 @@ class ModeleScorcast extends Connexion
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return 404;
         }
@@ -138,10 +138,10 @@ class ModeleScorcast extends Connexion
             $query = "
             SELECT date_match,E.nom as nom1,E2.nom as nom2,P.prono_equipe1,P.prono_equipe2,P.vainqueur_prono,
                    E.srcLogo as src1,E2.srcLogo as src2,M.match_id,pts_Vainq,pts_Ecart,pts_Exact,heure
-            FROM laruchxsabine.LaRuche_matchApronostiquer as M
-            INNER JOIN laruchxsabine.LaRuche_equipe E ON M.equipe1_id=E.equipe_id
-            INNER JOIN laruchxsabine.LaRuche_equipe E2 ON M.equipe2_id=E2.equipe_id
-            INNER JOIN laruchxsabine.LaRuche_pronostique P ON P.match_id = M.match_id
+            FROM LaRuche_matchApronostiquer as M
+            INNER JOIN LaRuche_equipe E ON M.equipe1_id=E.equipe_id
+            INNER JOIN LaRuche_equipe E2 ON M.equipe2_id=E2.equipe_id
+            INNER JOIN LaRuche_pronostique P ON P.match_id = M.match_id
             WHERE competition_id = $idCompet  and pronostiqueur_id = $idPronostiqueur and pari_ouvert = true
             ";
 
@@ -150,7 +150,7 @@ class ModeleScorcast extends Connexion
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return false;
         }
@@ -161,7 +161,7 @@ class ModeleScorcast extends Connexion
     {
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_pronostique 
+            UPDATE LaRuche_pronostique 
             SET prono_equipe2 = $prono2 , prono_equipe1 = $prono1 , vainqueur_prono = $equipeGagnantePeno
             WHERE match_id = $idMatch and pronostiqueur_id = $idPronostiqueur
             ";
@@ -172,7 +172,7 @@ class ModeleScorcast extends Connexion
             return true;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return false;
         }
@@ -183,7 +183,7 @@ class ModeleScorcast extends Connexion
         try {
             $query = "
                 SELECT pronostiqueur_id
-                FROM laruchxsabine.LaRuche_pronostiqueur
+                FROM LaRuche_pronostiqueur
                 WHERE user_id = $idUser and competition_id = $idCompet
             ";
 
@@ -192,7 +192,7 @@ class ModeleScorcast extends Connexion
             return $this->executeQuery($stmt)[0]['pronostiqueur_id'];
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return false;
         }
@@ -205,11 +205,11 @@ class ModeleScorcast extends Connexion
             SELECT M.match_id,date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,
                    R.nb_but_equipe1 as resultat1, R.nb_but_equipe2 as resultat2, P.point_obtenu,M.*,R.resultat_peno,
                    P.prono_equipe1,P.prono_equipe2,P.vainqueur_prono
-            FROM laruchxsabine.LaRuche_matchApronostiquer as M
-            INNER JOIN laruchxsabine.LaRuche_equipe E ON M.equipe1_id = E.equipe_id
-            INNER JOIN laruchxsabine.LaRuche_equipe E2 ON M.equipe2_id = E2.equipe_id
-            INNER JOIN laruchxsabine.LaRuche_pronostique P ON M.match_id = P.match_id  
-            INNER JOIN laruchxsabine.LaRuche_resultatMatch R ON M.match_id = R.match_id
+            FROM LaRuche_matchApronostiquer as M
+            INNER JOIN LaRuche_equipe E ON M.equipe1_id = E.equipe_id
+            INNER JOIN LaRuche_equipe E2 ON M.equipe2_id = E2.equipe_id
+            INNER JOIN LaRuche_pronostique P ON M.match_id = P.match_id  
+            INNER JOIN LaRuche_resultatMatch R ON M.match_id = R.match_id
             WHERE pari_ouvert = false and competition_id = $idCompet and pronostiqueur_id = $idPronostiqueur
             ORDER BY date_match DESC
             ";
@@ -227,7 +227,7 @@ class ModeleScorcast extends Connexion
     {
         try {
             $query = "
-            SELECT laruchxsabine.totalPoint($idPronostiqueur,$idCompet) as totalPoints
+            SELECT totalPoint($idPronostiqueur,$idCompet) as totalPoints
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -235,7 +235,7 @@ class ModeleScorcast extends Connexion
             return $this->executeQuery($stmt)[0]['totalPoints'];
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return false;
         }
@@ -246,7 +246,7 @@ class ModeleScorcast extends Connexion
         try {
             $query = "
             SELECT src_logo_user
-            FROM laruchxsabine.LaRuche_users
+            FROM LaRuche_users
             WHERE user_id = $id
             ";
 
@@ -255,7 +255,7 @@ class ModeleScorcast extends Connexion
             return $this->executeQuery($stmt)[0]['src_logo_user'];
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return false;
         }
@@ -266,9 +266,9 @@ class ModeleScorcast extends Connexion
         try {
             $query = "
             SELECT U.prenom,U.login,c.nom as nom, U.description, U.age , U.Gender
-            FROM laruchxsabine.LaRuche_users U
-            NATURAL JOIN laruchxsabine.LaRuche_pronostiqueur
-            INNER JOIN laruchxsabine.LaRuche_competition join laruchxsabine.LaRuche_competition c on laruchxsabine.LaRuche_pronostiqueur.competition_id = c.competition_id
+            FROM LaRuche_users U
+            NATURAL JOIN LaRuche_pronostiqueur
+            INNER JOIN LaRuche_competition join LaRuche_competition c on LaRuche_pronostiqueur.competition_id = c.competition_id
             WHERE U.user_id = $idUser
             ";
 
@@ -284,17 +284,17 @@ class ModeleScorcast extends Connexion
     {
         try {
             $query = "
-            SELECT c.nom,laruchxsabine.LaRuche_getClassement(p.pronostiqueur_id,c.competition_id) as classement
-            FROM laruchxsabine.LaRuche_users u
-            INNER JOIN laruchxsabine.LaRuche_pronostiqueur p on u.user_id = p.user_id
-            INNER JOIN laruchxsabine.LaRuche_competition c on p.competition_id = c.competition_id
+            SELECT c.nom,LaRuche_getClassement(p.pronostiqueur_id,c.competition_id) as classement
+            FROM LaRuche_users u
+            INNER JOIN LaRuche_pronostiqueur p on u.user_id = p.user_id
+            INNER JOIN LaRuche_competition c on p.competition_id = c.competition_id
             WHERE u.user_id = $idUser;
             ";
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return false;
         }
@@ -305,15 +305,15 @@ class ModeleScorcast extends Connexion
         try {
             $query = "
             SELECT *
-            FROM laruchxsabine.LaRuche_questionBonus Q
-            INNER JOIN laruchxsabine.LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+            FROM LaRuche_questionBonus Q
+            INNER JOIN LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
             WHERE pari_ouvert = true and pronostiqueur_id = $id
             ";
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return false;
         }
@@ -324,13 +324,13 @@ class ModeleScorcast extends Connexion
         try {
             $query = "
             SELECT Q.*,P.*
-            FROM laruchxsabine.LaRuche_questionBonus Q
-            INNER JOIN laruchxsabine.LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+            FROM LaRuche_questionBonus Q
+            INNER JOIN LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
             WHERE pari_ouvert = false and pronostiqueur_id = $id AND Q.question_bonus_id NOT IN(
                 SELECT Q.question_bonus_id
-                FROM laruchxsabine.LaRuche_questionBonus Q
-                INNER JOIN laruchxsabine.LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
-                INNER JOIN laruchxsabine.LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
+                FROM LaRuche_questionBonus Q
+                INNER JOIN LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+                INNER JOIN LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
                 WHERE pari_ouvert = false and pronostiqueur_id = $id
             )
             ";
@@ -338,7 +338,7 @@ class ModeleScorcast extends Connexion
 
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return false;
         }
@@ -349,17 +349,17 @@ class ModeleScorcast extends Connexion
         try {
             $query = "
             SELECT *
-            FROM laruchxsabine.LaRuche_questionBonus Q
-            INNER JOIN laruchxsabine.LaRuche_competition C ON Q.competition_id = C.competition_id
-            INNER JOIN laruchxsabine.LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
-            INNER JOIN laruchxsabine.LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
+            FROM LaRuche_questionBonus Q
+            INNER JOIN LaRuche_competition C ON Q.competition_id = C.competition_id
+            INNER JOIN LaRuche_pronoQuestionBonus P on Q.question_bonus_id = P.question_bonus_id
+            INNER JOIN LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
             WHERE pari_ouvert = false and pronostiqueur_id = $id
             ";
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return false;
         }
@@ -370,13 +370,13 @@ class ModeleScorcast extends Connexion
         try {
             $query = "
             SELECT * 
-            FROM laruchxsabine.LaRuche_equipe
+            FROM LaRuche_equipe
             ";
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return false;
         }
@@ -386,7 +386,7 @@ class ModeleScorcast extends Connexion
     {
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_users 
+            UPDATE LaRuche_users 
             SET age = $age
             WHERE user_id = $idUser
             ";
@@ -395,7 +395,7 @@ class ModeleScorcast extends Connexion
 
             return true;
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return false;
         }
@@ -405,7 +405,7 @@ class ModeleScorcast extends Connexion
     {
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_users 
+            UPDATE LaRuche_users 
             SET Gender = '$gender'
             WHERE user_id = $idUser
             ";
@@ -414,7 +414,7 @@ class ModeleScorcast extends Connexion
 
             return true;
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return false;
         }
@@ -424,7 +424,7 @@ class ModeleScorcast extends Connexion
     {
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_users 
+            UPDATE LaRuche_users 
             SET src_logo_user = '$dest'
             WHERE user_id = $idUser
             ";
@@ -433,7 +433,7 @@ class ModeleScorcast extends Connexion
 
             return true;
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
 
             return false;
         }
@@ -444,10 +444,10 @@ class ModeleScorcast extends Connexion
         try {
             $query = "
             SELECT DISTINCT P.*, U.login
-            FROM laruchxsabine.LaRuche_matchApronostiquer M
-            INNER JOIN laruchxsabine.LaRuche_pronostique P
-            INNER JOIN laruchxsabine.LaRuche_pronostiqueur PP ON P.pronostiqueur_id = PP.pronostiqueur_id
-            INNER JOIN laruchxsabine.LaRuche_users U ON PP.user_id = U.user_id
+            FROM LaRuche_matchApronostiquer M
+            INNER JOIN LaRuche_pronostique P
+            INNER JOIN LaRuche_pronostiqueur PP ON P.pronostiqueur_id = PP.pronostiqueur_id
+            INNER JOIN LaRuche_users U ON PP.user_id = U.user_id
             WHERE P.match_id = $matchId and M.match_id = $matchId
             ORDER BY P.point_obtenu DESC
             ";
@@ -468,11 +468,11 @@ class ModeleScorcast extends Connexion
                    ROUND(AVG(P.prono_equipe1), 2) as moyenne_equipe1, EE.srcLogo as src2,
                    ROUND(AVG(P.prono_equipe2), 2) as moyenne_equipe2, E.srcLogo as src1, M.date_match,
                    R.resultat_peno
-            FROM laruchxsabine.LaRuche_pronostique P
-            NATURAL JOIN laruchxsabine.LaRuche_matchApronostiquer M
-            INNER JOIN laruchxsabine.LaRuche_equipe E ON M.equipe1_id = E.equipe_id
-            INNER JOIN laruchxsabine.LaRuche_equipe EE ON M.equipe2_id = EE.equipe_id
-            INNER JOIN laruchxsabine.LaRuche_resultatMatch R ON M.match_id = R.match_id
+            FROM LaRuche_pronostique P
+            NATURAL JOIN LaRuche_matchApronostiquer M
+            INNER JOIN LaRuche_equipe E ON M.equipe1_id = E.equipe_id
+            INNER JOIN LaRuche_equipe EE ON M.equipe2_id = EE.equipe_id
+            INNER JOIN LaRuche_resultatMatch R ON M.match_id = R.match_id
             WHERE M.match_id = $matchId
             ";
             $stmt = Connexion::$bdd->prepare($query);

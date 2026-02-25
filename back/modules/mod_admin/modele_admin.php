@@ -32,14 +32,14 @@ class ModeleAdmin extends Connexion
         try {
             $query = "
             SELECT prenom,user_id,login,mail,description
-            FROM laruchxsabine.LaRuche_users
+            FROM LaRuche_users
             WHERE est_verifier = false
             ";
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return $e;
         }
     }
@@ -59,13 +59,13 @@ class ModeleAdmin extends Connexion
         try {
             $query = "
             SELECT *
-            FROM laruchxsabine.LaRuche_competition
+            FROM LaRuche_competition
             ";
             $stmt = Connexion::$bdd->prepare($query);
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return $e;
         }
     }
@@ -74,7 +74,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            DELETE FROM laruchxsabine.LaRuche_competition
+            DELETE FROM LaRuche_competition
             WHERE competition_id = :id
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -84,7 +84,7 @@ class ModeleAdmin extends Connexion
             return -45; //pour etre sur que l'erreur n'existe pas dans mySQL
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return $e->getCode();
         }
     }
@@ -95,7 +95,7 @@ class ModeleAdmin extends Connexion
 
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_users
+            UPDATE LaRuche_users
             SET est_verifier = true
             WHERE user_id = :id
             ";
@@ -106,7 +106,7 @@ class ModeleAdmin extends Connexion
             return true;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
 
@@ -117,7 +117,7 @@ class ModeleAdmin extends Connexion
 
         try {
             $query = "
-            DELETE FROM laruchxsabine.LaRuche_users
+            DELETE FROM LaRuche_users
             WHERE user_id= :id
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -127,7 +127,7 @@ class ModeleAdmin extends Connexion
             return true;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
 
@@ -137,7 +137,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            INSERT INTO laruchxsabine.LaRuche_competition (nom,description,date_creation)
+            INSERT INTO LaRuche_competition (nom,description,date_creation)
             VALUES (:nom, :detail,CURDATE())
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -148,7 +148,7 @@ class ModeleAdmin extends Connexion
             return true;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur:" . $e . "');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }
@@ -164,7 +164,7 @@ class ModeleAdmin extends Connexion
         try {
             $query = "
             SELECT nom
-            FROM laruchxsabine.LaRuche_equipe
+            FROM LaRuche_equipe
             WHERE nom = :nom
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -178,7 +178,7 @@ class ModeleAdmin extends Connexion
         if (count($res) == 0) {
             try {
                 $query = "
-                INSERT INTO laruchxsabine.LaRuche_equipe(nom, srcLogo)
+                INSERT INTO LaRuche_equipe(nom, srcLogo)
                 VALUES (:nom,:chemin)
                 ";
                 $stmt = Connexion::$bdd->prepare($query);
@@ -186,7 +186,7 @@ class ModeleAdmin extends Connexion
                 $stmt->bindParam(':chemin', $chemin, PDO::PARAM_STR);
                 $stmt->execute();
             } catch (PDOException $e) {
-                echo "<script>console.log('erreur: $e');</script>";
+                echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
                 return false;
             }
             echo " Equipe bien enregistrée ✌️ <br>";
@@ -224,7 +224,7 @@ class ModeleAdmin extends Connexion
 
         try {
             $query = "
-            INSERT INTO laruchxsabine.LaRuche_matchApronostiquer(equipe1_id,equipe2_id,competition_id,pts_Exact,pts_Ecart,pts_Vainq,date_match,heure)
+            INSERT INTO LaRuche_matchApronostiquer(equipe1_id,equipe2_id,competition_id,pts_Exact,pts_Ecart,pts_Vainq,date_match,heure)
             VALUES (:eq1,:eq2,:compet,:ptsExa,:ptsEcart,:ptsVainq,:dateMatch,:heure);
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -240,7 +240,7 @@ class ModeleAdmin extends Connexion
 
             return true;
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
 
@@ -251,12 +251,12 @@ class ModeleAdmin extends Connexion
         try {
             $query = "
             SELECT *
-            FROM laruchxsabine.LaRuche_matchApronostiquer;
+            FROM LaRuche_matchApronostiquer;
             ";
             $stmt = Connexion::$bdd->prepare($query);
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return $e;
         }
 
@@ -267,7 +267,7 @@ class ModeleAdmin extends Connexion
         try {
             $query = "
             SELECT mail
-            FROM laruchxsabine.LaRuche_users
+            FROM LaRuche_users
             WHERE user_id = :id
             ";
 
@@ -275,7 +275,7 @@ class ModeleAdmin extends Connexion
             $stmt->bindParam(':id', $idUser, PDO::PARAM_INT);
             return $this->executeQuery($stmt)[0];
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return $e;
         }
 
@@ -287,17 +287,17 @@ class ModeleAdmin extends Connexion
             $query = "
             SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,
                    C.nom as nomCompet, heure
-            FROM laruchxsabine.LaRuche_matchApronostiquer as M
-            INNER JOIN laruchxsabine.LaRuche_equipe E ON M.equipe1_id=E.equipe_id
-            INNER JOIN laruchxsabine.LaRuche_equipe E2 ON M.equipe2_id=E2.equipe_id
-            INNER JOIN laruchxsabine.LaRuche_competition C ON M.competition_id = C.competition_id
+            FROM LaRuche_matchApronostiquer as M
+            INNER JOIN LaRuche_equipe E ON M.equipe1_id=E.equipe_id
+            INNER JOIN LaRuche_equipe E2 ON M.equipe2_id=E2.equipe_id
+            INNER JOIN LaRuche_competition C ON M.competition_id = C.competition_id
             WHERE pari_ouvert = false AND M.match_id NOT IN (
                 SELECT M.match_id
-                FROM laruchxsabine.LaRuche_matchApronostiquer as M
-                INNER JOIN laruchxsabine.LaRuche_equipe E ON M.equipe1_id = E.equipe_id
-                INNER JOIN laruchxsabine.LaRuche_equipe E2 ON M.equipe2_id = E2.equipe_id
-                INNER JOIN laruchxsabine.LaRuche_competition C ON M.competition_id = C.competition_id
-                INNER JOIN laruchxsabine.LaRuche_resultatMatch R ON R.match_id = M.match_id
+                FROM LaRuche_matchApronostiquer as M
+                INNER JOIN LaRuche_equipe E ON M.equipe1_id = E.equipe_id
+                INNER JOIN LaRuche_equipe E2 ON M.equipe2_id = E2.equipe_id
+                INNER JOIN LaRuche_competition C ON M.competition_id = C.competition_id
+                INNER JOIN LaRuche_resultatMatch R ON R.match_id = M.match_id
                 WHERE pari_ouvert = false
             )
             ";
@@ -306,7 +306,7 @@ class ModeleAdmin extends Connexion
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return 404;
         }
     }
@@ -317,11 +317,11 @@ class ModeleAdmin extends Connexion
             $query = "
             SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,
                    C.nom as nomCompet, R.nb_but_equipe1 as resultat1, R.nb_but_equipe2 as resultat2,heure
-            FROM laruchxsabine.LaRuche_matchApronostiquer as M
-            INNER JOIN laruchxsabine.LaRuche_equipe E ON M.equipe1_id = E.equipe_id
-            INNER JOIN laruchxsabine.LaRuche_equipe E2 ON M.equipe2_id = E2.equipe_id
-            INNER JOIN laruchxsabine.LaRuche_competition C ON M.competition_id = C.competition_id
-            NATURAL JOIN laruchxsabine.LaRuche_resultatMatch R
+            FROM LaRuche_matchApronostiquer as M
+            INNER JOIN LaRuche_equipe E ON M.equipe1_id = E.equipe_id
+            INNER JOIN LaRuche_equipe E2 ON M.equipe2_id = E2.equipe_id
+            INNER JOIN LaRuche_competition C ON M.competition_id = C.competition_id
+            NATURAL JOIN LaRuche_resultatMatch R
             WHERE pari_ouvert = false
             ";
 
@@ -329,7 +329,7 @@ class ModeleAdmin extends Connexion
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }
@@ -340,10 +340,10 @@ class ModeleAdmin extends Connexion
             $query = "
             SELECT date_match,E.nom as nom1,E2.nom as nom2,E.srcLogo as src1,E2.srcLogo as src2,M.match_id,
                    C.nom as nomCompet, heure
-            FROM laruchxsabine.LaRuche_matchApronostiquer as M
-            INNER JOIN laruchxsabine.LaRuche_equipe E ON M.equipe1_id=E.equipe_id
-            INNER JOIN laruchxsabine.LaRuche_equipe E2 ON M.equipe2_id=E2.equipe_id
-            INNER JOIN laruchxsabine.LaRuche_competition C ON M.competition_id = C.competition_id
+            FROM LaRuche_matchApronostiquer as M
+            INNER JOIN LaRuche_equipe E ON M.equipe1_id=E.equipe_id
+            INNER JOIN LaRuche_equipe E2 ON M.equipe2_id=E2.equipe_id
+            INNER JOIN LaRuche_competition C ON M.competition_id = C.competition_id
             WHERE pari_ouvert = true
             ";
 
@@ -351,7 +351,7 @@ class ModeleAdmin extends Connexion
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }
@@ -360,7 +360,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            SELECT * FROM laruchxsabine.LaRuche_equipe WHERE equipe_id = :id
+            SELECT * FROM LaRuche_equipe WHERE equipe_id = :id
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -368,7 +368,7 @@ class ModeleAdmin extends Connexion
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return 404;
         }
     }
@@ -378,14 +378,14 @@ class ModeleAdmin extends Connexion
         try {
             $query = "
             SELECT *
-            FROM laruchxsabine.LaRuche_equipe
+            FROM LaRuche_equipe
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return $e;
         }
 
@@ -395,7 +395,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_equipe
+            UPDATE LaRuche_equipe
             SET nom = :nom
             WHERE equipe_id = :id
             ";
@@ -407,7 +407,7 @@ class ModeleAdmin extends Connexion
 
             return true;
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return 404;
         }
     }
@@ -417,7 +417,7 @@ class ModeleAdmin extends Connexion
         try {
             $search = '%' . $name . '%';
             $query = "
-            SELECT * FROM laruchxsabine.LaRuche_users
+            SELECT * FROM LaRuche_users
             WHERE LOWER(login) LIKE :search
             ";
 
@@ -426,7 +426,7 @@ class ModeleAdmin extends Connexion
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return 404;
         }
     }
@@ -435,7 +435,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_equipe
+            UPDATE LaRuche_equipe
             SET srcLogo = :src
             WHERE equipe_id = :id
             ";
@@ -447,7 +447,7 @@ class ModeleAdmin extends Connexion
 
             return true;
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return 404;
         }
     }
@@ -456,7 +456,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_users
+            UPDATE LaRuche_users
             SET password = 'reset'
             WHERE user_id = :id
             ";
@@ -467,7 +467,7 @@ class ModeleAdmin extends Connexion
 
             return true;
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return 404;
         }
     }
@@ -476,14 +476,14 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            SELECT srcLogo FROM laruchxsabine.LaRuche_equipe WHERE equipe_id = :id
+            SELECT srcLogo FROM LaRuche_equipe WHERE equipe_id = :id
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             return $this->executeQuery($stmt)[0]['srcLogo'];
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return 404;
         }
     }
@@ -493,12 +493,12 @@ class ModeleAdmin extends Connexion
         try {
             $query = "
             SELECT *
-            FROM laruchxsabine.LaRuche_competition
+            FROM LaRuche_competition
             ";
             $stmt = Connexion::$bdd->prepare($query);
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return $e;
         }
 
@@ -508,7 +508,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            DELETE FROM laruchxsabine.LaRuche_equipe
+            DELETE FROM LaRuche_equipe
                    WHERE equipe_id= :id
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -518,7 +518,7 @@ class ModeleAdmin extends Connexion
             return true;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }
@@ -527,7 +527,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            DELETE FROM laruchxsabine.LaRuche_users
+            DELETE FROM LaRuche_users
                    WHERE user_id= :id
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -537,7 +537,7 @@ class ModeleAdmin extends Connexion
             return true;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
 
@@ -547,7 +547,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_matchApronostiquer
+            UPDATE LaRuche_matchApronostiquer
             SET pari_ouvert = false
             WHERE match_id = :match_id
             ";
@@ -559,7 +559,7 @@ class ModeleAdmin extends Connexion
             return true;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }
@@ -568,7 +568,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            INSERT INTO laruchxsabine.LaRuche_resultatMatch(match_id, nb_but_equipe1, nb_but_equipe2,resultat_peno)
+            INSERT INTO LaRuche_resultatMatch(match_id, nb_but_equipe1, nb_but_equipe2,resultat_peno)
             VALUE (:match_id,:resultat1,:resultat2,:peno)
             ";
 
@@ -582,7 +582,7 @@ class ModeleAdmin extends Connexion
             return true;
 
         } catch (PDOException $e) {
-            echo "<script>console.log(\"erreur: $e\");</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }
@@ -591,7 +591,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            DELETE FROM laruchxsabine.LaRuche_matchApronostiquer
+            DELETE FROM LaRuche_matchApronostiquer
                    WHERE match_id= :id
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -601,7 +601,7 @@ class ModeleAdmin extends Connexion
             return -45; //pour etre sur que l'erreur n'existe pas dans mySQL
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return $e->getCode();
         }
     }
@@ -610,7 +610,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            INSERT INTO laruchxsabine. LaRuche_questionBonus(titre, competition_id, objectif, type, point_bonne_reponse)
+            INSERT INTO  LaRuche_questionBonus(titre, competition_id, objectif, type, point_bonne_reponse)
             VALUES (:titre,:compet_id,:objectif,:type,:pts)
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -624,7 +624,7 @@ class ModeleAdmin extends Connexion
             return -45;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return $e->getCode();
         }
     }
@@ -634,15 +634,15 @@ class ModeleAdmin extends Connexion
         try {
             $query = "
             SELECT Q.question_bonus_id,titre,objectif,type,point_bonne_reponse,C.nom
-            FROM laruchxsabine.LaRuche_questionBonus Q
-            INNER JOIN laruchxsabine.LaRuche_competition C on Q.competition_id = C.competition_id
+            FROM LaRuche_questionBonus Q
+            INNER JOIN LaRuche_competition C on Q.competition_id = C.competition_id
             WHERE pari_ouvert = true
             ";
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }
@@ -652,13 +652,13 @@ class ModeleAdmin extends Connexion
         try {
             $query = "
             SELECT Q.*,C.nom
-            FROM laruchxsabine.LaRuche_questionBonus Q
-            INNER JOIN laruchxsabine.LaRuche_competition C ON Q.competition_id = C.competition_id
+            FROM LaRuche_questionBonus Q
+            INNER JOIN LaRuche_competition C ON Q.competition_id = C.competition_id
             WHERE pari_ouvert = false and Q.question_bonus_id NOT IN(
                 SELECT Q.question_bonus_id
-                FROM laruchxsabine.LaRuche_questionBonus Q
-                INNER JOIN laruchxsabine.LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
-                INNER JOIN laruchxsabine.LaRuche_competition C ON Q.competition_id = C.competition_id
+                FROM LaRuche_questionBonus Q
+                INNER JOIN LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
+                INNER JOIN LaRuche_competition C ON Q.competition_id = C.competition_id
                 WHERE pari_ouvert = false
             )
             ";
@@ -666,7 +666,7 @@ class ModeleAdmin extends Connexion
 
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }
@@ -676,16 +676,16 @@ class ModeleAdmin extends Connexion
         try {
             $query = "
             SELECT *,C.nom
-            FROM laruchxsabine.LaRuche_questionBonus Q
-            INNER JOIN laruchxsabine.LaRuche_competition C ON Q.competition_id = C.competition_id
-            INNER JOIN laruchxsabine.LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
+            FROM LaRuche_questionBonus Q
+            INNER JOIN LaRuche_competition C ON Q.competition_id = C.competition_id
+            INNER JOIN LaRuche_resultatQuestionBonus R on Q.question_bonus_id = R.question_bonus_id
             WHERE pari_ouvert = false
             ";
             $stmt = Connexion::$bdd->prepare($query);
 
             return $this->executeQuery($stmt);
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }
@@ -694,7 +694,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            UPDATE laruchxsabine.LaRuche_questionBonus
+            UPDATE LaRuche_questionBonus
             SET pari_ouvert = false
             WHERE question_bonus_id = :id
             ";
@@ -706,7 +706,7 @@ class ModeleAdmin extends Connexion
             return true;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }
@@ -715,7 +715,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            INSERT INTO laruchxsabine.LaRuche_resultatQuestionBonus(question_bonus_id, bonne_reponse)
+            INSERT INTO LaRuche_resultatQuestionBonus(question_bonus_id, bonne_reponse)
             VALUE (:id, :resultat)
             ";
 
@@ -726,7 +726,7 @@ class ModeleAdmin extends Connexion
 
             return true;
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }

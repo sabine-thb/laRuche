@@ -42,7 +42,7 @@ class ModeleConnexion extends Connexion
         try {
             $query = "
             SELECT $champSql 
-            FROM laruchxsabine.LaRuche_users 
+            FROM LaRuche_users 
             WHERE $champSql = :variable 
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -56,7 +56,7 @@ class ModeleConnexion extends Connexion
             }
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
 
@@ -76,7 +76,7 @@ class ModeleConnexion extends Connexion
         try {
             $mdp = password_hash($mdp, PASSWORD_BCRYPT, $this->option);
             $query = "
-            INSERT INTO laruchxsabine.LaRuche_users (prenom,login,mail,description,password) 
+            INSERT INTO LaRuche_users (prenom,login,mail,description,password) 
             VALUES (:prenom,:login,:mail,:description,:mdp)
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -90,7 +90,7 @@ class ModeleConnexion extends Connexion
             return true;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }
@@ -114,7 +114,7 @@ class ModeleConnexion extends Connexion
         try {
             $query = "
             SELECT password 
-            FROM laruchxsabine.LaRuche_admin 
+            FROM LaRuche_admin 
             WHERE login = :login 
             ";
             $stmt = Connexion::$bdd->prepare($query);
@@ -124,7 +124,7 @@ class ModeleConnexion extends Connexion
             return isset($resultat[0]["password"]) && $this->checkMdp($resultat, $inputMdp);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }
@@ -153,7 +153,7 @@ class ModeleConnexion extends Connexion
         try {
             $query = "
             SELECT * 
-            FROM laruchxsabine.LaRuche_users 
+            FROM LaRuche_users 
             WHERE login = :login or mail = :mail  
             ";
 
@@ -178,7 +178,7 @@ class ModeleConnexion extends Connexion
                 return -1;
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return -404;
         }
     }
@@ -188,7 +188,7 @@ class ModeleConnexion extends Connexion
         try {
             $mdp = password_hash($mdp, PASSWORD_BCRYPT, $this->option);
             $query = "
-            UPDATE laruchxsabine.LaRuche_users
+            UPDATE LaRuche_users
             SET password = :newMdp
             WHERE user_id = $id
             ";
@@ -199,7 +199,7 @@ class ModeleConnexion extends Connexion
 
             return true;
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e ');</script>";
+            echo '<script>console.log(' . json_encode('erreur: ' . $e->getMessage()) . ')</script>';
             return false;
         }
     }
