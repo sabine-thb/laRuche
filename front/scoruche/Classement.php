@@ -21,7 +21,7 @@
                 <span><?php echo htmlspecialchars($prochainMatch['nom2']); ?></span>
             </div>
         </div>
-        <a href="scoruche.php?action=affichePronostic&id=<?php echo (int)$_GET['id']; ?>" class="prochainMatchBtn">
+        <a href="competition.php?action=affichePronostic&id=<?php echo (int)$_GET['id']; ?>" class="prochainMatchBtn">
             Pronostiquer
         </a>
     </div>
