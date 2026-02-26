@@ -131,6 +131,33 @@ class ModeleScorcast extends Connexion
 
     }
 
+    public function getProchainMatch(int $idCompet)
+    {
+        try {
+            $query = "
+            SELECT M.match_id, M.date_match, M.heure,
+                   E.nom as nom1, E2.nom as nom2,
+                   E.srcLogo as src1, E2.srcLogo as src2
+            FROM ruche_scoruche.LaRuche_matchApronostiquer M
+            INNER JOIN ruche_scoruche.LaRuche_equipe E ON M.equipe1_id = E.equipe_id
+            INNER JOIN ruche_scoruche.LaRuche_equipe E2 ON M.equipe2_id = E2.equipe_id
+            WHERE M.competition_id = $idCompet AND M.pari_ouvert = true
+            ORDER BY M.date_match ASC, M.heure ASC
+            LIMIT 1
+            ";
+
+            $stmt = Connexion::$bdd->prepare($query);
+            $result = $this->executeQuery($stmt);
+
+            return $result[0] ?? null;
+
+        } catch (PDOException $e) {
+            echo "<script>console.log('erreur: ' + " . json_encode($e->getMessage()) . ");</script>";
+
+            return null;
+        }
+    }
+
     public function recupereMatch(int $idCompet, int $idPronostiqueur)
     {
 

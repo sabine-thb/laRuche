@@ -18,6 +18,91 @@ body {
     padding-bottom: 60px;
 }
 
+.prochainMatchBlock {
+    background-color: white;
+    border-radius: 20px;
+    padding: 18px 24px;
+    margin-bottom: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 4px 16px rgba(11, 84, 205, 0.12);
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.prochainMatchLabel {
+    font-family: "montserratExtraBold", sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #0B54CD;
+    margin: 0;
+}
+
+.prochainMatchEquipes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.prochainMatchEquipe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-family: "montserratExtraBold", sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
+    flex: 1;
+}
+
+.prochainMatchLogo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.prochainMatchVs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.prochainMatchDate {
+    font-family: "montserratExtraBold", sans-serif;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+.prochainMatchHeure {
+    font-family: "montserratRegular", sans-serif;
+    font-size: 0.75rem;
+    color: #888;
+}
+
+.prochainMatchBtn {
+    display: inline-block;
+    background-color: #0B54CD;
+    color: white;
+    font-family: "montserratExtraBold", sans-serif;
+    font-size: 0.85rem;
+    padding: 8px 22px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.prochainMatchBtn:hover {
+    background-color: #cf9e00;
+}
+
 .classementContainer {
     display: flex;
     flex-direction: column;

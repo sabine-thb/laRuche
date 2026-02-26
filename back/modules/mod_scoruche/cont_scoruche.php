@@ -64,11 +64,12 @@ class ContScorcast
     {
         //le 'id' dans le get correspond a l'id de la competition
         $classement = $this->modele->recupereClassement($_GET['id']);
+        $prochainMatch = $this->modele->getProchainMatch((int)$_GET['id']);
 
         if ($classement == 404)
             echo "<p> Erreur lors de la récuperation du classement </p>";
         else
-            $this->vue->afficheClassement($classement);
+            $this->vue->afficheClassement($classement, $prochainMatch);
     }
 
     public function afficheMatchApronostique()

@@ -1,5 +1,32 @@
 <section>
 
+    <?php if (!empty($prochainMatch)) { ?>
+    <div class="prochainMatchBlock">
+        <p class="prochainMatchLabel">Prochain match à l'affiche</p>
+        <div class="prochainMatchEquipes">
+            <div class="prochainMatchEquipe">
+                <?php if (!empty($prochainMatch['src1'])): ?>
+                    <img src="<?php echo htmlspecialchars($prochainMatch['src1']); ?>" alt="<?php echo htmlspecialchars($prochainMatch['nom1']); ?>" class="prochainMatchLogo">
+                <?php endif; ?>
+                <span><?php echo htmlspecialchars($prochainMatch['nom1']); ?></span>
+            </div>
+            <div class="prochainMatchVs">
+                <span class="prochainMatchDate"><?php echo date('d/m/Y', strtotime($prochainMatch['date_match'])); ?></span>
+                <span class="prochainMatchHeure"><?php echo substr($prochainMatch['heure'], 0, 5); ?></span>
+            </div>
+            <div class="prochainMatchEquipe">
+                <?php if (!empty($prochainMatch['src2'])): ?>
+                    <img src="<?php echo htmlspecialchars($prochainMatch['src2']); ?>" alt="<?php echo htmlspecialchars($prochainMatch['nom2']); ?>" class="prochainMatchLogo">
+                <?php endif; ?>
+                <span><?php echo htmlspecialchars($prochainMatch['nom2']); ?></span>
+            </div>
+        </div>
+        <a href="scoruche.php?action=affichePronostic&id=<?php echo (int)$_GET['id']; ?>" class="prochainMatchBtn">
+            Pronostiquer
+        </a>
+    </div>
+    <?php } ?>
+
     <h1 class="titlePage">
         Classement général :
     </h1>

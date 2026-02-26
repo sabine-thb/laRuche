@@ -29,7 +29,7 @@ class VueScorcast extends VueGenerique
         require_once('./front/scoruche/listeCompetitionActive.php');
     }
 
-    public function afficheClassement($classement)
+    public function afficheClassement($classement, $prochainMatch)
     {
         require_once('./front/scoruche/Classement.php');
     }
