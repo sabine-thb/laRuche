@@ -10,7 +10,7 @@ services:
       DB_PORT: 3306
       DB_USER: laruche
       DB_PASS: laruche
-      DB_NAME: laruchxsabine
+      DB_NAME: ruche_scoruche
     depends_on:
       db:
         condition: service_healthy
@@ -20,7 +20,7 @@ services:
     ports:
       - "3307:3306"
     environment:
-      MYSQL_DATABASE: laruchxsabine
+      MYSQL_DATABASE: ruche_scoruche
       MYSQL_USER: laruche
       MYSQL_PASSWORD: laruche
       MYSQL_ROOT_PASSWORD: root

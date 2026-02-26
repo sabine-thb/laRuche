@@ -109,7 +109,13 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    gap: 10px;
+    gap: 12px;
+    width: 100%;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 12px;
+    box-sizing: border-box;
 }
 
 h3 {
@@ -140,14 +146,16 @@ h3 {
 }
 
 .classement {
-    width: 350px;
-    height: 55px;
+    width: 100%;
+    min-height: 72px;
     background-color: white;
     border-radius: 40px;
+    box-shadow: 0 2px 10px rgba(11, 84, 205, 0.09);
 }
 
 .case-classement {
     height: 100%;
+    min-height: 72px;
     display: flex;
     gap: 20px;
     align-items: center;
@@ -164,11 +172,13 @@ h3 {
     border: #0B54CD solid 3px;
     color: #0B54CD;
     border-radius: 40px;
+    box-shadow: 0 0 0 3px rgba(11, 84, 205, 0.15);
 }
 
 .bleu .numero {
     color: white;
     background-color: #0B54CD;
+    left: -6px;
 }
 
 .classic {
@@ -177,19 +187,23 @@ h3 {
 
 .classement h2 {
     font-family: "montserratRegular", sans-serif;
-    font-size: 18px;
+    font-size: 1.1rem;
+    flex: 1;
 }
 
 .numero {
     font-family: "montserratExtraBold", sans-serif;
+    min-height: 72px;
     height: 100%;
     background-color: #e7c147;
     color: white;
-    width: 55px;
+    width: 72px;
+    flex-shrink: 0;
     border-radius: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 1.2rem;
     position: relative;
     left: -3px;
 }
@@ -287,10 +301,11 @@ h3 {
 }
 
 .point {
-    font-size: 19px;
-    font-family: "montserratRegular", sans-serif;
-    color: #555;
-    margin: 0 20px 0 auto;
+    font-size: 1.2rem;
+    font-family: "montserratExtraBold", sans-serif;
+    color: #0B54CD;
+    margin: 0 22px 0 auto;
+    white-space: nowrap;
 }
 
 .loginUser {
@@ -308,7 +323,7 @@ h3 {
 .carteProno {
     background-color: white;
     border-radius: 20px;
-    width: 750px;
+    width: 700px;
     box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25);
     padding: 10px;
     margin-bottom: 10px;
@@ -321,13 +336,13 @@ h3 {
     color: #000000 !important;
     border: none;
     border-radius: 25px;
-    padding: 5px 15px 5px 15px;
+    padding: 8px 20px;
     transition: padding 0.3s ease-in-out;
     margin-top: 30px;
 }
 
 .submit:hover {
-    padding: 5px 20px 5px 20px;
+    padding: 8px 25px;
 }
 
 /*Je mets en place la section des résultats*/
@@ -362,7 +377,7 @@ h3 {
 
 .envoyerForm {
     font-family: "montserratRegular", sans-serif;
-    padding: 5px 15px 5px 15px;
+    padding: 8px 20px;
     background-color: #0B54CD;
     color: #FFFFFF !important;
     border-radius: 25px;
@@ -376,7 +391,7 @@ h3 {
 }
 
 .envoyerForm:hover {
-    padding: 5px 20px 5px 20px;
+    padding: 8px 25px;
 }
 
 .bonusContainer {
@@ -423,7 +438,7 @@ h3 {
 @media (max-width: 1170px) {
 
     body {
-        padding-top: 202px !important;
+        padding-top: 90px;
     }
 
     header {
@@ -512,20 +527,32 @@ h3 {
 
 @media (max-width: 450px) {
     .classement {
-        width: 260px;
-        height: 30px;
+        min-height: 62px;
     }
 
     .classement-titre {
-        min-width: 260px;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .case-classement {
+        min-height: 62px;
+        gap: 12px;
     }
 
     .loginUser {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
     .numero {
-        width: 30px;
+        width: 62px;
+        min-height: 62px;
+        font-size: 1rem;
+    }
+
+    .point {
+        font-size: 1rem;
+        margin: 0 14px 0 auto;
     }
 }
 
