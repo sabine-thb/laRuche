@@ -265,10 +265,8 @@ class ModeleScorcast extends Connexion
     {
         try {
             $query = "
-            SELECT U.prenom,U.login,c.nom as nom, U.description, U.age , U.Gender
+            SELECT U.prenom, U.login, U.description, U.age, U.Gender
             FROM laruchxsabine.LaRuche_users U
-            NATURAL JOIN laruchxsabine.LaRuche_pronostiqueur
-            INNER JOIN laruchxsabine.LaRuche_competition join laruchxsabine.LaRuche_competition c on laruchxsabine.LaRuche_pronostiqueur.competition_id = c.competition_id
             WHERE U.user_id = $idUser
             ";
 

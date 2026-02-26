@@ -218,6 +218,9 @@ class ContScorcast
 
         $data = $this->modele->getInfo($isUser);
         $competActive = $this->modele->getCompetAndClassement($isUser);
+        if (empty($data)) {
+            $data = ['prenom' => '', 'login' => '', 'description' => '', 'age' => '', 'Gender' => '', 'optionGender' => ''];
+        }
         switch ($data['Gender']) {
             case 'homme':
                 $data["optionGender"] = "Homme";
@@ -233,6 +236,9 @@ class ContScorcast
                 break;
             case 'croissant':
                 $data["optionGender"] = "I'm a croissant";
+                break;
+            default:
+                $data["optionGender"] = "Je préfère ne pas dire";
                 break;
         }
 
