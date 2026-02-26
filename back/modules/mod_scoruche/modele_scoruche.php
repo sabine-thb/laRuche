@@ -32,9 +32,9 @@ class ModeleScorcast extends Connexion
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e');</script>";
+            echo "<script>console.log('erreur: ' + " . json_encode($e->getMessage()) . ");</script>";
 
-            return $e;
+            return [];
         }
     }
 
@@ -51,10 +51,10 @@ class ModeleScorcast extends Connexion
 
         try {
             $query = "
-            SELECT competition_id,nom,description,date_creation 
-            FROM laruchxsabine.LaRuche_pronostiqueur 
-            NATURAL JOIN laruchxsabine.LaRuche_competition
-            WHERE user_id = $idUser
+            SELECT c.competition_id, c.nom, c.description, c.date_creation
+            FROM laruchxsabine.LaRuche_competition c
+            INNER JOIN laruchxsabine.LaRuche_pronostiqueur p ON p.competition_id = c.competition_id
+            WHERE p.user_id = $idUser
             ";
 
             $stmt = Connexion::$bdd->prepare($query);
@@ -62,9 +62,9 @@ class ModeleScorcast extends Connexion
             return $this->executeQuery($stmt);
 
         } catch (PDOException $e) {
-            echo "<script>console.log('erreur: $e');</script>";
+            echo "<script>console.log('erreur: ' + " . json_encode($e->getMessage()) . ");</script>";
 
-            return $e;
+            return [];
         }
     }
 
