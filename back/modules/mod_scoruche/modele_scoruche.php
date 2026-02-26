@@ -18,11 +18,11 @@ class ModeleScorcast extends Connexion
     {
         try {
             $query = "
-            SELECT * 
-            FROM laruchxsabine.LaRuche_competition 
-            WHERE competition_id NOT IN ( 
+            SELECT competition_id, nom, description, date_creation
+            FROM laruchxsabine.LaRuche_competition
+            WHERE competition_id NOT IN (
                 SELECT competition_id
-                FROM laruchxsabine.LaRuche_pronostiqueur NATURAL JOIN laruchxsabine.LaRuche_competition 
+                FROM laruchxsabine.LaRuche_pronostiqueur NATURAL JOIN laruchxsabine.LaRuche_competition
                 WHERE user_id = $idUser
             )
             ";
