@@ -2,6 +2,7 @@
 <script src="style/js/inputScore.js"></script>
 
 <section class="sectionCard">
+    <?php if (!empty($match)) { ?>
     <?php foreach ($match as $row) {
         $dateMatch = $row['date_match'];
 
@@ -97,6 +98,9 @@
                 </div>
             </div>
         </form>
+    <?php } ?>
+    <?php } else { ?>
+        <p>Il n'y a aucun match en attente de résultat pour le moment.</p>
     <?php } ?>
 
 

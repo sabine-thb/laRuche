@@ -2,6 +2,7 @@
 <section>
     <h1 class="titlePage">Voici les questions bonus actuelles : </h1>
     <div class="allQuestions">
+        <?php if (!empty($questions)) { ?>
         <?php foreach ($questions as $oneQuestion) { ?>
 
             <div class="oneQuestionBonus"> <!--la class 'oneQuestion' est utilisé par le js-->
@@ -56,6 +57,12 @@
                 </form>
             </div>
 
+        <?php } ?>
+        <?php } else { ?>
+            <p>Aucune question bonus en cours pour le moment.</p>
+            <div class="gifContainer">
+                <img src="./style/gif/pageVideHomer.gif" width="320" height="240" frameBorder="0" alt="gif de homer"/>
+            </div>
         <?php } ?>
     </div>
     <div class="bonusContainer">

@@ -1,4 +1,5 @@
 <section class="allQuestions">
+    <?php if (!empty($questions)) { ?>
     <?php foreach ($questions as $oneQuestion) { ?>
 
         <div class="oneQuestion">
@@ -43,6 +44,9 @@
 
         </div>
 
+    <?php } ?>
+    <?php } else { ?>
+        <p>Il n'y a aucune question bonus ouverte pour le moment.</p>
     <?php } ?>
 
 

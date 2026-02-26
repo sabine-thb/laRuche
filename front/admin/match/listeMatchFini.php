@@ -1,4 +1,5 @@
 <section class="sectionCard">
+    <?php if (!empty($match)) { ?>
     <?php foreach ($match as $row) {
         $dateMatch = $row['date_match'];
 
@@ -56,6 +57,9 @@
                 </div>
             </div>
         </div>
+    <?php } ?>
+    <?php } else { ?>
+        <p>Il n'y a aucun match terminé pour le moment.</p>
     <?php } ?>
     <section>
 

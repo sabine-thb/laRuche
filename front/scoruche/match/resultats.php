@@ -6,6 +6,7 @@
     </p>
 
     <div class="resultPronos">
+        <?php if (!empty($matchs)) { ?>
         <?php foreach ($matchs as $tuple) {
             $timestamp = strtotime($tuple["date_match"]);
             $date_formattee = date("d/m/Y", $timestamp);
@@ -101,6 +102,12 @@
                         voir les stats
                     </a>
                 </div>
+            </div>
+        <?php } ?>
+        <?php } else { ?>
+            <p>Aucun résultat disponible pour le moment.</p>
+            <div class="gifContainer">
+                <img src="./style/gif/pageVideHomer.gif" width="320" height="240" frameBorder="0" alt="gif de homer"/>
             </div>
         <?php } ?>
     </div>

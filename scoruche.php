@@ -51,6 +51,12 @@ $affichageModule = $module->afficheModule();
         </h2>
     </a>
 
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
     <div id="navbar">
         <a href="scoruche.php?action=competitionDisponible" class="linkNavbar linkDefaut" id="competDispo">
             Rejoindre une compétition
@@ -64,7 +70,6 @@ $affichageModule = $module->afficheModule();
         <a href="connexion.php?action=deconnexion" class="linkNavbar linkDefaut" id="deco">
             Déconnexion
         </a>
-
     </div>
 
 
@@ -87,6 +92,7 @@ $affichageModule = $module->afficheModule();
     <p>Coordonnées de contact / Informations légales</p>
 </footer> -->
 
+<script src="./style/js/menu.js"></script>
 <script src="./style/js/scoruche.js"></script>
 </body>
 </html>

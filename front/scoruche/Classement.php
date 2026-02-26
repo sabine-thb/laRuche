@@ -1,7 +1,4 @@
 <section>
-    <div class="classementContainer">
-        <img src="style/img/bonus/victoire%201%20sur%204%201664.JPG" alt="image fond" id="image-fond-bonus"/>
-    </div>
 
     <h1 class="titlePage">
         Classement général :
@@ -9,8 +6,8 @@
 
     <div class="classementContainer">
 
-        <?php
-        foreach ($classement as $personne) {
+        <?php if (!empty($classement)) { ?>
+        <?php foreach ($classement as $personne) {
             $goodUser = $_SESSION['idUser'] == $personne["id"] ? "bleu" : "classic";
             ?>
 
@@ -33,6 +30,12 @@
                         <?php echo $personne["points"]; ?>
                     </p>
                 </div>
+            </div>
+        <?php } ?>
+        <?php } else { ?>
+            <p>Le classement est vide pour le moment.</p>
+            <div class="gifContainer">
+                <img src="./style/gif/pageVideHomer.gif" width="320" height="240" frameBorder="0" alt="gif de homer"/>
             </div>
         <?php } ?>
 

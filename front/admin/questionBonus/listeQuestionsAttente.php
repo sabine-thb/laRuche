@@ -1,5 +1,6 @@
 <script src="./style/js/question/questionForm.js"></script>
 <section class="allQuestions">
+    <?php if (!empty($questions)) { ?>
     <?php foreach ($questions as $oneQuestion) { ?>
 
         <div class="oneQuestion"> <!--la class 'oneQuestion' est utilisé par le js-->
@@ -61,6 +62,9 @@
             </form>
         </div>
 
+    <?php } ?>
+    <?php } else { ?>
+        <p>Il n'y a aucune question bonus en attente de résultat pour le moment.</p>
     <?php } ?>
 
 </section>
