@@ -34,6 +34,7 @@ $affichageModule = $module->afficheModule();
     <link rel="shortcut icon" type="image/png" href="./style/img/logoBleu.ico"/>
     <script src="./style/js/competition.js"></script>
     <script src="./style/js/profil/editLogo.js"></script>
+    <script src="./style/js/menu.js"></script>
 </head>
 
 <body>
@@ -46,6 +47,12 @@ $affichageModule = $module->afficheModule();
             scoruche
         </h2>
     </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
     <div id="navbar">
         <a href="scoruche.php" class="linkNavbar linkDefaut" id="competition">
