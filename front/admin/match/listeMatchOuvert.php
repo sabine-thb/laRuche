@@ -40,7 +40,7 @@
             <div class="buttons">
 
                 <a href="admin.php?action=supprimerMatch&idMatch=<?php echo $row['match_id']; ?>"
-                   class="oneButton"
+                   class="oneButton btnDanger"
                    onclick="return confirm('est-tu sur de vouloir supprimez ce match ?\n');"
                 >
                     Supprimer

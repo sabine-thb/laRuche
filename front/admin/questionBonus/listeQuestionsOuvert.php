@@ -28,13 +28,13 @@
 
             <div class="twoButtons">
 
-                <a class="btn" style="text-decoration: none;"
+                <a class="oneButton" style="text-decoration: none;"
                    href="admin.php?action=miseEnAttenteQuestion&idQuestion=<?php echo $oneQuestion['question_bonus_id']; ?>"
                    onclick="return confirm('est-tu sur de vouloir mettre en attente cette question ?\nIl n\'y a pas de retour arrière possible pour l\'instant');">
                     Fermer les paris
                 </a>
 
-                <a class="btn" style="text-decoration: none;"
+                <a class="oneButton btnDanger" style="text-decoration: none;"
                    onclick="return confirm('est-tu sur de vouloir supprimez ce match ?\n');">
                     Supprimer
                 </a>

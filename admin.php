@@ -15,6 +15,7 @@ include_once('back/modules/mod_admin/mod_admin.php');
 //connexion bdd
 Connexion::initConnexion();
 
+$action = $_GET['action'] ?? 'bienvenue';
 $module = new ModAdmin();
 
 //fin du tampon
@@ -67,6 +68,11 @@ $affichageModule = $module->afficheModule();
 </header>
 
 <main>
+    <?php if (($action ?? 'bienvenue') !== 'bienvenue'): ?>
+        <a href="admin.php" class="btnRetourAdmin">
+            <i class="fas fa-arrow-left"></i> Accueil admin
+        </a>
+    <?php endif; ?>
     <?php
     // le code html dynamique, il faut regarder les fichier situé dans front/admin pour voir les possibilité d'affichage
     echo $affichageModule;

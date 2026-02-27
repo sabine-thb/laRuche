@@ -5,24 +5,6 @@
     box-sizing: border-box;
 }
 
-input[type="submit"],
-button[type="submit"] {
-    font-family: "montserratRegular", sans-serif;
-    padding: 20px 20px;
-    border: none;
-    border-radius: 25px;
-    background-color: #0B54CD;
-    color: white;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease-in-out;
-}
-
-input[type="submit"]:hover,
-button[type="submit"]:hover {
-    background-color: #cf9e00;
-}
-
 body {
     font-family: "montserratRegular", sans-serif;
     min-height: 100vh;
