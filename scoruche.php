@@ -94,6 +94,7 @@ $affichageModule = $module->afficheModule();
 
 <script src="./style/js/menu.js"></script>
 <script src="./style/js/scoruche.js"></script>
+<script src="./style/js/formSubmit.js"></script>
 </body>
 </html>
 

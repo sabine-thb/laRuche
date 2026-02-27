@@ -49,6 +49,7 @@ $affichageModule = $module->afficheModule();
     <script src="style/js/inputScore.js"></script>
     <script src="./style/js/competition.js"></script>
     <script src="./style/js/menu.js"></script>
+    <script src="./style/js/formSubmit.js"></script>
 </head>
 
 <body>

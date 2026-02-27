@@ -37,6 +37,7 @@ $affichageModule = $module->afficheModule();
     <link rel="shortcut icon" type="image/png" href="./style/img/logoBleu.ico"/>
     <script src="style/js/inputScore.js"></script>
     <script src="style/js/menu.js"></script>
+    <script src="style/js/formSubmit.js"></script>
 </head>
 
 <body>

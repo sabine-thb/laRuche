@@ -3,6 +3,12 @@
     height: 220px;
 } */
 
+/* AMELIO-2 — Feedback visuel soumission formulaire */
+.btn-chargement {
+    opacity: 0.7;
+    cursor: not-allowed !important;
+}
+
 #liste_equipe {
     padding: 10px 20px;
     color: #0B54CD;

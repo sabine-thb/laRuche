@@ -35,6 +35,7 @@ $affichageModule = $module->afficheModule();
     <script src="./style/js/competition.js"></script>
     <script src="./style/js/profil/editLogo.js"></script>
     <script src="./style/js/menu.js"></script>
+    <script src="./style/js/formSubmit.js"></script>
 </head>
 
 <body>

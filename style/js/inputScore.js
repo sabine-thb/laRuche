@@ -45,10 +45,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 const max = parseInt(numInput.max);
                 const min = parseInt(numInput.min);
 
-                const heightReduit = window.innerWidth < 850 ? "3.3em" : "5em";
+                const heightReduit = window.innerWidth < 850 ? "3.5em" : "5em";
                 const paddingReduit = window.innerWidth < 850 ? "0.3em" : "0.8em";
 
-                const heightDefaut = window.innerWidth < 850 ? "100px" : "120px";
+                const heightDefaut = window.innerWidth < 850 ? "90px" : "120px";
 
                 if (value === max) {
                     num.style.paddingTop = paddingReduit;
