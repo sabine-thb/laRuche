@@ -8,7 +8,7 @@
 input[type="submit"],
 button[type="submit"] {
     font-family: "montserratRegular", sans-serif;
-    padding: 10px 20px;
+    padding: 20px 20px;
     border: none;
     border-radius: 25px;
     background-color: #0B54CD;
@@ -193,7 +193,7 @@ li {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 855px) {
     body {
         padding-top: 90px;
     }

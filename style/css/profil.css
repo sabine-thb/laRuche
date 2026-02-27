@@ -11,16 +11,4 @@
         flex-direction: column;
         gap: 6px;
     }
-
-    header {
-        height: auto;
-    }
-
-    #navbar {
-        flex-direction: column;
-    }
-
-    body {
-        padding-top: 170px;
-    }
 }

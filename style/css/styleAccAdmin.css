@@ -72,11 +72,18 @@ section {
     box-shadow: 20px 20px 19.4px 1px rgba(0, 0, 0, 0.25);
 }
 
+.oneDemande {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+
 .choice {
     display: flex;
-    gap: 25px;
-    width: fit-content;
-    margin-left: auto;
+    gap: 0;
+    width: calc(100% + 40px);
+    margin: 20px -20px 0;
 }
 
 .p.login, .p.descr, .p.mail {
@@ -100,6 +107,23 @@ section {
 
 .p.valid:hover, .p.refuse:hover, .lienResetPwd:hover, .lienDeleteUser:hover {
     background-color: #cf9e00;
+}
+
+.p.valid, .p.refuse {
+    flex: 1;
+    text-align: center;
+    border-radius: 0;
+    padding: 16px;
+    font-size: 1rem;
+    font-family: "montserratExtraBold", sans-serif;
+}
+
+.p.refuse {
+    background-color: rgb(170, 0, 0);
+}
+
+.p.refuse:hover {
+    background-color: #8b0000;
 }
 
 .underline, .labelSearch, .labelCompet, .labelEquipe {
@@ -635,6 +659,11 @@ section {
 
     .choice {
         flex-direction: column;
-        gap: 10px;
+        width: calc(100% + 40px);
+        margin: 20px -20px 0;
+    }
+
+    .p.valid, .p.refuse {
+        padding: 14px;
     }
 }

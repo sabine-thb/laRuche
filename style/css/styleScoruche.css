@@ -157,28 +157,8 @@ section {
 
 
 @media (max-width: 850px) {
-    body {
-        padding-top: 90px;
-    }
-
     .cardCompet {
         width: 500px;
-
-    }
-
-    header {
-        height: auto;
-    }
-
-    #navbar {
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 10px !important;
-    }
-
-    .linkNavbar {
-        font-size: 0.6rem;
-        padding: 5px 10px 5px 10px !important;
     }
 }
 
