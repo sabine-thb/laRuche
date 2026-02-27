@@ -9,6 +9,8 @@
     padding: 25px 25px 70px 25px;
     border-radius: 20px;
     width: fit-content;
+    max-width: 90vw;
+    box-sizing: border-box;
     box-shadow: 20px 20px 19px 1px rgba(0, 0, 0, 0.25);
     position: relative;
 }
@@ -34,7 +36,7 @@
     background-color: #0B54CD;
     border: none;
     border-radius: 20px;
-    padding: 5px 15px;
+    padding: 8px 20px;
     transition: background-color 0.3s ease-in-out;
     text-decoration: none;
     position: absolute;
@@ -139,7 +141,7 @@ input[type=file]:hover {
     text-decoration: none;
     color: white;
     background-color: #0B54CD;
-    padding: 5px 10px;
+    padding: 8px 16px;
     border-radius: 20px;
     transition: background-color 0.3s ease-in-out;
 }
@@ -157,35 +159,58 @@ input[type=file]:hover {
 }
 
 
-@media (max-width: 450px) {
+@media (max-width: 600px) {
+    #formProfil, .flexContainerProfil {
+        padding: 15px 12px 65px 12px;
+        max-width: 95vw;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
     .pForm {
         display: flex;
         flex-direction: column;
     }
 
+    .topLeft-form {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .Nom {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .label {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+
     .nameCompet {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        margin-bottom: 0;
     }
 
     .mdp {
         font-size: 0.8rem;
-        width: 230px;
+        width: 80%;
+        max-width: 260px;
     }
 
     .one-compet {
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    .nameCompet {
-        margin-bottom: 0;
+        padding: 10px;
     }
 
     .quiEst {
         font-size: 1.2rem;
     }
 
-
+    .infosPers {
+        margin-bottom: 30px;
+    }
 }
 

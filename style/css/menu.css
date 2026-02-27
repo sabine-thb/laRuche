@@ -5,6 +5,24 @@
     box-sizing: border-box;
 }
 
+input[type="submit"],
+button[type="submit"] {
+    font-family: "montserratRegular", sans-serif;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    background-color: #0B54CD;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+    background-color: #cf9e00;
+}
+
 body {
     font-family: "montserratRegular", sans-serif;
     min-height: 100vh;
@@ -176,6 +194,24 @@ li {
 
 
 @media (max-width: 768px) {
+    body {
+        padding-top: 90px;
+    }
+
+    header {
+        height: 80px;
+        padding: 8px 15px;
+    }
+
+    header img {
+        height: 45px;
+    }
+
+    #logoUser {
+        height: 50px;
+        width: 50px;
+    }
+
     .hamburger {
         display: flex;
         align-self: center;
