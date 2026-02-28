@@ -266,7 +266,7 @@ class ModeleAdmin extends Connexion
     {
         try {
             $query = "
-            SELECT mail
+            SELECT mail, prenom
             FROM LaRuche_users
             WHERE user_id = :id
             ";

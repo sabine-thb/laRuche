@@ -40,21 +40,94 @@ class ContAdmin
         if (isset($_GET["id"])) {
             $resultat = $this->modele->accepteDemande($_GET["id"]);
             if ($resultat) {
-                $subjectUser = "Compte scoruche accepté !";
+                $userData = $this->modele->getMail($_GET["id"]);
+                $toUser = $userData['mail'];
+                $prenom = htmlspecialchars($userData['prenom']);
 
-                $mail = $this->modele->getMail($_GET["id"]);
-                $mailUser = $mail['mail'];
-                $toUser = $mailUser;
-                $messageUser = "Ta demande a été acceptée ! 
-                    Tu peux désormais te connecter sur la-ruche.eu .
-                    ";
+                $subjectUser = "=?UTF-8?B?" . base64_encode("Bienvenue sur La Ruche ! 🐝") . "?=";
 
-                mail($toUser, $subjectUser, $messageUser);
+                $messageUser = $this->buildMailConfirmationHTML($prenom);
+
+                $headers = "MIME-Version: 1.0\r\n";
+                $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+                $headers .= "From: La Ruche <ruche@alwaysdata.net>\r\n";
+
+                mail($toUser, $subjectUser, $messageUser, $headers);
 
                 header('Location: admin.php?action=afficherDemande');
-
             }
         }
+    }
+
+    private function buildMailConfirmationHTML($prenom)
+    {
+        return '<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"></head>
+<body style="margin:0;padding:0;background-color:#D5E8FB;font-family:Arial,Helvetica,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background-color:#D5E8FB;padding:30px 0;">
+<tr><td align="center">
+<table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+
+    <!-- Header -->
+    <tr>
+        <td style="background: linear-gradient(135deg, #080e50 0%, #0B54CD 100%);padding:40px 30px;text-align:center;">
+            <h1 style="color:#FFC000;font-size:28px;margin:0 0 5px 0;letter-spacing:1px;">LA RUCHE</h1>
+            <p style="color:rgba(255,255,255,0.8);font-size:13px;margin:0;letter-spacing:3px;">SCORUCHE</p>
+        </td>
+    </tr>
+
+    <!-- Icone -->
+    <tr>
+        <td style="text-align:center;padding:30px 0 10px 0;">
+            <div style="width:70px;height:70px;border-radius:50%;background-color:#D5E8FB;margin:0 auto;line-height:70px;font-size:36px;">
+                ✅
+            </div>
+        </td>
+    </tr>
+
+    <!-- Corps -->
+    <tr>
+        <td style="padding:10px 40px 30px 40px;text-align:center;">
+            <h2 style="color:#080e50;font-size:22px;margin:0 0 15px 0;">Bienvenue ' . $prenom . ' !</h2>
+            <p style="color:#444;font-size:15px;line-height:1.6;margin:0 0 25px 0;">
+                Ta demande de compte a été <strong style="color:#0B54CD;">acceptée</strong> par un administrateur.<br>
+                Tu fais maintenant partie de la communauté La Ruche !
+            </p>
+
+            <!-- Bouton -->
+            <a href="https://ruche.alwaysdata.net" style="display:inline-block;background-color:#0B54CD;color:#ffffff;text-decoration:none;padding:14px 40px;border-radius:25px;font-size:16px;font-weight:bold;letter-spacing:0.5px;">
+                Se connecter
+            </a>
+
+            <p style="color:#888;font-size:13px;margin:25px 0 0 0;line-height:1.5;">
+                Tu peux dès maintenant te connecter avec tes identifiants<br>et commencer à pronostiquer !
+            </p>
+        </td>
+    </tr>
+
+    <!-- Séparateur -->
+    <tr>
+        <td style="padding:0 40px;">
+            <div style="border-top:1px solid #e8e8e8;"></div>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td style="padding:20px 40px 30px 40px;text-align:center;">
+            <p style="color:#aaa;font-size:12px;margin:0;line-height:1.6;">
+                Cet email a été envoyé automatiquement par La Ruche.<br>
+                Si tu n\'as pas demandé de compte, ignore ce message.
+            </p>
+        </td>
+    </tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>';
     }
 
     public function refuserDemande()
@@ -63,25 +136,96 @@ class ContAdmin
             $resultat = $this->modele->refuseDemande($_GET["id"]);
 
             if ($resultat) {
+                $toUserRefused = $_POST['mail'];
 
+                $subjectUserRefused = "=?UTF-8?B?" . base64_encode("Demande de compte La Ruche") . "?=";
 
-                $subjectUserRefused = "Compte scoruche refusé !";
+                $messageUserRefused = $this->buildMailRefusHTML();
 
-                $mailUserRefused = $_POST['mail'];
+                $headers = "MIME-Version: 1.0\r\n";
+                $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+                $headers .= "From: La Ruche <laruchelive@gmail.com>\r\n";
 
-                $toUserRefused = $mailUserRefused;
-
-                $messageUserRefused = "Ta demande a été refusée ! 
-                Si tu penses qu'elle aurait dû être acceptée, améliore ta description ou contacte nous sur instagram.
-
-                PS: ta desciption sera affichée sur ton profil, donc précise bien qui tu es de facon à ce que tout le monde puisse te reconnaitre 😉
-                ";
-
-                mail($toUserRefused, $subjectUserRefused, $messageUserRefused);
+                mail($toUserRefused, $subjectUserRefused, $messageUserRefused, $headers);
 
                 header('Location: admin.php?action=afficherDemande');
             }
         }
+    }
+
+    private function buildMailRefusHTML()
+    {
+        return '<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"></head>
+<body style="margin:0;padding:0;background-color:#D5E8FB;font-family:Arial,Helvetica,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background-color:#D5E8FB;padding:30px 0;">
+<tr><td align="center">
+<table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+
+    <!-- Header -->
+    <tr>
+        <td style="background: linear-gradient(135deg, #080e50 0%, #0B54CD 100%);padding:40px 30px;text-align:center;">
+            <h1 style="color:#FFC000;font-size:28px;margin:0 0 5px 0;letter-spacing:1px;">LA RUCHE</h1>
+            <p style="color:rgba(255,255,255,0.8);font-size:13px;margin:0;letter-spacing:3px;">SCORUCHE</p>
+        </td>
+    </tr>
+
+    <!-- Icone -->
+    <tr>
+        <td style="text-align:center;padding:30px 0 10px 0;">
+            <div style="width:70px;height:70px;border-radius:50%;background-color:#D5E8FB;margin:0 auto;line-height:70px;font-size:36px;">
+                😕
+            </div>
+        </td>
+    </tr>
+
+    <!-- Corps -->
+    <tr>
+        <td style="padding:10px 40px 30px 40px;text-align:center;">
+            <h2 style="color:#080e50;font-size:22px;margin:0 0 15px 0;">Demande non acceptée</h2>
+            <p style="color:#444;font-size:15px;line-height:1.6;margin:0 0 20px 0;">
+                Malheureusement, ta demande de compte n\'a pas été acceptée cette fois-ci.
+            </p>
+            <p style="color:#444;font-size:15px;line-height:1.6;margin:0 0 25px 0;">
+                Si tu penses qu\'elle aurait dû être acceptée, <strong>améliore ta description</strong> ou contacte-nous sur Instagram.
+            </p>
+
+            <div style="background-color:#D5E8FB;border-radius:12px;padding:15px 25px;margin:0 0 20px 0;text-align:left;">
+                <p style="color:#080e50;font-size:14px;margin:0;line-height:1.5;">
+                    💡 <strong>Astuce :</strong> Ta description sera affichée sur ton profil, donc précise bien qui tu es pour que tout le monde puisse te reconnaître !
+                </p>
+            </div>
+
+            <!-- Bouton -->
+            <a href="https://la-ruche.eu" style="display:inline-block;background-color:#0B54CD;color:#ffffff;text-decoration:none;padding:14px 40px;border-radius:25px;font-size:16px;font-weight:bold;letter-spacing:0.5px;">
+                Réessayer
+            </a>
+        </td>
+    </tr>
+
+    <!-- Séparateur -->
+    <tr>
+        <td style="padding:0 40px;">
+            <div style="border-top:1px solid #e8e8e8;"></div>
+        </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+        <td style="padding:20px 40px 30px 40px;text-align:center;">
+            <p style="color:#aaa;font-size:12px;margin:0;line-height:1.6;">
+                Cet email a été envoyé automatiquement par La Ruche.<br>
+                Si tu n\'as pas demandé de compte, ignore ce message.
+            </p>
+        </td>
+    </tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>';
     }
 
     public function supprimerCompetition()
