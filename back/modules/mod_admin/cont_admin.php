@@ -51,8 +51,11 @@ class ContAdmin
                 $headers = "MIME-Version: 1.0\r\n";
                 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
                 $headers .= "From: La Ruche <ruche@alwaysdata.net>\r\n";
+                $headers .= "Reply-To: ruche@alwaysdata.net\r\n";
+                $headers .= "X-Mailer: LaRuche-App\r\n";
 
-                mail($toUser, $subjectUser, $messageUser, $headers);
+                $mailSent = mail($toUser, $subjectUser, $messageUser, $headers);
+                error_log("LARUCHE MAIL DEBUG - to: $toUser | sent: " . ($mailSent ? 'OK' : 'FAIL'));
 
                 header('Location: admin.php?action=afficherDemande');
             }
@@ -144,7 +147,9 @@ class ContAdmin
 
                 $headers = "MIME-Version: 1.0\r\n";
                 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-                $headers .= "From: La Ruche <laruchelive@gmail.com>\r\n";
+                $headers .= "From: La Ruche <ruche@alwaysdata.net>\r\n";
+                $headers .= "Reply-To: ruche@alwaysdata.net\r\n";
+                $headers .= "X-Mailer: LaRuche-App\r\n";
 
                 mail($toUserRefused, $subjectUserRefused, $messageUserRefused, $headers);
 

@@ -49,17 +49,18 @@ class ContConnexion
 
                     $subjectRuche = "Demande de compte Scoruche";
 
-                    $mailRuche = "laruchelive@gmail.com";
+                    $to = "laruchelive@gmail.com";
 
-                    $to = $mailRuche;
-
-                    $messageRuche = "Nouvelle demande ! 
-                    Login: $_POST[login] 
+                    $messageRuche = "Nouvelle demande !
+                    Login: $_POST[login]
                     Description : $_POST[description]
                     Veuillez accepter ou refuser cette demande.
                     ";
 
-                    mail($to, $subjectRuche, $messageRuche);
+                    $headersRuche = "From: La Ruche <ruche@alwaysdata.net>\r\n";
+                    $headersRuche .= "Reply-To: ruche@alwaysdata.net\r\n";
+
+                    mail($to, $subjectRuche, $messageRuche, $headersRuche);
 
                 } else {
                     $this->vue->erreur("lors de la creation de compte");
