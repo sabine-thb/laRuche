@@ -1,0 +1,13 @@
+{
+    "name": "laruche/app",
+    "description": "La Ruche",
+    "authors": [
+        {
+            "name": "amaitre",
+            "email": "manbrozer@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^7.0"
+    }
+}

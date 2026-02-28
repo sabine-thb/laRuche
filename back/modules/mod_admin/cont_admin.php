@@ -6,6 +6,7 @@ if (!defined("BASE_URL")) {
 
 require_once "modele_admin.php";
 require_once "vue_admin.php";
+require_once __DIR__ . '/../../services/MailService.php';
 
 class ContAdmin
 {
@@ -44,18 +45,8 @@ class ContAdmin
                 $toUser = $userData['mail'];
                 $prenom = htmlspecialchars($userData['prenom']);
 
-                $subjectUser = "=?UTF-8?B?" . base64_encode("Bienvenue sur La Ruche ! 🐝") . "?=";
-
                 $messageUser = $this->buildMailConfirmationHTML($prenom);
-
-                $headers = "MIME-Version: 1.0\r\n";
-                $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-                $headers .= "From: La Ruche <ruche@alwaysdata.net>\r\n";
-                $headers .= "Reply-To: ruche@alwaysdata.net\r\n";
-                $headers .= "X-Mailer: LaRuche-App\r\n";
-
-                $mailSent = mail($toUser, $subjectUser, $messageUser, $headers);
-                error_log("LARUCHE MAIL DEBUG - to: $toUser | sent: " . ($mailSent ? 'OK' : 'FAIL'));
+                MailService::sendHTML($toUser, "Bienvenue sur La Ruche !", $messageUser);
 
                 header('Location: admin.php?action=afficherDemande');
             }
@@ -141,17 +132,8 @@ class ContAdmin
             if ($resultat) {
                 $toUserRefused = $_POST['mail'];
 
-                $subjectUserRefused = "=?UTF-8?B?" . base64_encode("Demande de compte La Ruche") . "?=";
-
                 $messageUserRefused = $this->buildMailRefusHTML();
-
-                $headers = "MIME-Version: 1.0\r\n";
-                $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-                $headers .= "From: La Ruche <ruche@alwaysdata.net>\r\n";
-                $headers .= "Reply-To: ruche@alwaysdata.net\r\n";
-                $headers .= "X-Mailer: LaRuche-App\r\n";
-
-                mail($toUserRefused, $subjectUserRefused, $messageUserRefused, $headers);
+                MailService::sendHTML($toUserRefused, "Demande de compte La Ruche", $messageUserRefused);
 
                 header('Location: admin.php?action=afficherDemande');
             }

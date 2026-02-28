@@ -6,6 +6,7 @@ if (!defined("BASE_URL")) {
 
 require_once "modele_connexion.php";
 require_once "vue_connexion.php";
+require_once __DIR__ . '/../../services/MailService.php';
 
 class ContConnexion
 {
@@ -47,24 +48,15 @@ class ContConnexion
                     echo "<p class=\"dmdOK\">Une demande a été envoyée à la ruche, vous recevrez un mail lorsque la demande sera acceptée.</p>";
 
 
-                    $subjectRuche = "=?UTF-8?B?" . base64_encode("Demande de compte Scoruche") . "?=";
-
-                    $to = "laruchelive@gmail.com";
-
                     $login = htmlspecialchars($_POST['login']);
                     $description = htmlspecialchars($_POST['description']);
 
-                    $messageRuche = "Nouvelle demande !\r\n\r\n";
-                    $messageRuche .= "Login: $login\r\n";
-                    $messageRuche .= "Description : $description\r\n\r\n";
-                    $messageRuche .= "Veuillez accepter ou refuser cette demande.\r\n";
+                    $messageRuche = "Nouvelle demande !\n\n";
+                    $messageRuche .= "Login: $login\n";
+                    $messageRuche .= "Description : $description\n\n";
+                    $messageRuche .= "Veuillez accepter ou refuser cette demande.\n";
 
-                    $headersRuche = "MIME-Version: 1.0\r\n";
-                    $headersRuche .= "Content-Type: text/plain; charset=UTF-8\r\n";
-                    $headersRuche .= "From: La Ruche <ruche@alwaysdata.net>\r\n";
-                    $headersRuche .= "Reply-To: ruche@alwaysdata.net\r\n";
-
-                    mail($to, $subjectRuche, $messageRuche, $headersRuche);
+                    MailService::sendText("laruchelive@gmail.com", "Demande de compte Scoruche", $messageRuche);
 
                 } else {
                     $this->vue->erreur("lors de la creation de compte");
