@@ -47,17 +47,21 @@ class ContConnexion
                     echo "<p class=\"dmdOK\">Une demande a été envoyée à la ruche, vous recevrez un mail lorsque la demande sera acceptée.</p>";
 
 
-                    $subjectRuche = "Demande de compte Scoruche";
+                    $subjectRuche = "=?UTF-8?B?" . base64_encode("Demande de compte Scoruche") . "?=";
 
                     $to = "laruchelive@gmail.com";
 
-                    $messageRuche = "Nouvelle demande !
-                    Login: $_POST[login]
-                    Description : $_POST[description]
-                    Veuillez accepter ou refuser cette demande.
-                    ";
+                    $login = htmlspecialchars($_POST['login']);
+                    $description = htmlspecialchars($_POST['description']);
 
-                    $headersRuche = "From: La Ruche <ruche@alwaysdata.net>\r\n";
+                    $messageRuche = "Nouvelle demande !\r\n\r\n";
+                    $messageRuche .= "Login: $login\r\n";
+                    $messageRuche .= "Description : $description\r\n\r\n";
+                    $messageRuche .= "Veuillez accepter ou refuser cette demande.\r\n";
+
+                    $headersRuche = "MIME-Version: 1.0\r\n";
+                    $headersRuche .= "Content-Type: text/plain; charset=UTF-8\r\n";
+                    $headersRuche .= "From: La Ruche <ruche@alwaysdata.net>\r\n";
                     $headersRuche .= "Reply-To: ruche@alwaysdata.net\r\n";
 
                     mail($to, $subjectRuche, $messageRuche, $headersRuche);
