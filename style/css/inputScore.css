@@ -26,6 +26,8 @@
     border: none;
     color: #7fef51;
     font-weight: bold;
+    width: 100%;
+    padding: 0;
 }
 
 .inputScore:focus {
@@ -35,7 +37,7 @@
 .custom-input i {
     font-size: 1.3em;
     transition: 0s;
-    height: 10px;
+    padding: 4px 0;
     cursor: pointer;
     color: #000000 !important;
 }
@@ -43,7 +45,7 @@
 @media (max-width: 850px) {
     .custom-input {
         width: 60px;
-        height: 85px;
+        height: 120px;
         border-radius: 2.2em;
     }
 
@@ -53,11 +55,12 @@
 
     .custom-input i {
         font-size: 1em;
+        padding: 10px 0;
     }
 }
 
 @media (max-width: 500px) {
     .custom-input {
-        width: 35px;
+        width: 40px;
     }
 }
