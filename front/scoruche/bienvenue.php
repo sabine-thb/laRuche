@@ -1,18 +1,13 @@
-<!--
-    jsp pas encore comment va marché cette page 
-    j'ai juste mis un ptit message pour faire un test 
--->
 <div class="msgArv">
-    <p class="bienvenue">Bienvenue <?php echo " $_SESSION[loginActif] " ?> !</p>
-    <p class="descr">Nous t'invitons à rejoindre la compétition dès maintenant.</p>
+    <p class="bienvenue">Bienvenue <?php echo htmlspecialchars($_SESSION["loginActif"]); ?> !</p>
+    <p class="descr">Que veux-tu faire ?</p>
+    <div class="ctaContainer">
+        <a href="scoruche.php?action=afficheMesCompet" class="ctaBtn">
+            Mes compétitions
+        </a>
+        <a href="scoruche.php?action=competitionDisponible" class="ctaBtn ctaBtnSecondaire">
+            Rejoindre une compétition
+        </a>
+    </div>
     <img src="./style/img/logoBleu.png" class="logo" alt="">
 </div>
-
-
-
-
-
-
-
-
-    
