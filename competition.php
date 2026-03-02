@@ -86,10 +86,12 @@ $affichageModule = $module->afficheModule();
            id="questions">
             Bonus
         </a>
+        <?php /* MAINTENANCE — mini-jeu désactivé temporairement
         <a href="competition.php?action=mini-jeu&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut"
            id="mini-jeu">
             Mini-jeu
         </a>
+        */ ?>
         <a href="competition.php?action=editProfil&id=<?php echo $_GET['id']; ?>" class="linkNavbar linkDefaut"
            id="editProfil">
             Profil
